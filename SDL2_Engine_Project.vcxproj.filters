@@ -147,6 +147,9 @@
     <ClCompile Include="source\utils\input_output\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\utils\input_output\Assert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\defines\FontDefines.h">
@@ -573,6 +576,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\utils\others\CodeReadabilityDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\input_output\Assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

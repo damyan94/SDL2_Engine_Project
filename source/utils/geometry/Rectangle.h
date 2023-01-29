@@ -7,9 +7,9 @@
 // Third-party includes
 
 // Own includes
+#include "utils/geometry/Point.h"
 
 // Forward declarations
-struct Point;
 
 struct Rectangle
 {

@@ -2,9 +2,6 @@
 #define UTILS_INPUT_OUTPUT_LOG_H_
 
 // C/C++ system includes
-#include <cstdint>
-#include <cstdio>
-#include <string>
 
 // Third-party includes
 
@@ -18,6 +15,8 @@ namespace Log
 void ConsoleSetTextColor(ConsoleTextColor color);
 void Console(const char* fmt...);
 void Console(ConsoleTextColor color, const char* fmt...);
+
+void File(const char* fmt...);
 }
 
 //TODO move refactor file logging
@@ -80,47 +79,5 @@ void Console(ConsoleTextColor color, const char* fmt...);
 //#define LogFileError(...)
 //
 //#endif // !__FILE_LOGGING_ENABLED
-
-//TODO move asserts to SDL and use SDL_Assert
-////=============================== ASSERT LOGGING ===============================
-//
-//#if defined _DEBUG
-//#if defined WIN32 || _WIN32
-//#define __DEBUG_BREAK_IF(__Condition) if(__Condition && IsDebuggerPresent()) { DebugBreak(); }
-//
-//#define __ASSERT(__Condition, __Text, ...)\
-//		{\
-//			if(__Condition)\
-//			{\
-//				LogFileError(__Text);\
-//				MessageBoxA(nullptr, __Text, "Error!", MB_ICONERROR | MB_OK);\
-//				__DEBUG_BREAK_IF(true);\
-//			}\
-//		}
-//
-//#else //if defined OS_LINUX || LINUX || UNIX
-//#define __DEBUG_BREAK_IF(__Condition) if(__Condition) {_asm int 3}
-//
-////TODO handle the Linux case to show a message box
-//#define __ASSERT(__Condition, __Text, ...)\
-//		{\
-//			if(__Condition)\
-//			{\
-//				LogFileError(__Text);\
-//				/*TODO Insert message box here*/\
-//				__DEBUG_BREAK_IF(true);\
-//			}\
-//		}
-//
-//#endif // !WIN32 || _WIN32
-//
-//#define Assert(__Condition, ...)			__ASSERT(__Condition, __VA_ARGS__ "\n" __ASSERT_LOG_SOURCE_INFO)
-//
-//#else
-//#define __DEBUG_BREAK_IF(__Condition)
-//#define __ASSERT(__Condition, __Text, ...)
-//#define Assert(__Condition, ...)
-//
-//#endif // !_DEBUG
 
 #endif // !UTILS_INPUT_OUTPUT_LOG_H_

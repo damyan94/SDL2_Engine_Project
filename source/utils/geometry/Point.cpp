@@ -2,7 +2,6 @@
 #include "utils/geometry/Point.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 

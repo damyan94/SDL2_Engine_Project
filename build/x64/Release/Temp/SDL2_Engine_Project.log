@@ -1,0 +1,51 @@
+﻿  Assert.cpp
+  Log.cpp
+  AssetManager.cpp
+  imgui_impl_sdl.cpp
+  imgui_impl_sdlrenderer.cpp
+  imgui.cpp
+  imgui_demo.cpp
+  imgui_draw.cpp
+  imgui_tables.cpp
+  imgui_widgets.cpp
+  DrawManager.cpp
+  Manager.cpp
+  GlobalConstants.cpp
+  FontDefines.cpp
+  SoundDefines.cpp
+  MusicDefines.cpp
+  ImageDefines.cpp
+  Engine.cpp
+  App.cpp
+  main.cpp
+  Generating Code...
+  Compiling...
+  Position.cpp
+  ReadWriteFile.cpp
+  Audio.cpp
+  FontContainer.cpp
+  ImageContainer.cpp
+  MusicContainer.cpp
+  SoundContainer.cpp
+  DrawObject.cpp
+  Image.cpp
+  Text.cpp
+  InputEvent.cpp
+  Renderer.cpp
+  SDLLoader.cpp
+  SDLDrawing.cpp
+  Texture.cpp
+  Window.cpp
+  Color.cpp
+  Point.cpp
+  Rectangle.cpp
+  RandomNumberGenerator.cpp
+  Generating Code...
+  Compiling...
+  Crypto.cpp
+  Time.cpp
+  Timer.cpp
+  UtilsDefines.cpp
+  TimerManager.cpp
+  Generating Code...
+  SDL2_Engine_Project.vcxproj -> D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\build\x64\Release\Application.exe

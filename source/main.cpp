@@ -12,7 +12,7 @@ int32_t main([[maybe_unused]]int32_t argC, [[maybe_unused]] char* argV[])
 {
 	Engine app;
 
-	ReturnIf(EXIT_SUCCESS != app.Init(), EXIT_FAILURE, "Error, app.Init() failed.\n");
+	AssertReturnIf(EXIT_SUCCESS != app.Init(), EXIT_FAILURE);
 
 	app.RunApplication();
 

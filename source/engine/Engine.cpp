@@ -30,21 +30,21 @@ int32_t Engine::Init()
 
 	//TODO change all this to AssertReturnIf
 	// SDL init
-	ReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE, "Error, SDLLoader::Init() failed.\n");
+	AssertReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE);
 	
 	// Base functionalities init
-	ReturnIf(EXIT_SUCCESS != m_Window.Init(), EXIT_FAILURE, "Error, _window.Init() failed.\n");
-	ReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VERY_LIGHT_GREY), EXIT_FAILURE, "Error, _renderer.Init() failed.\n");
-	ReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE, "Error, _event.Init() failed.\n");
+	AssertReturnIf(EXIT_SUCCESS != m_Window.Init(), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VERY_LIGHT_GREY), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE);
 
 	// Containers init
-	ReturnIf(EXIT_SUCCESS != m_ImageContainer.Init(), EXIT_FAILURE, "Error, _imageContainer.Init() failed.\n");
-	ReturnIf(EXIT_SUCCESS != m_FontContainer.Init(), EXIT_FAILURE, "Error, _fontContainer.Init() failed.\n");
-	ReturnIf(EXIT_SUCCESS != m_SoundContainer.Init(), EXIT_FAILURE, "Error, _soundContainer.Init() failed.\n");
-	ReturnIf(EXIT_SUCCESS != m_MusicContainer.Init(), EXIT_FAILURE, "Error, _musicContainer.Init() failed.\n");
+	AssertReturnIf(EXIT_SUCCESS != m_ImageContainer.Init(), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_FontContainer.Init(), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_SoundContainer.Init(), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_MusicContainer.Init(), EXIT_FAILURE);
 
 	// App init
-	ReturnIf(EXIT_SUCCESS != m_App.Init(), EXIT_FAILURE, "Error, m_App.Init() failed.\n");
+	AssertReturnIf(EXIT_SUCCESS != m_App.Init(), EXIT_FAILURE);
 
 	Timer::StartGlobalTimer();
 	m_DrawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, TimerType::Pulse);

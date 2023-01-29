@@ -2,12 +2,10 @@
 #include "utils/geometry/Rectangle.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
 // Own includes
-#include "utils/geometry/Point.h"
 
 // =============================================================================
 const Rectangle Rectangle::Zero = Rectangle(0, 0, 0, 0);

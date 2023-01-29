@@ -11,6 +11,9 @@
 
 // Forward declarations
 
+// ================================== DEFINES ==================================
+#define __ASSERT_INFO "File: " __FILE__ "\nLine: " _STRINGIZE(__LINE__) "\nFunction: " __FUNCTION__
+
 // ================================= TYPEDEFS ==================================
 
 typedef std::chrono::steady_clock::time_point		TimePoint;

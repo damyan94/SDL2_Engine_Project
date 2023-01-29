@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\utils\input_output\Assert.cpp" />
     <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdl.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\utils\input_output\Assert.h" />
     <ClInclude Include="source\utils\input_output\Log.h" />
     <ClInclude Include="source\managers\AssetManager.h" />
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdl.h" />

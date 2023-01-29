@@ -26,6 +26,7 @@
 #include "utils/geometry/Position.h"
 
 #include "utils/input_output/Log.h"
+#include "utils/input_output/Assert.h"
 #include "utils/input_output/ReadWriteFile.h"
 
 #include "utils/others/CodeReadabilityDefines.h"

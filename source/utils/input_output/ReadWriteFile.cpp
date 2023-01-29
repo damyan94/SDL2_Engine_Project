@@ -15,11 +15,8 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 	std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
-	if (!inStream.is_open())
-	{
-		std::cerr << "Error, unable to open file: " << fileName << std::endl;
-		return EXIT_FAILURE;
-	}
+	// Error, unable to open file.
+	AssertReturnIf(!inStream.is_open(), EXIT_FAILURE);
 
 	std::string readLine;
 	while (std::getline(inStream, readLine))
@@ -43,11 +40,8 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 {
 	std::wifstream inStream(fileName, std::ios::in);
 	inStream.imbue(std::locale("bg_BG.UTF-8"));
-	if (!inStream.is_open())
-	{
-		std::cerr << "Error, unable to open file: " << fileName << std::endl;
-		return EXIT_FAILURE;
-	}
+	// Error, unable to open file.
+	AssertReturnIf(!inStream.is_open(), EXIT_FAILURE);
 
 	std::wstring readLine;
 	while (std::getline(inStream, readLine))
@@ -85,11 +79,8 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	if (!outStream.is_open())
-	{
-		std::cerr << "Error, unable to open file: " << fileName << std::endl;
-		return EXIT_FAILURE;
-	}
+	// Error, unable to open file.
+	AssertReturnIf(!outStream.is_open(), EXIT_FAILURE);
 
 	outStream << writeString;
 
@@ -119,11 +110,8 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	if (!outStream.is_open())
-	{
-		std::cerr << "Error, unable to open file: " << fileName << std::endl;
-		return EXIT_FAILURE;
-	}
+	// Error, unable to open file.
+	AssertReturnIf(!outStream.is_open(), EXIT_FAILURE);
 
 	outStream << writeString;
 

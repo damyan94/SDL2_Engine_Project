@@ -2,6 +2,7 @@
 #include "utils/input_output/Log.h"
 
 // C/C++ system includes
+#include <cstdio>
 #include <cstdarg>
 
 // Third-party includes
@@ -66,4 +67,9 @@ void Log::Console(ConsoleTextColor color, const char* fmt ...)
 	va_end(args);
 
 	ConsoleSetTextColor(ConsoleTextColor::Default);
+}
+
+// =============================================================================
+void Log::File(const char* fmt ...)
+{
 }

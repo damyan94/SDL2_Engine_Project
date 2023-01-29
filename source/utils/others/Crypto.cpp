@@ -108,12 +108,8 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::wstring& text
 bool Crypto::CaesarRandomDecrypt(std::wstring& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue)
 {
-	if (text.size() != offsets.size())
-	{
-		std::cerr << "Error, decrypting function received invalid input."
-			<< std::endl;
-		return false;
-	}
+	// Error, decrypting function received invalid input.
+	AssertReturnIf(text.size() != offsets.size(), false);
 
 	int32_t textSize = (int32_t)text.size();
 	std::wstring newText;
@@ -207,12 +203,8 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::ws
 bool Crypto::CaesarRandomDecryptWithFilling(std::wstring& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue, int32_t fillingCount)
 {
-	if (text.size() != offsets.size())
-	{
-		std::cerr << "Error, decrypting function received invalid input."
-			<< std::endl;
-		return false;
-	}
+	// Error, decrypting function received invalid input.
+	ReturnIf(text.size() != offsets.size(), false);
 
 	int32_t textSize = (int32_t)text.size();
 	std::wstring newText;

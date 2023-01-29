@@ -16,6 +16,7 @@ Time Timer::m_GlobalTime;
 void Timer::StartGlobalTimer()
 {
 	m_GlobalTime.GetElapsedTime(UnitsOfTime::Milliseconds);
+	m_GlobalTime.SetToNow();
 }
 
 // =============================================================================
@@ -44,7 +45,7 @@ int32_t Timer::StartTimer(int64_t interval, TimerType timerType)
 // The default unit of time for the timers is a millisecond
 void Timer::StartTimer(int32_t id, int64_t interval, TimerType timerType)
 {
-	if (interval < TIMER_MIN_INTERVAL)
+	if (interval < UtilsConstants::TimerMinInterval)
 	{
 		std::cerr << "Error, Timer::Init() received invalid interval: "
 			<< interval << std::endl;
@@ -80,6 +81,7 @@ void Timer::DestroyTimer(int32_t id)
 void Timer::UpdateTimers()
 {
 	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(UnitsOfTime::Milliseconds);
+	m_GlobalTime.SetToNow();
 
 	for (auto& timer : m_Timers)
 	{
@@ -90,7 +92,7 @@ void Timer::UpdateTimers()
 
 		timer.second.m_Remaining -= elapsedTime;
 
-		if (timer.second.m_Remaining < 0)
+		while (timer.second.m_Remaining < 0)
 		{
 			timer.second.m_Remaining += timer.second.m_Interval;
 			timer.second.m_Ticked = true;

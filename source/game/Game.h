@@ -21,7 +21,8 @@ public:
 	void Draw() const;
 
 private:
-
+	Text time;
+	TimerId timerId;
 };
 
 #endif // !GAME_GAME_H_

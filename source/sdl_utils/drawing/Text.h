@@ -15,25 +15,27 @@
 #include "sdl_utils/drawing/DrawObject.h"
 
 // Forward declarations
+//TODO fix this here as well as in Texture.h/cpp
+typedef std::string String;
 
 class Text : public DrawObject
 {
 public:
 	~Text();
 
-	int32_t Init(const std::wstring& text, int32_t fontId, const Color& textColor);
+	int32_t Init(const String& text, int32_t fontId, const Color& textColor);
 	void Deinit();
 	void Draw() const;
 
-	void SetText(const std::wstring& newText);
+	void SetText(const String& newText);
 	void SetColor(const Color& newColor);
 
-	std::wstring GetText() const;
+	String GetText() const;
 	Color GetColor() const;
 	int32_t GetFontSize() const;
 
 private:
-	std::wstring _text;
+	String _text;
 	Color _color = Colors::BLACK;
 	int32_t _fontSize = 0;
 };

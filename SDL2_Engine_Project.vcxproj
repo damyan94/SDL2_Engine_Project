@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\managers\AssetManager.cpp" />
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdl.cpp" />
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.cpp" />
     <ClCompile Include="dependencies\imgui-master\imgui.cpp" />
@@ -164,6 +165,8 @@
     <ClCompile Include="dependencies\imgui-master\imgui_draw.cpp" />
     <ClCompile Include="dependencies\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="dependencies\imgui-master\imgui_widgets.cpp" />
+    <ClCompile Include="source\managers\DrawManager.cpp" />
+    <ClCompile Include="source\managers\Manager.cpp" />
     <ClCompile Include="source\defines\consts\GlobalConstants.cpp" />
     <ClCompile Include="source\defines\FontDefines.cpp" />
     <ClCompile Include="source\defines\SoundDefines.cpp" />
@@ -195,8 +198,11 @@
     <ClCompile Include="source\utils\others\Crypto.cpp" />
     <ClCompile Include="source\utils\time\Time.cpp" />
     <ClCompile Include="source\utils\time\Timer.cpp" />
+    <ClCompile Include="source\utils\time\UtilsDefines.cpp" />
+    <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\managers\AssetManager.h" />
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdl.h" />
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.h" />
     <ClInclude Include="dependencies\imgui-master\imconfig.h" />
@@ -205,6 +211,8 @@
     <ClInclude Include="dependencies\imgui-master\imstb_rectpack.h" />
     <ClInclude Include="dependencies\imgui-master\imstb_textedit.h" />
     <ClInclude Include="dependencies\imgui-master\imstb_truetype.h" />
+    <ClInclude Include="source\managers\DrawManager.h" />
+    <ClInclude Include="source\managers\Manager.h" />
     <ClInclude Include="source\defines\FontDefines.h" />
     <ClInclude Include="source\defines\FrequentIncludes.h" />
     <ClInclude Include="source\defines\consts\GlobalConstants.h" />
@@ -331,6 +339,9 @@
     <ClInclude Include="source\utils\others\Crypto.h" />
     <ClInclude Include="source\utils\time\Time.h" />
     <ClInclude Include="source\utils\time\Timer.h" />
+    <ClInclude Include="source\utils\UtilsCommonIncludes.h" />
+    <ClInclude Include="source\utils\UtilsDefines.h" />
+    <ClInclude Include="source\managers\TimerManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\icon.ico" />

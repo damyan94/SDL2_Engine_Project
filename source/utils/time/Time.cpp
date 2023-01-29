@@ -2,7 +2,6 @@
 #include "utils/time/Time.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
@@ -10,9 +9,9 @@
 
 // =============================================================================
 Time::Time()
-	: m_StartTime(std::chrono::steady_clock::now())
-	, m_ElapsedTime(std::chrono::steady_clock::now())
+	: m_StartTime(std::chrono::steady_clock::time_point())
 {
+	SetToNow();
 }
 
 // =============================================================================
@@ -21,13 +20,11 @@ Time::~Time()
 }
 
 // =============================================================================
-int64_t Time::GetElapsedTime(UnitsOfTime unit)
+uint64_t Time::GetElapsedTime(UnitsOfTime unit)
 {
-	m_ElapsedTime = m_StartTime;
-	m_StartTime = std::chrono::steady_clock::now();
-	const auto duration = m_StartTime - m_ElapsedTime;
-
-	int64_t result = 0;
+	const auto duration = GetNow() - m_StartTime;
+	//SetToNow();
+	uint64_t result = 0;
 
 	switch (unit)
 	{
@@ -64,33 +61,28 @@ int64_t Time::GetElapsedTime(UnitsOfTime unit)
 
 // =============================================================================
 //dd.mm.yyyy HH:mm:ss
-std::string Time::GetTimeString(time_t t)
+std::string Time::GetString() const
 {
-	char result[80];
-	struct tm* timeinfo = localtime(&t);
-	strftime(result, 80, "%Y.%m.%d %H:%M:%S", timeinfo);
+	using namespace std::chrono;
 
-	return result;
+	time_t toTimeT = system_clock::to_time_t(system_clock::now() +
+		duration_cast<system_clock::duration>(m_StartTime - steady_clock::now()));
+
+	char result[40];
+	struct tm* timeinfo = localtime(&toTimeT);
+	strftime(result, 40, "%Y.%m.%d %H:%M:%S", timeinfo);
+
+	return std::string(result);
 }
 
 // =============================================================================
-//dd.mm.yyyy HH:mm:ss
-std::string Time::GetTimeString(std::chrono::system_clock::time_point t)
+void Time::SetToNow()
 {
-	time_t toTime_t = std::chrono::system_clock::to_time_t(t);
-
-	return GetTimeString(toTime_t);
+	m_StartTime = GetNow();
 }
 
-//TimePoint::TimePoint()
-//{
-//}
-//
-//TimePoint::~TimePoint()
-//{
-//}
-//
-//TimePoint TimePoint::GetCurrentTime()
-//{
-//	return TimePoint();
-//}
+// =============================================================================
+TimePoint Time::GetNow()
+{
+	return std::chrono::steady_clock::now();
+}

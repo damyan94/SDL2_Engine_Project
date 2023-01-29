@@ -37,11 +37,13 @@ void Texture::CreateSurfaceFromFile(const std::string& fileName,
 
 // =============================================================================
 // TTF_RenderText_Solid
-void Texture::CreateSurfaceFromText(const std::wstring& text, const Color& color,
+void Texture::CreateSurfaceFromText(const String& text, const Color& color,
 	TTF_Font* font,	SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight)
 {
-	outSurface = TTF_RenderUNICODE_Blended(font, reinterpret_cast<const uint16_t*>(text.c_str()),
+	outSurface = TTF_RenderText_Blended(font, text.c_str(),
 		SDL_Color{ color.r, color.g, color.b, color.a });
+	//outSurface = TTF_RenderUNICODE_Blended(font, reinterpret_cast<const uint16_t*>(text.c_str()),
+	//	SDL_Color{ color.r, color.g, color.b, color.a });
 	if (!outSurface)
 	{
 		std::cerr << "Error, TTF_RenderText_Blended() failed. Reason: "
@@ -93,7 +95,7 @@ void Texture::CreateTextureFromFile(const std::string& fileName,
 }
 
 // =============================================================================
-void Texture::CreateTextureFromText(const std::wstring& text, const Color& color,
+void Texture::CreateTextureFromText(const String& text, const Color& color,
 	TTF_Font* font, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight)
 {
 	SDL_Surface* surface = nullptr;

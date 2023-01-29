@@ -227,6 +227,7 @@ void Engine::RunApplication()
 #endif
 
 		Sleep(clock.GetElapsedTime(UnitsOfTime::Milliseconds));
+		clock.SetToNow();
 	}
 }
 

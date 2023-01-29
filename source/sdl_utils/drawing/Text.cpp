@@ -17,7 +17,7 @@ Text::~Text()
 }
 
 // =============================================================================
-int32_t Text::Init(const std::wstring& text, int32_t fontId, const Color& textColor)
+int32_t Text::Init(const String& text, int32_t fontId, const Color& textColor)
 {
 	Texture::CreateTextureFromText(text, textColor,
 		FontContainer::GetFontById(fontId), _texture, _width, _height);
@@ -72,7 +72,7 @@ void Text::Draw() const
 }
 
 // =============================================================================
-void Text::SetText(const std::wstring& newText)
+void Text::SetText(const String& newText)
 {
 	Texture::DestroyTexture(_texture);
 	Texture::CreateTextureFromText(newText, _color,
@@ -112,7 +112,7 @@ void Text::SetColor(const Color& newColor)
 }
 
 // =============================================================================
-std::wstring Text::GetText() const
+String Text::GetText() const
 {
 	return _text;
 }

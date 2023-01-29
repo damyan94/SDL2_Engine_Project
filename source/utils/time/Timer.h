@@ -12,14 +12,7 @@
 
 // Forward declarations
 
-constexpr int64_t TIMER_MIN_INTERVAL = 20;
-
-enum class TimerType
-{
-	OneShot,
-	Pulse
-};
-
+//TODO move some of this in the TimerManager
 class Timer
 {
 public:

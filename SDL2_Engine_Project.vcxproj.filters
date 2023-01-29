@@ -21,7 +21,7 @@
     <ClCompile Include="source\engine\Engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\game\Game.cpp">
+    <ClCompile Include="source\app\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\sdl_utils\Renderer.cpp">
@@ -142,6 +142,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\managers\AssetManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utils\input_output\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -449,7 +452,7 @@
     <ClInclude Include="source\engine\Engine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\game\Game.h">
+    <ClInclude Include="source\app\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\Renderer.h">
@@ -564,6 +567,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\managers\AssetManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\input_output\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\others\CodeReadabilityDefines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

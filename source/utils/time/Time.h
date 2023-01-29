@@ -19,7 +19,7 @@ public:
 	Time();
 	~Time();
 
-	uint64_t GetElapsedTime(UnitsOfTime unit);
+	uint64_t GetElapsedTime(UnitOfTime unit);
 	std::string GetString() const;
 
 	void SetToNow();

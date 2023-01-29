@@ -7,6 +7,8 @@
 // Third-party includes
 
 // Own includes
+#include "utils/UtilsCommonIncludes.h"
+
 #include "sdl_utils/Window.h"
 #include "sdl_utils/Renderer.h"
 #include "sdl_utils/input/InputEvent.h"
@@ -16,38 +18,38 @@
 #include "sdl_utils/containers/SoundContainer.h"
 #include "sdl_utils/containers/MusicContainer.h"
 
-#include "game/Game.h"
+#include "app/App.h"
 
 // Forward declarations
 
 class Engine
 {
 public:
-	int32_t Init();
-	void Deinit();
-	void HandleEvent();
-	void Update();
-	void Draw() const;
+	int32_t						Init();
+	void						Deinit();
+	void						HandleEvent();
+	void						Update();
+	void						Draw() const;
 
-	void RunApplication();
-
-private:
-	void Sleep(int64_t elapsedTime);
+	void						RunApplication();
 
 private:
-	Window _window;
-	Renderer _renderer;
-	InputEvent _event;
+	void						Sleep(int64_t elapsedTime);
 
-	ImageContainer _imageContainer;
-	FontContainer _fontContainer;
-	SoundContainer _soundContainer;
-	MusicContainer _musicContainer;
+private:
+	Window						m_Window;
+	Renderer					m_Renderer;
+	InputEvent					m_InputEvent;
 
-	Game _game;
+	ImageContainer				m_ImageContainer;
+	FontContainer				m_FontContainer;
+	SoundContainer				m_SoundContainer;
+	MusicContainer				m_MusicContainer;
 
-	int32_t _drawTimerId = 0;
-	int64_t _currFPS = 0;
+	App							m_App;
+
+	TimerId						m_DrawTimerId = 0;
+	int64_t						m_CurrFPS = 0;
 };
 
 #endif // !ENGINE_ENGINE_H_

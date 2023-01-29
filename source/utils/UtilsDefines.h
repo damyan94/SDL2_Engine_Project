@@ -18,20 +18,37 @@ typedef int32_t										TimerId;
 
 // =============================== ENUMERATIONS ================================
 
-enum class UnitsOfTime : uint8_t
+enum class UnitOfTime : int8_t
 {
-	Nanoseconds,
-	Microseconds,
-	Milliseconds,
-	Seconds,
-	Minutes,
-	Hours
+	Invalid = -1
+	, Nanoseconds
+	, Microseconds
+	, Milliseconds
+	, Seconds
+	, Minutes
+	, Hours
+	, Count
 };
 
-enum class TimerType : uint8_t
+enum class TimerType : int8_t
 {
-	OneShot,
-	Pulse
+	Invalid = -1
+	, OneShot
+	, Pulse
+	, Count
+};
+
+enum class ConsoleTextColor : uint16_t
+{
+	Default		= 37
+	, Black		= 90
+	, Red		= 91
+	, Green		= 92
+	, Yellow	= 93
+	, Blue		= 94
+	, Magenta	= 95
+	, Cyan		= 96
+	, White		= 97
 };
 
 // ================================= CONSTANTS =================================

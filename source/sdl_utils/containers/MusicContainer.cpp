@@ -8,6 +8,7 @@
 #include <SDL_mixer.h>
 
 // Own includes
+#include "utils/UtilsCommonIncludes.h"
 #include "defines/MusicDefines.h"
 
 std::unordered_map<int32_t, Mix_Music*> MusicContainer::_musics;
@@ -48,12 +49,14 @@ int32_t MusicContainer::Init()
 // Mix_FreeMusic
 void MusicContainer::Deinit()
 {
-	for (auto& music : _musics)
-		if (music.second)
+	for (auto& [id, musicPtr] : _musics)
+	{
+		if (musicPtr)
 		{
-			Mix_FreeMusic(music.second);
-			music.second = nullptr;
+			Mix_FreeMusic(musicPtr);
+			musicPtr = nullptr;
 		}
+	}
 }
 
 // =============================================================================

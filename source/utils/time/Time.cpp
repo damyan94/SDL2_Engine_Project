@@ -20,7 +20,7 @@ Time::~Time()
 }
 
 // =============================================================================
-uint64_t Time::GetElapsedTime(UnitsOfTime unit)
+uint64_t Time::GetElapsedTime(UnitOfTime unit)
 {
 	const auto duration = GetNow() - m_StartTime;
 	//SetToNow();
@@ -28,27 +28,27 @@ uint64_t Time::GetElapsedTime(UnitsOfTime unit)
 
 	switch (unit)
 	{
-	case UnitsOfTime::Hours:
+	case UnitOfTime::Hours:
 		result = std::chrono::duration_cast<std::chrono::hours>(duration).count();
 		break;
 
-	case UnitsOfTime::Minutes:
+	case UnitOfTime::Minutes:
 		result = std::chrono::duration_cast<std::chrono::minutes>(duration).count();
 		break;
 
-	case UnitsOfTime::Seconds:
+	case UnitOfTime::Seconds:
 		result = std::chrono::duration_cast<std::chrono::seconds>(duration).count();
 		break;
 
-	case UnitsOfTime::Microseconds:
+	case UnitOfTime::Microseconds:
 		result = std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
 		break;
 
-	case UnitsOfTime::Milliseconds:
+	case UnitOfTime::Milliseconds:
 		result = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 		break;
 
-	case UnitsOfTime::Nanoseconds:
+	case UnitOfTime::Nanoseconds:
 		result = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
 		break;
 

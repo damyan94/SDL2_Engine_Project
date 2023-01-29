@@ -15,7 +15,7 @@ Time Timer::m_GlobalTime;
 // =============================================================================
 void Timer::StartGlobalTimer()
 {
-	m_GlobalTime.GetElapsedTime(UnitsOfTime::Milliseconds);
+	m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
 	m_GlobalTime.SetToNow();
 }
 
@@ -80,7 +80,7 @@ void Timer::DestroyTimer(int32_t id)
 // =============================================================================
 void Timer::UpdateTimers()
 {
-	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(UnitsOfTime::Milliseconds);
+	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
 	m_GlobalTime.SetToNow();
 
 	for (auto& timer : m_Timers)

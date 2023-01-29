@@ -102,7 +102,7 @@
     <Link>
       <TargetMachine>MachineX86</TargetMachine>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
@@ -140,7 +140,7 @@
       <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdl.cpp" />
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.cpp" />
@@ -173,7 +174,7 @@
     <ClCompile Include="source\defines\MusicDefines.cpp" />
     <ClCompile Include="source\defines\ImageDefines.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
-    <ClCompile Include="source\game\Game.cpp" />
+    <ClCompile Include="source\app\App.cpp" />
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\utils\geometry\Position.cpp" />
     <ClCompile Include="source\utils\input_output\ReadWriteFile.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\utils\input_output\Log.h" />
     <ClInclude Include="source\managers\AssetManager.h" />
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdl.h" />
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.h" />
@@ -314,7 +316,7 @@
     <ClInclude Include="dependencies\sdl2_mixer\include\SDL_mixer.h" />
     <ClInclude Include="dependencies\sdl2_ttf\include\SDL_ttf.h" />
     <ClInclude Include="source\engine\Engine.h" />
-    <ClInclude Include="source\game\Game.h" />
+    <ClInclude Include="source\app\App.h" />
     <ClInclude Include="source\utils\geometry\Position.h" />
     <ClInclude Include="source\utils\input_output\ReadWriteFile.h" />
     <ClInclude Include="source\sdl_utils\audio\Audio.h" />
@@ -335,6 +337,7 @@
     <ClInclude Include="source\utils\drawing\Color.h" />
     <ClInclude Include="source\utils\geometry\Point.h" />
     <ClInclude Include="source\utils\geometry\Rectangle.h" />
+    <ClInclude Include="source\utils\others\CodeReadabilityDefines.h" />
     <ClInclude Include="source\utils\others\RandomNumberGenerator.h" />
     <ClInclude Include="source\utils\others\Crypto.h" />
     <ClInclude Include="source\utils\time\Time.h" />

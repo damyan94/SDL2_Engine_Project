@@ -1,2 +1,17 @@
-﻿  Texture.cpp
+﻿  App.cpp
+  Engine.cpp
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(33,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(36,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(37,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(38,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(41,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(42,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(43,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(44,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\engine\Engine.cpp(47,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+  main.cpp
+D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\source\main.cpp(15,2): warning C4002: too many arguments for function-like macro invocation 'ReturnIf'
+  MusicContainer.cpp
+  Position.cpp
+  Generating Code...
   SDL2_Engine_Project.vcxproj -> D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\build\x64\Debug\Application.exe

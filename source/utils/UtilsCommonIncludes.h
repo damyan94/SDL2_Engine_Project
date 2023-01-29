@@ -25,8 +25,10 @@
 #include "utils/geometry/Rectangle.h"
 #include "utils/geometry/Position.h"
 
+#include "utils/input_output/Log.h"
 #include "utils/input_output/ReadWriteFile.h"
 
+#include "utils/others/CodeReadabilityDefines.h"
 #include "utils/others/Crypto.h"
 #include "utils/others/RandomNumberGenerator.h"
 

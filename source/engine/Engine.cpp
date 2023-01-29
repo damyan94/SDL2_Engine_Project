@@ -28,67 +28,26 @@ int32_t Engine::Init()
 {
 	srand((uint32_t)time(nullptr));
 
+	//TODO change all this to AssertReturnIf
 	// SDL init
-	if (EXIT_SUCCESS != SDLLoader::Init())
-	{
-		std::cerr << "Error, SDLLoader::Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
+	ReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE, "Error, SDLLoader::Init() failed.\n");
 	
 	// Base functionalities init
-	if (EXIT_SUCCESS != _window.Init())
-	{
-		std::cerr << "Error, _window.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
-	
-	if (EXIT_SUCCESS != _renderer.Init(_window.GetInstance(), Colors::VERY_LIGHT_GREY
-		/*EngineConstants::RENDERER_DRAW_COLOR*/))
-	{
-		std::cerr << "Error, _renderer.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	if (EXIT_SUCCESS != _event.Init())
-	{
-		std::cerr << "Error, _event.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
+	ReturnIf(EXIT_SUCCESS != m_Window.Init(), EXIT_FAILURE, "Error, _window.Init() failed.\n");
+	ReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VERY_LIGHT_GREY), EXIT_FAILURE, "Error, _renderer.Init() failed.\n");
+	ReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE, "Error, _event.Init() failed.\n");
 
 	// Containers init
-	if (EXIT_SUCCESS != _imageContainer.Init())
-	{
-		std::cerr << "Error, _imageContainer.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
+	ReturnIf(EXIT_SUCCESS != m_ImageContainer.Init(), EXIT_FAILURE, "Error, _imageContainer.Init() failed.\n");
+	ReturnIf(EXIT_SUCCESS != m_FontContainer.Init(), EXIT_FAILURE, "Error, _fontContainer.Init() failed.\n");
+	ReturnIf(EXIT_SUCCESS != m_SoundContainer.Init(), EXIT_FAILURE, "Error, _soundContainer.Init() failed.\n");
+	ReturnIf(EXIT_SUCCESS != m_MusicContainer.Init(), EXIT_FAILURE, "Error, _musicContainer.Init() failed.\n");
 
-	if (EXIT_SUCCESS != _fontContainer.Init())
-	{
-		std::cerr << "Error, _fontContainer.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	if (EXIT_SUCCESS != _soundContainer.Init())
-	{
-		std::cerr << "Error, _soundContainer.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	if (EXIT_SUCCESS != _musicContainer.Init())
-	{
-		std::cerr << "Error, _musicContainer.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
-
-	// Game init
-	if (EXIT_SUCCESS != _game.Init())
-	{
-		std::cerr << "Error, _game.Init() failed." << std::endl;
-		return EXIT_FAILURE;
-	}
+	// App init
+	ReturnIf(EXIT_SUCCESS != m_App.Init(), EXIT_FAILURE, "Error, m_App.Init() failed.\n");
 
 	Timer::StartGlobalTimer();
-	_drawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, TimerType::Pulse);
+	m_DrawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, TimerType::Pulse);
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
@@ -102,8 +61,8 @@ int32_t Engine::Init()
 	//ImGui::StyleColorsLight();
 
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForSDLRenderer(_window.GetInstance(), _renderer.GetInstance());
-	ImGui_ImplSDLRenderer_Init(_renderer.GetInstance());
+	ImGui_ImplSDL2_InitForSDLRenderer(m_Window.GetInstance(), m_Renderer.GetInstance());
+	ImGui_ImplSDLRenderer_Init(m_Renderer.GetInstance());
 
 	return EXIT_SUCCESS;
 }
@@ -116,37 +75,37 @@ void Engine::Deinit()
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();
 
-	_game.Deinit();
+	m_App.Deinit();
 
-	_musicContainer.Deinit();
-	_soundContainer.Deinit();
-	_fontContainer.Deinit();
-	_imageContainer.Deinit();
+	m_MusicContainer.Deinit();
+	m_SoundContainer.Deinit();
+	m_FontContainer.Deinit();
+	m_ImageContainer.Deinit();
 
-	_event.Deinit();
-	_renderer.Deinit();
-	_window.Deinit();
+	m_InputEvent.Deinit();
+	m_Renderer.Deinit();
+	m_Window.Deinit();
 	SDLLoader::Deinit();
 }
 
 // =============================================================================
 void Engine::HandleEvent()
 {
-	_game.HandleEvent(_event);
-	ImGui_ImplSDL2_ProcessEvent(_event.GetInstance());
+	m_App.HandleEvent(m_InputEvent);
+	ImGui_ImplSDL2_ProcessEvent(m_InputEvent.GetInstance());
 }
 
 // =============================================================================
 void Engine::Update()
 {
-	_game.Update();
-	_renderer.Update();
+	m_App.Update();
+	m_Renderer.Update();
 }
 
 // =============================================================================
 void Engine::Draw() const
 {
-	_game.Draw();
+	m_App.Draw();
 
 	// Start the Dear ImGui frame
 	ImGui_ImplSDLRenderer_NewFrame();
@@ -165,7 +124,7 @@ void Engine::Draw() const
 	ImGui::Render();
 	ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
-	_renderer.Draw();
+	m_Renderer.Draw();
 }
 
 // =============================================================================
@@ -180,9 +139,9 @@ void Engine::RunApplication()
 
 	while (true)
 	{
-		while (_event.PollEvent())
+		while (m_InputEvent.PollEvent())
 		{
-			if (_event.type == EventType::QUIT)
+			if (m_InputEvent.type == EventType::QUIT)
 			{
 				return;
 			}
@@ -226,7 +185,7 @@ void Engine::RunApplication()
 
 #endif
 
-		Sleep(clock.GetElapsedTime(UnitsOfTime::Milliseconds));
+		Sleep(clock.GetElapsedTime(UnitOfTime::Milliseconds));
 		clock.SetToNow();
 	}
 }
@@ -244,6 +203,6 @@ void Engine::Sleep(int64_t elapsedTime)
 
 	if (totalFrameTime > 0)
 	{
-		_currFPS = 1000 / totalFrameTime;
+		m_CurrFPS = 1000 / totalFrameTime;
 	}
 }

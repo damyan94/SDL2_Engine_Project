@@ -48,7 +48,7 @@ int32_t Engine::Init()
 	
 	// Base functionalities init
 	AssertReturnIf(EXIT_SUCCESS != m_Window.Init(), EXIT_FAILURE);
-	AssertReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VERY_LIGHT_GREY), EXIT_FAILURE);
+	AssertReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VeryLightGrey), EXIT_FAILURE);
 	AssertReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE);
 
 	// Containers init

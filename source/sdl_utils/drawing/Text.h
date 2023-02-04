@@ -36,7 +36,7 @@ public:
 
 private:
 	String _text;
-	Color _color = Colors::BLACK;
+	Color _color = Colors::Black;
 	int32_t _fontSize = 0;
 };
 

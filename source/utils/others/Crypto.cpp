@@ -133,7 +133,7 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::ws
 	int32_t textSize = (int32_t)text.size();
 	std::wstring newText;
 	std::vector<int32_t> offsets;
-	offsets.reserve(textSize * fillingCount);
+	offsets.reserve(size_t(textSize * fillingCount));
 
 	for (int32_t i = 0; i < textSize * fillingCount; i++)
 	{

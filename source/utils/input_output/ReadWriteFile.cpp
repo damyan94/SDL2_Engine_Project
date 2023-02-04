@@ -22,10 +22,8 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 	while (std::getline(inStream, readLine))
 	{
 		//The '#' symbol will indicate a commented line in the input file
-		if (readLine[0] == '#' || readLine.size() <= 0)
-		{
-			continue;
-		}
+		ContinueIf(readLine[0] == '#' || readLine.size() <= 0);
+
 		readStrings.push_back(readLine);
 	}
 
@@ -47,10 +45,8 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 	while (std::getline(inStream, readLine))
 	{
 		//The '#' symbol will indicate a commented line in the input file
-		if (readLine[0] == '#' || readLine.size() <= 0)
-		{
-			continue;
-		}
+		ContinueIf(readLine[0] == '#' || readLine.size() <= 0);
+
 		readStrings.push_back(readLine);
 	}
 
@@ -67,11 +63,11 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 
 	switch (writeMode)
 	{
-	case WriteMode::OUT:
+	case WriteMode::Out:
 		outStream.open(fileName, std::ios::out);
 		break;
 
-	case WriteMode::APP:
+	case WriteMode::App:
 		outStream.open(fileName, std::ios::app);
 		break;
 
@@ -98,11 +94,11 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 
 	switch (writeMode)
 	{
-	case WriteMode::OUT:
+	case WriteMode::Out:
 		outStream.open(fileName, std::ios::out);
 		break;
 
-	case WriteMode::APP:
+	case WriteMode::App:
 		outStream.open(fileName, std::ios::app);
 		break;
 

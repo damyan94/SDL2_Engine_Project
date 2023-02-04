@@ -9,7 +9,7 @@
 
 // =============================================================================
 const Point Point::Zero = Point(0, 0);
-const Point Point::Undefined = Point(0xCCCCCCCC, 0xCCCCCCCC);
+const Point Point::Undefined = Point(0xFFFFFFFF, 0xFFFFFFFF);
 
 // =============================================================================
 Point::Point()

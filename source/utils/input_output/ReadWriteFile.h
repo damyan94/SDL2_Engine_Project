@@ -10,12 +10,6 @@
 
 // Forward declarations
 
-enum class WriteMode
-{
-	OUT,
-	APP
-};
-
 namespace ReadWriteFile
 {
 	int32_t ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings);

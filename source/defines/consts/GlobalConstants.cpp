@@ -30,7 +30,7 @@ namespace EngineConstants
 {
 	const int32_t FPS = 50;
 	const int32_t TIME_PER_FRAME = 1000 / FPS;
-	const Color RENDERER_DRAW_COLOR = Colors::LIGHT_GREY;
+	const Color RENDERER_DRAW_COLOR = Colors::LightGrey;
 }
 
 namespace GameConstants

@@ -19,7 +19,7 @@ void Console(ConsoleTextColor color, const char* fmt...);
 void File(const char* fmt...);
 }
 
-//TODO move refactor file logging
+//TODO Move and refactor file logging
 ////================================== DEFINES ===================================
 //
 //#define __FILE_LOGGING_ENABLED				1

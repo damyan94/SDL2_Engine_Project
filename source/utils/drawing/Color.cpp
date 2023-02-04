@@ -9,10 +9,10 @@
 
 // =============================================================================
 Color::Color()
-	: r(0)
-	, g(0)
-	, b(0)
-	, a(0)
+	: r(0x00)
+	, g(0x00)
+	, b(0x00)
+	, a(0x00)
 {
 }
 
@@ -26,22 +26,24 @@ Color::Color(uint8_t red, uint8_t green, uint8_t blue)
 	: r(red)
 	, g(green)
 	, b(blue)
-	, a(255)
+	, a(0xFF)
 {
 }
 
 // =============================================================================
 Color::Color(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
-	: r(red), g(green), b(blue), a(alpha)
+	: r(red)
+	, g(green)
+	, b(blue)
+	, a(alpha)
 {
-
 }
 
 // =============================================================================
 bool Color::operator==(const Color& other) const
 {
-	return (this->r == other.r) && (this->g == other.g) &&
-		(this->b == other.b) && (this->a == other.a);
+	return (this->r == other.r) && (this->g == other.g)
+		&& (this->b == other.b) && (this->a == other.a);
 }
 
 // =============================================================================
@@ -51,92 +53,92 @@ bool Color::operator!=(const Color& other) const
 }
 
 // =============================================================================
+//TODO Fix the very light and light colors
 namespace Colors
 {
-	const Color FULL_TRANSPARENT(0, 0, 0, 0);
+	const Color Transparent				(0x00, 0x00, 0x00, 0x00);
 
-	// WHITE, GREY AND BLACK
-	const Color WHITE						(255, 255, 255, 255);
-	const Color VERY_LIGHT_GREY				(223, 223, 223, 255);
-	const Color LIGHT_GREY					(191, 191, 191, 255);
-	const Color GREY						(127, 127, 127, 255);
-	const Color DARK_GREY					(63, 63, 63, 255);
-	const Color VERY_DARK_GREY				(31, 31, 31, 255);
-	const Color BLACK						(0, 0, 0, 255);
+	// White, grey and black
+	const Color White					(0xFF, 0xFF, 0xFF, 0xFF);
+	const Color VeryLightGrey			(0xDF, 0xDF, 0xDF, 0xFF);
+	const Color LightGrey				(0xBF, 0xBF, 0xBF, 0xFF);
+	const Color Grey					(0x7F, 0x7F, 0x7F, 0xFF);
+	const Color DarkGrey				(0x3F, 0x3F, 0x3F, 0xFF);
+	const Color VeryDarkGrey			(0x1F, 0x1F, 0x1F, 0xFF);
+	const Color Black					(0x00, 0x00, 0x00, 0xFF);
 
-	//TODO Fix the very light and light colors
-	// VERY LIGHT COLORS
-	const Color VERY_LIGHT_RED				(255, 191, 191, 255);
-	const Color VERY_LIGHT_GREEN			(191, 255, 191, 255);
-	const Color VERY_LIGHT_BLUE				(191, 191, 255, 255);
-	const Color VERY_LIGHT_YELLOW			(255, 255, 191, 255);
-	const Color VERY_LIGHT_CYAN				(191, 255, 255, 255);
-	const Color VERY_LIGHT_MAGENTA			(255, 191, 255, 255);
-	
-	const Color VERY_LIGHT_ORANGE			(255, 191, 127, 255);
-	const Color VERY_LIGHT_PINK				(255, 127, 191, 255);
-	const Color VERY_LIGHT_LIME				(191, 255, 127, 255);
-	const Color VERY_LIGHT_SPRING_GREEN		(127, 255, 191, 255);
-	const Color VERY_LIGHT_PURPLE			(191, 127, 255, 255);
-	const Color VERY_LIGHT_SKY_BLUE			(127, 191, 255, 255);
+	// Very light colors
+	const Color VeryLightRed			(0xFF, 0xBF, 0xBF, 0xFF);
+	const Color VeryLightGreen			(0xBF, 0xFF, 0xBF, 0xFF);
+	const Color VeryLightBlue			(0xBF, 0xBF, 0xFF, 0xFF);
+	const Color VeryLightYellow			(0xFF, 0xFF, 0xBF, 0xFF);
+	const Color VeryLightCyan			(0xBF, 0xFF, 0xFF, 0xFF);
+	const Color VeryLightMagenta		(0xFF, 0xBF, 0xFF, 0xFF);
 
-	// LIGHT COLORS
-	const Color LIGHT_RED					(255, 127, 127, 255);
-	const Color LIGHT_GREEN					(127, 255, 127, 255);
-	const Color LIGHT_BLUE					(127, 127, 255, 255);
-	const Color LIGHT_YELLOW				(255, 255, 127, 255);
-	const Color LIGHT_CYAN					(127, 255, 255, 255);
-	const Color LIGHT_MAGENTA				(255, 127, 255, 255);
+	const Color VeryLightOrange			(0xFF, 0xBF, 0x7F, 0xFF);
+	const Color VeryLightPink			(0xFF, 0x7F, 0xBF, 0xFF);
+	const Color VeryLightLime			(0xBF, 0xFF, 0x7F, 0xFF);
+	const Color VeryLightSpringGreen	(0x7F, 0xFF, 0xBF, 0xFF);
+	const Color VeryLightPurple			(0xBF, 0x7F, 0xFF, 0xFF);
+	const Color VeryLightSkyBlue		(0x7F, 0xBF, 0xFF, 0xFF);
 
-	const Color LIGHT_ORANGE				(255, 159, 127, 255);
-	const Color LIGHT_PINK					(255, 127, 159, 255);
-	const Color LIGHT_LIME					(159, 255, 127, 255);
-	const Color LIGHT_SPRING_GREEN			(127, 255, 159, 255);
-	const Color LIGHT_PURPLE				(159, 127, 255, 255);
-	const Color LIGHT_SKY_BLUE				(127, 159, 255, 255);
+	// Light colors
+	const Color LightRed				(0xFF, 0x7F, 0x7F, 0xFF);
+	const Color LightGreen				(0x7F, 0xFF, 0x7F, 0xFF);
+	const Color LightBlue				(0x7F, 0x7F, 0xFF, 0xFF);
+	const Color LightYellow				(0xFF, 0xFF, 0x7F, 0xFF);
+	const Color LightCyan				(0x7F, 0xFF, 0xFF, 0xFF);
+	const Color LightMagenta			(0xFF, 0x7F, 0xFF, 0xFF);
 
-	// COLORS
-	const Color RED							(255, 0, 0, 255);
-	const Color GREEN						(0, 255, 0, 255);
-	const Color BLUE						(0, 0, 255, 255);
-	const Color YELLOW						(255, 255, 0, 255);
-	const Color CYAN						(0, 255, 255, 255);
-	const Color MAGENTA						(255, 0, 255, 255);
+	const Color LightOrange				(0xFF, 0x9F, 0x7F, 0xFF);
+	const Color LightPink				(0xFF, 0x7F, 0x9F, 0xFF);
+	const Color LightLime				(0x9F, 0xFF, 0x7F, 0xFF);
+	const Color LightSpringGreen		(0x7F, 0xFF, 0x9F, 0xFF);
+	const Color LightPurple				(0x9F, 0x7F, 0xFF, 0xFF);
+	const Color LightSkyBlue			(0x7F, 0x9F, 0xFF, 0xFF);
 
-	const Color ORANGE						(255, 127, 0, 255);
-	const Color PINK						(255, 0, 127, 255);
-	const Color LIME						(127, 255, 0, 255);
-	const Color SPRING_GREEN				(0, 255, 127, 255);
-	const Color PURPLE						(127, 0, 255, 255);
-	const Color SKY_BLUE					(0, 127, 255, 255);
+	// Colors
+	const Color Red						(0xFF, 0x00, 0x00, 0xFF);
+	const Color Green					(0x00, 0xFF, 0x00, 0xFF);
+	const Color Blue					(0x00, 0x00, 0xFF, 0xFF);
+	const Color Yellow					(0xFF, 0xFF, 0x00, 0xFF);
+	const Color Cyan					(0x00, 0xFF, 0xFF, 0xFF);
+	const Color Magenta					(0xFF, 0x00, 0xFF, 0xFF);
 
-	// DARK COLORS
-	const Color DARK_RED					(127, 0, 0, 255);
-	const Color DARK_GREEN					(0, 127, 0, 255);
-	const Color DARK_BLUE					(0, 0, 127, 255);
-	const Color DARK_YELLOW					(127, 127, 0, 255);
-	const Color DARK_CYAN					(0, 127, 127, 255);
-	const Color DARK_MAGENTA				(127, 0, 127, 255);
+	const Color Orange					(0xFF, 0x7F, 0x00, 0xFF);
+	const Color Pink					(0xFF, 0x00, 0x7F, 0xFF);
+	const Color Lime					(0x7F, 0xFF, 0x00, 0xFF);
+	const Color SpringGreen				(0x00, 0xFF, 0x7F, 0xFF);
+	const Color Purple					(0x7F, 0x00, 0xFF, 0xFF);
+	const Color SkyBlue					(0x00, 0x7F, 0xFF, 0xFF);
 
-	const Color DARK_ORANGE					(127, 63, 0, 255);
-	const Color DARK_PINK					(127, 0, 63, 255);
-	const Color DARK_LIME					(63, 127, 0, 255);
-	const Color DARK_SPRING_GREEN			(0, 127, 63, 255);
-	const Color DARK_PURPLE					(63, 0, 127, 255);
-	const Color DARK_SKY_BLUE				(0, 63, 127, 255);
+	// Dark colors
+	const Color DarkRed					(0x7F, 0x00, 0x00, 0xFF);
+	const Color DarkGreen				(0x00, 0x7F, 0x00, 0xFF);
+	const Color DarkBlue				(0x00, 0x00, 0x7F, 0xFF);
+	const Color DarkYellow				(0x7F, 0x7F, 0x00, 0xFF);
+	const Color DarkCyan				(0x00, 0x7F, 0x7F, 0xFF);
+	const Color DarkMagenta				(0x7F, 0x00, 0x7F, 0xFF);
 
-	// VERY DARK COLORS
-	const Color VERY_DARK_RED				(63, 0, 0, 255);
-	const Color VERY_DARK_GREEN				(0, 63, 0, 255);
-	const Color VERY_DARK_BLUE				(0, 0, 63, 255);
-	const Color VERY_DARK_YELLOW			(63, 63, 0, 255);
-	const Color VERY_DARK_CYAN				(0, 63, 63, 255);
-	const Color VERY_DARK_MAGENTA			(63, 0, 63, 255);
+	const Color DarkOrange				(0x7F, 0x3F, 0x00, 0xFF);
+	const Color DarkPink				(0x7F, 0x00, 0x3F, 0xFF);
+	const Color DarkLime				(0x3F, 0x7F, 0x00, 0xFF);
+	const Color DarkSpringGreen			(0x00, 0x7F, 0x3F, 0xFF);
+	const Color DarkPurple				(0x3F, 0x00, 0x7F, 0xFF);
+	const Color DarkSkyBlue				(0x00, 0x3F, 0x7F, 0xFF);
 
-	const Color VERY_DARK_ORANGE			(63, 31, 0, 255);
-	const Color VERY_DARK_PINK				(63, 0, 31, 255);
-	const Color VERY_DARK_LIME				(31, 63, 0, 255);
-	const Color VERY_DARK_SPRING_GREEN		(0, 63, 31, 255);
-	const Color VERY_DARK_PURPLE			(31, 0, 63, 255);
-	const Color VERY_DARK_SKY_BLUE			(0, 31, 63, 255);
+	// VeryDarkColors
+	const Color VeryDarkRed				(0x3F, 0x00, 0x00, 0xFF);
+	const Color VeryDarkGreen			(0x00, 0x3F, 0x00, 0xFF);
+	const Color VeryDarkBlue			(0x00, 0x00, 0x3F, 0xFF);
+	const Color VeryDarkYellow			(0x3F, 0x3F, 0x00, 0xFF);
+	const Color VeryDarkCyan			(0x00, 0x3F, 0x3F, 0xFF);
+	const Color VeryDarkMagenta			(0x3F, 0x00, 0x3F, 0xFF);
+
+	const Color VeryDarkOrange			(0x3F, 0x1F, 0x00, 0xFF);
+	const Color VeryDarkPink			(0x3F, 0x00, 0x1F, 0xFF);
+	const Color VeryDarkLime			(0x1F, 0x3F, 0x00, 0xFF);
+	const Color VeryDarkSpringGreen		(0x00, 0x3F, 0x1F, 0xFF);
+	const Color VeryDarkPurple			(0x1F, 0x00, 0x3F, 0xFF);
+	const Color VeryDarkSkyBlue			(0x00, 0x1F, 0x3F, 0xFF);
 }

@@ -11,7 +11,7 @@
 #include "defines/consts/GlobalConstants.h"
 
 SDL_Renderer* Renderer::_gRenderer = nullptr;
-Color Renderer::_defaultDrawColor = Colors::BLACK;
+Color Renderer::_defaultDrawColor = Colors::Black;
 
 // =============================================================================
 SDL_Renderer* Renderer::GetInstance()

@@ -7,7 +7,6 @@
 
 // Own includes
 #include "utils/UtilsDefines.h"
-#include "utils/input_output/Log.h"
 
 // Forward declarations
 

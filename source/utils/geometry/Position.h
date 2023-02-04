@@ -2,7 +2,6 @@
 #define UTILS_GEOMETRY_POSITION_H_
 
 // C/C++ system includes
-#include <cstdint>
 
 // Third-party includes
 

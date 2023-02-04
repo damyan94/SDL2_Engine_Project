@@ -28,7 +28,8 @@ typedef int32_t										TimerId;
 // =============================== ENUMERATIONS ================================
 // =============================================================================
 
-enum class UnitOfTime : int8_t
+enum class UnitOfTime
+	: int8_t
 {
 	Invalid = -1
 	, Nanoseconds
@@ -40,7 +41,8 @@ enum class UnitOfTime : int8_t
 	, Count
 };
 
-enum class TimerType : int8_t
+enum class TimerType
+	: int8_t
 {
 	Invalid = -1
 	, OneShot
@@ -48,7 +50,8 @@ enum class TimerType : int8_t
 	, Count
 };
 
-enum class ConsoleTextColor : uint16_t
+enum class ConsoleTextColor
+	: uint16_t
 {
 	Default		= 37
 	, Black		= 90
@@ -59,6 +62,15 @@ enum class ConsoleTextColor : uint16_t
 	, Magenta	= 95
 	, Cyan		= 96
 	, White		= 97
+};
+
+enum class WriteMode
+	: int8_t
+{
+	Invalid = -1
+	, Out
+	, App
+	, Count
 };
 
 // =============================================================================

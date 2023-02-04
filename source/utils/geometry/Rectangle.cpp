@@ -9,7 +9,7 @@
 
 // =============================================================================
 const Rectangle Rectangle::Zero = Rectangle(0, 0, 0, 0);
-const Rectangle Rectangle::Undefined = Rectangle(0xCCCCCCCC, 0xCCCCCCCC, 0, 0);
+const Rectangle Rectangle::Undefined = Rectangle(0xFFFFFFFF, 0xFFFFFFFF, 0, 0);
 
 // =============================================================================
 Rectangle::Rectangle()
@@ -37,8 +37,8 @@ Rectangle::Rectangle(int32_t posX, int32_t posY, int32_t width, int32_t height)
 // =============================================================================
 bool Rectangle::operator==(const Rectangle& other) const
 {
-	return (this->x == other.x) && (this->y == other.y) &&
-		(this->w == other.w) && (this->h == other.h);
+	return (this->x == other.x) && (this->y == other.y)
+		&& (this->w == other.w) && (this->h == other.h);
 }
 
 // =============================================================================
@@ -50,6 +50,6 @@ bool Rectangle::operator!=(const Rectangle& other) const
 // =============================================================================
 bool Rectangle::IsPointInside(const Point& point) const
 {
-	return (point.x >= this->x) && (point.x <= this->x + this->w) &&
-		(point.y >= this->y) && (point.y <= this->y + this->h);
+	return (point.x >= this->x) && (point.x <= this->x + this->w)
+		&& (point.y >= this->y) && (point.y <= this->y + this->h);
 }

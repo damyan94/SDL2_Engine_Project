@@ -12,7 +12,7 @@
 int32_t App::Init()
 {
 	timerId = Timer::StartTimer(1000, TimerType::Pulse);
-	time.Init(Time().GetString(), FontId::CONSOLA_18, Colors::BLACK);
+	time.Init(Time().GetString(), FontId::CONSOLA_18, Colors::Black);
 	time.SetPos(50, 50);
 
 	return EXIT_SUCCESS;

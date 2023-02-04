@@ -27,94 +27,93 @@ struct Color
 	uint8_t a;
 };
 
-//TODO Change colors' names to Pascal Case
 namespace Colors
 {
-	extern const Color FULL_TRANSPARENT;
+	extern const Color Transparent;
 
-	// WHITE, GREY AND BLACK
-	extern const Color WHITE;
-	extern const Color VERY_LIGHT_GREY;
-	extern const Color LIGHT_GREY;
-	extern const Color GREY;
-	extern const Color DARK_GREY;
-	extern const Color VERY_DARK_GREY;
-	extern const Color BLACK;
+	// White, grey and black
+	extern const Color White;
+	extern const Color VeryLightGrey;
+	extern const Color LightGrey;
+	extern const Color Grey;
+	extern const Color DarkGrey;
+	extern const Color VeryDarkGrey;
+	extern const Color Black;
 
-	// VERY LIGHT COLORS
-	extern const Color VERY_LIGHT_RED;
-	extern const Color VERY_LIGHT_GREEN;
-	extern const Color VERY_LIGHT_BLUE;
-	extern const Color VERY_LIGHT_YELLOW;
-	extern const Color VERY_LIGHT_CYAN;
-	extern const Color VERY_LIGHT_MAGENTA;
+	// Very light colors
+	extern const Color VeryLightRed;
+	extern const Color VeryLightGreen;
+	extern const Color VeryLightBlue;
+	extern const Color VeryLightYellow;
+	extern const Color VeryLightCyan;
+	extern const Color VeryLightMagenta;
 
-	extern const Color VERY_LIGHT_ORANGE;
-	extern const Color VERY_LIGHT_PINK;
-	extern const Color VERY_LIGHT_LIME;
-	extern const Color VERY_LIGHT_SPRING_GREEN;
-	extern const Color VERY_LIGHT_PURPLE;
-	extern const Color VERY_LIGHT_SKY_BLUE;
+	extern const Color VeryLightOrange;
+	extern const Color VeryLightPink;
+	extern const Color VeryLightLime;
+	extern const Color VeryLightSpringGreen;
+	extern const Color VeryLightPurple;
+	extern const Color VeryLightSkyBlue;
 
-	// LIGHT COLORS
-	extern const Color LIGHT_RED;
-	extern const Color LIGHT_GREEN;
-	extern const Color LIGHT_BLUE;
-	extern const Color LIGHT_YELLOW;
-	extern const Color LIGHT_CYAN;
-	extern const Color LIGHT_MAGENTA;
+	// Light colors
+	extern const Color LightRed;
+	extern const Color LightGreen;
+	extern const Color LightBlue;
+	extern const Color LightYellow;
+	extern const Color LightCyan;
+	extern const Color LightMagenta;
 
-	extern const Color LIGHT_ORANGE;
-	extern const Color LIGHT_PINK;
-	extern const Color LIGHT_LIME;
-	extern const Color LIGHT_SPRING_GREEN;
-	extern const Color LIGHT_PURPLE;
-	extern const Color LIGHT_SKY_BLUE;
+	extern const Color LightOrange;
+	extern const Color LightPink;
+	extern const Color LightLime;
+	extern const Color LightSpringGreen;
+	extern const Color LightPurple;
+	extern const Color LightSkyBlue;
 
-	// COLORS
-	extern const Color RED;
-	extern const Color GREEN;
-	extern const Color BLUE;
-	extern const Color YELLOW;
-	extern const Color CYAN;
-	extern const Color MAGENTA;
+	// Colors
+	extern const Color Red;
+	extern const Color Green;
+	extern const Color Blue;
+	extern const Color Yellow;
+	extern const Color Cyan;
+	extern const Color Magenta;
 
-	extern const Color ORANGE;
-	extern const Color PINK;
-	extern const Color LIME;
-	extern const Color SPRING_GREEN;
-	extern const Color PURPLE;
-	extern const Color SKY_BLUE;
+	extern const Color Orange;
+	extern const Color Pink;
+	extern const Color Lime;
+	extern const Color SpringGreen;
+	extern const Color Purple;
+	extern const Color SkyBlue;
 
-	// DARK COLORS
-	extern const Color DARK_RED;
-	extern const Color DARK_GREEN;
-	extern const Color DARK_BLUE;
-	extern const Color DARK_YELLOW;
-	extern const Color DARK_CYAN;
-	extern const Color DARK_MAGENTA;
+	// Dark colors
+	extern const Color DarkRed;
+	extern const Color DarkGreen;
+	extern const Color DarkBlue;
+	extern const Color DarkYellow;
+	extern const Color DarkCyan;
+	extern const Color DarkMagenta;
 
-	extern const Color DARK_ORANGE;
-	extern const Color DARK_PINK;
-	extern const Color DARK_LIME;
-	extern const Color DARK_SPRING_GREEN;
-	extern const Color DARK_PURPLE;
-	extern const Color DARK_SKY_BLUE;
+	extern const Color DarkOrange;
+	extern const Color DarkPink;
+	extern const Color DarkLime;
+	extern const Color DarkSpringGreen;
+	extern const Color DarkPurple;
+	extern const Color DarkSkyBlue;
 
-	// VERY DARK COLORS
-	extern const Color VERY_DARK_RED;
-	extern const Color VERY_DARK_GREEN;
-	extern const Color VERY_DARK_BLUE;
-	extern const Color VERY_DARK_YELLOW;
-	extern const Color VERY_DARK_CYAN;
-	extern const Color VERY_DARK_MAGENTA;
+	// VeryDarkColors
+	extern const Color VeryDarkRed;
+	extern const Color VeryDarkGreen;
+	extern const Color VeryDarkBlue;
+	extern const Color VeryDarkYellow;
+	extern const Color VeryDarkCyan;
+	extern const Color VeryDarkMagenta;
 
-	extern const Color VERY_DARK_ORANGE;
-	extern const Color VERY_DARK_PINK;
-	extern const Color VERY_DARK_LIME;
-	extern const Color VERY_DARK_SPRING_GREEN;
-	extern const Color VERY_DARK_PURPLE;
-	extern const Color VERY_DARK_SKY_BLUE;
+	extern const Color VeryDarkOrange;
+	extern const Color VeryDarkPink;
+	extern const Color VeryDarkLime;
+	extern const Color VeryDarkSpringGreen;
+	extern const Color VeryDarkPurple;
+	extern const Color VeryDarkSkyBlue;
 } // !namespace Colors
 
 #endif // !UTILS_DRAWING_COLOR_H_

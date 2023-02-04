@@ -14,6 +14,7 @@
 // Third-party includes
 
 // Own includes
+#include "utils/input_output/Log.h"
 
 // =============================================================================
 void Assert::Assert(const char* text)

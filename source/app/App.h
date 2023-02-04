@@ -15,15 +15,15 @@
 class App
 {
 public:
-	int32_t						Init();
-	void						Deinit();
-	void						HandleEvent(const InputEvent& e);
-	void						Update();
-	void						Draw() const;
+	int32_t				Init();
+	void				Deinit();
+	void				HandleEvent(const InputEvent& e);
+	void				Update(int32_t dt);
+	void				Draw() const;
 
 private:
-	Text						time;
-	TimerId						timerId;
+	Text				time;
+	TimerId				timerId;
 };
 
 #endif // !GAME_GAME_H_

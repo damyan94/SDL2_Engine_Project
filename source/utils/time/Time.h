@@ -19,16 +19,16 @@ public:
 	Time();
 	~Time();
 
-	uint64_t GetElapsedTime(UnitOfTime unit);
-	std::string GetString() const;
+	uint64_t			GetElapsedTime(UnitOfTime unit);
+	std::string			GetString() const;
 
-	void SetToNow();
-
-private:
-	TimePoint GetNow();
+	void				ResetToNow();
 
 private:
-	TimePoint m_StartTime;
+	TimePoint			GetNow();
+
+private:
+	TimePoint			m_StartTime;
 };
 
 #endif // !UTILS_TIME_TIMEPOINT_H_

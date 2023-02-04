@@ -19,7 +19,7 @@
 #define BreakIf(__Condition)						do { if(__Condition) { break; }} while(false)
 #define AssertBreakIf(__Condition)					do { if(__Condition) { Assert::Assert(__ASSERT_INFO); break; }} while(false)
 
-#define SafeDelete(__Ptr) if(__Ptr)					do { delete __Ptr; __Ptr = nullptr; } while(false)
-#define SafeDeleteArray(__Ptr) if(__Ptr)			do { delete[] __Ptr; __Ptr = nullptr; } while(false)
+#define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
+#define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)
 
 #endif // !UTILS_OTHERS_CODEREADABILITYDEFINES_H_

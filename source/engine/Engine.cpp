@@ -24,11 +24,25 @@ bool show_another_window = false;
 ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 // =============================================================================
+Engine::Engine()
+	: m_DrawTimerId(0)
+	, m_ElapsedTime(0)
+	, m_CurrFPS(0)
+{
+}
+
+// =============================================================================
+Engine::~Engine()
+{
+	//TODO Uncomment when I have implemented an ImGUI class that can exit gracefully and safely
+	//Deinit();
+}
+
+// =============================================================================
 int32_t Engine::Init()
 {
 	srand((uint32_t)time(nullptr));
 
-	//TODO change all this to AssertReturnIf
 	// SDL init
 	AssertReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE);
 	
@@ -98,7 +112,7 @@ void Engine::HandleEvent()
 // =============================================================================
 void Engine::Update()
 {
-	m_App.Update();
+	m_App.Update(m_ElapsedTime);
 	m_Renderer.Update();
 }
 
@@ -131,19 +145,23 @@ void Engine::Draw() const
 void Engine::RunApplication()
 {
 	Time clock;
+
+#if RUN_OPTIMIZED > 0
 	bool drawConditionAchieved = false;
 	bool drawTimerTicked = false;
+#endif // !RUN_OPTIMIZED
 
 	Update();
 	Draw();
 
-	while (true)
+	bool running = true;
+	while (running)
 	{
 		while (m_InputEvent.PollEvent())
 		{
 			if (m_InputEvent.type == EventType::QUIT)
 			{
-				return;
+				running = false;
 			}
 
 			HandleEvent();
@@ -185,15 +203,16 @@ void Engine::RunApplication()
 
 #endif
 
-		Sleep(clock.GetElapsedTime(UnitOfTime::Milliseconds));
-		clock.SetToNow();
+		m_ElapsedTime = (int32_t)clock.GetElapsedTime(UnitOfTime::Milliseconds);
+		Sleep(m_ElapsedTime);
+		clock.ResetToNow();
 	}
 }
 
 // =============================================================================
-void Engine::Sleep(int64_t elapsedTime)
+void Engine::Sleep(int32_t elapsedTime)
 {
-	int64_t totalFrameTime = elapsedTime;
+	int32_t totalFrameTime = elapsedTime;
 	auto sleepTime = std::chrono::milliseconds(EngineConstants::TIME_PER_FRAME - elapsedTime);
 	if (sleepTime.count() > 0)
 	{

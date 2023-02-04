@@ -2,26 +2,24 @@
 #include "utils/time/Timer.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
 // Own includes
 
-std::unordered_map<int32_t, Timer::TimerUnit> Timer::m_Timers;
-int32_t Timer::m_NextUniqueId = 0;
+Timer::TimerMap Timer::m_Timers;
+TimerId Timer::m_NextUniqueId = 0;
 Time Timer::m_GlobalTime;
 
 // =============================================================================
 void Timer::StartGlobalTimer()
 {
 	m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
-	m_GlobalTime.SetToNow();
 }
 
 // =============================================================================
 // The default unit of time for the timers is a millisecond
-int32_t Timer::StartTimer(int64_t interval, TimerType timerType)
+TimerId Timer::StartTimer(int64_t interval, TimerType timerType)
 {
 	bool uniqueIdFound = false;
 	while (!uniqueIdFound)
@@ -43,21 +41,13 @@ int32_t Timer::StartTimer(int64_t interval, TimerType timerType)
 
 // =============================================================================
 // The default unit of time for the timers is a millisecond
-void Timer::StartTimer(int32_t id, int64_t interval, TimerType timerType)
+void Timer::StartTimer(TimerId id, int64_t interval, TimerType timerType)
 {
-	if (interval < UtilsConstants::TimerMinInterval)
-	{
-		std::cerr << "Error, Timer::Init() received invalid interval: "
-			<< interval << std::endl;
-		return;
-	}
+	// Error, received invalid timer interval
+	AssertReturnIf(interval < UtilsConstants::TimerMinInterval);
 
-	if (m_Timers.find(id) != m_Timers.end())
-	{
-		std::cerr << "Error, found existing timer with the same id: "
-			<< id << std::endl;
-		return;
-	}
+	// Error, found existing timer with the same id
+	AssertReturnIf(DoesTimerExist(id));
 
 	m_Timers[id].m_TimerType = timerType;
 	m_Timers[id].m_Interval = interval;
@@ -65,14 +55,9 @@ void Timer::StartTimer(int32_t id, int64_t interval, TimerType timerType)
 }
 
 // =============================================================================
-void Timer::DestroyTimer(int32_t id)
+void Timer::DestroyTimer(TimerId id)
 {
-	if (m_Timers.find(id) == m_Timers.end())
-	{
-		std::cerr << "Error, Timer::DestroyTimer() received invalid timer id: "
-			<< id << std::endl;
-		return;
-	}
+	AssertReturnIf(!DoesTimerExist(id));
 
 	m_Timers.erase(id);
 }
@@ -81,14 +66,11 @@ void Timer::DestroyTimer(int32_t id)
 void Timer::UpdateTimers()
 {
 	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
-	m_GlobalTime.SetToNow();
+	m_GlobalTime.ResetToNow();
 
 	for (auto& timer : m_Timers)
 	{
-		if (timer.second.m_Paused)
-		{
-			continue;
-		}
+		ContinueIf(timer.second.m_Paused);
 
 		timer.second.m_Remaining -= elapsedTime;
 
@@ -101,41 +83,30 @@ void Timer::UpdateTimers()
 }
 
 // =============================================================================
-void Timer::SetPauseTimer(int32_t id, bool paused)
+void Timer::SetPauseTimer(TimerId id, bool paused)
 {
-	if (m_Timers.find(id) == m_Timers.end())
-	{
-		std::cerr << "Error, Timer::PauseTimer() received invalid timer id: "
-			<< id << std::endl;
-		return;
-	}
+	AssertReturnIf(!DoesTimerExist(id));
 
 	m_Timers[id].m_Paused = paused;
 }
 
 // =============================================================================
-bool Timer::IsTimerTicked(int32_t id)
+bool Timer::IsTimerTicked(TimerId id)
 {
-	if (m_Timers.find(id) == m_Timers.end())
-	{
-		std::cerr << "Error, Timer::IsTimerTicked() received invalid timer id: "
-			<< id << std::endl;
-		return false;
-	}
+	AssertReturnIf(!DoesTimerExist(id), false);
+	auto& timer = m_Timers[id];
 
-	if (m_Timers[id].m_Paused)
-	{
-		std::cerr << "Error, timer with id " << id << " is paused."
-			<< std::endl;
-		return false;
-	}
+	// Error, timer is paused
+	AssertReturnIf(timer.m_Paused, false);
 
-	if (m_Timers[id].m_Ticked)
+	if (timer.m_Ticked)
 	{
-		m_Timers[id].m_Ticked = false;
+		timer.m_Ticked = false;
 
-		if (m_Timers[id].m_TimerType == TimerType::OneShot)
+		if (timer.m_TimerType == TimerType::OneShot)
+		{
 			Timer::DestroyTimer(id);
+		}
 
 		return true;
 	}
@@ -144,29 +115,25 @@ bool Timer::IsTimerTicked(int32_t id)
 }
 
 // =============================================================================
-bool Timer::IsTimerPaused(int32_t id)
+bool Timer::IsTimerPaused(TimerId id)
 {
-	if (m_Timers.find(id) == m_Timers.end())
-	{
-		std::cerr << "Error, Timer::IsTimerPaused() received invalid timer id: "
-			<< id << std::endl;
-		return false;
-	}
+	AssertReturnIf(!DoesTimerExist(id), false);
 
 	return m_Timers[id].m_Paused;
 }
 
 // =============================================================================
-bool Timer::IsActiveTimer(int32_t id)
+bool Timer::IsActiveTimer(TimerId id)
 {
-	if (m_Timers.find(id) == m_Timers.end())
-	{
-		std::cerr << "Error, Timer::IsActiveTimer() received invalid timer id: "
-			<< id << std::endl;
-		return false;
-	}
+	AssertReturnIf(!DoesTimerExist(id), false);
 
 	return true;
+}
+
+// =============================================================================
+bool Timer::DoesTimerExist(TimerId id)
+{
+	return m_Timers.find(id) != m_Timers.end();
 }
 
 // =============================================================================

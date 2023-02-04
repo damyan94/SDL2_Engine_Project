@@ -25,31 +25,35 @@
 class Engine
 {
 public:
-	int32_t						Init();
-	void						Deinit();
-	void						HandleEvent();
-	void						Update();
-	void						Draw() const;
+	Engine();
+	~Engine();
 
-	void						RunApplication();
+	int32_t				Init();
+	void				Deinit();
+	void				HandleEvent();
+	void				Update();
+	void				Draw() const;
+
+	void				RunApplication();
 
 private:
-	void						Sleep(int64_t elapsedTime);
+	void				Sleep(int32_t elapsedTime);
 
 private:
-	Window						m_Window;
-	Renderer					m_Renderer;
-	InputEvent					m_InputEvent;
+	Window				m_Window;
+	Renderer			m_Renderer;
+	InputEvent			m_InputEvent;
 
-	ImageContainer				m_ImageContainer;
-	FontContainer				m_FontContainer;
-	SoundContainer				m_SoundContainer;
-	MusicContainer				m_MusicContainer;
+	ImageContainer		m_ImageContainer;
+	FontContainer		m_FontContainer;
+	SoundContainer		m_SoundContainer;
+	MusicContainer		m_MusicContainer;
 
-	App							m_App;
+	App					m_App;
 
-	TimerId						m_DrawTimerId = 0;
-	int64_t						m_CurrFPS = 0;
+	TimerId				m_DrawTimerId;
+	int32_t				m_ElapsedTime;
+	int32_t				m_CurrFPS;
 };
 
 #endif // !ENGINE_ENGINE_H_

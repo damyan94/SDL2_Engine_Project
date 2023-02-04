@@ -11,7 +11,7 @@
 Time::Time()
 	: m_StartTime(std::chrono::steady_clock::time_point())
 {
-	SetToNow();
+	ResetToNow();
 }
 
 // =============================================================================
@@ -23,40 +23,34 @@ Time::~Time()
 uint64_t Time::GetElapsedTime(UnitOfTime unit)
 {
 	const auto duration = GetNow() - m_StartTime;
-	//SetToNow();
+	//ResetToNow(); //TODO Consider if this should be here
 	uint64_t result = 0;
 
 	switch (unit)
 	{
 	case UnitOfTime::Hours:
-		result = std::chrono::duration_cast<std::chrono::hours>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::hours>(duration).count();
 
 	case UnitOfTime::Minutes:
-		result = std::chrono::duration_cast<std::chrono::minutes>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::minutes>(duration).count();
 
 	case UnitOfTime::Seconds:
-		result = std::chrono::duration_cast<std::chrono::seconds>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::seconds>(duration).count();
 
 	case UnitOfTime::Microseconds:
-		result = std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::microseconds>(duration).count();
 
 	case UnitOfTime::Milliseconds:
-		result = std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::milliseconds>(duration).count();
 
 	case UnitOfTime::Nanoseconds:
-		result = std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
-		break;
+		return std::chrono::duration_cast<std::chrono::nanoseconds>(duration).count();
 
 	default:
-		break;
+		return 0;
 	}
 
-	return result;
+	return 0;
 }
 
 // =============================================================================
@@ -76,7 +70,7 @@ std::string Time::GetString() const
 }
 
 // =============================================================================
-void Time::SetToNow()
+void Time::ResetToNow()
 {
 	m_StartTime = GetNow();
 }

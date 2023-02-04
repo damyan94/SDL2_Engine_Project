@@ -1,2 +1,8 @@
-﻿  Assert.cpp
+﻿  App.cpp
+  Engine.cpp
+  main.cpp
+  MusicContainer.cpp
+  ReadWriteFile.cpp
+  Crypto.cpp
+  Generating Code...
   SDL2_Engine_Project.vcxproj -> D:\Работа\Програмиране\C++\Собствени\SDL2_Engine_Project\build\x64\Debug\Application.exe

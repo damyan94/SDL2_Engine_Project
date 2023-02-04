@@ -15,8 +15,6 @@ int32_t App::Init()
 	time.Init(Time().GetString(), FontId::CONSOLA_18, Colors::BLACK);
 	time.SetPos(50, 50);
 
-	AssertReturnIf(true, EXIT_SUCCESS);
-
 	return EXIT_SUCCESS;
 }
 
@@ -33,7 +31,7 @@ void App::HandleEvent(const InputEvent& e)
 }
 
 // =============================================================================
-void App::Update()
+void App::Update(int32_t dt)
 {
 	ReturnIf(!Timer::IsTimerTicked(timerId), void());
 

@@ -8,32 +8,42 @@
 // Third-party includes
 
 // Own includes
-#include "utils/drawing/Color.h"
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
+#include "defines/id/FontId.h"
+
+#include "sdl_utils/containers/AssetContainer.h"
 
 // Forward declarations
 typedef struct _TTF_Font TTF_Font;
 
+//TODO Remove all the static
 class FontContainer
+	: public AssetContainer
 {
 public:
+	FontContainer();
 	~FontContainer();
 
-	int32_t Init();
-	void Deinit();
+	bool				Init() final;
+	void				Deinit() final;
 
-	static TTF_Font* GetFontById(int32_t id);
-	static int32_t GetFontSizeById(int32_t id);
+	static bool			DoesAssetExist(FontId id);
+
+	static TTF_Font*	GetFontById(FontId id);
+	static int32_t		GetFontSizeById(FontId id);
 
 private:
 	struct FontUnit
 	{
-		TTF_Font* font = nullptr;
-		int32_t size = 12;
+		FontUnit();
+		~FontUnit();
+
+		FontUnit(TTF_Font* font, uint32_t size);
+
+		TTF_Font*		m_Font = nullptr;
+		uint32_t		m_Size = 12;
 	};
 
-	static std::unordered_map<int32_t, FontUnit> _fonts;
+	static std::unordered_map<FontId, FontUnit> m_Fonts;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_FONTCONTAINER_H_

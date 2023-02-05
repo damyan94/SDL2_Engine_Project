@@ -7,7 +7,7 @@
 // Third-party includes
 
 // Own includes
-#include "utils/drawing/Color.h"
+#include "utils/UtilsCommonIncludes.h"
 
 // Forward declarations
 struct SDL_Renderer;
@@ -16,19 +16,22 @@ struct SDL_Window;
 class Renderer
 {
 public:
-	static SDL_Renderer* GetInstance();
+	Renderer();
+	~Renderer();
 
-	int32_t Init(SDL_Window* window, const Color& color);
-	void Deinit();
-	void Update();
-	void Draw() const;
+	SDL_Renderer*		GetInstance() const;
 
-	static void SetDrawColor(const Color& color);
-	static Color GetDefaultDrawColor();
+	bool				Init(SDL_Window* window, const Color& color);
+	void				Deinit();
+	void				Update();
+	void				Draw() const;
+
+	void				SetDrawColor(const Color& color);
+	Color				GetDefaultDrawColor();
 
 private:
-	static SDL_Renderer* _gRenderer;
-	static Color _defaultDrawColor;
+	SDL_Renderer*		m_Renderer;
+	Color				m_DefaultDrawColor;
 };
 
 #endif // !SDL_UTILS_RENDERER_H_

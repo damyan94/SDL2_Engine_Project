@@ -8,6 +8,8 @@
 // Third-party includes
 
 // Own includes
+#include "utils/UtilsCommonIncludes.h"
+
 #include "sdl_utils/drawing/DrawObject.h"
 
 // Forward declarations

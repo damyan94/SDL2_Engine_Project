@@ -2,16 +2,37 @@
 #include "defines/FontDefines.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
 // Own includes
 
-// These IDs must be the same as the human readable version in the included enum
-const std::vector<FontInfo> fontsInfo =
+// =============================================================================
+FontData::FontData()
+	: m_FileName("")
+	, m_Id(FontId::Invalid)
+	, m_Size(0)
 {
-	{"assets/fonts/Consola.ttf", FontId::CONSOLA_12, 12},
-	{"assets/fonts/Consola.ttf", FontId::CONSOLA_14, 14},
-	{"assets/fonts/Consola.ttf", FontId::CONSOLA_18, 18}
+}
+
+// =============================================================================
+FontData::~FontData()
+{
+}
+
+// =============================================================================
+FontData::FontData(const char* fileName, FontId id, uint32_t size)
+	: m_FileName(fileName)
+	, m_Id(id)
+	, m_Size(size)
+{
+}
+
+// =============================================================================
+//TODO Move all this to a .cfg file
+const std::vector<FontData> g_FontsData =
+{
+	{"assets/fonts/Consola.ttf", FontId::Consola_12, 12}
+	, {"assets/fonts/Consola.ttf", FontId::Consola_14, 14}
+	, {"assets/fonts/Consola.ttf", FontId::Consola_18, 18}
 };

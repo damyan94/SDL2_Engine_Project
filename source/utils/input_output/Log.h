@@ -12,9 +12,9 @@
 
 namespace Log
 {
-void ConsoleSetTextColor(ConsoleTextColor color);
+void ConsoleSetTextColor(EConsoleTextColor color);
 void Console(const char* fmt...);
-void Console(ConsoleTextColor color, const char* fmt...);
+void Console(EConsoleTextColor color, const char* fmt...);
 
 void File(const char* fmt...);
 }

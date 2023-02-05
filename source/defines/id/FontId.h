@@ -7,19 +7,20 @@
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/SDLUtilsDefines.h"
 
 // Forward declarations
 
-namespace FontId
+enum class FontId
+	: int32_t
 {
-	enum FontIds
-	{
-		INVALID = -1,
+	Invalid = -1
 
-		CONSOLA_12 = 112,
-		CONSOLA_14 = 114,
-		CONSOLA_18 = 118
-	};
-}
+	, Consola_12 = 112
+	, Consola_14 = 114
+	, Consola_18 = 118
+
+	, Count
+};
 
 #endif // !DEFINES_ID_FONTID_H_

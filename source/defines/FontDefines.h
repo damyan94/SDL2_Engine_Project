@@ -12,15 +12,20 @@
 
 // Forward declarations
 
-struct FontInfo
+struct FontData
 {
-	const char* fileName = "INVALID FILE NAME";
-	int32_t id = -1;
-	int32_t size = 12;
+	FontData();
+	~FontData();
+
+	FontData(const char* fileName, FontId id, uint32_t size);
+
+	const char*			m_FileName;
+	FontId				m_Id;
+	uint32_t			m_Size;
 };
 
-extern const std::vector<FontInfo> fontsInfo;
+extern const std::vector<FontData> g_FontsData;
 
-#define FONTS_COUNT fontsInfo.size();
+#define FONTS_COUNT g_FontsData.size();
 
 #endif // !DEFINES_FONTDEFINES_H_

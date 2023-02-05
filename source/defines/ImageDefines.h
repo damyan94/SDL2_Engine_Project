@@ -12,15 +12,20 @@
 
 // Forward declarations
 
-struct ImageInfo
+struct ImageData
 {
-	const char* fileName = "INVALID FILE NAME";
-	int32_t id = -1;
-	int32_t frames = 1;
+	ImageData();
+	~ImageData();
+
+	ImageData(const char* fileName, ImageId id, uint32_t frames);
+
+	const char*			m_FileName;
+	ImageId				m_Id;
+	uint32_t			m_Frames;
 };
 
-extern const std::vector<ImageInfo> imagesInfo;
+extern const std::vector<ImageData> g_ImagesData;
 
-#define IMAGES_COUNT imagesInfo.size();
+#define IMAGES_COUNT g_ImagesData.size();
 
 #endif // !DEFINES_IMAGEDEFINES_H_

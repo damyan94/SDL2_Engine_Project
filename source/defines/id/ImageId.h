@@ -7,15 +7,15 @@
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/SDLUtilsDefines.h"
 
 // Forward declarations
 
-namespace ImageId
+enum class ImageId
+	: int32_t
 {
-	enum ImageIds
-	{
-		INVALID = -1
-	};
-}
+	Invalid = -1
+	, Count
+};
 
 #endif // !DEFINES_ID_IMAGEID_H_

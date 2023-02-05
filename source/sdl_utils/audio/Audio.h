@@ -10,6 +10,8 @@
 #include "defines/id/SoundId.h"
 #include "defines/id/MusicId.h"
 
+#include "utils/UtilsCommonIncludes.h"
+
 // Forward declarations
 
 namespace Audio
@@ -21,11 +23,11 @@ namespace Audio
 	constexpr uint8_t VOLUME_ZERO = 0;
 	constexpr uint8_t VOLUME_MAX = 128;
 
-	void PlaySound(int32_t soundId, int32_t loops);
+	void PlaySound(SoundId id, int32_t loops);
 	void PauseSounds();
 	void StopSounds();
 
-	void PlayMusic(int32_t musicId, int32_t loops);
+	void PlayMusic(MusicId id, int32_t loops);
 	void PauseMusic();
 	void StopMusic();
 

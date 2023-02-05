@@ -11,9 +11,20 @@
 #include "imgui_impl_sdlrenderer.h"
 
 // Own includes
+#include "utils/UtilsCommonIncludes.h"
+#include "sdl_utils/SDLUtilsCommonIncludes.h"
+
+#include "managers/ManagersDefines.h"
+#include "managers/Manager.h"
+#include "managers/AssetManager.h"
+#include "managers/DrawManager.h"
+#include "managers/TimerManager.h"
+
 #include "defines/consts/GlobalConstants.h"
-#include "utils/time/Timer.h"
 #include "sdl_utils/SDLLoader.h"
+
+#include "sdl_utils/Window.h"
+#include "sdl_utils/Renderer.h"
 
 #define RUN_OPTIMIZED 0
 #define MIN_TIME_BETWEEN_UPDATE 500
@@ -39,29 +50,32 @@ Engine::~Engine()
 }
 
 // =============================================================================
-int32_t Engine::Init()
+bool Engine::Init()
 {
 	srand((uint32_t)time(nullptr));
 
 	// SDL init
 	AssertReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE);
+
+	m_Managers.resize((size_t)EManagerType::Count);
+
+	m_Managers[(size_t)EManagerType::AssetManager] = AssetManager::Get();
+	AssertReturnIf(!m_Managers[(size_t)EManagerType::AssetManager]->Init() , false);
+
+	m_Managers[(size_t)EManagerType::DrawManager] = DrawManager::Get();
+	AssertReturnIf(!m_Managers[(size_t)EManagerType::DrawManager]->Init(), false);
+
+	m_Managers[(size_t)EManagerType::TimerManager] = TimerManager::Get();
+	AssertReturnIf(!m_Managers[(size_t)EManagerType::TimerManager]->Init(), false);
 	
 	// Base functionalities init
-	AssertReturnIf(EXIT_SUCCESS != m_Window.Init(), EXIT_FAILURE);
-	AssertReturnIf(EXIT_SUCCESS != m_Renderer.Init(m_Window.GetInstance(), Colors::VeryLightGrey), EXIT_FAILURE);
 	AssertReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE);
-
-	// Containers init
-	AssertReturnIf(EXIT_SUCCESS != m_ImageContainer.Init(), EXIT_FAILURE);
-	AssertReturnIf(EXIT_SUCCESS != m_FontContainer.Init(), EXIT_FAILURE);
-	AssertReturnIf(EXIT_SUCCESS != m_SoundContainer.Init(), EXIT_FAILURE);
-	AssertReturnIf(EXIT_SUCCESS != m_MusicContainer.Init(), EXIT_FAILURE);
 
 	// App init
 	AssertReturnIf(EXIT_SUCCESS != m_App.Init(), EXIT_FAILURE);
 
 	Timer::StartGlobalTimer();
-	m_DrawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, TimerType::Pulse);
+	m_DrawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, ETimerType::Pulse);
 
 	// Setup Dear ImGui context
 	IMGUI_CHECKVERSION();
@@ -75,10 +89,12 @@ int32_t Engine::Init()
 	//ImGui::StyleColorsLight();
 
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForSDLRenderer(m_Window.GetInstance(), m_Renderer.GetInstance());
-	ImGui_ImplSDLRenderer_Init(m_Renderer.GetInstance());
+	Window* window = static_cast<DrawManager*>(m_Managers[(size_t)EManagerType::DrawManager])->GetWindow();
+	Renderer* renderer = static_cast<DrawManager*>(m_Managers[(size_t)EManagerType::DrawManager])->GetRenderer();
+	ImGui_ImplSDL2_InitForSDLRenderer(window->GetInstance(), renderer->GetInstance());
+	ImGui_ImplSDLRenderer_Init(renderer->GetInstance());
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
@@ -91,14 +107,12 @@ void Engine::Deinit()
 
 	m_App.Deinit();
 
-	m_MusicContainer.Deinit();
-	m_SoundContainer.Deinit();
-	m_FontContainer.Deinit();
-	m_ImageContainer.Deinit();
+	for (auto manager : m_Managers)
+	{
+		manager->Deinit();
+	}
 
 	m_InputEvent.Deinit();
-	m_Renderer.Deinit();
-	m_Window.Deinit();
 	SDLLoader::Deinit();
 }
 
@@ -107,13 +121,23 @@ void Engine::HandleEvent()
 {
 	m_App.HandleEvent(m_InputEvent);
 	ImGui_ImplSDL2_ProcessEvent(m_InputEvent.GetInstance());
+
+	//TODO Maybe not have this here
+	for (auto manager : m_Managers)
+	{
+		manager->HandleEvent(m_InputEvent);
+	}
 }
 
 // =============================================================================
 void Engine::Update()
 {
 	m_App.Update(m_ElapsedTime);
-	m_Renderer.Update();
+
+	for (auto manager : m_Managers)
+	{
+		manager->Update(m_ElapsedTime);
+	}
 }
 
 // =============================================================================
@@ -138,7 +162,7 @@ void Engine::Draw() const
 	ImGui::Render();
 	ImGui_ImplSDLRenderer_RenderDrawData(ImGui::GetDrawData());
 
-	m_Renderer.Draw();
+	static_cast<DrawManager*>(m_Managers[(size_t)EManagerType::DrawManager])->Draw();
 }
 
 // =============================================================================
@@ -203,7 +227,7 @@ void Engine::RunApplication()
 
 #endif
 
-		m_ElapsedTime = (int32_t)clock.GetElapsedTime(UnitOfTime::Milliseconds);
+		m_ElapsedTime = (int32_t)clock.GetElapsedTime(EUnitOfTime::Milliseconds);
 		Sleep(m_ElapsedTime);
 		clock.ResetToNow();
 	}

@@ -2,16 +2,19 @@
 #include "sdl_utils/containers/MusicContainer.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_mixer.h>
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
 #include "defines/MusicDefines.h"
 
-std::unordered_map<int32_t, Mix_Music*> MusicContainer::_musics;
+std::unordered_map<MusicId, Mix_Music*> MusicContainer::m_Musics;
+
+// =============================================================================
+MusicContainer::MusicContainer()
+{
+}
 
 // =============================================================================
 MusicContainer::~MusicContainer()
@@ -21,53 +24,47 @@ MusicContainer::~MusicContainer()
 
 // =============================================================================
 // Mix_LoadMUS
-int32_t MusicContainer::Init()
+bool MusicContainer::Init()
 {
-	for (const auto& musicInfo : musicsInfo)
+	for (const auto& musicInfo : m_MusicsData)
 	{
-		int32_t id = musicInfo.id;
-		if (_musics.find(id) != _musics.end())
-		{
-			std::cerr << "Error, found existing music with the same id: "
-				<< id << std::endl;
-			return EXIT_FAILURE;
-		}
+		MusicId id = musicInfo.m_Id;
 
-		_musics[id] = Mix_LoadMUS(musicInfo.fileName);
-		if (!_musics[id])
-		{
-			std::cerr << "Error, Mix_LoadMUS() failed for file: "
-				<< musicInfo.fileName << std::endl;
-			return EXIT_FAILURE;
-		}
+		AssertReturnIf(DoesAssetExist(id), false);
+
+		m_Musics[id] = Mix_LoadMUS(musicInfo.m_FileName);
+		AssertReturnIf(!m_Musics[id], false);
 	}
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
 // Mix_FreeMusic
 void MusicContainer::Deinit()
 {
-	for (auto& [id, musicPtr] : _musics)
+	for (auto& [id, music] : m_Musics)
 	{
-		if (musicPtr)
+		if (music)
 		{
-			Mix_FreeMusic(musicPtr);
-			musicPtr = nullptr;
+			Mix_FreeMusic(music);
+			music = nullptr;
 		}
 	}
+
+	m_Musics.clear();
 }
 
 // =============================================================================
-Mix_Music* MusicContainer::GetMusicById(int32_t id)
+bool MusicContainer::DoesAssetExist(MusicId id)
 {
-	if (_musics.find(id) == _musics.end() && _musics.size() > 1)
-	{
-		std::cerr << "Error, could not find music with id: "
-			<< id << std::endl;
-		return nullptr;
-	}
+	return m_Musics.find(id) != m_Musics.end();
+}
 
-	return _musics[id];
+// =============================================================================
+Mix_Music* MusicContainer::GetMusicById(MusicId id)
+{
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
+
+	return m_Musics[id];
 }

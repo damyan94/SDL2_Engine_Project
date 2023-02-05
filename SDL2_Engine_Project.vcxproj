@@ -157,6 +157,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\sdl_utils\containers\AssetContainer.cpp" />
     <ClCompile Include="source\utils\input_output\Assert.cpp" />
     <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
@@ -204,6 +205,10 @@
     <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\managers\ManagersDefines.h" />
+    <ClInclude Include="source\sdl_utils\containers\AssetContainer.h" />
+    <ClInclude Include="source\sdl_utils\SDLUtilsCommonIncludes.h" />
+    <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h" />
     <ClInclude Include="source\utils\input_output\Assert.h" />
     <ClInclude Include="source\utils\input_output\Log.h" />
     <ClInclude Include="source\managers\AssetManager.h" />

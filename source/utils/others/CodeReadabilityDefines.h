@@ -10,6 +10,38 @@
 
 // Forward declarations
 
+#ifdef ReturnIf
+#undef ReturnIf
+#endif
+
+#ifdef AssertReturnIf
+#undef AssertReturnIf
+#endif
+
+#ifdef ContinueIf
+#undef ContinueIf
+#endif
+
+#ifdef AssertContinueIf
+#undef AssertContinueIf
+#endif
+
+#ifdef BreakIf
+#undef BreakIf
+#endif
+
+#ifdef AssertBreakIf
+#undef AssertBreakIf
+#endif
+
+#ifdef SafeDelete
+#undef SafeDelete
+#endif
+
+#ifdef SafeDeleteArray
+#undef SafeDeleteArray
+#endif
+
 #define ReturnIf(__Condition, ...)					do { if(__Condition) { return __VA_ARGS__; }} while(false)
 #define AssertReturnIf(__Condition, ...)			do { if(__Condition) { Assert::Assert(__ASSERT_INFO); return __VA_ARGS__; }} while(false)
 

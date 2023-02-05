@@ -8,12 +8,9 @@
 // Own includes
 //TODO Maybe this shouldn't be here? How can I avoid it?
 #include "sdl_utils/Window.h"
+#include "managers/DrawManager.h"
 
-// =============================================================================
-Rectangle Position::GetWindowRect()
-{
-	return Window::GetWindowRect();
-}
+static Window* gWindow = DrawManager::Get()->GetWindow();
 
 // =============================================================================
 Point Position::TopLeft(const Rectangle& object, const Rectangle& container)
@@ -108,62 +105,62 @@ Point Position::BottomRight(const Rectangle& object, const Rectangle& container)
 // =============================================================================
 Point Position::WindowTopLeft(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return TopLeft(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowTopCenter(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return TopCenter(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowTopRight(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return TopRight(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowMiddleLeft(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return MiddleLeft(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowMiddleCenter(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return MiddleCenter(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowMiddleRight(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return MiddleRight(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowBottomLeft(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return BottomLeft(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowBottomCenter(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return BottomCenter(object, { 0, 0, rect.w, rect.h });
 }
 
 // =============================================================================
 Point Position::WindowBottomRight(const Rectangle& object)
 {
-	Rectangle rect = Window::GetWindowRect();
+	Rectangle rect = gWindow->GetWindowRect();
 	return BottomRight(object, { 0, 0, rect.w, rect.h });
 }

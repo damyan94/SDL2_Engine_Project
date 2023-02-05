@@ -13,8 +13,6 @@
 
 namespace Position
 {
-	Rectangle GetWindowRect();
-
 	Point TopLeft(const Rectangle& object, const Rectangle& container);
 	Point TopCenter(const Rectangle& object, const Rectangle& container);
 	Point TopRight(const Rectangle& object, const Rectangle& container);

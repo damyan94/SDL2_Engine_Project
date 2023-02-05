@@ -2,7 +2,6 @@
 #include "sdl_utils/audio/Audio.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_mixer.h>
@@ -13,10 +12,10 @@
 
 // =============================================================================
 // Mix_PlayChannel
-void Audio::PlaySound(int32_t soundId, int32_t loops)
+void Audio::PlaySound(SoundId id, int32_t loops)
 {
 	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL,
-		SoundContainer::GetSoundById(soundId), loops);
+		SoundContainer::GetSoundById(id), loops);
 }
 
 // =============================================================================
@@ -35,9 +34,9 @@ void Audio::StopSounds()
 
 // =============================================================================
 // Mix_PlayMusic
-void Audio::PlayMusic(int32_t musicId, int32_t loops)
+void Audio::PlayMusic(MusicId id, int32_t loops)
 {
-	Mix_PlayMusic(MusicContainer::GetMusicById(musicId), loops);
+	Mix_PlayMusic(MusicContainer::GetMusicById(id), loops);
 }
 
 // =============================================================================
@@ -58,12 +57,7 @@ void Audio::StopMusic()
 // Mix_Volume
 void Audio::SetSoundsVolume(uint8_t volume)
 {
-	if (volume < VOLUME_ZERO || volume > VOLUME_MAX) //TODO VPS-Studio: V560 A part of conditional expression is always false: volume < VOLUME_ZERO. Unsigned type value is never < 0. Audio.cpp 61
-	{
-		std::cerr << "Error, Audio::SetSoundsVolume() received invalid parameter volume: "
-			<< volume << std::endl;
-		return;
-	}
+	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX);
 
 	Mix_Volume(ALL_CHANNELS, volume);
 }
@@ -72,12 +66,7 @@ void Audio::SetSoundsVolume(uint8_t volume)
 // Mix_VolumeMusic
 void Audio::SetMusicVolume(uint8_t volume)
 {
-	if (volume < VOLUME_ZERO || volume > VOLUME_MAX) //TODO VPS-Studio: V560 A part of conditional expression is always false: volume < VOLUME_ZERO. Unsigned type value is never < 0. Audio.cpp 75
-	{
-		std::cerr << "Error, Audio::SetSoundsVolume() received invalid parameter volume: "
-			<< volume << std::endl;
-		return;
-	}
+	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX);
 
 	Mix_VolumeMusic(volume);
 }

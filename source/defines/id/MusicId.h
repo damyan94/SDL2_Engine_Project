@@ -7,15 +7,15 @@
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/SDLUtilsDefines.h"
 
 // Forward declarations
 
-namespace MusicId
+enum class MusicId
+	: int32_t
 {
-	enum MusicIds
-	{
-		INVALID = -1
-	};
-}
+	Invalid = -1
+	, Count
+};
 
 #endif // !DEFINES_ID_MUSICID_H_

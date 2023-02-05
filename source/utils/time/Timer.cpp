@@ -14,12 +14,12 @@ Time Timer::m_GlobalTime;
 // =============================================================================
 void Timer::StartGlobalTimer()
 {
-	m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
+	m_GlobalTime.GetElapsedTime(EUnitOfTime::Milliseconds);
 }
 
 // =============================================================================
 // The default unit of time for the timers is a millisecond
-TimerId Timer::StartTimer(int64_t interval, TimerType timerType)
+TimerId Timer::StartTimer(int64_t interval, ETimerType timerType)
 {
 	bool uniqueIdFound = false;
 	while (!uniqueIdFound)
@@ -41,7 +41,7 @@ TimerId Timer::StartTimer(int64_t interval, TimerType timerType)
 
 // =============================================================================
 // The default unit of time for the timers is a millisecond
-void Timer::StartTimer(TimerId id, int64_t interval, TimerType timerType)
+void Timer::StartTimer(TimerId id, int64_t interval, ETimerType timerType)
 {
 	// Error, received invalid timer interval
 	AssertReturnIf(interval < UtilsConstants::TimerMinInterval);
@@ -65,7 +65,7 @@ void Timer::DestroyTimer(TimerId id)
 // =============================================================================
 void Timer::UpdateTimers()
 {
-	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(UnitOfTime::Milliseconds);
+	int64_t elapsedTime = m_GlobalTime.GetElapsedTime(EUnitOfTime::Milliseconds);
 	m_GlobalTime.ResetToNow();
 
 	for (auto& timer : m_Timers)
@@ -103,7 +103,7 @@ bool Timer::IsTimerTicked(TimerId id)
 	{
 		timer.m_Ticked = false;
 
-		if (timer.m_TimerType == TimerType::OneShot)
+		if (timer.m_TimerType == ETimerType::OneShot)
 		{
 			Timer::DestroyTimer(id);
 		}
@@ -138,7 +138,7 @@ bool Timer::DoesTimerExist(TimerId id)
 
 // =============================================================================
 Timer::TimerUnit::TimerUnit()
-	: m_TimerType(TimerType::OneShot)
+	: m_TimerType(ETimerType::OneShot)
 	, m_Interval(0)
 	, m_Remaining(0)
 	, m_Ticked(false)

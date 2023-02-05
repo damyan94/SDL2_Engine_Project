@@ -2,7 +2,6 @@
 #include "sdl_utils/Window.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_video.h>
@@ -10,41 +9,46 @@
 // Own includes
 #include "defines/consts/GlobalConstants.h"
 
-SDL_Window* Window::_gWindow = nullptr;
+// =============================================================================
+Window::Window()
+	: m_Window(nullptr)
+{
+}
 
 // =============================================================================
-SDL_Window* Window::GetInstance()
+Window::~Window()
 {
-	return _gWindow;
+}
+
+// =============================================================================
+SDL_Window* Window::GetInstance() const
+{
+	return m_Window;
 }
 
 // =============================================================================
 // SDL_CreateWindow
-int32_t Window::Init()
+bool Window::Init()
 {
 	using namespace WindowConstants;
 
-	_gWindow = SDL_CreateWindow(WINDOW_NAME, WINDOW_POS_X, WINDOW_POS_Y,
+	m_Window = SDL_CreateWindow(WINDOW_NAME, WINDOW_POS_X, WINDOW_POS_Y,
 		WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_FLAGS);
-	if (!_gWindow)
-	{
-		std::cerr << "Error, SDL_CreateWindow() failed. Reason: " <<
-			SDL_GetError() << std::endl;
-		return EXIT_FAILURE;
-	}
-	SDL_ShowWindow(_gWindow);
+	AssertReturnIf(!m_Window, false);
 
-	return EXIT_SUCCESS;
+	SDL_ShowWindow(m_Window);
+
+	return true;
 }
 
 // =============================================================================
 // SDL_DestroyWindow
 void Window::Deinit()
 {
-	if (_gWindow)
+	if (m_Window)
 	{
-		SDL_DestroyWindow(_gWindow);
-		_gWindow = nullptr;
+		SDL_DestroyWindow(m_Window);
+		m_Window = nullptr;
 	}
 }
 
@@ -52,8 +56,8 @@ void Window::Deinit()
 Rectangle Window::GetWindowRect()
 {
 	Rectangle windowRect = Rectangle::Undefined;
-	SDL_GetWindowPosition(_gWindow, &windowRect.x, &windowRect.y);
-	SDL_GetWindowSize(_gWindow, &windowRect.w, &windowRect.h);
+	SDL_GetWindowPosition(m_Window, &windowRect.x, &windowRect.y);
+	SDL_GetWindowSize(m_Window, &windowRect.w, &windowRect.h);
 
 	return windowRect;
 }

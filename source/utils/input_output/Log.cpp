@@ -10,43 +10,43 @@
 // Own includes
 
 // =============================================================================
-void Log::ConsoleSetTextColor(ConsoleTextColor color)
+void Log::ConsoleSetTextColor(EConsoleTextColor color)
 {
 	switch (color)
 	{
-	case ConsoleTextColor::Default:
+	case EConsoleTextColor::Default:
 		printf("\033[37m");
 		break;
 
-	case ConsoleTextColor::Black:
+	case EConsoleTextColor::Black:
 		printf("\033[90m");
 		break;
 
-	case ConsoleTextColor::Red:
+	case EConsoleTextColor::Red:
 		printf("\033[91m");
 		break;
 
-	case ConsoleTextColor::Green:
+	case EConsoleTextColor::Green:
 		printf("\033[92m");
 		break;
 
-	case ConsoleTextColor::Yellow:
+	case EConsoleTextColor::Yellow:
 		printf("\033[93m");
 		break;
 
-	case ConsoleTextColor::Blue:
+	case EConsoleTextColor::Blue:
 		printf("\033[94m");
 		break;
 
-	case ConsoleTextColor::Magenta:
+	case EConsoleTextColor::Magenta:
 		printf("\033[95m");
 		break;
 
-	case ConsoleTextColor::Cyan:
+	case EConsoleTextColor::Cyan:
 		printf("\033[96m");
 		break;
 
-	case ConsoleTextColor::White:
+	case EConsoleTextColor::White:
 		printf("\033[97m");
 		break;
 
@@ -66,7 +66,7 @@ void Log::Console(const char* fmt ...)
 }
 
 // =============================================================================
-void Log::Console(ConsoleTextColor color, const char* fmt ...)
+void Log::Console(EConsoleTextColor color, const char* fmt ...)
 {
 	ConsoleSetTextColor(color);
 
@@ -75,7 +75,7 @@ void Log::Console(ConsoleTextColor color, const char* fmt ...)
 	vfprintf(stderr, fmt, args);
 	va_end(args);
 
-	ConsoleSetTextColor(ConsoleTextColor::Default);
+	ConsoleSetTextColor(EConsoleTextColor::Default);
 }
 
 // =============================================================================

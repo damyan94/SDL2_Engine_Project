@@ -20,8 +20,8 @@
 void Assert::Assert(const char* text)
 {
 #if defined WIN32 || _WIN32
-	Log::Console(ConsoleTextColor::Red, "ASSERT TRIGGERED:\n");
-	Log::Console(ConsoleTextColor::Red, text);
+	Log::Console(EConsoleTextColor::Red, "ASSERT TRIGGERED:\n");
+	Log::Console(EConsoleTextColor::Red, text);
 	MessageBoxA(nullptr, text, "Error!", MB_ICONERROR | MB_OK);
 
 #if defined _DEBUG

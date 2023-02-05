@@ -18,18 +18,16 @@
 #include "sdl_utils/Renderer.h"
 #include "sdl_utils/drawing/DrawObject.h"
 
+//TODO Refactor
+#include "managers/DrawManager.h"
+
 // =============================================================================
 // IMG_Load
 void Texture::CreateSurfaceFromFile(const std::string& fileName,
 	SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight)
 {
 	outSurface = IMG_Load(fileName.c_str());
-	if (!outSurface)
-	{
-		std::cerr << "Error, IMG_Load() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	AssertReturnIf(!outSurface);
 
 	outWidth = outSurface->w;
 	outHeight = outSurface->h;
@@ -44,12 +42,7 @@ void Texture::CreateSurfaceFromText(const String& text, const Color& color,
 		SDL_Color{ color.r, color.g, color.b, color.a });
 	//outSurface = TTF_RenderUNICODE_Blended(font, reinterpret_cast<const uint16_t*>(text.c_str()),
 	//	SDL_Color{ color.r, color.g, color.b, color.a });
-	if (!outSurface)
-	{
-		std::cerr << "Error, TTF_RenderText_Blended() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	AssertReturnIf(!outSurface);
 
 	outWidth = outSurface->w;
 	outHeight = outSurface->h;
@@ -60,13 +53,8 @@ void Texture::CreateSurfaceFromText(const String& text, const Color& color,
 void Texture::CreateTextureFromSurface(SDL_Surface* surface,
 	SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight)
 {
-	outTexture = SDL_CreateTextureFromSurface(Renderer::GetInstance(), surface);
-	if (!outTexture)
-	{
-		std::cerr << "Error, SDL_CreateTextureFromSurface() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	outTexture = SDL_CreateTextureFromSurface(DrawManager::Get()->GetRenderer()->GetInstance(), surface);
+	AssertReturnIf(!outTexture);
 
 	outWidth = surface->w;
 	outHeight = surface->h;
@@ -78,18 +66,10 @@ void Texture::CreateTextureFromFile(const std::string& fileName,
 {
 	SDL_Surface* surface = nullptr;
 	CreateSurfaceFromFile(fileName, surface, outWidth, outHeight);
-	if (!surface)
-	{
-		std::cerr << "Error, CreateSurfaceFromFile() failed." << std::endl;
-		return;
-	}
+	AssertReturnIf(!surface);
 
 	CreateTextureFromSurface(surface, outTexture, outWidth, outHeight);
-	if (!outTexture)
-	{
-		std::cerr << "Error, CreateTextureFromSurface() failed." << std::endl;
-		return;
-	}
+	AssertReturnIf(!outTexture);
 
 	DestroySurface(surface);
 }
@@ -100,20 +80,10 @@ void Texture::CreateTextureFromText(const String& text, const Color& color,
 {
 	SDL_Surface* surface = nullptr;
 	CreateSurfaceFromText(text, color, font, surface, outWidth, outHeight);
-	if (!surface)
-	{
-		std::cerr << "Error, CreateSurfaceFromFile() failed."
-			<< std::endl;
-		return;
-	}
+	AssertReturnIf(!surface);
 
 	CreateTextureFromSurface(surface, outTexture, outWidth, outHeight);
-	if (!outTexture)
-	{
-		std::cerr << "Error, CreateTextureFromSurface() failed."
-			<< std::endl;
-		return;
-	}
+	AssertReturnIf(!outTexture);
 
 	DestroySurface(surface);
 }
@@ -122,12 +92,7 @@ void Texture::CreateTextureFromText(const String& text, const Color& color,
 // SDL_SetTextureBlendMode
 void Texture::SetTextureBlendMode(SDL_Texture*& texture, const BlendMode& blendMode)
 {
-	if (EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blendMode)))
-	{
-		std::cerr << "Error, SDL_SetTextureBlendMode() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blendMode)));
 }
 
 // =============================================================================
@@ -140,12 +105,7 @@ void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 	if (alpha > FULL_OPACITY)
 		alpha = FULL_OPACITY;
 
-	if (EXIT_SUCCESS != SDL_SetTextureAlphaMod(texture, (uint8_t)alpha))
-	{
-		std::cerr << "Error, SDL_SetTextureAlphaMod() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureAlphaMod(texture, (uint8_t)alpha));
 }
 
 // =============================================================================
@@ -155,31 +115,18 @@ void Texture::RenderTexture(SDL_Texture* texture, const Rectangle& srcRect,
 {
 	using namespace WindowConstants;
 
-	if (!&srcRect || !&dstRect)
-	{
-		std::cerr << "Error, Texture::RenderTexture() failed. Received invalid src or dst rectangle."
-			<< std::endl;
-		return;
-	}
+	AssertReturnIf(!&srcRect || !&dstRect);
 
 	bool isInsideWindow = (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
 		&& (dstRect.x < WINDOW_WIDTH && dstRect.y < WINDOW_HEIGHT);
-	if (!isInsideWindow)
-	{
-		return;
-	}
+	ReturnIf(!isInsideWindow);
 
 	const SDL_Rect src{ srcRect.x, srcRect.y, srcRect.w, srcRect.h };
 	const SDL_Rect dst{ dstRect.x, dstRect.y, dstRect.w, dstRect.h };
 	const SDL_Point cntr{ center.x, center.y };
 
-	if (EXIT_SUCCESS != SDL_RenderCopyEx(Renderer::GetInstance(), texture,
-		&src, &dst, angle, &cntr, (SDL_RendererFlip) flipMode))
-	{
-		std::cerr << "Error, SDL_RenderCopy() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return;
-	}
+	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(DrawManager::Get()->GetRenderer()->GetInstance(), texture,
+		&src, &dst, angle, &cntr, (SDL_RendererFlip)flipMode));
 }
 
 // =============================================================================

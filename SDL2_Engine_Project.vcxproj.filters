@@ -150,6 +150,9 @@
     <ClCompile Include="source\utils\input_output\Assert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\AssetContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\defines\FontDefines.h">
@@ -579,6 +582,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\utils\input_output\Assert.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\SDLUtilsCommonIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\ManagersDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\AssetContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

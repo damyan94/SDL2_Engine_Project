@@ -2,39 +2,48 @@
 #define SDL_UTILS_CONTAINERS_IMAGECONTAINER_H_
 
 // C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
+#include "defines/id/ImageId.h"
+
+#include "sdl_utils/containers/AssetContainer.h"
 
 // Forward declarations
 struct SDL_Texture;
 
+//TODO Remove all the static
 class ImageContainer
+	: public AssetContainer
 {
 public:
-	~ImageContainer();
+	ImageContainer();
+	~ImageContainer() final;
 
-	int32_t Init();
-	void Deinit();
+	bool				Init() final;
+	void				Deinit() final;
 
-	static SDL_Texture* GetImageTextureById(int32_t id);
-	static Rectangle GetImageTextureFrameById(int32_t id);
-	static int32_t GetImageFramesCountById(int32_t id);
+	static bool			DoesAssetExist(ImageId id);
+
+	static SDL_Texture*	GetImageTextureById(ImageId id);
+	static Rectangle	GetImageTextureFrameById(ImageId id);
+	static int32_t		GetImageFramesCountById(ImageId id);
 
 private:
 	struct ImageUnit
 	{
-		SDL_Texture* texture = nullptr;
-		Rectangle frameRect = Rectangle::Zero;
-		int32_t framesCount = 1;
+		ImageUnit();
+		~ImageUnit();
+
+		ImageUnit(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount);
+
+		SDL_Texture*	m_Texture = nullptr;
+		Rectangle		m_FrameRect = Rectangle::Zero;
+		int32_t			m_FramesCount = 1;
 	};
 
-	static std::unordered_map<int32_t, ImageUnit> _images;
+	static std::unordered_map<ImageId, ImageUnit> m_Images;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_IMAGECONTAINER_H_

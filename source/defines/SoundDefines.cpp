@@ -2,14 +2,32 @@
 #include "defines/SoundDefines.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
 // Own includes
 
-// These IDs must be the same as the human readable version in the included enum
-const std::vector<SoundInfo> soundsInfo =
+// =============================================================================
+SoundData::SoundData()
+	: m_FileName("")
+	, m_Id(SoundId::Invalid)
+{
+}
+
+// =============================================================================
+SoundData::~SoundData()
+{
+}
+
+// =============================================================================
+SoundData::SoundData(const char* fileName, SoundId id)
+	: m_FileName(fileName)
+	, m_Id(id)
+{
+}
+
+// =============================================================================
+const std::vector<SoundData> m_SoundsData =
 {
 
 };

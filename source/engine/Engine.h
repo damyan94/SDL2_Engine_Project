@@ -8,19 +8,14 @@
 
 // Own includes
 #include "utils/UtilsCommonIncludes.h"
+#include "managers/ManagersDefines.h"
 
-#include "sdl_utils/Window.h"
-#include "sdl_utils/Renderer.h"
 #include "sdl_utils/input/InputEvent.h"
-
-#include "sdl_utils/containers/ImageContainer.h"
-#include "sdl_utils/containers/FontContainer.h"
-#include "sdl_utils/containers/SoundContainer.h"
-#include "sdl_utils/containers/MusicContainer.h"
 
 #include "app/App.h"
 
 // Forward declarations
+class Manager;
 
 class Engine
 {
@@ -28,7 +23,7 @@ public:
 	Engine();
 	~Engine();
 
-	int32_t				Init();
+	bool				Init();
 	void				Deinit();
 	void				HandleEvent();
 	void				Update();
@@ -40,14 +35,9 @@ private:
 	void				Sleep(int32_t elapsedTime);
 
 private:
-	Window				m_Window;
-	Renderer			m_Renderer;
-	InputEvent			m_InputEvent;
+	std::vector<Manager*> m_Managers;
 
-	ImageContainer		m_ImageContainer;
-	FontContainer		m_FontContainer;
-	SoundContainer		m_SoundContainer;
-	MusicContainer		m_MusicContainer;
+	InputEvent			m_InputEvent;
 
 	App					m_App;
 

@@ -8,28 +8,32 @@
 #include <SDL_render.h>
 
 // Own includes
+//TODO Refactor all this temporary stuff
 #include "sdl_utils/Renderer.h"
+#include "managers/DrawManager.h"
 
 #include "utils/geometry/Point.h"
 #include "utils/geometry/Rectangle.h"
 #include "utils/drawing/Color.h"
+
+static Renderer* gRenderer = DrawManager::Get()->GetRenderer();
 
 // Point
 // =============================================================================
 void SDLDrawing::DrawPoint(int32_t x, int32_t y)
 {
 	Point point(x, y);
-	SDL_RenderDrawPoint(Renderer::GetInstance(), point.x, point.y);
+	SDL_RenderDrawPoint(gRenderer->GetInstance(), point.x, point.y);
 }
 
 // =============================================================================
 void SDLDrawing::DrawPoint(int32_t x, int32_t y, const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawPoint(x, y);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }
 
 // Line
@@ -38,7 +42,7 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 	Point point1(x1, y1);
 	Point point2(x2, y2);
-	SDL_RenderDrawLine(Renderer::GetInstance(), point1.x, point1.y,
+	SDL_RenderDrawLine(gRenderer->GetInstance(), point1.x, point1.y,
 		point2.x, point2.y);
 }
 
@@ -46,11 +50,11 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 	const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawLine(x1, y1, x2, y2);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }
 
 // Rectangle
@@ -58,18 +62,18 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderDrawRect(Renderer::GetInstance(), &sdlRect);
+	SDL_RenderDrawRect(gRenderer->GetInstance(), &sdlRect);
 }
 
 // =============================================================================
 void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h,
 	const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawRectangle(x, y, w, h);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }
 
 // Filled rectangle
@@ -77,18 +81,18 @@ void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h,
 void SDLDrawing::DrawFilledRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderFillRect(Renderer::GetInstance(), &sdlRect);
+	SDL_RenderFillRect(gRenderer->GetInstance(), &sdlRect);
 }
 
 // =============================================================================
 void SDLDrawing::DrawFilledRectangle(int32_t x, int32_t y, int32_t w, int32_t h,
 	const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawFilledRectangle(x, y, w, h);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }
 
 // Circle
@@ -102,7 +106,7 @@ void SDLDrawing::DrawCircle(int32_t centreX, int32_t centreY, int32_t radius)
 	int32_t tx = 1;
 	int32_t ty = 1;
 	int32_t error = (tx - diameter);
-	auto renderer = Renderer::GetInstance();
+	auto renderer = gRenderer->GetInstance();
 
 	while (x >= y)
 	{
@@ -136,11 +140,11 @@ void SDLDrawing::DrawCircle(int32_t centreX, int32_t centreY, int32_t radius)
 void SDLDrawing::DrawCircle(int32_t centreX, int32_t centreY, int32_t radius,
 	const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawCircle(centreX, centreY, radius);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }
 
 // Filled Circle
@@ -154,7 +158,7 @@ void SDLDrawing::DrawFilledCircle(int32_t centreX, int32_t centreY,
 			int32_t dx = radius - i; // horizontal offset
 			int32_t dy = radius - j; // vertical offset
 			if (dx * dx + dy * dy <= radius * radius)
-				SDL_RenderDrawPoint(Renderer::GetInstance(), centreX + dx,
+				SDL_RenderDrawPoint(gRenderer->GetInstance(), centreX + dx,
 					centreY + dy);
 		}
 }
@@ -163,9 +167,9 @@ void SDLDrawing::DrawFilledCircle(int32_t centreX, int32_t centreY,
 void SDLDrawing::DrawFilledCircle(int32_t centreX, int32_t centreY,
 	int32_t radius, const Color& color)
 {
-	Renderer::SetDrawColor(color);
+	gRenderer->SetDrawColor(color);
 
 	SDLDrawing::DrawFilledCircle(centreX, centreY, radius);
 
-	Renderer::SetDrawColor(Renderer::GetDefaultDrawColor());
+	gRenderer->SetDrawColor(gRenderer->GetDefaultDrawColor());
 }

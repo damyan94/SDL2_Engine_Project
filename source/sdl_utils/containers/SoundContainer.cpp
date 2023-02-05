@@ -10,7 +10,12 @@
 // Own includes
 #include "defines/SoundDefines.h"
 
-std::unordered_map<int32_t, Mix_Chunk*> SoundContainer::_sounds;
+std::unordered_map<SoundId, Mix_Chunk*> SoundContainer::m_Sounds;
+
+// =============================================================================
+SoundContainer::SoundContainer()
+{
+}
 
 // =============================================================================
 SoundContainer::~SoundContainer()
@@ -20,51 +25,47 @@ SoundContainer::~SoundContainer()
 
 // =============================================================================
 // Mix_LoadWAV
-int32_t SoundContainer::Init()
+bool SoundContainer::Init()
 {
-	for (const auto& soundInfo : soundsInfo)
+	for (const auto& soundData : m_SoundsData)
 	{
-		int32_t id = soundInfo.id;
-		if (_sounds.find(id) != _sounds.end())
-		{
-			std::cerr << "Error, found existing sound with the same id: "
-				<< id << std::endl;
-			return EXIT_FAILURE;
-		}
+		SoundId id = soundData.m_Id;
 
-		_sounds[id] = Mix_LoadWAV(soundInfo.fileName);
-		if (!_sounds[id])
-		{
-			std::cerr << "Error, Mix_LoadWAV() failed for file: "
-				<< soundInfo.fileName << std::endl;
-			return EXIT_FAILURE;
-		}
+		AssertReturnIf(DoesAssetExist(id), false);
+
+		m_Sounds[id] = Mix_LoadWAV(soundData.m_FileName);
+		AssertReturnIf(!m_Sounds[id], false);
 	}
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
 // Mix_FreeChunk
 void SoundContainer::Deinit()
 {
-	for (auto& sound : _sounds)
-		if (sound.second)
+	for (auto& [id, sound] : m_Sounds)
+	{
+		if (sound)
 		{
-			Mix_FreeChunk(sound.second);
-			sound.second = nullptr;
+			Mix_FreeChunk(sound);
+			sound = nullptr;
 		}
+	}
+
+	m_Sounds.clear();
 }
 
 // =============================================================================
-Mix_Chunk* SoundContainer::GetSoundById(int32_t id)
+bool SoundContainer::DoesAssetExist(SoundId id)
 {
-	if (_sounds.find(id) == _sounds.end() && _sounds.size() > 1)
-	{
-		std::cerr << "Error, could not find sound with id: "
-			<< id << std::endl;
-		return nullptr;
-	}
+	return m_Sounds.find(id) != m_Sounds.end();
+}
 
-	return _sounds[id];
+// =============================================================================
+Mix_Chunk* SoundContainer::GetSoundById(SoundId id)
+{
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
+
+	return m_Sounds[id];
 }

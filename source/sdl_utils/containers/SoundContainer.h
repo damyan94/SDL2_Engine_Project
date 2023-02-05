@@ -2,28 +2,35 @@
 #define SDL_UTILS_CONTAINERS_SOUNDCONTAINER_H_
 
 // C/C++ system includes
-#include <cstdint>
 #include <unordered_map>
 
 // Third-party includes
 
 // Own includes
+#include "defines/id/SoundId.h"
+
+#include "sdl_utils/containers/AssetContainer.h"
 
 // Forward declarations
 struct Mix_Chunk;
 
+//TODO Remove all the static
 class SoundContainer
+	: public AssetContainer
 {
 public:
+	SoundContainer();
 	~SoundContainer();
 
-	int32_t Init();
-	void Deinit();
+	bool				Init() final;
+	void				Deinit() final;
 
-	static Mix_Chunk* GetSoundById(int32_t id);
+	static bool			DoesAssetExist(SoundId id);
+
+	static Mix_Chunk*	GetSoundById(SoundId id);
 
 private:
-	static std::unordered_map<int32_t, Mix_Chunk*> _sounds;
+	static std::unordered_map<SoundId, Mix_Chunk*> m_Sounds;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_SOUNDCONTAINER_H_

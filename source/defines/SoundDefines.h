@@ -2,7 +2,6 @@
 #define DEFINES_SOUNDDEFINES_H_
 
 // C/C++ system includes
-#include <cstdint>
 #include <vector>
 
 // Third-party includes
@@ -12,14 +11,19 @@
 
 // Forward declarations
 
-struct SoundInfo
+struct SoundData
 {
-	const char* fileName = "INVALID FILE NAME";
-	int32_t id = -1;
+	SoundData();
+	~SoundData();
+
+	SoundData(const char* fileName, SoundId id);
+
+	const char*			m_FileName;
+	SoundId				m_Id;
 };
 
-extern const std::vector<SoundInfo> soundsInfo;
+extern const std::vector<SoundData> m_SoundsData;
 
-#define SOUNDS_COUNT soundsInfo.size();
+#define SOUNDS_COUNT m_SoundsData.size();
 
 #endif // !DEFINES_SOUNDDEFINES_H_

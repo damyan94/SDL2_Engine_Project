@@ -57,17 +57,17 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 
 // =============================================================================
 int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
-	const std::string& writeString, WriteMode writeMode)
+	const std::string& writeString, EWriteMode writeMode)
 {
 	std::ofstream outStream;
 
 	switch (writeMode)
 	{
-	case WriteMode::Out:
+	case EWriteMode::Out:
 		outStream.open(fileName, std::ios::out);
 		break;
 
-	case WriteMode::App:
+	case EWriteMode::App:
 		outStream.open(fileName, std::ios::app);
 		break;
 
@@ -87,18 +87,18 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 
 // =============================================================================
 int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
-	const std::wstring& writeString, WriteMode writeMode)
+	const std::wstring& writeString, EWriteMode writeMode)
 {
 	std::wofstream outStream;
 	outStream.imbue(std::locale("bg_BG.UTF-8"));
 
 	switch (writeMode)
 	{
-	case WriteMode::Out:
+	case EWriteMode::Out:
 		outStream.open(fileName, std::ios::out);
 		break;
 
-	case WriteMode::App:
+	case EWriteMode::App:
 		outStream.open(fileName, std::ios::app);
 		break;
 

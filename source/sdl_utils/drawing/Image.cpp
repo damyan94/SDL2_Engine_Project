@@ -2,7 +2,6 @@
 #include "sdl_utils/drawing/Image.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
@@ -11,29 +10,37 @@
 #include "sdl_utils/containers/ImageContainer.h"
 
 // =============================================================================
-int32_t Image::Init(int32_t imageId)
+Image::Image()
+	: m_ImageId(ImageId::Invalid)
+	, m_FramesCount(0)
+	, m_CurrFrame(0)
 {
-	_texture = ImageContainer::GetImageTextureById(imageId);
-	if (!_texture)
-	{
-		std::cerr << "Error, ImageContainer::getImageTextureById() failed for id: "
-			<< imageId << std::endl;
-		return EXIT_FAILURE;
-	}
-	_frameRect = ImageContainer::GetImageTextureFrameById(imageId);
+}
 
-	_pos = Point::Zero;
-	_width = _frameRect.w;
-	_height = _frameRect.h;
-	_standardWidth = _width;
-	_standardHeight = _height;
+// =============================================================================
+Image::~Image()
+{
+}
+
+// =============================================================================
+bool Image::Init(ImageId id)
+{
+	m_Texture = ImageContainer::GetImageTextureById(id);
+	AssertReturnIf(!m_Texture, false);
+	m_FrameRect = ImageContainer::GetImageTextureFrameById(id);
+
+	m_Pos = Point::Zero;
+	m_Width = m_FrameRect.w;
+	m_Height = m_FrameRect.h;
+	m_StandardWidth = m_Width;
+	m_StandardHeight = m_Height;
 	
-	_rotationCenter = Point(_width / 2, _height / 2);
+	m_RotationCenter = Point(m_Width / 2, m_Height / 2);
 	
-	_id = imageId;
-	_type = ObjectType::IMAGE;
+	m_ImageId = id;
+	m_Type = ObjectType::IMAGE;
 	
-	_framesCount = ImageContainer::GetImageFramesCountById(imageId);
+	m_FramesCount = ImageContainer::GetImageFramesCountById(id);
 
 	return EXIT_SUCCESS;
 }
@@ -48,66 +55,55 @@ void Image::Deinit()
 // =============================================================================
 void Image::Draw() const
 {
-	if (!_isVisible)
-	{
-		return;
-	}
+	ReturnIf(!m_IsVisible);
 
-	Texture::SetTextureAlphaMod(ImageContainer::GetImageTextureById(_id), _opacity);
-	if (_opacity <= 0)
-	{
-		return;
-	}
+	Texture::SetTextureAlphaMod(ImageContainer::GetImageTextureById(m_ImageId), m_Opacity);
+	ReturnIf(m_Opacity <= 0);
 
-	Rectangle rect{ _pos.x, _pos.y, _width, _height };
-	Texture::RenderTexture(ImageContainer::GetImageTextureById(_id), _frameRect,
-		rect, (double)_rotationAngle, _rotationCenter, _flipMode);
+	Rectangle rect{ m_Pos.x, m_Pos.y, m_Width, m_Height };
+	Texture::RenderTexture(ImageContainer::GetImageTextureById(m_ImageId), m_FrameRect,
+		rect, (double)m_RotationAngle, m_RotationCenter, m_FlipMode);
 }
 
 // =============================================================================
 void Image::SetFrame(int32_t frame)
 {
-	if (frame <= 0 || frame > _framesCount)
-	{
-		std::cerr << "Error, received invalid frame index for image with id: "
-			<< _id << std::endl;
-		return;
-	}
+	ReturnIf(frame <= 0 || frame > m_FramesCount);
 
-	_currFrame = frame;
-	_frameRect.x = (_currFrame - 1) * _standardWidth;
+	m_CurrFrame = frame;
+	m_FrameRect.x = (m_CurrFrame - 1) * m_StandardWidth;
 }
 
 // =============================================================================
 void Image::SetPrevFrame()
 {
-	if (_currFrame > 1)
+	if (m_CurrFrame > 1)
 	{
-		_currFrame--;
+		m_CurrFrame--;
 	}
 
-	_frameRect.x = (_currFrame - 1) * _standardWidth;
+	m_FrameRect.x = (m_CurrFrame - 1) * m_StandardWidth;
 }
 
 // =============================================================================
 void Image::SetNextFrame()
 {
-	if (_currFrame < _framesCount)
+	if (m_CurrFrame < m_FramesCount)
 	{
-		_currFrame++;
+		m_CurrFrame++;
 	}
 
-	_frameRect.x = (_currFrame - 1) * _standardWidth;
+	m_FrameRect.x = (m_CurrFrame - 1) * m_StandardWidth;
 }
 
 // =============================================================================
 int32_t Image::GetCurrFrame() const
 {
-	return _currFrame;
+	return m_CurrFrame;
 }
 
 // =============================================================================
 int32_t Image::GetFramesCount() const
 {
-	return _framesCount;
+	return m_FramesCount;
 }

@@ -11,6 +11,13 @@
 
 // Forward declarations
 
+template <typename EnumType>
+bool IsEnumValueValid(EnumType value)
+{
+	return value > EnumType::Invalid
+		&& value < EnumType::Count;
+}
+
 // =============================================================================
 // ================================= DEFINES ===================================
 // =============================================================================
@@ -28,7 +35,7 @@ typedef int32_t										TimerId;
 // =============================== ENUMERATIONS ================================
 // =============================================================================
 
-enum class UnitOfTime
+enum class EUnitOfTime
 	: int8_t
 {
 	Invalid = -1
@@ -41,7 +48,7 @@ enum class UnitOfTime
 	, Count
 };
 
-enum class TimerType
+enum class ETimerType
 	: int8_t
 {
 	Invalid = -1
@@ -50,10 +57,11 @@ enum class TimerType
 	, Count
 };
 
-enum class ConsoleTextColor
-	: uint16_t
+enum class EConsoleTextColor
+	: int16_t
 {
-	Default		= 37
+	Invalid = -1
+	, Default	= 37
 	, Black		= 90
 	, Red		= 91
 	, Green		= 92
@@ -62,9 +70,10 @@ enum class ConsoleTextColor
 	, Magenta	= 95
 	, Cyan		= 96
 	, White		= 97
+	, Count		= 10
 };
 
-enum class WriteMode
+enum class EWriteMode
 	: int8_t
 {
 	Invalid = -1

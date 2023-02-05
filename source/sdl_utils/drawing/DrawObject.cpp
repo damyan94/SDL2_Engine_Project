@@ -10,29 +10,52 @@
 #include "sdl_utils/Texture.h"
 
 // =============================================================================
+DrawObject::DrawObject()
+	: m_Pos(Point::Undefined)
+	, m_Width(0)
+	, m_Height(0)
+	, m_StandardWidth(0)
+	, m_StandardHeight(0)
+	, m_FrameRect(Rectangle::Zero)
+	, m_Opacity(FULL_OPACITY)
+	, m_RotationAngle(ZERO_ROTATION)
+	, m_RotationCenter(Point::Undefined)
+	, m_Type(ObjectType::Undefined)
+	, m_BlendMode(BlendMode::BLEND)
+	, m_FlipMode(FlipMode::NONE)
+	, m_IsVisible(true)
+	, m_Texture(nullptr)
+{
+}
+
+// =============================================================================
+DrawObject::~DrawObject()
+{
+}
+
+// =============================================================================
 void DrawObject::Deinit()
 {
-	Texture::DestroyTexture(_texture);
+	Texture::DestroyTexture(m_Texture);
 }
 
 // =============================================================================
 void DrawObject::Reset()
 {
-	_pos = Point::Undefined;
-	_width = 0;
-	_height = 0;
-	_standardWidth = 0;
-	_standardHeight = 0;
+	m_Pos = Point::Undefined;
+	m_Width = 0;
+	m_Height = 0;
+	m_StandardWidth = 0;
+	m_StandardHeight = 0;
 	
-	_frameRect = Rectangle::Zero;
+	m_FrameRect = Rectangle::Zero;
 
-	_opacity = FULL_OPACITY;
-	_rotationAngle = ZERO_ROTATION;
-	_rotationCenter = Point::Undefined;
+	m_Opacity = FULL_OPACITY;
+	m_RotationAngle = ZERO_ROTATION;
+	m_RotationCenter = Point::Undefined;
 	
-	_id = INVALID_ID;
-	_type = ObjectType::Undefined;
-	_texture = nullptr;
+	m_Type = ObjectType::Undefined;
+	m_Texture = nullptr;
 }
 
 // Getters
@@ -40,67 +63,61 @@ void DrawObject::Reset()
 // =============================================================================
 Point DrawObject::GetPos() const
 {
-	return _pos;
+	return m_Pos;
 }
 
 // =============================================================================
 int32_t DrawObject::GetWidth() const
 {
-	return _width;
+	return m_Width;
 }
 
 // =============================================================================
 int32_t DrawObject::GetHeight() const
 {
-	return _height;
+	return m_Height;
 }
 
 // =============================================================================
 Rectangle DrawObject::GetFrameRect() const
 {
-	return _frameRect;
+	return m_FrameRect;
 }
 
 // =============================================================================
 int32_t DrawObject::GetOpacity() const
 {
-	return _opacity;
+	return m_Opacity;
 }
 
 // =============================================================================
 int32_t DrawObject::GetRotationAngle() const
 {
-	return _rotationAngle;
+	return m_RotationAngle;
 }
 
 // =============================================================================
 Point DrawObject::GetRotationCenter() const
 {
-	return _rotationCenter;
-}
-
-// =============================================================================
-int32_t DrawObject::GetId() const
-{
-	return _id;
+	return m_RotationCenter;
 }
 
 // =============================================================================
 ObjectType DrawObject::GetType()
 {
-	return _type;
+	return m_Type;
 }
 
 // =============================================================================
 BlendMode DrawObject::GetBlendMode()
 {
-	return _blendMode;
+	return m_BlendMode;
 }
 
 // =============================================================================
 FlipMode DrawObject::GetFlipMode()
 {
-	return _flipMode;
+	return m_FlipMode;
 }
 
 // Setters
@@ -108,73 +125,67 @@ FlipMode DrawObject::GetFlipMode()
 // =============================================================================
 void DrawObject::SetPos(int32_t x, int32_t y)
 {
-	_pos.x = x; _pos.y = y;
+	m_Pos.x = x; m_Pos.y = y;
 }
 
 // =============================================================================
 void DrawObject::SetPos(const Point& pos)
 {
-	_pos.x = pos.x; _pos.y = pos.y;
+	m_Pos.x = pos.x; m_Pos.y = pos.y;
 }
 
 // =============================================================================
 void DrawObject::SetWidth(int32_t width)
 {
-	_width = width;
+	m_Width = width;
 }
 
 // =============================================================================
 void DrawObject::SetHeight(int32_t height)
 {
-	_height = height;
+	m_Height = height;
 }
 
 // =============================================================================
 void DrawObject::SetFrameRect(Rectangle rect)
 {
-	_frameRect = rect;
+	m_FrameRect = rect;
 }
 
 // =============================================================================
 void DrawObject::SetOpacity(int32_t opacity)
 {
-	_opacity = opacity;
+	m_Opacity = opacity;
 }
 
 // =============================================================================
 void DrawObject::SetRotationAngle(int32_t rotationAngle)
 {
-	_rotationAngle = rotationAngle;
+	m_RotationAngle = rotationAngle;
 }
 
 // =============================================================================
 void DrawObject::SetRotationCenter(Point rotationCenter)
 {
-	_rotationCenter = rotationCenter;
-}
-
-// =============================================================================
-void DrawObject::SetId(int32_t id)
-{
-	_id = id;
+	m_RotationCenter = rotationCenter;
 }
 
 // =============================================================================
 void DrawObject::SetType(ObjectType type)
 {
-	_type = type;
+	m_Type = type;
 }
 
 // =============================================================================
 void DrawObject::SetBlendMode(BlendMode mode)
 {
-	_blendMode = mode;
+	m_BlendMode = mode;
 }
 
 // =============================================================================
 void DrawObject::SetFlipMode(FlipMode mode)
 {
-	_flipMode = mode;
+	m_FlipMode = mode;
 }
 
 // Others
@@ -182,104 +193,104 @@ void DrawObject::SetFlipMode(FlipMode mode)
 // =============================================================================
 void DrawObject::MoveUp(int32_t delta)
 {
-	_pos.y -= delta;
+	m_Pos.y -= delta;
 }
 
 // =============================================================================
 void DrawObject::MoveDown(int32_t delta)
 {
-	_pos.y += delta;
+	m_Pos.y += delta;
 }
 
 // =============================================================================
 void DrawObject::MoveLeft(int32_t delta)
 {
-	_pos.x -= delta;
+	m_Pos.x -= delta;
 }
 
 // =============================================================================
 void DrawObject::MoveRight(int32_t delta)
 {
-	_pos.x += delta;
+	m_Pos.x += delta;
 }
 
 // =============================================================================
 void DrawObject::ChangeWidthBy(int32_t delta)
 {
-	_width += delta;
+	m_Width += delta;
 }
 
 // =============================================================================
 void DrawObject::ChangeHeightBy(int32_t delta)
 {
-	_height += delta;
+	m_Height += delta;
 }
 
 // =============================================================================
 void DrawObject::Resize(int32_t width, int32_t height)
 {
-	_width = width; _height = height;
+	m_Width = width; m_Height = height;
 }
 
 // =============================================================================
 void DrawObject::Resize(int32_t percentage)
 {
-	_width = _width * percentage / 100;
-	_height = _height * percentage / 100;
+	m_Width = m_Width * percentage / 100;
+	m_Height = m_Height * percentage / 100;
 }
 
 // =============================================================================
 void DrawObject::ChangeOpacityBy(int32_t delta)
 {
-	_opacity += delta;
-	if (_opacity >= FULL_OPACITY)
+	m_Opacity += delta;
+	if (m_Opacity >= FULL_OPACITY)
 	{
-		_opacity = FULL_OPACITY;
+		m_Opacity = FULL_OPACITY;
 	}
-	else if (_opacity <= ZERO_OPACITY)
+	else if (m_Opacity <= ZERO_OPACITY)
 	{
-		_opacity = ZERO_OPACITY;
+		m_Opacity = ZERO_OPACITY;
 	}
 }
 
 // =============================================================================
 void DrawObject::SetZeroOpacity()
 {
-	_opacity = ZERO_OPACITY;
+	m_Opacity = ZERO_OPACITY;
 }
 
 // =============================================================================
 void DrawObject::SetMaxOpacity()
 {
-	_opacity = FULL_OPACITY;
+	m_Opacity = FULL_OPACITY;
 }
 
 // =============================================================================
 void DrawObject::Rotate(int32_t delta)
 {
-	_rotationAngle += delta;
+	m_RotationAngle += delta;
 }
 
 // =============================================================================
 void DrawObject::Show()
 {
-	_isVisible = true;
+	m_IsVisible = true;
 }
 
 // =============================================================================
 void DrawObject::Hide()
 {
-	_isVisible = false;
+	m_IsVisible = false;
 }
 
 // =============================================================================
 bool DrawObject::GetIsVisible() const
 {
-	return _isVisible;
+	return m_IsVisible;
 }
 
 // =============================================================================
 bool DrawObject::ContainsPoint(const Point& point) const
 {
-	return Rectangle(_pos.x, _pos.y, _width, _height).IsPointInside(point);
+	return Rectangle(m_Pos.x, m_Pos.y, m_Width, m_Height).IsPointInside(point);
 }

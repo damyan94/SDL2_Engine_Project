@@ -13,7 +13,7 @@
 
 // Forward declarations
 
-//TODO Move some of this in the TimerManager and do something about all the static
+//TODO Move some of this in the TimerManager or TimerContainer and do something about all the static
 class Timer
 {
 public:
@@ -22,8 +22,8 @@ public:
 
 	static void			StartGlobalTimer();
 
-	static TimerId		StartTimer(int64_t interval, TimerType timerType);
-	static void			StartTimer(TimerId id, int64_t interval, TimerType timerType);
+	static TimerId		StartTimer(int64_t interval, ETimerType timerType);
+	static void			StartTimer(TimerId id, int64_t interval, ETimerType timerType);
 	static void			DestroyTimer(TimerId id);
 
 	static void			UpdateTimers();
@@ -41,7 +41,7 @@ private:
 		TimerUnit();
 		~TimerUnit();
 
-		TimerType		m_TimerType;
+		ETimerType		m_TimerType;
 		int64_t			m_Interval;
 		int64_t			m_Remaining;
 		bool			m_Ticked;

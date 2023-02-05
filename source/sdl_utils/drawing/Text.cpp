@@ -7,8 +7,21 @@
 // Third-party includes
 
 // Own includes
+#include "defines/FontDefines.h"
+
+#include "utils/UtilsCommonIncludes.h"
+
 #include "sdl_utils/Texture.h"
 #include "sdl_utils/containers/FontContainer.h"
+
+// =============================================================================
+Text::Text()
+	: m_Id(FontId::Invalid)
+	, m_Text("")
+	, m_Color(Colors::Transparent)
+	, m_FontSize(0)
+{
+}
 
 // =============================================================================
 Text::~Text()
@@ -17,114 +30,93 @@ Text::~Text()
 }
 
 // =============================================================================
-int32_t Text::Init(const String& text, int32_t fontId, const Color& textColor)
+bool Text::Init(const String& text, FontId id, const Color& textColor)
 {
 	Texture::CreateTextureFromText(text, textColor,
-		FontContainer::GetFontById(fontId), _texture, _width, _height);
-	if (!_texture)
-	{
-		std::cerr << "Error, Texture::CreateTextureFromText() failed for id: "
-			<< _id << std::endl;
-		return EXIT_FAILURE;
-	}
+		FontContainer::GetFontById(id), m_Texture, m_Width, m_Height);
+	AssertReturnIf(!m_Texture, false);
 
-	_pos = Point::Zero;
-	_frameRect.w = _width;
-	_frameRect.h = _height;
-	_standardWidth = _width;
-	_standardHeight = _height;
+	m_Pos = Point::Zero;
+	m_FrameRect.w = m_Width;
+	m_FrameRect.h = m_Height;
+	m_StandardWidth = m_Width;
+	m_StandardHeight = m_Height;
 	
-	_rotationCenter = Point(_width / 2, _height / 2);
+	m_RotationCenter = Point(m_Width / 2, m_Height / 2);
 	
-	_id = fontId;
-	_type = ObjectType::TEXT;
+	m_Id = id;
+	m_Type = ObjectType::TEXT;
 	
-	_text = text;
-	_color = textColor;
-	_fontSize = FontContainer::GetFontSizeById(fontId);
+	m_Text = text;
+	m_Color = textColor;
+	m_FontSize = FontContainer::GetFontSizeById(id);
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
 void Text::Deinit()
 {
-	Texture::DestroyTexture(_texture);
+	Texture::DestroyTexture(m_Texture);
 }
 
 // =============================================================================
 void Text::Draw() const
 {
-	if (!_isVisible)
-	{
-		return;
-	}
+	ReturnIf(!m_IsVisible);
 
-	Texture::SetTextureAlphaMod(_texture, _opacity);
-	if (_opacity <= 0)
-	{
-		return;
-	}
+	Texture::SetTextureAlphaMod(m_Texture, m_Opacity);
+	ReturnIf(m_Opacity <= 0);
 
-	Rectangle rect{ _pos.x, _pos.y, _width, _height };
-	Texture::RenderTexture(_texture, _frameRect, rect, (double)_rotationAngle,
-		_rotationCenter, _flipMode);
+	Rectangle rect{ m_Pos.x, m_Pos.y, m_Width, m_Height };
+	Texture::RenderTexture(m_Texture, m_FrameRect, rect, (double)m_RotationAngle,
+		m_RotationCenter, m_FlipMode);
 }
 
 // =============================================================================
 void Text::SetText(const String& newText)
 {
-	Texture::DestroyTexture(_texture);
-	Texture::CreateTextureFromText(newText, _color,
-		FontContainer::GetFontById(_id), _texture, _width, _height);
-	if (!_texture)
-	{
-		std::cerr << "Error, Texture::CreateTextureFromText() failed for id: "
-			<< _id << std::endl;
-		return;
-	}
+	Texture::DestroyTexture(m_Texture);
+	Texture::CreateTextureFromText(newText, m_Color,
+		FontContainer::GetFontById(m_Id), m_Texture, m_Width, m_Height);
+	AssertReturnIf(!m_Texture);
 
-	_frameRect.w = _width;
-	_frameRect.h = _height;
-	_standardWidth = _width;
-	_standardHeight = _height;
-	_text = newText;
+	m_FrameRect.w = m_Width;
+	m_FrameRect.h = m_Height;
+	m_StandardWidth = m_Width;
+	m_StandardHeight = m_Height;
+	m_Text = newText;
 }
 
 // =============================================================================
 void Text::SetColor(const Color& newColor)
 {
-	Texture::DestroyTexture(_texture);
-	Texture::CreateTextureFromText(_text, newColor,
-		FontContainer::GetFontById(_id), _texture, _width, _height);
-	if (!_texture)
-	{
-		std::cerr << "Error, Texture::CreateTextureFromText() failed for id: "
-			<< _id << std::endl;
-		return;
-	}
+	Texture::DestroyTexture(m_Texture);
+	Texture::CreateTextureFromText(m_Text, newColor,
+		FontContainer::GetFontById(m_Id), m_Texture, m_Width, m_Height);
+	AssertReturnIf(!m_Texture);
 
-	_frameRect.w = _width;
-	_frameRect.h = _height;
-	_standardWidth = _width;
-	_standardHeight = _height;
-	_color = newColor;
+	m_FrameRect.w = m_Width;
+	m_FrameRect.h = m_Height;
+	m_StandardWidth = m_Width;
+	m_StandardHeight = m_Height;
+	m_Color = newColor;
 }
 
 // =============================================================================
 String Text::GetText() const
 {
-	return _text;
+	return m_Text;
 }
 
 // =============================================================================
 Color Text::GetColor() const
 {
-	return _color;
+	return m_Color;
 }
 
 // =============================================================================
 int32_t Text::GetFontSize() const
 {
-	return _fontSize;
+	return m_FontSize;
 }

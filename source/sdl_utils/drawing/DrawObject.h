@@ -44,81 +44,79 @@ enum class FlipMode : uint8_t
 
 struct DrawObject
 {
-	virtual ~DrawObject() = default;
+	DrawObject();
+	virtual ~DrawObject();
 
-	void Deinit();
-	void Reset();
+	void				Deinit();
+	void				Reset();
 
 	// Getters
-	Point GetPos() const;
-	int32_t GetWidth() const;
-	int32_t GetHeight() const;
-	Rectangle GetFrameRect() const;
-	int32_t GetOpacity() const;
-	int32_t GetRotationAngle() const;
-	Point GetRotationCenter() const;
-	int32_t GetId() const;
-	ObjectType GetType();
-	BlendMode GetBlendMode();
-	FlipMode GetFlipMode();
+	Point				GetPos() const;
+	int32_t				GetWidth() const;
+	int32_t				GetHeight() const;
+	Rectangle			GetFrameRect() const;
+	int32_t				GetOpacity() const;
+	int32_t				GetRotationAngle() const;
+	Point				GetRotationCenter() const;
+	ObjectType			GetType();
+	BlendMode			GetBlendMode();
+	FlipMode			GetFlipMode();
 
 	// Setters
-	void SetPos(int32_t x, int32_t y);
-	void SetPos(const Point& pos);
-	void SetWidth(int32_t width);
-	void SetHeight(int32_t height);
-	void SetFrameRect(Rectangle rect);
-	void SetOpacity(int32_t opacity);
-	void SetRotationAngle(int32_t rotationAngle);
-	void SetRotationCenter(Point rotationCenter);
-	void SetId(int32_t id);
-	void SetType(ObjectType type);
-	void SetBlendMode(BlendMode mode);
-	void SetFlipMode(FlipMode mode);
+	void				SetPos(int32_t x, int32_t y);
+	void				SetPos(const Point& pos);
+	void				SetWidth(int32_t width);
+	void				SetHeight(int32_t height);
+	void				SetFrameRect(Rectangle rect);
+	void				SetOpacity(int32_t opacity);
+	void				SetRotationAngle(int32_t rotationAngle);
+	void				SetRotationCenter(Point rotationCenter);
+	void				SetType(ObjectType type);
+	void				SetBlendMode(BlendMode mode);
+	void				SetFlipMode(FlipMode mode);
 
 	// Others
-	void MoveUp(int32_t delta);
-	void MoveDown(int32_t delta);
-	void MoveLeft(int32_t delta);
-	void MoveRight(int32_t delta);
+	void				MoveUp(int32_t delta);
+	void				MoveDown(int32_t delta);
+	void				MoveLeft(int32_t delta);
+	void				MoveRight(int32_t delta);
 
-	void ChangeWidthBy(int32_t delta);
-	void ChangeHeightBy(int32_t delta);
-	void Resize(int32_t width, int32_t height);
-	void Resize(int32_t percentage);
+	void				ChangeWidthBy(int32_t delta);
+	void				ChangeHeightBy(int32_t delta);
+	void				Resize(int32_t width, int32_t height);
+	void				Resize(int32_t percentage);
 
-	void ChangeOpacityBy(int32_t delta);
-	void SetZeroOpacity();
-	void SetMaxOpacity();
-	void Rotate(int32_t delta);
+	void				ChangeOpacityBy(int32_t delta);
+	void				SetZeroOpacity();
+	void				SetMaxOpacity();
+	void				Rotate(int32_t delta);
 
-	void Show();
-	void Hide();
+	void				Show();
+	void				Hide();
 
-	bool GetIsVisible() const;
-	bool ContainsPoint(const Point& point) const;
+	bool				GetIsVisible() const;
+	bool				ContainsPoint(const Point& point) const;
 
 protected:
-	Point _pos = Point::Undefined;
-	int32_t _width = 0;
-	int32_t _height = 0;
-	int32_t _standardWidth = 0;
-	int32_t _standardHeight = 0;
+	Point				m_Pos = Point::Undefined;
+	int32_t				m_Width = 0;
+	int32_t				m_Height = 0;
+	int32_t				m_StandardWidth = 0;
+	int32_t				m_StandardHeight = 0;
 
-	Rectangle _frameRect = Rectangle::Zero;
+	Rectangle			m_FrameRect = Rectangle::Zero;
 
-	int32_t _opacity = FULL_OPACITY;
-	int32_t _rotationAngle = ZERO_ROTATION;
-	Point _rotationCenter = Point::Undefined;
+	int32_t				m_Opacity = FULL_OPACITY;
+	int32_t				m_RotationAngle = ZERO_ROTATION;
+	Point				m_RotationCenter = Point::Undefined;
 
-	int32_t _id = INVALID_ID;
-	ObjectType _type = ObjectType::Undefined;
-	BlendMode _blendMode = BlendMode::BLEND;
-	FlipMode _flipMode = FlipMode::NONE;
+	ObjectType			m_Type = ObjectType::Undefined;
+	BlendMode			m_BlendMode = BlendMode::BLEND;
+	FlipMode			m_FlipMode = FlipMode::NONE;
 
-	bool _isVisible = true;
+	bool				m_IsVisible = true;
 
-	SDL_Texture* _texture = nullptr;
+	SDL_Texture*		m_Texture = nullptr;
 };
 
 #endif // !SDL_UTILS_DRAWING_DRAWOBJECT_H_

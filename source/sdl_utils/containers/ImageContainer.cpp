@@ -2,16 +2,21 @@
 #include "sdl_utils/containers/ImageContainer.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_image.h>
 
 // Own includes
 #include "defines/ImageDefines.h"
+
 #include "sdl_utils/Texture.h"
 
-std::unordered_map<int32_t, ImageContainer::ImageUnit> ImageContainer::_images;
+std::unordered_map<ImageId, ImageContainer::ImageUnit> ImageContainer::m_Images;
+
+// =============================================================================
+ImageContainer::ImageContainer()
+{
+}
 
 // =============================================================================
 ImageContainer::~ImageContainer()
@@ -21,85 +26,95 @@ ImageContainer::~ImageContainer()
 
 // =============================================================================
 // Texture::createTextureFromFile
-int32_t ImageContainer::Init()
+bool ImageContainer::Init()
 {
-	for (const auto& imageInfo : imagesInfo)
+	for (const auto& imageInfo : g_ImagesData)
 	{
-		int32_t id = imageInfo.id;
-		if (_images.find(id) != _images.end())
-		{
-			std::cerr << "Error, found existing image with the same id: "
-				<< id << std::endl;
-			return EXIT_FAILURE;
-		}
+		ImageId id = imageInfo.m_Id;
 
-		Texture::CreateTextureFromFile(imageInfo.fileName, _images[id].texture,
-			_images[id].frameRect.w, _images[id].frameRect.h);
-		if (!_images[id].texture)
-		{
-			std::cerr << "Error, Texture::CreateTextureFromFile() failed for file: "
-				<< imageInfo.fileName << std::endl;
-			return EXIT_FAILURE;
-		}
-		_images[id].frameRect.w /= imageInfo.frames;
-		_images[id].frameRect.x = 0;
-		_images[id].frameRect.y = 0;
+		AssertReturnIf(DoesAssetExist(id), false);
 
-		Texture::SetTextureBlendMode(_images[id].texture, BlendMode::BLEND);
+		Texture::CreateTextureFromFile(
+			imageInfo.m_FileName,
+			m_Images[id].m_Texture,
+			m_Images[id].m_FrameRect.w,
+			m_Images[id].m_FrameRect.h);
+		AssertReturnIf(!m_Images[id].m_Texture, false);
 
-		_images[id].framesCount = imageInfo.frames;
+		m_Images[id].m_FrameRect.w /= imageInfo.m_Frames;
+		m_Images[id].m_FrameRect.x = 0;
+		m_Images[id].m_FrameRect.y = 0;
+		m_Images[id].m_FramesCount = imageInfo.m_Frames;
+
+		Texture::SetTextureBlendMode(m_Images[id].m_Texture, BlendMode::BLEND);
 	}
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
 // SDL_DestroyTexture
 void ImageContainer::Deinit()
 {
-	for (auto& image : _images)
-		if (image.second.texture)
+	for (auto& [id, image] : m_Images)
+	{
+		if (image.m_Texture)
 		{
-			SDL_DestroyTexture(image.second.texture);
-			image.second.texture = nullptr;
+			SDL_DestroyTexture(image.m_Texture);
+			image.m_Texture = nullptr;
 		}
+	}
+
+	m_Images.clear();
 }
 
 // =============================================================================
-SDL_Texture* ImageContainer::GetImageTextureById(int32_t id)
+bool ImageContainer::DoesAssetExist(ImageId id)
 {
-	if (_images.find(id) == _images.end())
-	{
-		std::cerr << "Error, could not find texture with id: "
-			<< id << std::endl;
-		return nullptr;
-	}
-
-	return _images[id].texture;
+	return m_Images.find(id) != m_Images.end();
 }
 
 // =============================================================================
-Rectangle ImageContainer::GetImageTextureFrameById(int32_t id)
+SDL_Texture* ImageContainer::GetImageTextureById(ImageId id)
 {
-	if (_images.find(id) == _images.end())
-	{
-		std::cerr << "Error, could not find textureFrame with id: "
-			<< id << std::endl;
-		return Rectangle::Undefined;
-	}
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return _images[id].frameRect;
+	return m_Images[id].m_Texture;
 }
 
 // =============================================================================
-int32_t ImageContainer::GetImageFramesCountById(int32_t id)
+Rectangle ImageContainer::GetImageTextureFrameById(ImageId id)
 {
-	if (_images.find(id) == _images.end())
-	{
-		std::cerr << "Error, could not find texture with id: "
-			<< id << std::endl;
-		return EXIT_FAILURE;
-	}
+	AssertReturnIf(!DoesAssetExist(id), Rectangle::Undefined);
 
-	return _images[id].framesCount;
+	return m_Images[id].m_FrameRect;
+}
+
+// =============================================================================
+int32_t ImageContainer::GetImageFramesCountById(ImageId id)
+{
+	AssertReturnIf(!DoesAssetExist(id), 0);
+
+	return m_Images[id].m_FramesCount;
+}
+
+// =============================================================================
+ImageContainer::ImageUnit::ImageUnit()
+	: m_Texture(nullptr)
+	, m_FrameRect(Rectangle::Undefined)
+	, m_FramesCount(0)
+{
+}
+
+// =============================================================================
+ImageContainer::ImageUnit::~ImageUnit()
+{
+}
+
+// =============================================================================
+ImageContainer::ImageUnit::ImageUnit(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount)
+	: m_Texture(texture)
+	, m_FrameRect(frameRect)
+	, m_FramesCount(framesCount)
+{
 }

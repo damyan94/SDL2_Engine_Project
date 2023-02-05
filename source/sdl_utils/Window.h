@@ -7,8 +7,7 @@
 // Third-party includes
 
 // Own includes
-//#include "utils/UtilsCommonIncludes.h"
-#include "utils/geometry/Rectangle.h"
+#include "utils/UtilsCommonIncludes.h"
 
 // Forward declarations
 struct SDL_Window;
@@ -16,15 +15,18 @@ struct SDL_Window;
 class Window
 {
 public:
-	static SDL_Window* GetInstance();
+	Window();
+	~Window();
 
-	int32_t Init();
-	void Deinit();
+	SDL_Window*			GetInstance() const;
 
-	static Rectangle GetWindowRect();
+	bool				Init();
+	void				Deinit();
+
+	Rectangle			GetWindowRect();
 
 private:
-	static SDL_Window* _gWindow;
+	SDL_Window*			m_Window;
 };
 
 #endif // !SDL_UTILS_WINDOW_H_

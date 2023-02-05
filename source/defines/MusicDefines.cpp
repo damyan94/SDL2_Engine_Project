@@ -2,14 +2,32 @@
 #include "defines/MusicDefines.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 
 // Own includes
 
-// These IDs must be the same as the human readable version in the included enum
-const std::vector<MusicInfo> musicsInfo =
+// =============================================================================
+MusicData::MusicData()
+	: m_FileName("")
+	, m_Id(MusicId::Invalid)
+{
+}
+
+// =============================================================================
+MusicData::~MusicData()
+{
+}
+
+// =============================================================================
+MusicData::MusicData(const char* fileName, MusicId id)
+	: m_FileName(fileName)
+	, m_Id(id)
+{
+}
+
+// =============================================================================
+const std::vector<MusicData> m_MusicsData =
 {
 
 };

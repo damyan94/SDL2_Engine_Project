@@ -18,26 +18,29 @@
 //TODO fix this here as well as in Texture.h/cpp
 typedef std::string String;
 
-class Text : public DrawObject
+class Text
+	: public DrawObject
 {
 public:
+	Text();
 	~Text();
 
-	int32_t Init(const String& text, int32_t fontId, const Color& textColor);
-	void Deinit();
-	void Draw() const;
+	bool				Init(const String& text, FontId id, const Color& textColor);
+	void				Deinit();
+	void				Draw() const;
 
-	void SetText(const String& newText);
-	void SetColor(const Color& newColor);
+	void				SetText(const String& newText);
+	void				SetColor(const Color& newColor);
 
-	String GetText() const;
-	Color GetColor() const;
-	int32_t GetFontSize() const;
+	String				GetText() const;
+	Color				GetColor() const;
+	int32_t				GetFontSize() const;
 
 private:
-	String _text;
-	Color _color = Colors::Black;
-	int32_t _fontSize = 0;
+	FontId				m_Id;
+	String				m_Text;
+	Color				m_Color;
+	int32_t				m_FontSize;
 };
 
 #endif // !SDL_UTILS_DRAWING_TEXT_H_

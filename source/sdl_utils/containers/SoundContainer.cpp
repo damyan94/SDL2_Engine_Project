@@ -31,10 +31,10 @@ bool SoundContainer::Init()
 	{
 		SoundId id = soundData.m_Id;
 
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant sound id.");
 
 		m_Sounds[id] = Mix_LoadWAV(soundData.m_FileName);
-		AssertReturnIf(!m_Sounds[id], false);
+		AssertReturnIf(!m_Sounds[id], false, "Mix_LoadWAV() failed.");
 	}
 
 	return true;
@@ -65,7 +65,7 @@ bool SoundContainer::DoesAssetExist(SoundId id)
 // =============================================================================
 Mix_Chunk* SoundContainer::GetSoundById(SoundId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant sound id.");
 
 	return m_Sounds[id];
 }

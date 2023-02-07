@@ -30,6 +30,7 @@ AssetManager* AssetManager::Get()
 	if (!m_AssetManager)
 	{
 		m_AssetManager = new AssetManager;
+		AssertReturnIf(!m_AssetManager, nullptr, "Failed to allocate memory.");
 	}
 
 	return m_AssetManager;
@@ -41,20 +42,24 @@ bool AssetManager::Init()
 	m_AssetContainers.resize((size_t)EAssetContainerType::Count);
 
 	m_AssetContainers[(size_t)EAssetContainerType::Image] = new ImageContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image], false);
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image]->Init(), false);
+	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image], false,
+		"Failed to allocate memory.");
+	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image]->Init(), false);
 
 	m_AssetContainers[(size_t)EAssetContainerType::Font] = new FontContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font], false);
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font]->Init(), false);
+	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font], false,
+		"Failed to allocate memory.");
+	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font]->Init(), false);
 
 	m_AssetContainers[(size_t)EAssetContainerType::Sound] = new SoundContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound], false);
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound]->Init(), false);
+	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound], false,
+		"Failed to allocate memory.");
+	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound]->Init(), false);
 
 	m_AssetContainers[(size_t)EAssetContainerType::Music] = new MusicContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music], false);
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music]->Init(), false);
+	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music], false,
+		"Failed to allocate memory.");
+	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music]->Init(), false);
 
 	return true;
 }
@@ -81,7 +86,8 @@ void AssetManager::Update(int32_t dt)
 // =============================================================================
 AssetContainer* AssetManager::GetContainer(EAssetContainerType type)
 {
-	AssertReturnIf(!IsEnumValueValid<EAssetContainerType>(type), nullptr);
+	AssertReturnIf(!IsEnumValueValid<EAssetContainerType>(type), nullptr,
+		"Received invalid asset container type.");
 
 	return m_AssetContainers[(size_t)type];
 }

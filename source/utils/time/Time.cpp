@@ -2,6 +2,7 @@
 #include "utils/time/Time.h"
 
 // C/C++ system includes
+#include <chrono>
 
 // Third-party includes
 

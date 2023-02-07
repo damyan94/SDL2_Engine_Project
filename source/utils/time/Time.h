@@ -3,8 +3,6 @@
 
 // C/C++ system includes
 #include <cstdint>
-#include <chrono>
-#include <ctime>
 
 // Third-party includes
 

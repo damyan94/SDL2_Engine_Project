@@ -2,7 +2,6 @@
 #include "sdl_utils/SDLLoader.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL.h>
@@ -11,37 +10,22 @@
 #include <SDL_mixer.h>
 
 // Own includes
+#include "utils/others/CodeReadabilityDefines.h"
 
 // =============================================================================
-int32_t SDLLoader::Init()
+bool SDLLoader::Init()
 {
-	if (EXIT_SUCCESS != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO))
-	{
-		std::cerr << "Error, SDL_Init() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return EXIT_FAILURE;
-	}
+	AssertReturnIf(EXIT_SUCCESS != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO),
+		false, "SDL_Init() failed.");
 
-	if (EXIT_SUCCESS == (IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
-	{
-		std::cerr << "Error, IMG_Init() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return EXIT_FAILURE;
-	}
+	AssertReturnIf(EXIT_SUCCESS == (IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG),
+		false, "IMG_Init() failed.");
 
-	if (EXIT_SUCCESS != TTF_Init())
-	{
-		std::cerr << "Error, TTF_Init() failed. Reason: "
-			<< SDL_GetError() << std::endl;
-		return EXIT_FAILURE;
-	}
+	AssertReturnIf(EXIT_SUCCESS != TTF_Init(),
+		false, "TTF_Init() failed.");
 
-	/*if (0 > Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048))
-	{
-		std::cerr << "Error, Mix_OpenAudio() failed. Reason: "
-		<< SDL_GetError() << std::endl;
-		return EXIT_FAILURE;
-	}*/
+	/*AssertReturnIf(0 > Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048),
+		false, "Mix_OpenAudio() failed.");*/
 
 	return EXIT_SUCCESS;
 }

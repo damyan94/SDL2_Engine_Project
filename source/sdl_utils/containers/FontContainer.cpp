@@ -33,10 +33,10 @@ bool FontContainer::Init()
 	{
 		FontId id = fontData.m_Id;
 
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant font id.");
 
 		m_Fonts[id].m_Font = TTF_OpenFont(fontData.m_FileName, fontData.m_Size);
-		AssertReturnIf(!m_Fonts[id].m_Font, false);
+		AssertReturnIf(!m_Fonts[id].m_Font, false, "TTF_OpenFont() failed.");
 
 		m_Fonts[id].m_Size = fontData.m_Size;
 	}
@@ -69,7 +69,7 @@ bool FontContainer::DoesAssetExist(FontId id)
 // =============================================================================
 TTF_Font* FontContainer::GetFontById(FontId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant font id.");
 
 	return m_Fonts[id].m_Font;
 }
@@ -77,7 +77,7 @@ TTF_Font* FontContainer::GetFontById(FontId id)
 // =============================================================================
 int32_t FontContainer::GetFontSizeById(FontId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), EXIT_FAILURE);
+	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexsistant font id.");
 
 	return m_Fonts[id].m_Size;
 }

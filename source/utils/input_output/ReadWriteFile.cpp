@@ -2,7 +2,6 @@
 #include "utils/input_output/ReadWriteFile.h"
 
 // C/C++ system includes
-#include <iostream>
 #include <fstream>
 #include <locale>
 
@@ -10,13 +9,14 @@
 
 // Own includes
 
+//TODO Refactor
+
 // =============================================================================
-int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
+bool ReadWriteFile::ReadFromFile(const std::string& fileName,
 	std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
-	// Error, unable to open file.
-	AssertReturnIf(!inStream.is_open(), EXIT_FAILURE);
+	AssertReturnIf(!inStream.is_open(), false, "Failed to open file.");
 
 	std::string readLine;
 	while (std::getline(inStream, readLine))
@@ -29,17 +29,16 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 
 	inStream.close();
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
-int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
+bool ReadWriteFile::ReadFromFile(const std::string& fileName,
 	std::vector<std::wstring>& readStrings)
 {
 	std::wifstream inStream(fileName, std::ios::in);
 	inStream.imbue(std::locale("bg_BG.UTF-8"));
-	// Error, unable to open file.
-	AssertReturnIf(!inStream.is_open(), EXIT_FAILURE);
+	AssertReturnIf(!inStream.is_open(), false, "Failed to open file.");
 
 	std::wstring readLine;
 	while (std::getline(inStream, readLine))
@@ -52,11 +51,11 @@ int32_t ReadWriteFile::ReadFromFile(const std::string& fileName,
 
 	inStream.close();
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
-int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
+bool ReadWriteFile::WriteToFile(const std::string& fileName,
 	const std::string& writeString, EWriteMode writeMode)
 {
 	std::ofstream outStream;
@@ -75,18 +74,17 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	// Error, unable to open file.
-	AssertReturnIf(!outStream.is_open(), EXIT_FAILURE);
+	AssertReturnIf(!outStream.is_open(), false, "Failed to open file.");
 
 	outStream << writeString;
 
 	outStream.close();
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================
-int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
+bool ReadWriteFile::WriteToFile(const std::string& fileName,
 	const std::wstring& writeString, EWriteMode writeMode)
 {
 	std::wofstream outStream;
@@ -106,12 +104,11 @@ int32_t ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	// Error, unable to open file.
-	AssertReturnIf(!outStream.is_open(), EXIT_FAILURE);
+	AssertReturnIf(!outStream.is_open(), false, "Failed to open file.");
 
 	outStream << writeString;
 
 	outStream.close();
 
-	return EXIT_SUCCESS;
+	return true;
 }

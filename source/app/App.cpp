@@ -9,13 +9,13 @@
 // Own includes
 
 // =============================================================================
-int32_t App::Init()
+bool App::Init()
 {
 	timerId = Timer::StartTimer(1000, ETimerType::Pulse);
 	time.Init(Time().GetString(), FontId::Consola_18, Colors::Black);
 	time.SetPos(50, 50);
 
-	return EXIT_SUCCESS;
+	return true;
 }
 
 // =============================================================================

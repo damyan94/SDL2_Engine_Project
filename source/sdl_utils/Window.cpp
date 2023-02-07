@@ -34,7 +34,7 @@ bool Window::Init()
 
 	m_Window = SDL_CreateWindow(WINDOW_NAME, WINDOW_POS_X, WINDOW_POS_Y,
 		WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_FLAGS);
-	AssertReturnIf(!m_Window, false);
+	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed.");
 
 	SDL_ShowWindow(m_Window);
 

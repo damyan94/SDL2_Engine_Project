@@ -57,7 +57,8 @@ void Audio::StopMusic()
 // Mix_Volume
 void Audio::SetSoundsVolume(uint8_t volume)
 {
-	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX);
+	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX, void(),
+		"Received invalid volume value.");
 
 	Mix_Volume(ALL_CHANNELS, volume);
 }
@@ -66,7 +67,8 @@ void Audio::SetSoundsVolume(uint8_t volume)
 // Mix_VolumeMusic
 void Audio::SetMusicVolume(uint8_t volume)
 {
-	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX);
+	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX, void(),
+		"Received invalid volume value.");
 
 	Mix_VolumeMusic(volume);
 }

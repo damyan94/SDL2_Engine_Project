@@ -55,24 +55,24 @@ bool Engine::Init()
 	srand((uint32_t)time(nullptr));
 
 	// SDL init
-	AssertReturnIf(EXIT_SUCCESS != SDLLoader::Init(), EXIT_FAILURE);
+	ReturnIf(EXIT_SUCCESS != SDLLoader::Init(), false);
 
 	m_Managers.resize((size_t)EManagerType::Count);
 
 	m_Managers[(size_t)EManagerType::AssetManager] = AssetManager::Get();
-	AssertReturnIf(!m_Managers[(size_t)EManagerType::AssetManager]->Init() , false);
+	ReturnIf(!m_Managers[(size_t)EManagerType::AssetManager]->Init() , false);
 
 	m_Managers[(size_t)EManagerType::DrawManager] = DrawManager::Get();
-	AssertReturnIf(!m_Managers[(size_t)EManagerType::DrawManager]->Init(), false);
+	ReturnIf(!m_Managers[(size_t)EManagerType::DrawManager]->Init(), false);
 
 	m_Managers[(size_t)EManagerType::TimerManager] = TimerManager::Get();
-	AssertReturnIf(!m_Managers[(size_t)EManagerType::TimerManager]->Init(), false);
+	ReturnIf(!m_Managers[(size_t)EManagerType::TimerManager]->Init(), false);
 	
 	// Base functionalities init
-	AssertReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), EXIT_FAILURE);
+	ReturnIf(EXIT_SUCCESS != m_InputEvent.Init(), false);
 
 	// App init
-	AssertReturnIf(EXIT_SUCCESS != m_App.Init(), EXIT_FAILURE);
+	ReturnIf(!m_App.Init(), false);
 
 	Timer::StartGlobalTimer();
 	m_DrawTimerId = Timer::StartTimer(MIN_TIME_BETWEEN_UPDATE, ETimerType::Pulse);

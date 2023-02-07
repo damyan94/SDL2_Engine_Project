@@ -15,7 +15,7 @@
 class App
 {
 public:
-	int32_t				Init();
+	bool				Init();
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);

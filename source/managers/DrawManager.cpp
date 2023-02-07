@@ -30,6 +30,7 @@ DrawManager* DrawManager::Get()
 	if (!m_DrawManager)
 	{
 		m_DrawManager = new DrawManager;
+		AssertReturnIf(!m_DrawManager, nullptr, "Failed to allocate memory.");
 	}
 
 	return m_DrawManager;
@@ -39,13 +40,13 @@ DrawManager* DrawManager::Get()
 bool DrawManager::Init()
 {
 	m_Window = new Window;
-	AssertReturnIf(!m_Window, false);
+	AssertReturnIf(!m_Window, false, "Failed to allocate memory.");
 
 	m_Renderer = new Renderer;
-	AssertReturnIf(!m_Renderer, false);
+	AssertReturnIf(!m_Renderer, false, "Failed to allocate memory.");
 
-	AssertReturnIf(!m_Window->Init(), false);
-	AssertReturnIf(!m_Renderer->Init(m_Window->GetInstance(), Colors::VeryLightGrey), false);
+	ReturnIf(!m_Window->Init(), false);
+	ReturnIf(!m_Renderer->Init(m_Window->GetInstance(), Colors::VeryLightGrey), false);
 
 	return true;
 }

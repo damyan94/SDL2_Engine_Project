@@ -12,7 +12,7 @@
 
 namespace SDLLoader
 {
-	int32_t Init();
+	bool Init();
 	void Deinit();
 };
 

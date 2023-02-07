@@ -27,7 +27,7 @@ void Texture::CreateSurfaceFromFile(const std::string& fileName,
 	SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight)
 {
 	outSurface = IMG_Load(fileName.c_str());
-	AssertReturnIf(!outSurface);
+	AssertReturnIf(!outSurface, void(), "IMG_Load() failed.");
 
 	outWidth = outSurface->w;
 	outHeight = outSurface->h;
@@ -42,7 +42,7 @@ void Texture::CreateSurfaceFromText(const String& text, const Color& color,
 		SDL_Color{ color.r, color.g, color.b, color.a });
 	//outSurface = TTF_RenderUNICODE_Blended(font, reinterpret_cast<const uint16_t*>(text.c_str()),
 	//	SDL_Color{ color.r, color.g, color.b, color.a });
-	AssertReturnIf(!outSurface);
+	AssertReturnIf(!outSurface, void(), "TTF_RenderText_Blended() failed.");
 
 	outWidth = outSurface->w;
 	outHeight = outSurface->h;
@@ -54,7 +54,7 @@ void Texture::CreateTextureFromSurface(SDL_Surface* surface,
 	SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight)
 {
 	outTexture = SDL_CreateTextureFromSurface(DrawManager::Get()->GetRenderer()->GetInstance(), surface);
-	AssertReturnIf(!outTexture);
+	AssertReturnIf(!outTexture, void(), "SDL_CreateTextureFromSurface() failed.");
 
 	outWidth = surface->w;
 	outHeight = surface->h;
@@ -66,10 +66,10 @@ void Texture::CreateTextureFromFile(const std::string& fileName,
 {
 	SDL_Surface* surface = nullptr;
 	CreateSurfaceFromFile(fileName, surface, outWidth, outHeight);
-	AssertReturnIf(!surface);
+	ReturnIf(!surface, void());
 
 	CreateTextureFromSurface(surface, outTexture, outWidth, outHeight);
-	AssertReturnIf(!outTexture);
+	ReturnIf(!outTexture, void());
 
 	DestroySurface(surface);
 }
@@ -80,10 +80,10 @@ void Texture::CreateTextureFromText(const String& text, const Color& color,
 {
 	SDL_Surface* surface = nullptr;
 	CreateSurfaceFromText(text, color, font, surface, outWidth, outHeight);
-	AssertReturnIf(!surface);
+	ReturnIf(!surface, void());
 
 	CreateTextureFromSurface(surface, outTexture, outWidth, outHeight);
-	AssertReturnIf(!outTexture);
+	ReturnIf(!outTexture, void());
 
 	DestroySurface(surface);
 }
@@ -92,7 +92,8 @@ void Texture::CreateTextureFromText(const String& text, const Color& color,
 // SDL_SetTextureBlendMode
 void Texture::SetTextureBlendMode(SDL_Texture*& texture, const BlendMode& blendMode)
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blendMode)));
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blendMode)),
+		void(), "SDL_SetTextureBlendMode() failed");
 }
 
 // =============================================================================
@@ -105,7 +106,8 @@ void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 	if (alpha > FULL_OPACITY)
 		alpha = FULL_OPACITY;
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureAlphaMod(texture, (uint8_t)alpha));
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureAlphaMod(texture, (uint8_t)alpha),
+		void(), "SDL_SetTextureAlphaMod() failed.");
 }
 
 // =============================================================================
@@ -115,18 +117,20 @@ void Texture::RenderTexture(SDL_Texture* texture, const Rectangle& srcRect,
 {
 	using namespace WindowConstants;
 
-	AssertReturnIf(!&srcRect || !&dstRect);
+	AssertReturnIf(!&srcRect || !&dstRect, void(),
+		"Received invalid source or destination rectangle.");
 
 	bool isInsideWindow = (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
 		&& (dstRect.x < WINDOW_WIDTH && dstRect.y < WINDOW_HEIGHT);
-	ReturnIf(!isInsideWindow);
+	ReturnIf(!isInsideWindow, void());
 
 	const SDL_Rect src{ srcRect.x, srcRect.y, srcRect.w, srcRect.h };
 	const SDL_Rect dst{ dstRect.x, dstRect.y, dstRect.w, dstRect.h };
 	const SDL_Point cntr{ center.x, center.y };
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(DrawManager::Get()->GetRenderer()->GetInstance(), texture,
-		&src, &dst, angle, &cntr, (SDL_RendererFlip)flipMode));
+		&src, &dst, angle, &cntr, (SDL_RendererFlip)flipMode),
+		void(), "SDL_RenderCopyEx() failed.");
 }
 
 // =============================================================================

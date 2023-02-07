@@ -25,6 +25,7 @@ TimerManager* TimerManager::Get()
 	if (!m_TimerManager)
 	{
 		m_TimerManager = new TimerManager;
+		AssertReturnIf(!m_TimerManager, nullptr, "Failed to allocate memory.");
 	}
 
 	return m_TimerManager;

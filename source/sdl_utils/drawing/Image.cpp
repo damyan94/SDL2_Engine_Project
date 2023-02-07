@@ -26,8 +26,10 @@ Image::~Image()
 bool Image::Init(ImageId id)
 {
 	m_Texture = ImageContainer::GetImageTextureById(id);
-	AssertReturnIf(!m_Texture, false);
+	ReturnIf(!m_Texture, false);
+
 	m_FrameRect = ImageContainer::GetImageTextureFrameById(id);
+	ReturnIf(m_FrameRect == Rectangle::Undefined, false);
 
 	m_Pos = Point::Zero;
 	m_Width = m_FrameRect.w;
@@ -55,10 +57,10 @@ void Image::Deinit()
 // =============================================================================
 void Image::Draw() const
 {
-	ReturnIf(!m_IsVisible);
+	ReturnIf(!m_IsVisible, void());
 
 	Texture::SetTextureAlphaMod(ImageContainer::GetImageTextureById(m_ImageId), m_Opacity);
-	ReturnIf(m_Opacity <= 0);
+	ReturnIf(m_Opacity <= 0, void());
 
 	Rectangle rect{ m_Pos.x, m_Pos.y, m_Width, m_Height };
 	Texture::RenderTexture(ImageContainer::GetImageTextureById(m_ImageId), m_FrameRect,
@@ -68,7 +70,7 @@ void Image::Draw() const
 // =============================================================================
 void Image::SetFrame(int32_t frame)
 {
-	ReturnIf(frame <= 0 || frame > m_FramesCount);
+	ReturnIf(frame <= 0 || frame > m_FramesCount, void());
 
 	m_CurrFrame = frame;
 	m_FrameRect.x = (m_CurrFrame - 1) * m_StandardWidth;

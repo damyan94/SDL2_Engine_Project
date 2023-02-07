@@ -33,13 +33,13 @@ SDL_Renderer* Renderer::GetInstance() const
 bool Renderer::Init(SDL_Window* window, const Color& color)
 {
 	m_Renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-	AssertReturnIf(!m_Renderer, false);
+	AssertReturnIf(!m_Renderer, false, "SDL_CreateRenderer() failed.");
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawBlendMode(m_Renderer,
-		SDL_BlendMode::SDL_BLENDMODE_BLEND), false);
+		SDL_BlendMode::SDL_BLENDMODE_BLEND), false, "SDL_SetRenderDrawBlendMode() failed.");
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(m_Renderer, color.r,
-		color.g, color.b, color.a), false);
+		color.g, color.b, color.a), false, "SDL_SetRenderDrawColor() failed.");
 
 	m_DefaultDrawColor = color;
 
@@ -61,7 +61,8 @@ void Renderer::Deinit()
 // SDL_RenderClear
 void Renderer::Update()
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_RenderClear(m_Renderer));
+	AssertReturnIf(EXIT_SUCCESS != SDL_RenderClear(m_Renderer), void(),
+		"SDL_RenderClear() failed.");
 }
 
 // =============================================================================
@@ -75,8 +76,8 @@ void Renderer::Draw() const
 // SDL_SetRenderDrawColor
 void Renderer::SetDrawColor(const Color& color)
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(m_Renderer, color.r, color.g,
-		color.b, color.a));
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(m_Renderer, color.r,
+		color.g, color.b, color.a), void(), "SDL_SetRenderDrawColor() failed.");
 }
 
 // =============================================================================

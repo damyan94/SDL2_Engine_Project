@@ -12,11 +12,11 @@
 
 namespace ReadWriteFile
 {
-	int32_t ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings);
-	int32_t ReadFromFile(const std::string& fileName, std::vector<std::wstring>& readStrings);
+	bool ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings);
+	bool ReadFromFile(const std::string& fileName, std::vector<std::wstring>& readStrings);
 
-	int32_t WriteToFile(const std::string& fileName, const std::string& writeString, EWriteMode writeMode);
-	int32_t WriteToFile(const std::string& fileName, const std::wstring& writeString, EWriteMode writeMode);
+	bool WriteToFile(const std::string& fileName, const std::string& writeString, EWriteMode writeMode);
+	bool WriteToFile(const std::string& fileName, const std::wstring& writeString, EWriteMode writeMode);
 } // !ReadWriteFile
 
 #endif //!UTILS_INPUT_OUTPUT_READWRITEFILE_H_

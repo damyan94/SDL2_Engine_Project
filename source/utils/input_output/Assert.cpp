@@ -2,6 +2,8 @@
 #include "utils/input_output/Assert.h"
 
 // C/C++ system includes
+#include <fstream>
+#include <chrono>
 
 #if defined WIN32 || _WIN32
 #include <windows.h>
@@ -17,29 +19,59 @@
 #include "utils/input_output/Log.h"
 
 // =============================================================================
-void Assert::Assert(const char* text)
+static void _ShowMessageBox(const char* text)
 {
 #if defined WIN32 || _WIN32
 	Log::Console(EConsoleTextColor::Red, "ASSERT TRIGGERED:\n");
 	Log::Console(EConsoleTextColor::Red, text);
 	MessageBoxA(nullptr, text, "Error!", MB_ICONERROR | MB_OK);
 
-#if defined _DEBUG
+#else //if defined OS_LINUX || LINUX || UNIX
+	//TODO Insert Linux message box here
+
+#endif // !WIN32 || _WIN32
+}
+
+// =============================================================================
+static void _DebugBreak()
+{
+#if defined WIN32 || _WIN32
 	if (IsDebuggerPresent())
 	{
 		DebugBreak();
 	}
 
-#endif // !_DEBUG
-
 #else //if defined OS_LINUX || LINUX || UNIX
-	//TODO Insert Linux message box here
-
-#if defined _DEBUG
 	_asm int 3;
-#endif // !_DEBUG
 
 #endif // !WIN32 || _WIN32
+}
+
+// =============================================================================
+static void _ReleaseLog(const char* text)
+{
+	//TODO Refactor and beautify
+	static const auto NOW = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+
+	std::ofstream datFile;
+	const auto fileName = std::to_string(NOW) + ".txt";
+	datFile.open(fileName.c_str(), std::ofstream::app);
+	datFile.write(text, strlen(text));
+	datFile.close();
+}
+
+// =============================================================================
+void Assert::Assert(const char* text)
+{
+	_ShowMessageBox(text);
+
+#if defined _DEBUG
+	_DebugBreak();
+
+#else
+	_ReleaseLog(text);
+
+#endif // !_DEBUG
 }
 
 // =============================================================================

@@ -30,10 +30,10 @@ bool MusicContainer::Init()
 	{
 		MusicId id = musicInfo.m_Id;
 
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant music id.");
 
 		m_Musics[id] = Mix_LoadMUS(musicInfo.m_FileName);
-		AssertReturnIf(!m_Musics[id], false);
+		AssertReturnIf(!m_Musics[id], false, "Mix_LoadMUS() failed.");
 	}
 
 	return true;
@@ -64,7 +64,7 @@ bool MusicContainer::DoesAssetExist(MusicId id)
 // =============================================================================
 Mix_Music* MusicContainer::GetMusicById(MusicId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant music id.");
 
 	return m_Musics[id];
 }

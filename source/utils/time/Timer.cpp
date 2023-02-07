@@ -43,11 +43,11 @@ TimerId Timer::StartTimer(int64_t interval, ETimerType timerType)
 // The default unit of time for the timers is a millisecond
 void Timer::StartTimer(TimerId id, int64_t interval, ETimerType timerType)
 {
-	// Error, received invalid timer interval
-	AssertReturnIf(interval < UtilsConstants::TimerMinInterval);
+	AssertReturnIf(interval < UtilsConstants::TimerMinInterval, void(),
+		"Received invalid timer interval.");
 
-	// Error, found existing timer with the same id
-	AssertReturnIf(DoesTimerExist(id));
+	AssertReturnIf(DoesTimerExist(id), void(),
+		"Received already exsistant timer id.");
 
 	m_Timers[id].m_TimerType = timerType;
 	m_Timers[id].m_Interval = interval;
@@ -57,7 +57,7 @@ void Timer::StartTimer(TimerId id, int64_t interval, ETimerType timerType)
 // =============================================================================
 void Timer::DestroyTimer(TimerId id)
 {
-	AssertReturnIf(!DoesTimerExist(id));
+	AssertReturnIf(!DoesTimerExist(id), void(), "Received unexsistant timer id.");
 
 	m_Timers.erase(id);
 }
@@ -85,7 +85,7 @@ void Timer::UpdateTimers()
 // =============================================================================
 void Timer::SetPauseTimer(TimerId id, bool paused)
 {
-	AssertReturnIf(!DoesTimerExist(id));
+	AssertReturnIf(!DoesTimerExist(id), void(), "Received unexsistant timer id.");
 
 	m_Timers[id].m_Paused = paused;
 }
@@ -93,11 +93,10 @@ void Timer::SetPauseTimer(TimerId id, bool paused)
 // =============================================================================
 bool Timer::IsTimerTicked(TimerId id)
 {
-	AssertReturnIf(!DoesTimerExist(id), false);
+	AssertReturnIf(!DoesTimerExist(id), false, "Received unexsistant timer id.");
 	auto& timer = m_Timers[id];
 
-	// Error, timer is paused
-	AssertReturnIf(timer.m_Paused, false);
+	AssertReturnIf(timer.m_Paused, false, "Timer is paused.");
 
 	if (timer.m_Ticked)
 	{
@@ -117,7 +116,7 @@ bool Timer::IsTimerTicked(TimerId id)
 // =============================================================================
 bool Timer::IsTimerPaused(TimerId id)
 {
-	AssertReturnIf(!DoesTimerExist(id), false);
+	AssertReturnIf(!DoesTimerExist(id), false, "Received unexsistant timer id.");
 
 	return m_Timers[id].m_Paused;
 }
@@ -125,7 +124,7 @@ bool Timer::IsTimerPaused(TimerId id)
 // =============================================================================
 bool Timer::IsActiveTimer(TimerId id)
 {
-	AssertReturnIf(!DoesTimerExist(id), false);
+	AssertReturnIf(!DoesTimerExist(id), false, "Received unexsistant timer id.");
 
 	return true;
 }

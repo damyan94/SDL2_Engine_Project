@@ -15,7 +15,7 @@
 #include "sdl_utils/SDLUtilsCommonIncludes.h"
 
 #include "managers/ManagersDefines.h"
-#include "managers/Manager.h"
+#include "managers/IManager.h"
 #include "managers/AssetManager.h"
 #include "managers/DrawManager.h"
 #include "managers/TimerManager.h"
@@ -89,10 +89,11 @@ bool Engine::Init()
 	//ImGui::StyleColorsLight();
 
 	// Setup Platform/Renderer backends
-	Window* window = static_cast<DrawManager*>(m_Managers[(size_t)EManagerType::DrawManager])->GetWindow();
-	Renderer* renderer = static_cast<DrawManager*>(m_Managers[(size_t)EManagerType::DrawManager])->GetRenderer();
-	ImGui_ImplSDL2_InitForSDLRenderer(window->GetInstance(), renderer->GetInstance());
-	ImGui_ImplSDLRenderer_Init(renderer->GetInstance());
+	const auto drawManager = DrawManager::Get();
+
+	ImGui_ImplSDL2_InitForSDLRenderer(drawManager->GetWindow()->GetBaseObject(),
+		drawManager->GetRenderer()->GetBaseObject());
+	ImGui_ImplSDLRenderer_Init(drawManager->GetRenderer()->GetBaseObject());
 
 	return true;
 }

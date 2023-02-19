@@ -7,10 +7,10 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/SDLUtilsDefines.h"
 
 // Forward declarations
 
+//TODO Maybe move this to .cfg file
 enum class SoundId
 	: int32_t
 {

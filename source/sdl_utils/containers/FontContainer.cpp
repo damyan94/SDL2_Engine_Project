@@ -2,17 +2,13 @@
 #include "sdl_utils/containers/FontContainer.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_ttf.h>
 
 // Own includes
-#include "defines/FontDefines.h"
-
 #include "sdl_utils/Texture.h"
-
-std::unordered_map<FontId, FontContainer::FontUnit> FontContainer::m_Fonts;
+#include "sdl_utils/containers/cfg/FontContainerCfg.h"
 
 // =============================================================================
 FontContainer::FontContainer()
@@ -27,18 +23,19 @@ FontContainer::~FontContainer()
 
 // =============================================================================
 // TTF_OpenFont
-bool FontContainer::Init()
+bool FontContainer::Init(const FontContainerCfg& cfg)
 {
-	for (const auto& fontData : g_FontsData)
+	for (const auto& fontData : cfg.GetData())
 	{
 		FontId id = fontData.m_Id;
 
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant font id.");
 
-		m_Fonts[id].m_Font = TTF_OpenFont(fontData.m_FileName, fontData.m_Size);
-		AssertReturnIf(!m_Fonts[id].m_Font, false, "TTF_OpenFont() failed.");
+		m_FontsContainer[id].m_Font = TTF_OpenFont(fontData.m_FileName, fontData.m_Size);
+		AssertReturnIf(!m_FontsContainer[id].m_Font, false, "TTF_OpenFont() failed: ",
+			SDL_GetError());
 
-		m_Fonts[id].m_Size = fontData.m_Size;
+		m_FontsContainer[id].m_Size = fontData.m_Size;
 	}
 
 	return true;
@@ -48,7 +45,7 @@ bool FontContainer::Init()
 // TTF_CloseFont
 void FontContainer::Deinit()
 {
-	for (auto& [id, font] : m_Fonts)
+	for (auto& [id, font] : m_FontsContainer)
 	{
 		if (font.m_Font)
 		{
@@ -57,13 +54,13 @@ void FontContainer::Deinit()
 		}
 	}
 
-	m_Fonts.clear();
+	m_FontsContainer.clear();
 }
 
 // =============================================================================
 bool FontContainer::DoesAssetExist(FontId id)
 {
-	return m_Fonts.find(id) != m_Fonts.end();
+	return m_FontsContainer.find(id) != m_FontsContainer.end();
 }
 
 // =============================================================================
@@ -71,7 +68,7 @@ TTF_Font* FontContainer::GetFontById(FontId id)
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant font id.");
 
-	return m_Fonts[id].m_Font;
+	return m_FontsContainer[id].m_Font;
 }
 
 // =============================================================================
@@ -79,7 +76,7 @@ int32_t FontContainer::GetFontSizeById(FontId id)
 {
 	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexsistant font id.");
 
-	return m_Fonts[id].m_Size;
+	return m_FontsContainer[id].m_Size;
 }
 
 // =============================================================================
@@ -90,13 +87,13 @@ FontContainer::FontUnit::FontUnit()
 }
 
 // =============================================================================
-FontContainer::FontUnit::~FontUnit()
+FontContainer::FontUnit::FontUnit(TTF_Font* font, uint32_t size)
+	: m_Font(font)
+	, m_Size(size)
 {
 }
 
 // =============================================================================
-FontContainer::FontUnit::FontUnit(TTF_Font* font, uint32_t size)
-	: m_Font(font)
-	, m_Size(size)
+FontContainer::FontUnit::~FontUnit()
 {
 }

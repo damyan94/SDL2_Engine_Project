@@ -1,5 +1,5 @@
 // Corresponding header
-#include "managers/TimerManager.h"
+#include "sdl_utils/containers/cfg/MusicContainerCfg.h"
 
 // C/C++ system includes
 
@@ -7,47 +7,50 @@
 
 // Own includes
 
-TimerManager* TimerManager::m_Instance = nullptr;
-
 // =============================================================================
-TimerManager::TimerManager()
+MusicCfg::MusicCfg()
+	: m_FileName("")
+	, m_Id(MusicId::Invalid)
 {
 }
 
 // =============================================================================
-TimerManager::~TimerManager()
+MusicCfg::~MusicCfg()
 {
 }
 
 // =============================================================================
-TimerManager* TimerManager::Get()
+MusicCfg::MusicCfg(const char* fileName, MusicId id)
+	: m_FileName(fileName)
+	, m_Id(id)
 {
-	if (!m_Instance)
+}
+
+// =============================================================================
+MusicContainerCfg::MusicContainerCfg()
+{
+}
+
+// =============================================================================
+MusicContainerCfg::~MusicContainerCfg()
+{
+}
+
+// =============================================================================
+//TODO To be called from the ConfigsManager
+bool MusicContainerCfg::Read()
+{
+	//TODO Read data from file and populate the config
+	m_MusicsCfgData =
 	{
-		m_Instance = new TimerManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
 
-	return m_Instance;
-}
+	};
 
-// =============================================================================
-bool TimerManager::Init()
-{
 	return true;
 }
 
 // =============================================================================
-void TimerManager::Deinit()
+MusicCfgsContainer MusicContainerCfg::GetData() const
 {
-}
-
-// =============================================================================
-void TimerManager::HandleEvent(const InputEvent& e)
-{
-}
-
-// =============================================================================
-void TimerManager::Update(int32_t dt)
-{
+	return m_MusicsCfgData;
 }

@@ -165,7 +165,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\sdl_utils\containers\AssetContainer.cpp" />
     <ClCompile Include="source\utils\input_output\Assert.cpp" />
     <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
@@ -177,12 +176,12 @@
     <ClCompile Include="dependencies\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="dependencies\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="source\managers\DrawManager.cpp" />
-    <ClCompile Include="source\managers\Manager.cpp" />
+    <ClCompile Include="source\managers\IManager.cpp" />
     <ClCompile Include="source\defines\consts\GlobalConstants.cpp" />
-    <ClCompile Include="source\defines\FontDefines.cpp" />
-    <ClCompile Include="source\defines\SoundDefines.cpp" />
-    <ClCompile Include="source\defines\MusicDefines.cpp" />
-    <ClCompile Include="source\defines\ImageDefines.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\cfg\FontContainerCfg.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\cfg\SoundContainerCfg.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\cfg\MusicContainerCfg.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\cfg\ImageContainerCfg.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
     <ClCompile Include="source\app\App.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -214,7 +213,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\managers\ManagersDefines.h" />
-    <ClInclude Include="source\sdl_utils\containers\AssetContainer.h" />
     <ClInclude Include="source\sdl_utils\SDLUtilsCommonIncludes.h" />
     <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h" />
     <ClInclude Include="source\utils\input_output\Assert.h" />
@@ -229,17 +227,16 @@
     <ClInclude Include="dependencies\imgui-master\imstb_textedit.h" />
     <ClInclude Include="dependencies\imgui-master\imstb_truetype.h" />
     <ClInclude Include="source\managers\DrawManager.h" />
-    <ClInclude Include="source\managers\Manager.h" />
-    <ClInclude Include="source\defines\FontDefines.h" />
-    <ClInclude Include="source\defines\FrequentIncludes.h" />
+    <ClInclude Include="source\managers\IManager.h" />
+    <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h" />
     <ClInclude Include="source\defines\consts\GlobalConstants.h" />
     <ClInclude Include="source\defines\id\FontId.h" />
     <ClInclude Include="source\defines\id\ImageId.h" />
     <ClInclude Include="source\defines\id\MusicId.h" />
     <ClInclude Include="source\defines\id\SoundId.h" />
-    <ClInclude Include="source\defines\ImageDefines.h" />
-    <ClInclude Include="source\defines\MusicDefines.h" />
-    <ClInclude Include="source\defines\SoundDefines.h" />
+    <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h" />
+    <ClInclude Include="source\sdl_utils\containers\cfg\MusicContainerCfg.h" />
+    <ClInclude Include="source\sdl_utils\containers\cfg\SoundContainerCfg.h" />
     <ClInclude Include="dependencies\sdl2\include\begin_code.h" />
     <ClInclude Include="dependencies\sdl2\include\close_code.h" />
     <ClInclude Include="dependencies\sdl2\include\SDL.h" />

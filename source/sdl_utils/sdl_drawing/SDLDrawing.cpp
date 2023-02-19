@@ -23,7 +23,7 @@ static Renderer* gRenderer = DrawManager::Get()->GetRenderer();
 void SDLDrawing::DrawPoint(int32_t x, int32_t y)
 {
 	Point point(x, y);
-	SDL_RenderDrawPoint(gRenderer->GetInstance(), point.x, point.y);
+	SDL_RenderDrawPoint(gRenderer->GetBaseObject(), point.x, point.y);
 }
 
 // =============================================================================
@@ -42,7 +42,7 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 	Point point1(x1, y1);
 	Point point2(x2, y2);
-	SDL_RenderDrawLine(gRenderer->GetInstance(), point1.x, point1.y,
+	SDL_RenderDrawLine(gRenderer->GetBaseObject(), point1.x, point1.y,
 		point2.x, point2.y);
 }
 
@@ -62,7 +62,7 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderDrawRect(gRenderer->GetInstance(), &sdlRect);
+	SDL_RenderDrawRect(gRenderer->GetBaseObject(), &sdlRect);
 }
 
 // =============================================================================
@@ -81,7 +81,7 @@ void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h,
 void SDLDrawing::DrawFilledRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderFillRect(gRenderer->GetInstance(), &sdlRect);
+	SDL_RenderFillRect(gRenderer->GetBaseObject(), &sdlRect);
 }
 
 // =============================================================================
@@ -106,7 +106,7 @@ void SDLDrawing::DrawCircle(int32_t centreX, int32_t centreY, int32_t radius)
 	int32_t tx = 1;
 	int32_t ty = 1;
 	int32_t error = (tx - diameter);
-	auto renderer = gRenderer->GetInstance();
+	auto renderer = gRenderer->GetBaseObject();
 
 	while (x >= y)
 	{
@@ -158,7 +158,7 @@ void SDLDrawing::DrawFilledCircle(int32_t centreX, int32_t centreY,
 			int32_t dx = radius - i; // horizontal offset
 			int32_t dy = radius - j; // vertical offset
 			if (dx * dx + dy * dy <= radius * radius)
-				SDL_RenderDrawPoint(gRenderer->GetInstance(), centreX + dx,
+				SDL_RenderDrawPoint(gRenderer->GetBaseObject(), centreX + dx,
 					centreY + dy);
 		}
 }

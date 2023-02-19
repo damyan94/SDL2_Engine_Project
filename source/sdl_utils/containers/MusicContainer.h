@@ -2,35 +2,42 @@
 #define SDL_UTILS_CONTAINERS_MUSICCONTAINER_H_
 
 // C/C++ system includes
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
 #include "defines/id/MusicId.h"
-
-#include "sdl_utils/containers/AssetContainer.h"
+#include "utils/UtilsCommonIncludes.h"
 
 // Forward declarations
 typedef struct _Mix_Music Mix_Music;
+class MusicContainerCfg;
 
-//TODO Remove all the static
 class MusicContainer
-	: public AssetContainer
 {
 public:
 	MusicContainer();
 	~MusicContainer();
 
-	bool				Init() final;
-	void				Deinit() final;
+	bool				Init(const MusicContainerCfg& cfg);
+	void				Deinit();
 
-	static bool			DoesAssetExist(MusicId id);
+	bool				DoesAssetExist(MusicId id);
 
-	static Mix_Music*	GetMusicById(MusicId id);
+	Mix_Music*			GetMusicById(MusicId id);
 
 private:
-	static std::unordered_map<MusicId, Mix_Music*> m_Musics;
+	struct MusicUnit
+	{
+		MusicUnit();
+		MusicUnit(Mix_Music* sound);
+
+		~MusicUnit();
+
+		Mix_Music*		m_Music;
+	};
+
+	std::unordered_map<MusicId, MusicUnit> m_MusicContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_MUSICCONTAINER_H_

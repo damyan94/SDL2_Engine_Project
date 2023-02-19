@@ -8,9 +8,7 @@
 
 // Own includes
 #include "defines/id/ImageId.h"
-
 #include "utils/UtilsCommonIncludes.h"
-
 #include "sdl_utils/drawing/DrawObject.h"
 
 // Forward declarations

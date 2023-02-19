@@ -6,26 +6,28 @@
 // Third-party includes
 
 // Own includes
-#include "managers/Manager.h"
+#include "managers/IManager.h"
 
 // Forward declarations
 
 class TimerManager
-    : public Manager
+    : public IManager
 {
+private:
+	TimerManager();
+
 public:
-	~TimerManager();
+	~TimerManager() final;
 
 	static TimerManager* Get();
 
-	bool				Init() override;
-	void				Deinit() override;
-	void				HandleEvent(const InputEvent& e) override;
-	void				Update(int32_t dt) override;
+	bool				Init() final;
+	void				Deinit() final;
+	void				HandleEvent(const InputEvent& e) final;
+	void				Update(int32_t dt) final;
 
 private:
-	TimerManager();
-	static TimerManager* m_TimerManager;
+	static TimerManager* m_Instance;
 };
 
 #endif // !MANAGERS_TIMERMANAGER_H_

@@ -1,5 +1,5 @@
 // Corresponding header
-#include "managers/TimerManager.h"
+#include "sdl_utils/containers/cfg/SoundContainerCfg.h"
 
 // C/C++ system includes
 
@@ -7,47 +7,50 @@
 
 // Own includes
 
-TimerManager* TimerManager::m_Instance = nullptr;
-
 // =============================================================================
-TimerManager::TimerManager()
+SoundCfg::SoundCfg()
+	: m_FileName("")
+	, m_Id(SoundId::Invalid)
 {
 }
 
 // =============================================================================
-TimerManager::~TimerManager()
+SoundCfg::SoundCfg(const char* fileName, SoundId id)
+	: m_FileName(fileName)
+	, m_Id(id)
 {
 }
 
 // =============================================================================
-TimerManager* TimerManager::Get()
+SoundCfg::~SoundCfg()
 {
-	if (!m_Instance)
+}
+
+// =============================================================================
+SoundContainerCfg::SoundContainerCfg()
+{
+}
+
+// =============================================================================
+SoundContainerCfg::~SoundContainerCfg()
+{
+}
+
+// =============================================================================
+//TODO To be called from the ConfigsManager
+bool SoundContainerCfg::Read()
+{
+	//TODO Read data from file and populate the config
+	m_SoundsCfgData =
 	{
-		m_Instance = new TimerManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
 
-	return m_Instance;
-}
+	};
 
-// =============================================================================
-bool TimerManager::Init()
-{
 	return true;
 }
 
 // =============================================================================
-void TimerManager::Deinit()
+SoundCfgsContainer SoundContainerCfg::GetData() const
 {
-}
-
-// =============================================================================
-void TimerManager::HandleEvent(const InputEvent& e)
-{
-}
-
-// =============================================================================
-void TimerManager::Update(int32_t dt)
-{
+	return m_SoundsCfgData;
 }

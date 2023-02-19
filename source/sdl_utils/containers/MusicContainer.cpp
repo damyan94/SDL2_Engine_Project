@@ -7,9 +7,7 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "defines/MusicDefines.h"
-
-std::unordered_map<MusicId, Mix_Music*> MusicContainer::m_Musics;
+#include "sdl_utils/containers/cfg/MusicContainerCfg.h"
 
 // =============================================================================
 MusicContainer::MusicContainer()
@@ -24,16 +22,16 @@ MusicContainer::~MusicContainer()
 
 // =============================================================================
 // Mix_LoadMUS
-bool MusicContainer::Init()
+bool MusicContainer::Init(const MusicContainerCfg& cfg)
 {
-	for (const auto& musicInfo : m_MusicsData)
+	for (const auto& musicInfo : cfg.GetData())
 	{
 		MusicId id = musicInfo.m_Id;
 
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant music id.");
 
-		m_Musics[id] = Mix_LoadMUS(musicInfo.m_FileName);
-		AssertReturnIf(!m_Musics[id], false, "Mix_LoadMUS() failed.");
+		m_MusicContainer[id].m_Music = Mix_LoadMUS(musicInfo.m_FileName);
+		AssertReturnIf(!m_MusicContainer[id].m_Music, false, "Mix_LoadMUS() failed: ", SDL_GetError());
 	}
 
 	return true;
@@ -43,22 +41,22 @@ bool MusicContainer::Init()
 // Mix_FreeMusic
 void MusicContainer::Deinit()
 {
-	for (auto& [id, music] : m_Musics)
+	for (auto& [id, music] : m_MusicContainer)
 	{
-		if (music)
+		if (music.m_Music)
 		{
-			Mix_FreeMusic(music);
+			Mix_FreeMusic(music.m_Music);
 			music = nullptr;
 		}
 	}
 
-	m_Musics.clear();
+	m_MusicContainer.clear();
 }
 
 // =============================================================================
 bool MusicContainer::DoesAssetExist(MusicId id)
 {
-	return m_Musics.find(id) != m_Musics.end();
+	return m_MusicContainer.find(id) != m_MusicContainer.end();
 }
 
 // =============================================================================
@@ -66,5 +64,22 @@ Mix_Music* MusicContainer::GetMusicById(MusicId id)
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant music id.");
 
-	return m_Musics[id];
+	return m_MusicContainer[id].m_Music;
+}
+
+// =============================================================================
+MusicContainer::MusicUnit::MusicUnit()
+	: m_Music(nullptr)
+{
+}
+
+// =============================================================================
+MusicContainer::MusicUnit::MusicUnit(Mix_Music* music)
+	: m_Music(music)
+{
+}
+
+// =============================================================================
+MusicContainer::MusicUnit::~MusicUnit()
+{
 }

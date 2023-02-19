@@ -12,20 +12,31 @@
 
 // Forward declarations
 
-struct FontData
+struct FontCfg
 {
-	FontData();
-	~FontData();
+	FontCfg();
+	~FontCfg();
 
-	FontData(const char* fileName, FontId id, uint32_t size);
+	FontCfg(const char* fileName, FontId id, uint32_t size);
 
 	const char*			m_FileName;
 	FontId				m_Id;
 	uint32_t			m_Size;
 };
 
-extern const std::vector<FontData> g_FontsData;
+typedef std::vector<FontCfg> FontCfgsContainer;
 
-#define FONTS_COUNT g_FontsData.size();
+class FontContainerCfg
+{
+public:
+	FontContainerCfg();
+	~FontContainerCfg();
+
+	bool				Read();
+	FontCfgsContainer	GetData() const;
+
+private:
+	FontCfgsContainer	m_FontsCfgData;
+};
 
 #endif // !DEFINES_FONTDEFINES_H_

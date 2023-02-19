@@ -1,5 +1,5 @@
-#ifndef MANAGERS_MANAGER_H_
-#define MANAGERS_MANAGER_H_
+#ifndef MANAGERS_MANAGERBASE_H_
+#define MANAGERS_MANAGERBASE_H_
 
 // C/C++ system includes
 
@@ -13,11 +13,11 @@
 
 // Forward declarations
 
-class Manager
+class IManager
 {
 public:
-	Manager();
-	virtual ~Manager();
+	IManager();
+	virtual ~IManager();
 
 	virtual bool		Init() = 0;
 	virtual void		Deinit() = 0;
@@ -32,4 +32,4 @@ private:
 
 };
 
-#endif // !MANAGERS_MANAGER_H_
+#endif // !MANAGERS_MANAGERBASE_H_

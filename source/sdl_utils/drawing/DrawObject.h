@@ -116,6 +116,7 @@ protected:
 
 	bool				m_IsVisible = true;
 
+	//TODO Maybe not have this here, idk
 	SDL_Texture*		m_Texture = nullptr;
 };
 

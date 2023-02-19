@@ -37,8 +37,8 @@ namespace Audio
 	uint8_t GetSoundsVolume();
 	uint8_t GetMusicVolume();
 
-	bool PlayingMusic();
-	bool PausedMusic();
+	bool IsMusicPlaying();
+	bool isMusicPaused();
 };
 
 #endif // !SDL_UTILS_AUDIO_AUDIO_H_

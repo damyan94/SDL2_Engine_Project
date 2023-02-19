@@ -9,7 +9,8 @@
 #include "sdl_utils/Window.h"
 #include "sdl_utils/Renderer.h"
 
-DrawManager* DrawManager::m_DrawManager = nullptr;
+// =============================================================================
+DrawManager* DrawManager::m_Instance = nullptr;
 
 // =============================================================================
 DrawManager::DrawManager()
@@ -27,13 +28,13 @@ DrawManager::~DrawManager()
 // =============================================================================
 DrawManager* DrawManager::Get()
 {
-	if (!m_DrawManager)
+	if (!m_Instance)
 	{
-		m_DrawManager = new DrawManager;
-		AssertReturnIf(!m_DrawManager, nullptr, "Failed to allocate memory.");
+		m_Instance = new DrawManager;
+		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
 	}
 
-	return m_DrawManager;
+	return m_Instance;
 }
 
 // =============================================================================
@@ -46,7 +47,7 @@ bool DrawManager::Init()
 	AssertReturnIf(!m_Renderer, false, "Failed to allocate memory.");
 
 	ReturnIf(!m_Window->Init(), false);
-	ReturnIf(!m_Renderer->Init(m_Window->GetInstance(), Colors::VeryLightGrey), false);
+	ReturnIf(!m_Renderer->Init(m_Window->GetBaseObject(), Colors::VeryLightGrey), false);
 
 	return true;
 }

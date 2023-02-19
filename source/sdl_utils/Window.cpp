@@ -21,7 +21,7 @@ Window::~Window()
 }
 
 // =============================================================================
-SDL_Window* Window::GetInstance() const
+SDL_Window* Window::GetBaseObject() const
 {
 	return m_Window;
 }
@@ -32,9 +32,8 @@ bool Window::Init()
 {
 	using namespace WindowConstants;
 
-	m_Window = SDL_CreateWindow(WINDOW_NAME, WINDOW_POS_X, WINDOW_POS_Y,
-		WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_FLAGS);
-	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed.");
+	m_Window = SDL_CreateWindow(Name, PosX, PosY, Width, Height, Flags);
+	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: ", SDL_GetError());
 
 	SDL_ShowWindow(m_Window);
 

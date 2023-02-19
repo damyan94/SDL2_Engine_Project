@@ -11,10 +11,20 @@
 #include "sdl_utils/containers/SoundContainer.h"
 #include "sdl_utils/containers/MusicContainer.h"
 
-AssetManager* AssetManager::m_AssetManager = nullptr;
+#include "sdl_utils/containers/cfg/ImageContainerCfg.h"
+#include "sdl_utils/containers/cfg/FontContainerCfg.h"
+#include "sdl_utils/containers/cfg/SoundContainerCfg.h"
+#include "sdl_utils/containers/cfg/MusicContainerCfg.h"
+
+// =============================================================================
+AssetManager* AssetManager::m_Instance = nullptr;
 
 // =============================================================================
 AssetManager::AssetManager()
+	: m_ImageContainer(nullptr)
+	, m_FontContainer(nullptr)
+	, m_SoundContainer(nullptr)
+	, m_MusicContainer(nullptr)
 {
 }
 
@@ -27,39 +37,41 @@ AssetManager::~AssetManager()
 // =============================================================================
 AssetManager* AssetManager::Get()
 {
-	if (!m_AssetManager)
+	if (!m_Instance)
 	{
-		m_AssetManager = new AssetManager;
-		AssertReturnIf(!m_AssetManager, nullptr, "Failed to allocate memory.");
+		m_Instance = new AssetManager;
+		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
 	}
 
-	return m_AssetManager;
+	return m_Instance;
 }
 
 // =============================================================================
 bool AssetManager::Init()
 {
-	m_AssetContainers.resize((size_t)EAssetContainerType::Count);
+	m_ImageContainer = new ImageContainer;
+	AssertReturnIf(!m_ImageContainer, false, "Failed to allocate memory.");
+	ImageContainerCfg cfg;
+	ReturnIf(!cfg.Read(), false);
+	ReturnIf(!m_ImageContainer->Init(cfg), false);
 
-	m_AssetContainers[(size_t)EAssetContainerType::Image] = new ImageContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image], false,
-		"Failed to allocate memory.");
-	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Image]->Init(), false);
+	m_FontContainer = new FontContainer;
+	AssertReturnIf(!m_FontContainer, false, "Failed to allocate memory.");
+	FontContainerCfg cfg1;
+	ReturnIf(!cfg1.Read(), false);
+	ReturnIf(!m_FontContainer->Init(cfg1), false);
 
-	m_AssetContainers[(size_t)EAssetContainerType::Font] = new FontContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font], false,
-		"Failed to allocate memory.");
-	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Font]->Init(), false);
+	m_SoundContainer = new SoundContainer;
+	AssertReturnIf(!m_SoundContainer, false, "Failed to allocate memory.");
+	SoundContainerCfg cfg2;
+	ReturnIf(!cfg2.Read(), false);
+	ReturnIf(!m_SoundContainer->Init(cfg2), false);
 
-	m_AssetContainers[(size_t)EAssetContainerType::Sound] = new SoundContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound], false,
-		"Failed to allocate memory.");
-	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Sound]->Init(), false);
-
-	m_AssetContainers[(size_t)EAssetContainerType::Music] = new MusicContainer;
-	AssertReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music], false,
-		"Failed to allocate memory.");
-	ReturnIf(!m_AssetContainers[(size_t)EAssetContainerType::Music]->Init(), false);
+	m_MusicContainer = new MusicContainer;
+	AssertReturnIf(!m_MusicContainer, false, "Failed to allocate memory.");
+	MusicContainerCfg cfg3;
+	ReturnIf(!cfg3.Read(), false);
+	ReturnIf(!m_MusicContainer->Init(cfg3), false);
 
 	return true;
 }
@@ -67,10 +79,10 @@ bool AssetManager::Init()
 // =============================================================================
 void AssetManager::Deinit()
 {
-	for (auto assetContainer : m_AssetContainers)
-	{
-		assetContainer->Deinit();
-	}
+	m_ImageContainer->Deinit();
+	m_FontContainer->Deinit();
+	m_SoundContainer->Deinit();
+	m_MusicContainer->Deinit();
 }
 
 // =============================================================================
@@ -84,10 +96,25 @@ void AssetManager::Update(int32_t dt)
 }
 
 // =============================================================================
-AssetContainer* AssetManager::GetContainer(EAssetContainerType type)
+ImageContainer* AssetManager::GetImageContainer() const
 {
-	AssertReturnIf(!IsEnumValueValid<EAssetContainerType>(type), nullptr,
-		"Received invalid asset container type.");
+	return m_ImageContainer;
+}
 
-	return m_AssetContainers[(size_t)type];
+// =============================================================================
+FontContainer* AssetManager::GetFontContainer() const
+{
+	return m_FontContainer;
+}
+
+// =============================================================================
+SoundContainer* AssetManager::GetSoundContainer() const
+{
+	return m_SoundContainer;
+}
+
+// =============================================================================
+MusicContainer* AssetManager::GetMusicContainer() const
+{
+	return m_MusicContainer;
 }

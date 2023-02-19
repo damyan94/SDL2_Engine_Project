@@ -8,7 +8,9 @@
 
 // Own includes
 #include "utils/UtilsCommonIncludes.h"
-#include "defines/FrequentIncludes.h"
+#include "sdl_utils/drawing/Text.h"
+#include "sdl_utils/drawing/Image.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // Forward declarations
 

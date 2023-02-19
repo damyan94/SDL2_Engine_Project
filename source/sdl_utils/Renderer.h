@@ -19,7 +19,7 @@ public:
 	Renderer();
 	~Renderer();
 
-	SDL_Renderer*		GetInstance() const;
+	SDL_Renderer*		GetBaseObject() const;
 
 	bool				Init(SDL_Window* window, const Color& color);
 	void				Deinit();

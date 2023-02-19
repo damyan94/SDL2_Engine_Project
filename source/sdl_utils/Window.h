@@ -18,7 +18,7 @@ public:
 	Window();
 	~Window();
 
-	SDL_Window*			GetInstance() const;
+	SDL_Window*			GetBaseObject() const;
 
 	bool				Init();
 	void				Deinit();

@@ -1,5 +1,5 @@
 // Corresponding header
-#include "managers/TimerManager.h"
+#include "sdl_utils/containers/cfg/ImageContainerCfg.h"
 
 // C/C++ system includes
 
@@ -7,47 +7,51 @@
 
 // Own includes
 
-TimerManager* TimerManager::m_Instance = nullptr;
-
 // =============================================================================
-TimerManager::TimerManager()
+ImageCfg::ImageCfg()
+	: m_FileName("")
+	, m_Id(ImageId::Invalid)
+	, m_Frames(0)
 {
 }
 
 // =============================================================================
-TimerManager::~TimerManager()
+ImageCfg::ImageCfg(const char* fileName, ImageId id, uint32_t frames)
+	: m_FileName(fileName)
+	, m_Id(id)
+	, m_Frames(frames)
 {
 }
 
 // =============================================================================
-TimerManager* TimerManager::Get()
+ImageCfg::~ImageCfg()
 {
-	if (!m_Instance)
+}
+
+// =============================================================================
+ImageContainerCfg::ImageContainerCfg()
+{
+}
+
+ImageContainerCfg::~ImageContainerCfg()
+{
+}
+
+// =============================================================================
+//TODO To be called from the ConfigsManager
+bool ImageContainerCfg::Read()
+{
+	//TODO Read data from file and populate the config
+	m_ImagesCfgData =
 	{
-		m_Instance = new TimerManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
 
-	return m_Instance;
-}
+	};
 
-// =============================================================================
-bool TimerManager::Init()
-{
 	return true;
 }
 
 // =============================================================================
-void TimerManager::Deinit()
+ImageCfgsContainer ImageContainerCfg::GetData() const
 {
-}
-
-// =============================================================================
-void TimerManager::HandleEvent(const InputEvent& e)
-{
-}
-
-// =============================================================================
-void TimerManager::Update(int32_t dt)
-{
+	return m_ImagesCfgData;
 }

@@ -7,15 +7,15 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "sdl_utils/containers/SoundContainer.h"
-#include "sdl_utils/containers/MusicContainer.h"
+#include "managers/AssetManager.h"
 
 // =============================================================================
 // Mix_PlayChannel
 void Audio::PlaySound(SoundId id, int32_t loops)
 {
-	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL,
-		SoundContainer::GetSoundById(id), loops);
+	const auto soundContainer = AssetManager::Get()->GetSoundContainer();
+
+	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL, soundContainer->GetSoundById(id), loops);
 }
 
 // =============================================================================
@@ -36,7 +36,9 @@ void Audio::StopSounds()
 // Mix_PlayMusic
 void Audio::PlayMusic(MusicId id, int32_t loops)
 {
-	Mix_PlayMusic(MusicContainer::GetMusicById(id), loops);
+	const auto musicContainer = AssetManager::Get()->GetMusicContainer();
+
+	Mix_PlayMusic(musicContainer->GetMusicById(id), loops);
 }
 
 // =============================================================================
@@ -87,14 +89,14 @@ uint8_t Audio::GetMusicVolume()
 
 // =============================================================================
 // Mix_PlayingMusic
-bool Audio::PlayingMusic()
+bool Audio::IsMusicPlaying()
 {
 	return Mix_PlayingMusic();
 }
 
 // =============================================================================
 // Mix_PausedMusic
-bool Audio::PausedMusic()
+bool Audio::isMusicPaused()
 {
 	return Mix_PausedMusic();
 }

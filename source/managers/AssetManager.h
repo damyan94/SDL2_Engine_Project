@@ -6,13 +6,20 @@
 // Third-party includes
 
 // Own includes
-#include "managers/Manager.h"
+#include "managers/IManager.h"
 
 // Forward declarations
+class ImageContainer;
+class FontContainer;
+class SoundContainer;
+class MusicContainer;
 
 class AssetManager
-	: public Manager
+	: public IManager
 {
+private:
+	AssetManager();
+
 public:
 	~AssetManager() final;
 
@@ -23,13 +30,18 @@ public:
 	void				HandleEvent(const InputEvent& e) final;
 	void				Update(int32_t dt) final;
 
-	AssetContainer*		GetContainer(EAssetContainerType type);
+	ImageContainer*		GetImageContainer() const;
+	FontContainer* 		GetFontContainer() const;
+	SoundContainer* 	GetSoundContainer() const;
+	MusicContainer*		GetMusicContainer() const;
 
 private:
-	std::vector<AssetContainer*> m_AssetContainers;
+	ImageContainer*		m_ImageContainer;
+	FontContainer*		m_FontContainer;
+	SoundContainer*		m_SoundContainer;
+	MusicContainer*		m_MusicContainer;
 
-	AssetManager();
-	static AssetManager* m_AssetManager;
+	static AssetManager* m_Instance;
 };
 
 #endif // !ASSET_DRAWMANAGER_H_

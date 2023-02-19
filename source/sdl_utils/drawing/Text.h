@@ -9,9 +9,7 @@
 
 // Own includes
 #include "defines/id/FontId.h"
-#include "utils/drawing/Color.h"
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
+#include "utils/UtilsCommonIncludes.h"
 #include "sdl_utils/drawing/DrawObject.h"
 
 // Forward declarations

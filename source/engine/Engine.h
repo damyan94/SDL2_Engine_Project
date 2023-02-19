@@ -8,14 +8,12 @@
 
 // Own includes
 #include "utils/UtilsCommonIncludes.h"
-#include "managers/ManagersDefines.h"
-
 #include "sdl_utils/input/InputEvent.h"
-
+#include "managers/ManagersDefines.h"
 #include "app/App.h"
 
 // Forward declarations
-class Manager;
+class IManager;
 
 class Engine
 {
@@ -35,7 +33,7 @@ private:
 	void				Sleep(int32_t elapsedTime);
 
 private:
-	std::vector<Manager*> m_Managers;
+	std::vector<IManager*> m_Managers;
 
 	InputEvent			m_InputEvent;
 

@@ -1,5 +1,5 @@
 // Corresponding header
-#include "managers/Manager.h"
+#include "managers/IManager.h"
 
 // C/C++ system includes
 
@@ -8,12 +8,12 @@
 // Own includes
 
 // =============================================================================
-Manager::Manager()
+IManager::IManager()
 {
 }
 
 // =============================================================================
-Manager::~Manager()
+IManager::~IManager()
 {
 }
 

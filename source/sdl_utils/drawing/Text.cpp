@@ -7,12 +7,12 @@
 // Third-party includes
 
 // Own includes
-#include "defines/FontDefines.h"
-
 #include "utils/UtilsCommonIncludes.h"
 
 #include "sdl_utils/Texture.h"
 #include "sdl_utils/containers/FontContainer.h"
+
+#include "managers/AssetManager.h"
 
 // =============================================================================
 Text::Text()
@@ -32,8 +32,9 @@ Text::~Text()
 // =============================================================================
 bool Text::Init(const String& text, FontId id, const Color& textColor)
 {
+	const auto fontContainer = AssetManager::Get()->GetFontContainer();
 	Texture::CreateTextureFromText(text, textColor,
-		FontContainer::GetFontById(id), m_Texture, m_Width, m_Height);
+		fontContainer->GetFontById(id), m_Texture, m_Width, m_Height);
 	ReturnIf(!m_Texture, false);
 
 	m_Pos = Point::Zero;
@@ -49,7 +50,7 @@ bool Text::Init(const String& text, FontId id, const Color& textColor)
 	
 	m_Text = text;
 	m_Color = textColor;
-	m_FontSize = FontContainer::GetFontSizeById(id);
+	m_FontSize = fontContainer->GetFontSizeById(id);
 
 	return true;
 }
@@ -76,9 +77,11 @@ void Text::Draw() const
 // =============================================================================
 void Text::SetText(const String& newText)
 {
+	const auto fontContainer = AssetManager::Get()->GetFontContainer();
+
 	Texture::DestroyTexture(m_Texture);
 	Texture::CreateTextureFromText(newText, m_Color,
-		FontContainer::GetFontById(m_Id), m_Texture, m_Width, m_Height);
+		fontContainer->GetFontById(m_Id), m_Texture, m_Width, m_Height);
 	ReturnIf(!m_Texture, void());
 
 	m_FrameRect.w = m_Width;
@@ -91,9 +94,11 @@ void Text::SetText(const String& newText)
 // =============================================================================
 void Text::SetColor(const Color& newColor)
 {
+	const auto fontContainer = AssetManager::Get()->GetFontContainer();
+
 	Texture::DestroyTexture(m_Texture);
 	Texture::CreateTextureFromText(m_Text, newColor,
-		FontContainer::GetFontById(m_Id), m_Texture, m_Width, m_Height);
+		fontContainer->GetFontById(m_Id), m_Texture, m_Width, m_Height);
 	ReturnIf(!m_Texture, void());
 
 	m_FrameRect.w = m_Width;

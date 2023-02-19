@@ -6,24 +6,27 @@
 // Third-party includes
 
 // Own includes
-#include "managers/Manager.h"
+#include "managers/IManager.h"
 
 // Forward declarations
 class Window;
 class Renderer;
 
 class DrawManager :
-    public Manager
+    public IManager
 {
+private:
+	DrawManager();
+
 public:
-	~DrawManager();
+	~DrawManager() final;
 
 	static DrawManager*	Get();
 
-	bool				Init() override;
-	void				Deinit() override;
-	void				HandleEvent(const InputEvent& e) override;
-	void				Update(int32_t dt) override;
+	bool				Init() final;
+	void				Deinit() final;
+	void				HandleEvent(const InputEvent& e) final;
+	void				Update(int32_t dt) final;
 
 	void				Draw() const;
 
@@ -34,8 +37,7 @@ private:
 	Window*				m_Window;
 	Renderer*			m_Renderer;
 
-	DrawManager();
-	static DrawManager* m_DrawManager;
+	static DrawManager* m_Instance;
 };
 
 #endif // !MANAGERS_DRAWMANAGER_H_

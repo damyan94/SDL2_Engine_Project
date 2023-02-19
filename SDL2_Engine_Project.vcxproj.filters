@@ -84,16 +84,16 @@
     <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\defines\FontDefines.cpp">
+    <ClCompile Include="source\sdl_utils\containers\cfg\FontContainerCfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\defines\ImageDefines.cpp">
+    <ClCompile Include="source\sdl_utils\containers\cfg\ImageContainerCfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\defines\MusicDefines.cpp">
+    <ClCompile Include="source\sdl_utils\containers\cfg\MusicContainerCfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\defines\SoundDefines.cpp">
+    <ClCompile Include="source\sdl_utils\containers\cfg\SoundContainerCfg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\defines\consts\GlobalConstants.cpp">
@@ -132,7 +132,7 @@
     <ClCompile Include="source\utils\time\UtilsDefines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\managers\Manager.cpp">
+    <ClCompile Include="source\managers\IManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\managers\DrawManager.cpp">
@@ -150,27 +150,21 @@
     <ClCompile Include="source\utils\input_output\Assert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\AssetContainer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\defines\FontDefines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\defines\FrequentIncludes.h">
+    <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\defines\consts\GlobalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\defines\ImageDefines.h">
+    <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\defines\MusicDefines.h">
+    <ClInclude Include="source\sdl_utils\containers\cfg\MusicContainerCfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\defines\SoundDefines.h">
+    <ClInclude Include="source\sdl_utils\containers\cfg\SoundContainerCfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\defines\id\FontId.h">
@@ -563,7 +557,7 @@
     <ClInclude Include="source\utils\UtilsCommonIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\managers\Manager.h">
+    <ClInclude Include="source\managers\IManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\managers\DrawManager.h">
@@ -591,9 +585,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\AssetContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

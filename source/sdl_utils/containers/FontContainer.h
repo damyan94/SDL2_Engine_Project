@@ -2,48 +2,44 @@
 #define SDL_UTILS_CONTAINERS_FONTCONTAINER_H_
 
 // C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
 #include "defines/id/FontId.h"
-
-#include "sdl_utils/containers/AssetContainer.h"
+#include "utils/UtilsCommonIncludes.h"
 
 // Forward declarations
 typedef struct _TTF_Font TTF_Font;
+class FontContainerCfg;
 
-//TODO Remove all the static
 class FontContainer
-	: public AssetContainer
 {
 public:
 	FontContainer();
 	~FontContainer();
 
-	bool				Init() final;
-	void				Deinit() final;
+	bool				Init(const FontContainerCfg& cfg);
+	void				Deinit();
 
-	static bool			DoesAssetExist(FontId id);
+	bool				DoesAssetExist(FontId id);
 
-	static TTF_Font*	GetFontById(FontId id);
-	static int32_t		GetFontSizeById(FontId id);
+	TTF_Font*			GetFontById(FontId id);
+	int32_t				GetFontSizeById(FontId id);
 
 private:
 	struct FontUnit
 	{
 		FontUnit();
-		~FontUnit();
-
 		FontUnit(TTF_Font* font, uint32_t size);
 
-		TTF_Font*		m_Font = nullptr;
-		uint32_t		m_Size = 12;
+		~FontUnit();
+
+		TTF_Font*		m_Font;
+		uint32_t		m_Size;
 	};
 
-	static std::unordered_map<FontId, FontUnit> m_Fonts;
+	std::unordered_map<FontId, FontUnit> m_FontsContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_FONTCONTAINER_H_

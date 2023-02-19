@@ -22,7 +22,24 @@ bool IsEnumValueValid(EnumType value)
 // ================================= DEFINES ===================================
 // =============================================================================
 
-#define __ASSERT_INFO "File: " __FILE__ "\nLine: " _STRINGIZE(__LINE__) "\nFunction: " __FUNCTION__ "\nReason: "
+#ifdef __ASSERT_INFO
+	#undef __ASSERT_INFO
+#endif
+
+#if defined _DEBUG
+	#define __ASSERT_INFO(__Condition, ...)\
+		"Check: " #__Condition\
+		"\nFile: " __FILE__\
+		"\nFunction: " __FUNCTION__\
+		"\nLine: " _STRINGIZE(__LINE__)\
+		"\nReason: " __VA_ARGS__
+#else
+	#define __ASSERT_INFO(__Condition, ...)\
+		"File: " __FILE__\
+		"\nFunction: " __FUNCTION__\
+		"\nLine: " _STRINGIZE(__LINE__)\
+		"\nReason: " __VA_ARGS__
+#endif // !_DEBUG
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================

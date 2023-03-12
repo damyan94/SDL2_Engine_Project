@@ -2,6 +2,7 @@
 #define UTILS_INPUT_OUTPUT_ASSERT_H_
 
 // C/C++ system includes
+#include <string>
 
 // Third-party includes
 
@@ -12,8 +13,8 @@
 
 namespace Assert
 {
-void Assert(const char* text);
-void Assert(bool condition, const char* text);
+void Assert(const std::string& text);
+void Assert(bool condition, const std::string& text);
 }
 
 #endif // !UTILS_INPUT_OUTPUT_ASSERT_H_

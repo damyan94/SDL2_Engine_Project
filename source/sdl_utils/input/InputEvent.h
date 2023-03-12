@@ -14,40 +14,33 @@
 // Forward declarations
 union SDL_Event;
 
-//TODO this could turn out to be very powerful, I must think how to use it wisely
-//#define USE_USER_EVENTS
-
 class InputEvent
 {
 public:
-	SDL_Event* GetInstance();
+	InputEvent();
+	~InputEvent();
 
-	int32_t Init();
-	void Deinit();
+	bool				Init();
+	void				Deinit();
 
-	bool PollEvent();
+	bool				PollEvent();
 
-	int32_t type = EventType::UNKNOWN;
-	int32_t key = Keyboard::KEY_UNKNOWN;
-	uint16_t keymod = 0;
-	const uint8_t *keystates = nullptr;
+	SDL_Event*			GetBaseObject() const;
 
-	uint8_t mouse = Mouse::UNKNOWN;
-	int32_t wheel = Mouse::WHEEL_UP_DOWN_TRESHOLD;
-	bool mouseHold = false;
-
-	Point pos = Point::Undefined;
-
-private:
-	SDL_Event* _event = nullptr;
-
-#ifdef USE_USER_EVENTS
 public:
-	static void pushUserEvent();
+	EEventType			m_Type;
+	EKeyboardKey		m_Key;
+	EKeymod				m_Keymod;
+	const uint8_t*		m_Keystates;
+
+	EMouseKey			m_Mouse;
+	EMouseWheel			m_Wheel;
+	bool				m_MouseHold;
+
+	Point				m_Pos;
 
 private:
-	static uint32_t _userEventType;
-#endif // !USE_USER_EVENTS
+	SDL_Event*			m_Event;
 };
 
 #endif // !SDL_UTILS_INPUT_INPUT_EVENT_H_

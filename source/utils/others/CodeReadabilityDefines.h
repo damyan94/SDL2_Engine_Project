@@ -67,13 +67,13 @@
 //#define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
 //#define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)/
 
-#define ReturnIf(__Condition, __Result)				do { if(__Condition) { return __Result; }} while(false)
-#define ContinueIf(__Condition)						do { if(__Condition) { continue; }} while(false)
-#define BreakIf(__Condition)						do { if(__Condition) { break; }} while(false)
+#define ReturnIf(__Condition, __Result)				if(__Condition) return __Result
+#define ContinueIf(__Condition)						if(__Condition) continue
+#define BreakIf(__Condition)						if(__Condition) break
 
-#define AssertReturnIf(__Condition, __Result, ...)	do { if(__Condition) { Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); return __Result; }} while(false)
-#define AssertContinueIf(__Condition, ...)			do { if(__Condition) { Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); continue; }} while(false)
-#define AssertBreakIf(__Condition, ...)				do { if(__Condition) { Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); break; }} while(false)
+#define AssertReturnIf(__Condition, __Result, ...)	if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) return __Result
+#define AssertContinueIf(__Condition, ...)			if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) continue
+#define AssertBreakIf(__Condition, ...)				if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) break
 
 #define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
 #define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)

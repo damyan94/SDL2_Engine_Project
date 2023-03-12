@@ -11,7 +11,7 @@
 
 // Forward declarations
 typedef struct _Mix_Music Mix_Music;
-class MusicContainerCfg;
+struct MusicContainerConfig;
 
 class MusicContainer
 {
@@ -19,7 +19,7 @@ public:
 	MusicContainer();
 	~MusicContainer();
 
-	bool				Init(const MusicContainerCfg& cfg);
+	bool				Init(const MusicContainerConfig& cfg);
 	void				Deinit();
 
 	bool				DoesAssetExist(MusicId id);

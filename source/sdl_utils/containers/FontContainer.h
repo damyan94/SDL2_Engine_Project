@@ -11,7 +11,7 @@
 
 // Forward declarations
 typedef struct _TTF_Font TTF_Font;
-class FontContainerCfg;
+struct FontContainerConfig;
 
 class FontContainer
 {
@@ -19,7 +19,7 @@ public:
 	FontContainer();
 	~FontContainer();
 
-	bool				Init(const FontContainerCfg& cfg);
+	bool				Init(const FontContainerConfig& cfg);
 	void				Deinit();
 
 	bool				DoesAssetExist(FontId id);

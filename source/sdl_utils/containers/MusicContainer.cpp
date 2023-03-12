@@ -7,7 +7,7 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "sdl_utils/containers/cfg/MusicContainerCfg.h"
+#include "sdl_utils/containers/config/MusicContainerConfig.h"
 
 // =============================================================================
 MusicContainer::MusicContainer()
@@ -22,16 +22,14 @@ MusicContainer::~MusicContainer()
 
 // =============================================================================
 // Mix_LoadMUS
-bool MusicContainer::Init(const MusicContainerCfg& cfg)
+bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
-	for (const auto& musicInfo : cfg.GetData())
+	for (const auto& [id, musicInfo] : cfg.m_MusicContainerConfig)
 	{
-		MusicId id = musicInfo.m_Id;
-
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant music id.");
 
-		m_MusicContainer[id].m_Music = Mix_LoadMUS(musicInfo.m_FileName);
-		AssertReturnIf(!m_MusicContainer[id].m_Music, false, "Mix_LoadMUS() failed: ", SDL_GetError());
+		m_MusicContainer[id].m_Music = Mix_LoadMUS(musicInfo.m_FileName.c_str());
+		AssertReturnIf(!m_MusicContainer[id].m_Music, false, "Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
 	}
 
 	return true;
@@ -43,11 +41,10 @@ void MusicContainer::Deinit()
 {
 	for (auto& [id, music] : m_MusicContainer)
 	{
-		if (music.m_Music)
-		{
-			Mix_FreeMusic(music.m_Music);
-			music = nullptr;
-		}
+		ContinueIf(!music.m_Music);
+
+		Mix_FreeMusic(music.m_Music);
+		music = nullptr;
 	}
 
 	m_MusicContainer.clear();

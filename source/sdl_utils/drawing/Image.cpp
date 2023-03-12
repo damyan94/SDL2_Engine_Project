@@ -7,6 +7,8 @@
 
 // Own includes
 #include "sdl_utils/Texture.h"
+#include "sdl_utils/containers/ImageContainer.h"
+
 #include "managers/AssetManager.h"
 
 // =============================================================================
@@ -25,12 +27,11 @@ Image::~Image()
 // =============================================================================
 bool Image::Init(ImageId id)
 {
-	const auto imageContainer = AssetManager::Get()->GetImageContainer();
-
-	m_Texture = imageContainer->GetImageTextureById(id);
+	//TODO DrawManager should ask the Assetmanager for the image texture
+	m_Texture = g_AssetManager->GetImageContainer()->GetImageTextureById(id);
 	ReturnIf(!m_Texture, false);
 
-	m_FrameRect = imageContainer->GetImageTextureFrameById(id);
+	m_FrameRect = g_AssetManager->GetImageContainer()->GetImageTextureFrameById(id);
 	ReturnIf(m_FrameRect == Rectangle::Undefined, false);
 
 	m_Pos = Point::Zero;
@@ -44,7 +45,7 @@ bool Image::Init(ImageId id)
 	m_ImageId = id;
 	m_Type = ObjectType::IMAGE;
 	
-	m_FramesCount = imageContainer->GetImageFramesCountById(id);
+	m_FramesCount = g_AssetManager->GetImageContainer()->GetImageFramesCountById(id);
 
 	return EXIT_SUCCESS;
 }
@@ -61,13 +62,11 @@ void Image::Draw() const
 {
 	ReturnIf(!m_IsVisible, void());
 
-	const auto imageContainer = AssetManager::Get()->GetImageContainer();
-
-	Texture::SetTextureAlphaMod(imageContainer->GetImageTextureById(m_ImageId), m_Opacity);
+	Texture::SetTextureAlphaMod(g_AssetManager->GetImageContainer()->GetImageTextureById(m_ImageId), m_Opacity);
 	ReturnIf(m_Opacity <= 0, void());
 
 	Rectangle rect{ m_Pos.x, m_Pos.y, m_Width, m_Height };
-	Texture::RenderTexture(imageContainer->GetImageTextureById(m_ImageId), m_FrameRect,
+	Texture::RenderTexture(g_AssetManager->GetImageContainer()->GetImageTextureById(m_ImageId), m_FrameRect,
 		rect, (double)m_RotationAngle, m_RotationCenter, m_FlipMode);
 }
 

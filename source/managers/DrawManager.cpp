@@ -6,11 +6,11 @@
 // Third-party includes
 
 // Own includes
+#include "managers/config/DrawManagerConfig.h"
 #include "sdl_utils/Window.h"
 #include "sdl_utils/Renderer.h"
 
-// =============================================================================
-DrawManager* DrawManager::m_Instance = nullptr;
+DrawManager* g_DrawManager = nullptr;
 
 // =============================================================================
 DrawManager::DrawManager()
@@ -22,23 +22,12 @@ DrawManager::DrawManager()
 // =============================================================================
 DrawManager::~DrawManager()
 {
-	Deinit();
+	SafeDelete(m_Renderer);
+	SafeDelete(m_Window);
 }
 
 // =============================================================================
-DrawManager* DrawManager::Get()
-{
-	if (!m_Instance)
-	{
-		m_Instance = new DrawManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
-
-	return m_Instance;
-}
-
-// =============================================================================
-bool DrawManager::Init()
+bool DrawManager::Init(const DrawManagerConfig& cfg)
 {
 	m_Window = new Window;
 	AssertReturnIf(!m_Window, false, "Failed to allocate memory.");
@@ -46,8 +35,8 @@ bool DrawManager::Init()
 	m_Renderer = new Renderer;
 	AssertReturnIf(!m_Renderer, false, "Failed to allocate memory.");
 
-	ReturnIf(!m_Window->Init(), false);
-	ReturnIf(!m_Renderer->Init(m_Window->GetBaseObject(), Colors::VeryLightGrey), false);
+	ReturnIf(!m_Window->Init(cfg.m_WindowConfig), false);
+	ReturnIf(!m_Renderer->Init(m_Window->GetBaseObject(), cfg.m_RendererConfig), false);
 
 	return true;
 }
@@ -60,19 +49,18 @@ void DrawManager::Deinit()
 }
 
 // =============================================================================
-void DrawManager::HandleEvent(const InputEvent& e)
-{
-}
-
-// =============================================================================
 void DrawManager::Update(int32_t dt)
 {
+	ReturnIf(m_Window->IsMinimized(), void());
+
 	m_Renderer->Update();
 }
 
 // =============================================================================
 void DrawManager::Draw() const
 {
+	ReturnIf(m_Window->IsMinimized(), void());
+
 	m_Renderer->Draw();
 }
 

@@ -11,6 +11,7 @@
 
 // Forward declarations
 struct SDL_Window;
+struct WindowConfig;
 
 class Window
 {
@@ -20,10 +21,11 @@ public:
 
 	SDL_Window*			GetBaseObject() const;
 
-	bool				Init();
+	bool				Init(const WindowConfig& cfg);
 	void				Deinit();
 
 	Rectangle			GetWindowRect();
+	bool				IsMinimized() const;
 
 private:
 	SDL_Window*			m_Window;

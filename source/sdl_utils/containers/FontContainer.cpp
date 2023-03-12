@@ -8,7 +8,7 @@
 
 // Own includes
 #include "sdl_utils/Texture.h"
-#include "sdl_utils/containers/cfg/FontContainerCfg.h"
+#include "sdl_utils/containers/config/FontContainerConfig.h"
 
 // =============================================================================
 FontContainer::FontContainer()
@@ -23,17 +23,14 @@ FontContainer::~FontContainer()
 
 // =============================================================================
 // TTF_OpenFont
-bool FontContainer::Init(const FontContainerCfg& cfg)
+bool FontContainer::Init(const FontContainerConfig& cfg)
 {
-	for (const auto& fontData : cfg.GetData())
+	for (const auto& [id, fontData] : cfg.m_FontContainerConfig)
 	{
-		FontId id = fontData.m_Id;
+		AssertReturnIf(DoesAssetExist(id), false, "Received already existant font id.");
 
-		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant font id.");
-
-		m_FontsContainer[id].m_Font = TTF_OpenFont(fontData.m_FileName, fontData.m_Size);
-		AssertReturnIf(!m_FontsContainer[id].m_Font, false, "TTF_OpenFont() failed: ",
-			SDL_GetError());
+		m_FontsContainer[id].m_Font = TTF_OpenFont(fontData.m_FileName.c_str(), fontData.m_Size);
+		AssertReturnIf(!m_FontsContainer[id].m_Font, false, "TTF_OpenFont() failed: " + std::string(SDL_GetError()));
 
 		m_FontsContainer[id].m_Size = fontData.m_Size;
 	}
@@ -47,11 +44,10 @@ void FontContainer::Deinit()
 {
 	for (auto& [id, font] : m_FontsContainer)
 	{
-		if (font.m_Font)
-		{
-			TTF_CloseFont(font.m_Font);
-			font.m_Font = nullptr;
-		}
+		ContinueIf(!font.m_Font);
+
+		TTF_CloseFont(font.m_Font);
+		font.m_Font = nullptr;
 	}
 
 	m_FontsContainer.clear();
@@ -66,7 +62,7 @@ bool FontContainer::DoesAssetExist(FontId id)
 // =============================================================================
 TTF_Font* FontContainer::GetFontById(FontId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant font id.");
+	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexistant font id.");
 
 	return m_FontsContainer[id].m_Font;
 }
@@ -74,7 +70,7 @@ TTF_Font* FontContainer::GetFontById(FontId id)
 // =============================================================================
 int32_t FontContainer::GetFontSizeById(FontId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexsistant font id.");
+	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexistant font id.");
 
 	return m_FontsContainer[id].m_Size;
 }

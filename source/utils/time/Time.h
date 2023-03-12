@@ -17,8 +17,9 @@ public:
 	Time();
 	~Time();
 
-	uint64_t			GetElapsedTime(EUnitOfTime unit);
+	uint64_t			GetElapsedTimeLastCall(EUnitOfTime unit);
 	std::string			GetString() const;
+	std::string			GetStringNumbersOnly() const;
 
 	void				ResetToNow();
 

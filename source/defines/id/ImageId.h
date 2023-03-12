@@ -15,6 +15,9 @@ enum class ImageId
 	: int32_t
 {
 	Invalid = -1
+
+	, Logo
+
 	, Count
 };
 

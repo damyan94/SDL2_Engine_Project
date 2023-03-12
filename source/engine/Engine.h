@@ -9,11 +9,11 @@
 // Own includes
 #include "utils/UtilsCommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
-#include "managers/ManagersDefines.h"
-#include "app/App.h"
 
 // Forward declarations
-class IManager;
+struct EngineConfig;
+class ManagerHandler;
+class App;
 
 class Engine
 {
@@ -21,23 +21,23 @@ public:
 	Engine();
 	~Engine();
 
-	bool				Init();
+	bool				Init(const EngineConfig& cfg);
 	void				Deinit();
-	void				HandleEvent();
-	void				Update();
-	void				Draw() const;
 
 	void				RunApplication();
 
 private:
+	void				HandleEvent();
+	void				Update();
+	void				Draw() const;
+
 	void				Sleep(int32_t elapsedTime);
 
 private:
-	std::vector<IManager*> m_Managers;
-
 	InputEvent			m_InputEvent;
 
-	App					m_App;
+	ManagerHandler*		m_ManagerHandler;
+	App*				m_App;
 
 	TimerId				m_DrawTimerId;
 	int32_t				m_ElapsedTime;

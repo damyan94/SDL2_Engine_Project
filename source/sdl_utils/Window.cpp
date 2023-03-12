@@ -7,7 +7,7 @@
 #include <SDL_video.h>
 
 // Own includes
-#include "defines/consts/GlobalConstants.h"
+#include "sdl_utils/config/WindowConfig.h"
 
 // =============================================================================
 Window::Window()
@@ -28,12 +28,16 @@ SDL_Window* Window::GetBaseObject() const
 
 // =============================================================================
 // SDL_CreateWindow
-bool Window::Init()
+bool Window::Init(const WindowConfig& cfg)
 {
-	using namespace WindowConstants;
-
-	m_Window = SDL_CreateWindow(Name, PosX, PosY, Width, Height, Flags);
-	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: ", SDL_GetError());
+	m_Window = SDL_CreateWindow(
+		cfg.m_Name.c_str(),
+		cfg.m_PosX,
+		cfg.m_PosY,
+		cfg.m_Width,
+		cfg.m_Height,
+		cfg.m_Flags);
+	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: " + std::string(SDL_GetError()));
 
 	SDL_ShowWindow(m_Window);
 
@@ -59,4 +63,12 @@ Rectangle Window::GetWindowRect()
 	SDL_GetWindowSize(m_Window, &windowRect.w, &windowRect.h);
 
 	return windowRect;
+}
+
+// =============================================================================
+bool Window::IsMinimized() const
+{
+	int32_t flags = SDL_GetWindowFlags(m_Window);
+
+	return flags & SDL_WindowFlags::SDL_WINDOW_MINIMIZED;
 }

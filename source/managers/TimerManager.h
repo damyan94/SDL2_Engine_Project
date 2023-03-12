@@ -6,28 +6,27 @@
 // Third-party includes
 
 // Own includes
-#include "managers/IManager.h"
+#include "utils/UtilsCommonIncludes.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // Forward declarations
+struct TimerManagerConfig;
 
 class TimerManager
-    : public IManager
 {
-private:
-	TimerManager();
-
 public:
-	~TimerManager() final;
+	TimerManager();
+	~TimerManager();
 
-	static TimerManager* Get();
+	TimerManager(const TimerManager& other) = delete;
+	TimerManager& operator=(const TimerManager& other) = delete;
 
-	bool				Init() final;
-	void				Deinit() final;
-	void				HandleEvent(const InputEvent& e) final;
-	void				Update(int32_t dt) final;
-
-private:
-	static TimerManager* m_Instance;
+	bool				Init(const TimerManagerConfig& cfg);
+	void				Deinit();
+	void				HandleEvent(const InputEvent& e);
+	void				Update(int32_t dt);
 };
+
+extern TimerManager* g_TimerManager;
 
 #endif // !MANAGERS_TIMERMANAGER_H_

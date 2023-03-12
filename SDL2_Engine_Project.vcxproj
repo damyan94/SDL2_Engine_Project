@@ -165,6 +165,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\engine\EngineConfigLoader.cpp" />
+    <ClCompile Include="source\engine\EngineConfigLoaderUtils.cpp" />
+    <ClCompile Include="source\managers\ImGuiManager.cpp" />
+    <ClCompile Include="source\managers\ManagerHandler.cpp" />
     <ClCompile Include="source\utils\input_output\Assert.cpp" />
     <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
@@ -176,12 +180,7 @@
     <ClCompile Include="dependencies\imgui-master\imgui_tables.cpp" />
     <ClCompile Include="dependencies\imgui-master\imgui_widgets.cpp" />
     <ClCompile Include="source\managers\DrawManager.cpp" />
-    <ClCompile Include="source\managers\IManager.cpp" />
     <ClCompile Include="source\defines\consts\GlobalConstants.cpp" />
-    <ClCompile Include="source\sdl_utils\containers\cfg\FontContainerCfg.cpp" />
-    <ClCompile Include="source\sdl_utils\containers\cfg\SoundContainerCfg.cpp" />
-    <ClCompile Include="source\sdl_utils\containers\cfg\MusicContainerCfg.cpp" />
-    <ClCompile Include="source\sdl_utils\containers\cfg\ImageContainerCfg.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
     <ClCompile Include="source\app\App.cpp" />
     <ClCompile Include="source\main.cpp" />
@@ -212,7 +211,24 @@
     <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="source\app\config\AppConfig.h" />
+    <ClInclude Include="source\engine\config\EngineConfig.h" />
+    <ClInclude Include="source\engine\EngineConfigLoader.h" />
+    <ClInclude Include="source\engine\EngineConfigLoaderUtils.h" />
+    <ClInclude Include="source\managers\config\AssetManagerConfig.h" />
+    <ClInclude Include="source\managers\config\DrawManagerConfig.h" />
+    <ClInclude Include="source\managers\config\ImGuiManagerConfig.h" />
+    <ClInclude Include="source\managers\config\ManagerHandlerConfig.h" />
+    <ClInclude Include="source\managers\config\TimerManagerConfig.h" />
+    <ClInclude Include="source\managers\ImGuiManager.h" />
+    <ClInclude Include="source\managers\ManagerHandler.h" />
     <ClInclude Include="source\managers\ManagersDefines.h" />
+    <ClInclude Include="source\sdl_utils\config\WindowConfig.h" />
+    <ClInclude Include="source\sdl_utils\config\RendererConfig.h" />
+    <ClInclude Include="source\sdl_utils\containers\config\FontContainerConfig.h" />
+    <ClInclude Include="source\sdl_utils\containers\config\ImageContainerConfig.h" />
+    <ClInclude Include="source\sdl_utils\containers\config\MusicContainerConfig.h" />
+    <ClInclude Include="source\sdl_utils\containers\config\SoundContainerConfig.h" />
     <ClInclude Include="source\sdl_utils\SDLUtilsCommonIncludes.h" />
     <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h" />
     <ClInclude Include="source\utils\input_output\Assert.h" />
@@ -227,7 +243,6 @@
     <ClInclude Include="dependencies\imgui-master\imstb_textedit.h" />
     <ClInclude Include="dependencies\imgui-master\imstb_truetype.h" />
     <ClInclude Include="source\managers\DrawManager.h" />
-    <ClInclude Include="source\managers\IManager.h" />
     <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h" />
     <ClInclude Include="source\defines\consts\GlobalConstants.h" />
     <ClInclude Include="source\defines\id\FontId.h" />

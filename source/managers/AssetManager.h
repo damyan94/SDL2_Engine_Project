@@ -6,29 +6,28 @@
 // Third-party includes
 
 // Own includes
-#include "managers/IManager.h"
+#include "utils/UtilsCommonIncludes.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // Forward declarations
+struct AssetManagerConfig;
 class ImageContainer;
 class FontContainer;
 class SoundContainer;
 class MusicContainer;
 
 class AssetManager
-	: public IManager
 {
-private:
-	AssetManager();
-
 public:
-	~AssetManager() final;
+	AssetManager();
+	~AssetManager();
 
-	static AssetManager* Get();
+	AssetManager(const AssetManager& other) = delete;
+	AssetManager& operator=(const AssetManager& other) = delete;
 
-	bool				Init() final;
-	void				Deinit() final;
-	void				HandleEvent(const InputEvent& e) final;
-	void				Update(int32_t dt) final;
+	bool				Init(const AssetManagerConfig& cfg);
+	void				Deinit();
+	void				Update(int32_t dt);
 
 	ImageContainer*		GetImageContainer() const;
 	FontContainer* 		GetFontContainer() const;
@@ -40,8 +39,8 @@ private:
 	FontContainer*		m_FontContainer;
 	SoundContainer*		m_SoundContainer;
 	MusicContainer*		m_MusicContainer;
-
-	static AssetManager* m_Instance;
 };
+
+extern AssetManager* g_AssetManager;
 
 #endif // !ASSET_DRAWMANAGER_H_

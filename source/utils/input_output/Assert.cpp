@@ -2,7 +2,6 @@
 #include "utils/input_output/Assert.h"
 
 // C/C++ system includes
-#include <fstream>
 #include <chrono>
 
 #if defined WIN32 || _WIN32
@@ -15,12 +14,13 @@
 
 // Own includes
 #include "utils/input_output/Log.h"
+#include "utils/time/Time.h"
 
 // =============================================================================
-static void _ShowMessageBox(const char* text)
+static void _ShowMessageBox(const std::string& text)
 {
 #if defined WIN32 || _WIN32
-	MessageBox(nullptr, text, "Error!", MB_ICONERROR | MB_OK);
+	MessageBox(nullptr, text.c_str(), "Error!", MB_ICONERROR | MB_OK);
 #else //if defined OS_LINUX || LINUX || UNIX
 	//TODO Insert Linux message box here
 #endif // !WIN32 || _WIN32
@@ -40,26 +40,23 @@ static void _DebugBreak()
 }
 
 // =============================================================================
-static void _DebugLog(const char* text)
+static void _DebugLog(const std::string& text)
 {
 	Log::Console(EConsoleTextColor::Red, "--- ASSERT TRIGGERED ---\n");
-	Log::Console(EConsoleTextColor::Red, text);
+	Log::Console(EConsoleTextColor::Red, text.c_str());
 }
 
 // =============================================================================
-static void _ReleaseLog(const char* text)
+static void _ReleaseLog(const std::string& text)
 {
-	static const auto now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+	Time now;
+	static const auto fileName = "./logs/" + now.GetStringNumbersOnly() + ".log";
 
-	std::ofstream datFile;
-	const auto fileName = std::to_string(now) + ".log";
-	datFile.open(fileName.c_str(), std::ofstream::app);
-	datFile.write(text, strlen(text));
-	datFile.close();
+	Log::File(fileName.c_str(), text.c_str(), EWriteMode::App);
 }
 
 // =============================================================================
-void Assert::Assert(const char* text)
+void Assert::Assert(const std::string& text)
 {
 	_ShowMessageBox(text);
 
@@ -72,7 +69,7 @@ void Assert::Assert(const char* text)
 }
 
 // =============================================================================
-void Assert::Assert(bool condition, const char* text)
+void Assert::Assert(bool condition, const std::string& text)
 {
 	if (condition)
 	{

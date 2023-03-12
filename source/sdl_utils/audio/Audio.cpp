@@ -8,14 +8,14 @@
 
 // Own includes
 #include "managers/AssetManager.h"
+#include "sdl_utils/containers/SoundContainer.h"
+#include "sdl_utils/containers/MusicContainer.h"
 
 // =============================================================================
 // Mix_PlayChannel
 void Audio::PlaySound(SoundId id, int32_t loops)
 {
-	const auto soundContainer = AssetManager::Get()->GetSoundContainer();
-
-	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL, soundContainer->GetSoundById(id), loops);
+	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL, g_AssetManager->GetSoundContainer()->GetSoundById(id), loops);
 }
 
 // =============================================================================
@@ -36,9 +36,7 @@ void Audio::StopSounds()
 // Mix_PlayMusic
 void Audio::PlayMusic(MusicId id, int32_t loops)
 {
-	const auto musicContainer = AssetManager::Get()->GetMusicContainer();
-
-	Mix_PlayMusic(musicContainer->GetMusicById(id), loops);
+	Mix_PlayMusic(g_AssetManager->GetMusicContainer()->GetMusicById(id), loops);
 }
 
 // =============================================================================

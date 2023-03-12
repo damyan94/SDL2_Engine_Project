@@ -11,7 +11,7 @@
 
 // Forward declarations
 struct SDL_Texture;
-class ImageContainerCfg;
+struct ImageContainerConfig;
 
 class ImageContainer
 {
@@ -19,7 +19,7 @@ public:
 	ImageContainer();
 	~ImageContainer();
 
-	bool				Init(const ImageContainerCfg& cfg);
+	bool				Init(const ImageContainerConfig& cfg);
 	void				Deinit();
 
 	bool				DoesAssetExist(ImageId id);

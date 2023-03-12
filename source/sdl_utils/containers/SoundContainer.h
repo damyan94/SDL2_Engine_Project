@@ -11,7 +11,7 @@
 
 // Forward declarations
 struct Mix_Chunk;
-class SoundContainerCfg;
+struct SoundContainerConfig;
 
 class SoundContainer
 {
@@ -19,7 +19,7 @@ public:
 	SoundContainer();
 	~SoundContainer();
 
-	bool				Init(const SoundContainerCfg& cfg);
+	bool				Init(const SoundContainerConfig& cfg);
 	void				Deinit();
 
 	bool				DoesAssetExist(SoundId id);

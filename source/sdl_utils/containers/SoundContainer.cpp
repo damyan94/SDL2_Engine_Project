@@ -7,7 +7,7 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "sdl_utils/containers/cfg/SoundContainerCfg.h"
+#include "sdl_utils/containers/config/SoundContainerConfig.h"
 
 // =============================================================================
 SoundContainer::SoundContainer()
@@ -22,16 +22,14 @@ SoundContainer::~SoundContainer()
 
 // =============================================================================
 // Mix_LoadWAV
-bool SoundContainer::Init(const SoundContainerCfg& cfg)
+bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
-	for (const auto& soundData : cfg.GetData())
+	for (const auto& [id, soundData] : cfg.m_SoundContainerConfig)
 	{
-		SoundId id = soundData.m_Id;
-
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant sound id.");
 
-		m_SoundContainer[id].m_Sound = Mix_LoadWAV(soundData.m_FileName);
-		AssertReturnIf(!m_SoundContainer[id].m_Sound, false, "Mix_LoadWAV() failed: ", SDL_GetError());
+		m_SoundContainer[id].m_Sound = Mix_LoadWAV(soundData.m_FileName.c_str());
+		AssertReturnIf(!m_SoundContainer[id].m_Sound, false, "Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
 	}
 
 	return true;
@@ -43,11 +41,10 @@ void SoundContainer::Deinit()
 {
 	for (auto& [id, sound] : m_SoundContainer)
 	{
-		if (sound.m_Sound)
-		{
-			Mix_FreeChunk(sound.m_Sound);
-			sound = nullptr;
-		}
+		ContinueIf(!sound.m_Sound);
+
+		Mix_FreeChunk(sound.m_Sound);
+		sound = nullptr;
 	}
 
 	m_SoundContainer.clear();

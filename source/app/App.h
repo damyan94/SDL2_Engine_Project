@@ -26,6 +26,8 @@ public:
 private:
 	Text				time;
 	TimerId				timerId;
+
+	Image				m_Logo;
 };
 
 #endif // !GAME_GAME_H_

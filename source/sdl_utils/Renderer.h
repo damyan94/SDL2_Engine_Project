@@ -12,6 +12,7 @@
 // Forward declarations
 struct SDL_Renderer;
 struct SDL_Window;
+struct RendererConfig;
 
 class Renderer
 {
@@ -21,7 +22,7 @@ public:
 
 	SDL_Renderer*		GetBaseObject() const;
 
-	bool				Init(SDL_Window* window, const Color& color);
+	bool				Init(SDL_Window* window, const RendererConfig& cfg);
 	void				Deinit();
 	void				Update();
 	void				Draw() const;

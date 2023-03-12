@@ -8,7 +8,7 @@
 
 // Own includes
 #include "sdl_utils/Texture.h"
-#include "sdl_utils/containers/cfg/ImageContainerCfg.h"
+#include "sdl_utils/containers/config/ImageContainerConfig.h"
 
 // =============================================================================
 ImageContainer::ImageContainer()
@@ -23,13 +23,11 @@ ImageContainer::~ImageContainer()
 
 // =============================================================================
 // Texture::createTextureFromFile
-bool ImageContainer::Init(const ImageContainerCfg& cfg)
+bool ImageContainer::Init(const ImageContainerConfig& cfg)
 {
-	for (const auto& imageCfg : cfg.GetData())
+	for (const auto [id, imageCfg] : cfg.m_ImageContainerConfig)
 	{
-		ImageId id = imageCfg.m_Id;
-
-		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant image id.");
+		AssertReturnIf(DoesAssetExist(id), false, "Received already existant image id.");
 
 		Texture::CreateTextureFromFile(
 			imageCfg.m_FileName,
@@ -55,11 +53,10 @@ void ImageContainer::Deinit()
 {
 	for (auto& [id, image] : m_ImagesContainer)
 	{
-		if (image.m_Texture)
-		{
-			SDL_DestroyTexture(image.m_Texture);
-			image.m_Texture = nullptr;
-		}
+		ContinueIf(!image.m_Texture);
+
+		SDL_DestroyTexture(image.m_Texture);
+		image.m_Texture = nullptr;
 	}
 
 	m_ImagesContainer.clear();
@@ -74,7 +71,7 @@ bool ImageContainer::DoesAssetExist(ImageId id)
 // =============================================================================
 SDL_Texture* ImageContainer::GetImageTextureById(ImageId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexsistant image id.");
+	AssertReturnIf(!DoesAssetExist(id), nullptr, "Received unexistant image id.");
 
 	return m_ImagesContainer[id].m_Texture;
 }
@@ -82,7 +79,7 @@ SDL_Texture* ImageContainer::GetImageTextureById(ImageId id)
 // =============================================================================
 Rectangle ImageContainer::GetImageTextureFrameById(ImageId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), Rectangle::Undefined, "Received unexsistant image id.");
+	AssertReturnIf(!DoesAssetExist(id), Rectangle::Undefined, "Received unexistant image id.");
 
 	return m_ImagesContainer[id].m_FrameRect;
 }
@@ -90,7 +87,7 @@ Rectangle ImageContainer::GetImageTextureFrameById(ImageId id)
 // =============================================================================
 int32_t ImageContainer::GetImageFramesCountById(ImageId id)
 {
-	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexsistant image id.");
+	AssertReturnIf(!DoesAssetExist(id), 0, "Received unexistant image id.");
 
 	return m_ImagesContainer[id].m_FramesCount;
 }

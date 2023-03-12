@@ -84,18 +84,6 @@
     <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\cfg\FontContainerCfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\cfg\ImageContainerCfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\cfg\MusicContainerCfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\cfg\SoundContainerCfg.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\defines\consts\GlobalConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,9 +120,6 @@
     <ClCompile Include="source\utils\time\UtilsDefines.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\managers\IManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\managers\DrawManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -148,6 +133,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\utils\input_output\Assert.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\ManagerHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\EngineConfigLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\ImGuiManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\EngineConfigLoaderUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -557,9 +554,6 @@
     <ClInclude Include="source\utils\UtilsCommonIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\managers\IManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\managers\DrawManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -585,6 +579,57 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\config\EngineConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\AssetManagerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\DrawManagerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\TimerManagerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\ManagerHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\ManagerHandlerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\config\AppConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\EngineConfigLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\SoundContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\FontContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\ImageContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\MusicContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\config\WindowConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\config\RendererConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\ImGuiManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\ImGuiManagerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\engine\EngineConfigLoaderUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

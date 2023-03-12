@@ -2,63 +2,53 @@
 #include "sdl_utils/input/InputEvent.h"
 
 // C/C++ system includes
-#include <iostream>
 
 // Third-party includes
 #include <SDL_events.h>
 
 // Own includes
-
-#ifdef USE_USER_EVENTS
-uint32_t InputEvent::_userEventType = 0;
-#endif // !USE_USER_EVENTS
+#include "utils/others/CodeReadabilityDefines.h"
 
 // =============================================================================
-SDL_Event* InputEvent::GetInstance()
+InputEvent::InputEvent()
+	: m_Type(EEventType::Unknown)
+	, m_Key(EKeyboardKey::Unknown)
+	, m_Keymod(EKeymod::None)
+	, m_Keystates(nullptr)
+	, m_Mouse(EMouseKey::Unknown)
+	, m_Wheel(EMouseWheel::UpDownTreshold)
+	, m_MouseHold(false)
+	, m_Pos(Point::Undefined)
+	, m_Event(nullptr)
 {
-	return _event;
 }
 
 // =============================================================================
-int32_t InputEvent::Init()
+InputEvent::~InputEvent()
 {
-	_event = new SDL_Event{};
-	if (!_event)
-	{
-		std::cerr << "Error, failed to init SDL_Event()." << std::endl;
-		return EXIT_FAILURE;
-	}
-#ifdef USE_USER_EVENTS
-	_userEventType = SDL_RegisterEvents(1);
-#endif // !USE_USER_EVENTS
+	Deinit();
+	SafeDelete(m_Event);
+}
 
-	return EXIT_SUCCESS;
+// =============================================================================
+bool InputEvent::Init()
+{
+	m_Event = new SDL_Event{};
+	AssertReturnIf(!m_Event, false, "Failed to allocate memory.");
+
+	return true;
 }
 
 // =============================================================================
 void InputEvent::Deinit()
 {
-	if (_event)
-	{
-		delete _event;
-		_event = nullptr;
-	}
 }
-
-#ifdef USE_USER_EVENTS
-void InputEvent::pushUserEvent()
-{
-	SDL_Event newEvent;
-	newEvent.type = _userEventType;
-	SDL_PushEvent(&newEvent);
-}
-#endif // !USE_USER_EVENTS
 
 // =============================================================================
 // SDL_PollEvent
 bool InputEvent::PollEvent()
 {
-	if (SDL_PollEvent(_event))
+	if (SDL_PollEvent(m_Event))
 	{
 		/*if (_event->type == SDL_WINDOWEVENT &&
 			_event->window.event == SDL_WINDOWEVENT_CLOSE)
@@ -67,65 +57,65 @@ bool InputEvent::PollEvent()
 			return false;
 		}*/
 
-		SDL_GetMouseState(&pos.x, &pos.y);
-		keymod = SDL_GetModState(); //TODO why not working?
-		keystates = SDL_GetKeyboardState(NULL); //TODO why this also not working
-		type = _event->type;
+		SDL_GetMouseState(&m_Pos.x, &m_Pos.y);
+		m_Keymod = (EKeymod)SDL_GetModState(); //TODO why not working?
+		m_Keystates = SDL_GetKeyboardState(NULL); //TODO why this also not working
+		m_Type = (EEventType)m_Event->type;
 
-		switch (type)
+		switch (m_Type)
 		{
-		case EventType::KEYBOARD_PRESS:
-			key = _event->key.keysym.sym;
+		case EEventType::KeyboardPress:
+			m_Key = (EKeyboardKey)m_Event->key.keysym.sym;
 			//keymod = SDL_GetModState();//_event->key.keysym.mod;
-			mouse = Mouse::UNKNOWN;
+			m_Mouse = EMouseKey::Unknown;
 			break;
 
-		case EventType::KEYBOARD_RELEASE:
-			key = _event->key.keysym.sym;
+		case EEventType::KeyboardRelease:
+			m_Key = (EKeyboardKey)m_Event->key.keysym.sym;
 			//keymod = SDL_GetModState();//_event->key.keysym.mod;
-			mouse = Mouse::UNKNOWN;
+			m_Mouse = EMouseKey::Unknown;
 			break;
 
-		case EventType::MOUSE_BUTTONDOWN:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = _event->button.button;
-			mouseHold = true;
+		case EEventType::MouseButtonDown:
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = (EMouseKey)m_Event->button.button;
+			m_MouseHold = true;
 			break;
 
-		case EventType::MOUSE_BUTTONUP:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = _event->button.button;
-			mouseHold = false;
+		case EEventType::MouseButtonUp:
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = (EMouseKey)m_Event->button.button;
+			m_MouseHold = false;
 			break;
 
-		case EventType::FINGER_DOWN:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = Mouse::UNKNOWN;
+		case EEventType::FingerDown:
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = EMouseKey::Unknown;
 			break;
 
-		case EventType::FINGER_UP:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = Mouse::UNKNOWN;
+		case EEventType::FingerUp:
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = EMouseKey::Unknown;
 			break;
 
-		case EventType::MOUSE_WHEEL:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = Mouse::UNKNOWN;
-			wheel = _event->wheel.y;
+		case EEventType::MouseWheel:
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = EMouseKey::Unknown;
+			m_Wheel = (EMouseWheel)m_Event->wheel.y;
 			break;
 
-		case EventType::MOUSE_MOTION:
-			if (mouseHold)
+		case EEventType::MouseMotion:
+			if (m_MouseHold)
 			{
-				key = Keyboard::KEY_UNKNOWN;
-				mouse = Mouse::LEFT_BUTTON;
-				type = EventType::MOUSE_HOLD_MOTION;
+				m_Key = EKeyboardKey::Unknown;
+				m_Mouse = EMouseKey::Left;
+				m_Type = EEventType::MouseHoldMotion;
 			}
 			break;
 
 		default:
-			key = Keyboard::KEY_UNKNOWN;
-			mouse = Mouse::UNKNOWN;
+			m_Key = EKeyboardKey::Unknown;
+			m_Mouse = EMouseKey::Unknown;
 			break;
 		}
 
@@ -133,4 +123,10 @@ bool InputEvent::PollEvent()
 	}
 
 	return false;
+}
+
+// =============================================================================
+SDL_Event* InputEvent::GetBaseObject() const
+{
+	return m_Event;
 }

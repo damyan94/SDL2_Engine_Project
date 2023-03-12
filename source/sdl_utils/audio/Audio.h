@@ -23,7 +23,7 @@ namespace Audio
 	constexpr uint8_t VOLUME_ZERO = 0;
 	constexpr uint8_t VOLUME_MAX = 128;
 
-	void PlaySound(SoundId id, int32_t loops);
+	void PlaySound(SoundId id, int32_t loops = 0);
 	void PauseSounds();
 	void StopSounds();
 

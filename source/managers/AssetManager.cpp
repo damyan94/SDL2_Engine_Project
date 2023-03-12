@@ -6,18 +6,14 @@
 // Third-party includes
 
 // Own includes
+#include "managers/config/AssetManagerConfig.h"
+
 #include "sdl_utils/containers/ImageContainer.h"
 #include "sdl_utils/containers/FontContainer.h"
 #include "sdl_utils/containers/SoundContainer.h"
 #include "sdl_utils/containers/MusicContainer.h"
 
-#include "sdl_utils/containers/cfg/ImageContainerCfg.h"
-#include "sdl_utils/containers/cfg/FontContainerCfg.h"
-#include "sdl_utils/containers/cfg/SoundContainerCfg.h"
-#include "sdl_utils/containers/cfg/MusicContainerCfg.h"
-
-// =============================================================================
-AssetManager* AssetManager::m_Instance = nullptr;
+AssetManager* g_AssetManager = nullptr;
 
 // =============================================================================
 AssetManager::AssetManager()
@@ -31,47 +27,29 @@ AssetManager::AssetManager()
 // =============================================================================
 AssetManager::~AssetManager()
 {
-	Deinit();
+	SafeDelete(m_ImageContainer);
+	SafeDelete(m_FontContainer);
+	SafeDelete(m_SoundContainer);
+	SafeDelete(m_MusicContainer);
 }
 
 // =============================================================================
-AssetManager* AssetManager::Get()
-{
-	if (!m_Instance)
-	{
-		m_Instance = new AssetManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
-
-	return m_Instance;
-}
-
-// =============================================================================
-bool AssetManager::Init()
+bool AssetManager::Init(const AssetManagerConfig& cfg)
 {
 	m_ImageContainer = new ImageContainer;
-	AssertReturnIf(!m_ImageContainer, false, "Failed to allocate memory.");
-	ImageContainerCfg cfg;
-	ReturnIf(!cfg.Read(), false);
-	ReturnIf(!m_ImageContainer->Init(cfg), false);
-
 	m_FontContainer = new FontContainer;
-	AssertReturnIf(!m_FontContainer, false, "Failed to allocate memory.");
-	FontContainerCfg cfg1;
-	ReturnIf(!cfg1.Read(), false);
-	ReturnIf(!m_FontContainer->Init(cfg1), false);
-
 	m_SoundContainer = new SoundContainer;
-	AssertReturnIf(!m_SoundContainer, false, "Failed to allocate memory.");
-	SoundContainerCfg cfg2;
-	ReturnIf(!cfg2.Read(), false);
-	ReturnIf(!m_SoundContainer->Init(cfg2), false);
-
 	m_MusicContainer = new MusicContainer;
+
+	AssertReturnIf(!m_ImageContainer, false, "Failed to allocate memory.");
+	AssertReturnIf(!m_FontContainer, false, "Failed to allocate memory.");
+	AssertReturnIf(!m_SoundContainer, false, "Failed to allocate memory.");
 	AssertReturnIf(!m_MusicContainer, false, "Failed to allocate memory.");
-	MusicContainerCfg cfg3;
-	ReturnIf(!cfg3.Read(), false);
-	ReturnIf(!m_MusicContainer->Init(cfg3), false);
+
+	ReturnIf(!m_ImageContainer->Init(cfg.m_ImageContainerConfig), false);
+	ReturnIf(!m_FontContainer->Init(cfg.m_FontContainerConfig), false);
+	ReturnIf(!m_SoundContainer->Init(cfg.m_SoundContainerConfig), false);
+	ReturnIf(!m_MusicContainer->Init(cfg.m_MusicContainerConfig), false);
 
 	return true;
 }
@@ -83,11 +61,6 @@ void AssetManager::Deinit()
 	m_FontContainer->Deinit();
 	m_SoundContainer->Deinit();
 	m_MusicContainer->Deinit();
-}
-
-// =============================================================================
-void AssetManager::HandleEvent(const InputEvent& e)
-{
 }
 
 // =============================================================================

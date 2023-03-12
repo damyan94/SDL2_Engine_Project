@@ -6,8 +6,9 @@
 // Third-party includes
 
 // Own includes
+#include "managers/config/TimerManagerConfig.h"
 
-TimerManager* TimerManager::m_Instance = nullptr;
+TimerManager* g_TimerManager = nullptr;
 
 // =============================================================================
 TimerManager::TimerManager()
@@ -20,19 +21,7 @@ TimerManager::~TimerManager()
 }
 
 // =============================================================================
-TimerManager* TimerManager::Get()
-{
-	if (!m_Instance)
-	{
-		m_Instance = new TimerManager;
-		AssertReturnIf(!m_Instance, nullptr, "Failed to allocate memory.");
-	}
-
-	return m_Instance;
-}
-
-// =============================================================================
-bool TimerManager::Init()
+bool TimerManager::Init(const TimerManagerConfig& cfg)
 {
 	return true;
 }

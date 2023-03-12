@@ -6,28 +6,26 @@
 // Third-party includes
 
 // Own includes
-#include "managers/IManager.h"
+#include "utils/UtilsCommonIncludes.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // Forward declarations
+struct DrawManagerConfig;
 class Window;
 class Renderer;
 
-class DrawManager :
-    public IManager
+class DrawManager
 {
-private:
-	DrawManager();
-
 public:
-	~DrawManager() final;
+	DrawManager();
+	~DrawManager();
 
-	static DrawManager*	Get();
+	DrawManager(const DrawManager& other) = delete;
+	DrawManager& operator=(const DrawManager& other) = delete;
 
-	bool				Init() final;
-	void				Deinit() final;
-	void				HandleEvent(const InputEvent& e) final;
-	void				Update(int32_t dt) final;
-
+	bool				Init(const DrawManagerConfig& cfg);
+	void				Deinit();
+	void				Update(int32_t dt);
 	void				Draw() const;
 
 	Window*				GetWindow() const;
@@ -36,8 +34,8 @@ public:
 private:
 	Window*				m_Window;
 	Renderer*			m_Renderer;
-
-	static DrawManager* m_Instance;
 };
+
+extern DrawManager* g_DrawManager;
 
 #endif // !MANAGERS_DRAWMANAGER_H_

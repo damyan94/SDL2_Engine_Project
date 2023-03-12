@@ -25,7 +25,7 @@ namespace Texture
 	void CreateSurfaceFromFile(const std::string& fileName, SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight);
 	void CreateSurfaceFromText(const String& text, const Color& color, TTF_Font* font, SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight);
 
-	void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight);
+	void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture);
 
 	void CreateTextureFromFile(const std::string& fileName, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight);
 	void CreateTextureFromText(const String& text, const Color& color, TTF_Font* font, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight);

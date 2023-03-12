@@ -16,9 +16,9 @@ enum class FontId
 {
 	Invalid = -1
 
-	, Consola_12 = 112
-	, Consola_14 = 114
-	, Consola_18 = 118
+	, Consola_12
+	, Consola_14
+	, Consola_18
 
 	, Count
 };

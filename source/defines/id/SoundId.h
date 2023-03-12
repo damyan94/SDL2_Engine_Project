@@ -15,6 +15,9 @@ enum class SoundId
 	: int32_t
 {
 	Invalid = -1
+
+	, MouseClick
+
 	, Count
 };
 

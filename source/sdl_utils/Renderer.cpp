@@ -7,7 +7,7 @@
 #include <SDL_render.h>
 
 // Own includes
-#include "defines/consts/GlobalConstants.h"
+#include "sdl_utils/config/RendererConfig.h"
 
 // =============================================================================
 Renderer::Renderer()
@@ -30,18 +30,16 @@ SDL_Renderer* Renderer::GetBaseObject() const
 
 // =============================================================================
 // SDL_CreateRenderer
-bool Renderer::Init(SDL_Window* window, const Color& color)
+bool Renderer::Init(SDL_Window* window, const RendererConfig& cfg)
 {
-	m_Renderer = SDL_CreateRenderer(window, -1, RendererConstants::Flags);
-	AssertReturnIf(!m_Renderer, false, "SDL_CreateRenderer() failed: ", SDL_GetError());
+	m_Renderer = SDL_CreateRenderer(window, -1, cfg.m_Flags);
+	AssertReturnIf(!m_Renderer, false, "SDL_CreateRenderer() failed: " + std::string(SDL_GetError()));
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawBlendMode(m_Renderer,
-		SDL_BlendMode::SDL_BLENDMODE_BLEND), false, "SDL_SetRenderDrawBlendMode() failed: ", SDL_GetError());
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawBlendMode(m_Renderer, SDL_BlendMode::SDL_BLENDMODE_BLEND),
+		false, "SDL_SetRenderDrawBlendMode() failed: " + std::string(SDL_GetError()));
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(m_Renderer, color.r, color.g,
-		color.b, color.a), false, "SDL_SetRenderDrawColor() failed: ", SDL_GetError());
-
-	m_DefaultDrawColor = color;
+	SetDrawColor(cfg.m_Color);
+	m_DefaultDrawColor = cfg.m_Color;
 
 	return true;
 }
@@ -62,7 +60,7 @@ void Renderer::Deinit()
 void Renderer::Update()
 {
 	AssertReturnIf(EXIT_SUCCESS != SDL_RenderClear(m_Renderer), void(),
-		"SDL_RenderClear() failed: ", SDL_GetError());
+		"SDL_RenderClear() failed: " + std::string(SDL_GetError()));
 }
 
 // =============================================================================
@@ -76,8 +74,13 @@ void Renderer::Draw() const
 // SDL_SetRenderDrawColor
 void Renderer::SetDrawColor(const Color& color)
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(m_Renderer, color.r, color.g,
-		color.b, color.a), void(), "SDL_SetRenderDrawColor() failed: ", SDL_GetError());
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(
+		m_Renderer,
+		color.r,
+		color.g,
+		color.b,
+		color.a),
+		void(), "SDL_SetRenderDrawColor() failed: " + std::string(SDL_GetError()));
 }
 
 // =============================================================================

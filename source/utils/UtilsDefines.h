@@ -3,7 +3,6 @@
 
 // C/C++ system includes
 #include <cstdint>
-#include <chrono>
 
 // Third-party includes
 
@@ -45,8 +44,8 @@ bool IsEnumValueValid(EnumType value)
 // ================================= TYPEDEFS ==================================
 // =============================================================================
 
-typedef std::chrono::steady_clock::time_point		TimePoint;
-typedef int32_t										TimerId;
+typedef uint64_t		TimePoint;
+typedef int32_t			TimerId;
 
 // =============================================================================
 // =============================== ENUMERATIONS ================================
@@ -62,6 +61,18 @@ enum class EUnitOfTime
 	, Seconds
 	, Minutes
 	, Hours
+	, Days
+	, Count
+};
+
+enum class ETimeStringFormat
+	: int8_t
+{
+	Invalid = -1
+	, yyyymmddHHmmss_ZeroPunctuation
+	, yyyymmddHHmmss_Dots
+	, ddmmyyyyHHmmss_ZeroPunctuation
+	, ddmmyyyyHHmmss_Dots
 	, Count
 };
 
@@ -87,7 +98,7 @@ enum class EConsoleTextColor
 	, Magenta	= 95
 	, Cyan		= 96
 	, White		= 97
-	, Count		= 10
+	, Count		= 10 // Gotta be careful with this one in IsEnumValueValid<>()
 };
 
 enum class EWriteMode

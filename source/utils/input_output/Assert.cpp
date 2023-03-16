@@ -50,7 +50,8 @@ static void _DebugLog(const std::string& text)
 static void _ReleaseLog(const std::string& text)
 {
 	Time now;
-	static const auto fileName = "./logs/" + now.GetStringNumbersOnly() + ".log";
+	static const auto fileName = "./logs/" +
+		now.GetString(ETimeStringFormat::yyyymmddHHmmss_ZeroPunctuation) + ".log";
 
 	Log::File(fileName.c_str(), text.c_str(), EWriteMode::App);
 }

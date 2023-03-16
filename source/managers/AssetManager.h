@@ -23,7 +23,10 @@ public:
 	~AssetManager();
 
 	AssetManager(const AssetManager& other) = delete;
+	AssetManager(AssetManager&& other) = delete;
+
 	AssetManager& operator=(const AssetManager& other) = delete;
+	AssetManager& operator=(AssetManager&& other) = delete;
 
 	bool				Init(const AssetManagerConfig& cfg);
 	void				Deinit();

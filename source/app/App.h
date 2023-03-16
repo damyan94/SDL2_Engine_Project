@@ -12,11 +12,16 @@
 #include "sdl_utils/drawing/Image.h"
 #include "sdl_utils/input/InputEvent.h"
 
+#include "utils/time/Timer.h"
+
 // Forward declarations
 
 class App
 {
 public:
+	App();
+	~App();
+
 	bool				Init();
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
@@ -25,7 +30,7 @@ public:
 
 private:
 	Text				time;
-	TimerId				timerId;
+	Timer				timer;
 
 	Image				m_Logo;
 };

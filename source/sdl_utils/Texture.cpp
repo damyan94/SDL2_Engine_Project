@@ -53,8 +53,7 @@ void Texture::CreateSurfaceFromText(const String& text, const Color& color,
 
 // =============================================================================
 // SDL_CreateTextureFromSurface
-void Texture::CreateTextureFromSurface(SDL_Surface* surface,
-	SDL_Texture*& outTexture)
+void Texture::CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture)
 {
 	outTexture = SDL_CreateTextureFromSurface(g_DrawManager->GetRenderer()->GetBaseObject(), surface);
 	AssertReturnIf(!outTexture, void(), "SDL_CreateTextureFromSurface() failed: " +

@@ -25,14 +25,18 @@ FontContainer::~FontContainer()
 // TTF_OpenFont
 bool FontContainer::Init(const FontContainerConfig& cfg)
 {
-	for (const auto& [id, fontData] : cfg.m_FontContainerConfig)
+	for (const auto& [id, fontCfg] : cfg.m_FontContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false, "Received already existant font id.");
 
-		m_FontsContainer[id].m_Font = TTF_OpenFont(fontData.m_FileName.c_str(), fontData.m_Size);
-		AssertReturnIf(!m_FontsContainer[id].m_Font, false, "TTF_OpenFont() failed: " + std::string(SDL_GetError()));
+		FontData newFont;
+		newFont.m_Font = TTF_OpenFont(fontCfg.m_FileName.c_str(), fontCfg.m_Size);
+		AssertReturnIf(!newFont.m_Font, false, "TTF_OpenFont() failed: " + std::string(SDL_GetError()));
 
-		m_FontsContainer[id].m_Size = fontData.m_Size;
+		newFont.m_Size = fontCfg.m_Size;
+		AssertReturnIf(newFont.m_Size <= 0, false, "Received invalid font size.");
+
+		m_FontsContainer.emplace(id, std::move(newFont));
 	}
 
 	return true;
@@ -76,20 +80,20 @@ int32_t FontContainer::GetFontSizeById(FontId id)
 }
 
 // =============================================================================
-FontContainer::FontUnit::FontUnit()
+FontContainer::FontData::FontData()
 	: m_Font(nullptr)
 	, m_Size(0)
 {
 }
 
 // =============================================================================
-FontContainer::FontUnit::FontUnit(TTF_Font* font, uint32_t size)
+FontContainer::FontData::FontData(TTF_Font* font, uint32_t size)
 	: m_Font(font)
 	, m_Size(size)
 {
 }
 
 // =============================================================================
-FontContainer::FontUnit::~FontUnit()
+FontContainer::FontData::~FontData()
 {
 }

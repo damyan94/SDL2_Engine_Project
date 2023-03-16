@@ -21,7 +21,10 @@ public:
 	~DrawManager();
 
 	DrawManager(const DrawManager& other) = delete;
+	DrawManager(DrawManager&& other) = delete;
+
 	DrawManager& operator=(const DrawManager& other) = delete;
+	DrawManager& operator=(DrawManager&& other) = delete;
 
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();

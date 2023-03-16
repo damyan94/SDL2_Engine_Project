@@ -28,18 +28,18 @@ public:
 	int32_t				GetFontSizeById(FontId id);
 
 private:
-	struct FontUnit
+	struct FontData
 	{
-		FontUnit();
-		FontUnit(TTF_Font* font, uint32_t size);
+		FontData();
+		FontData(TTF_Font* font, uint32_t size);
 
-		~FontUnit();
+		~FontData();
 
 		TTF_Font*		m_Font;
 		uint32_t		m_Size;
 	};
 
-	std::unordered_map<FontId, FontUnit> m_FontsContainer;
+	std::unordered_map<FontId, FontData> m_FontsContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_FONTCONTAINER_H_

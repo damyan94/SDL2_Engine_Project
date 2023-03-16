@@ -3,56 +3,33 @@
 
 // C/C++ system includes
 #include <cstdint>
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "utils/time/Time.h"
+#include "utils/UtilsDefines.h"
 
 // Forward declarations
 
-//TODO Move some of this in the TimerManager or TimerContainer and do something about all the static
 class Timer
 {
 public:
-	Timer() = delete;
-	~Timer() = default;
+	Timer();
+	~Timer();
 
-	static void			StartGlobalTimer();
+	void				Start(int64_t interval, ETimerType type);
+	void				Destroy();
 
-	static TimerId		StartTimer(int64_t interval, ETimerType timerType);
-	static void			StartTimer(TimerId id, int64_t interval, ETimerType timerType);
-	static void			DestroyTimer(TimerId id);
+	void				SetPause(bool paused);
 
-	static void			UpdateTimers();
+	bool				IsTicked();
+	bool				IsPaused();
+	bool				IsActive();
 
-	static void			SetPauseTimer(TimerId id, bool paused);
-
-	static bool			IsTimerTicked(TimerId id);
-	static bool			IsTimerPaused(TimerId id);
-	static bool			IsActiveTimer(TimerId id);
-	static bool			DoesTimerExist(TimerId id);
+	TimerId				GetId() const;
 
 private:
-	struct TimerUnit
-	{
-		TimerUnit();
-		~TimerUnit();
-
-		ETimerType		m_TimerType;
-		int64_t			m_Interval;
-		int64_t			m_Remaining;
-		bool			m_Ticked;
-		bool			m_Paused;
-	};
-
-	using TimerMap = std::unordered_map<TimerId, TimerUnit>;
-
-	static TimerMap		m_Timers;
-	static TimerId		m_NextUniqueId;
-	static Time			m_GlobalTime;
+	TimerId				m_Id;
 };
 
 #endif // !UTILS_TIME_TIMER_H_

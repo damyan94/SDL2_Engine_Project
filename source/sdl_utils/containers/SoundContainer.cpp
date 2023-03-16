@@ -24,12 +24,15 @@ SoundContainer::~SoundContainer()
 // Mix_LoadWAV
 bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
-	for (const auto& [id, soundData] : cfg.m_SoundContainerConfig)
+	for (const auto& [id, soundCfg] : cfg.m_SoundContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant sound id.");
 
-		m_SoundContainer[id].m_Sound = Mix_LoadWAV(soundData.m_FileName.c_str());
-		AssertReturnIf(!m_SoundContainer[id].m_Sound, false, "Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
+		SoundData newSound;
+		newSound.m_Sound = Mix_LoadWAV(soundCfg.m_FileName.c_str());
+		AssertReturnIf(!newSound.m_Sound, false, "Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
+
+		m_SoundContainer.emplace(id, std::move(newSound));
 	}
 
 	return true;
@@ -65,18 +68,18 @@ Mix_Chunk* SoundContainer::GetSoundById(SoundId id)
 }
 
 // =============================================================================
-SoundContainer::SoundUnit::SoundUnit()
+SoundContainer::SoundData::SoundData()
 	: m_Sound(nullptr)
 {
 }
 
 // =============================================================================
-SoundContainer::SoundUnit::SoundUnit(Mix_Chunk* font)
+SoundContainer::SoundData::SoundData(Mix_Chunk* font)
 	: m_Sound(font)
 {
 }
 
 // =============================================================================
-SoundContainer::SoundUnit::~SoundUnit()
+SoundContainer::SoundData::~SoundData()
 {
 }

@@ -29,19 +29,19 @@ public:
 	int32_t				GetImageFramesCountById(ImageId id);
 
 private:
-	struct ImageUnit
+	struct ImageData
 	{
-		ImageUnit();
-		ImageUnit(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount);
+		ImageData();
+		ImageData(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount);
 
-		~ImageUnit();
+		~ImageData();
 
 		SDL_Texture*	m_Texture;
 		Rectangle		m_FrameRect;
 		int32_t			m_FramesCount;
 	};
 
-	std::unordered_map<ImageId, ImageUnit> m_ImagesContainer;
+	std::unordered_map<ImageId, ImageData> m_ImagesContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_IMAGECONTAINER_H_

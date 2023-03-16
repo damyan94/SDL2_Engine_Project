@@ -19,7 +19,10 @@ public:
 	~ImGuiManager();
 
 	ImGuiManager(const ImGuiManager& other) = delete;
+	ImGuiManager(ImGuiManager&& other) = delete;
+
 	ImGuiManager& operator=(const ImGuiManager& other) = delete;
+	ImGuiManager& operator=(ImGuiManager&& other) = delete;
 
 	bool				Init(const ImGuiManagerConfig& cfg);
 	void				Deinit();

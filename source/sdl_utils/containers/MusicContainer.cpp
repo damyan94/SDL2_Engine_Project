@@ -24,12 +24,15 @@ MusicContainer::~MusicContainer()
 // Mix_LoadMUS
 bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
-	for (const auto& [id, musicInfo] : cfg.m_MusicContainerConfig)
+	for (const auto& [id, musicCfg] : cfg.m_MusicContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false, "Received already exsistant music id.");
 
-		m_MusicContainer[id].m_Music = Mix_LoadMUS(musicInfo.m_FileName.c_str());
-		AssertReturnIf(!m_MusicContainer[id].m_Music, false, "Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
+		MusicData newMusic;
+		newMusic.m_Music = Mix_LoadMUS(musicCfg.m_FileName.c_str());
+		AssertReturnIf(!newMusic.m_Music, false, "Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
+
+		m_MusicContainer.emplace(id, std::move(newMusic));
 	}
 
 	return true;
@@ -65,18 +68,18 @@ Mix_Music* MusicContainer::GetMusicById(MusicId id)
 }
 
 // =============================================================================
-MusicContainer::MusicUnit::MusicUnit()
+MusicContainer::MusicData::MusicData()
 	: m_Music(nullptr)
 {
 }
 
 // =============================================================================
-MusicContainer::MusicUnit::MusicUnit(Mix_Music* music)
+MusicContainer::MusicData::MusicData(Mix_Music* music)
 	: m_Music(music)
 {
 }
 
 // =============================================================================
-MusicContainer::MusicUnit::~MusicUnit()
+MusicContainer::MusicData::~MusicData()
 {
 }

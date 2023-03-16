@@ -27,17 +27,17 @@ public:
 	Mix_Chunk*			GetSoundById(SoundId id);
 
 private:
-	struct SoundUnit
+	struct SoundData
 	{
-		SoundUnit();
-		SoundUnit(Mix_Chunk* sound);
+		SoundData();
+		SoundData(Mix_Chunk* sound);
 
-		~SoundUnit();
+		~SoundData();
 
 		Mix_Chunk*		m_Sound;
 	};
 
-	std::unordered_map<SoundId, SoundUnit> m_SoundContainer;
+	std::unordered_map<SoundId, SoundData> m_SoundContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_SOUNDCONTAINER_H_

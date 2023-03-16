@@ -3,6 +3,7 @@
 
 // C/C++ system includes
 #include <cstdint>
+#include <string>
 
 // Third-party includes
 
@@ -17,17 +18,18 @@ public:
 	Time();
 	~Time();
 
-	uint64_t			GetElapsedTimeLastCall(EUnitOfTime unit);
-	std::string			GetString() const;
-	std::string			GetStringNumbersOnly() const;
+	void				SetToNow();
 
-	void				ResetToNow();
+	uint64_t			GetAs(EUnitOfTime unit) const;
+	uint64_t			GetElapsedTimeTillNow(EUnitOfTime unit) const;
+	std::string			GetString(ETimeStringFormat format) const;
+
+public:
+	//Time since 1.1.1970 00:00:00 in microseconds
+	static Time			GetNow();
 
 private:
-	TimePoint			GetNow();
-
-private:
-	TimePoint			m_StartTime;
+	TimePoint			m_Microseconds;
 };
 
 #endif // !UTILS_TIME_TIMEPOINT_H_

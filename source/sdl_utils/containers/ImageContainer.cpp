@@ -28,20 +28,21 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 	for (const auto [id, imageCfg] : cfg.m_ImageContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false, "Received already existant image id.");
+		
+		ImageData newImage;
+		Texture::CreateTextureFromFile(imageCfg.m_FileName,	newImage.m_Texture,
+			newImage.m_FrameRect.w, newImage.m_FrameRect.h);
+		ReturnIf(!newImage.m_Texture, false);
 
-		Texture::CreateTextureFromFile(
-			imageCfg.m_FileName,
-			m_ImagesContainer[id].m_Texture,
-			m_ImagesContainer[id].m_FrameRect.w,
-			m_ImagesContainer[id].m_FrameRect.h);
-		ReturnIf(!m_ImagesContainer[id].m_Texture, false);
+		newImage.m_FramesCount = imageCfg.m_Frames;
+		AssertReturnIf(newImage.m_FramesCount < 0, false, "Received invalid frames count.");
 
-		m_ImagesContainer[id].m_FrameRect.w /= imageCfg.m_Frames;
-		m_ImagesContainer[id].m_FrameRect.x = 0;
-		m_ImagesContainer[id].m_FrameRect.y = 0;
-		m_ImagesContainer[id].m_FramesCount = imageCfg.m_Frames;
+		newImage.m_FrameRect.w /= imageCfg.m_Frames;
+		newImage.m_FrameRect.x = 0;
+		newImage.m_FrameRect.y = 0;
+		Texture::SetTextureBlendMode(newImage.m_Texture, BlendMode::BLEND);
 
-		Texture::SetTextureBlendMode(m_ImagesContainer[id].m_Texture, BlendMode::BLEND);
+		m_ImagesContainer.emplace(id, std::move(newImage));
 	}
 
 	return true;
@@ -93,7 +94,7 @@ int32_t ImageContainer::GetImageFramesCountById(ImageId id)
 }
 
 // =============================================================================
-ImageContainer::ImageUnit::ImageUnit()
+ImageContainer::ImageData::ImageData()
 	: m_Texture(nullptr)
 	, m_FrameRect(Rectangle::Undefined)
 	, m_FramesCount(0)
@@ -101,7 +102,7 @@ ImageContainer::ImageUnit::ImageUnit()
 }
 
 // =============================================================================
-ImageContainer::ImageUnit::ImageUnit(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount)
+ImageContainer::ImageData::ImageData(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount)
 	: m_Texture(texture)
 	, m_FrameRect(frameRect)
 	, m_FramesCount(framesCount)
@@ -109,6 +110,6 @@ ImageContainer::ImageUnit::ImageUnit(SDL_Texture* texture, Rectangle frameRect, 
 }
 
 // =============================================================================
-ImageContainer::ImageUnit::~ImageUnit()
+ImageContainer::ImageData::~ImageData()
 {
 }

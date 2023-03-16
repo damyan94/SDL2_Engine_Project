@@ -27,17 +27,17 @@ public:
 	Mix_Music*			GetMusicById(MusicId id);
 
 private:
-	struct MusicUnit
+	struct MusicData
 	{
-		MusicUnit();
-		MusicUnit(Mix_Music* sound);
+		MusicData();
+		MusicData(Mix_Music* sound);
 
-		~MusicUnit();
+		~MusicData();
 
 		Mix_Music*		m_Music;
 	};
 
-	std::unordered_map<MusicId, MusicUnit> m_MusicContainer;
+	std::unordered_map<MusicId, MusicData> m_MusicContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_MUSICCONTAINER_H_

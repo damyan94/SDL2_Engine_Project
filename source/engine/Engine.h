@@ -9,10 +9,10 @@
 // Own includes
 #include "utils/UtilsCommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
+#include "managers/ManagerHandler.h"
 
 // Forward declarations
 struct EngineConfig;
-class ManagerHandler;
 class App;
 
 class Engine
@@ -31,17 +31,16 @@ private:
 	void				Update();
 	void				Draw() const;
 
-	void				Sleep(int32_t elapsedTime);
+	void				Sleep();
 
 private:
 	InputEvent			m_InputEvent;
+	ManagerHandler		m_ManagerHandler;
 
-	ManagerHandler*		m_ManagerHandler;
 	App*				m_App;
 
-	TimerId				m_DrawTimerId;
-	int32_t				m_ElapsedTime;
-	int32_t				m_CurrFPS;
+	int32_t				m_ElapsedTimeMS;
+	int32_t				m_TargetFPS;
 };
 
 #endif // !ENGINE_ENGINE_H_

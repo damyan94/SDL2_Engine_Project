@@ -16,6 +16,7 @@
 struct SoundConfig
 {
 	std::string			m_FileName;
+	uint8_t				m_Volume;
 };
 
 struct SoundContainerConfig

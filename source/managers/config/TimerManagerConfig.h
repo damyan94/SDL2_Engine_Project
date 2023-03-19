@@ -6,12 +6,13 @@
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/containers/config/TimerContainerConfig.h"
 
 // Forward declarations
 
 struct TimerManagerConfig
 {
-
+	TimerContainerConfig		m_TimerContainerConfig;
 };
 
 #endif // !MANAGERS_CONFIG_TIMERMANAGERCONFIG_H_

@@ -16,7 +16,7 @@ bool ReadWriteFile::ReadFromFile(const std::string& fileName,
 	std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
-	AssertReturnIf(!inStream.is_open(), false, "Failed to open file.");
+	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
 
 	std::string readLine;
 	while (std::getline(inStream, readLine))
@@ -38,7 +38,7 @@ bool ReadWriteFile::ReadFromFile(const std::string& fileName,
 {
 	std::wifstream inStream(fileName, std::ios::in);
 	inStream.imbue(std::locale("bg_BG.UTF-8"));
-	AssertReturnIf(!inStream.is_open(), false, "Failed to open file.");
+	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
 
 	std::wstring readLine;
 	while (std::getline(inStream, readLine))
@@ -74,7 +74,7 @@ bool ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	AssertReturnIf(!outStream.is_open(), false, "Failed to open file.");
+	AssertReturnIf(!outStream.is_open(), false, "Failed to open file: " + fileName);
 
 	outStream << writeString;
 
@@ -104,7 +104,7 @@ bool ReadWriteFile::WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	AssertReturnIf(!outStream.is_open(), false, "Failed to open file.");
+	AssertReturnIf(!outStream.is_open(), false, "Failed to open file: " + fileName);
 
 	outStream << writeString;
 

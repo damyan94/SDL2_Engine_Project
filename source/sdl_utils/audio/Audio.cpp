@@ -7,76 +7,80 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "managers/AssetManager.h"
-#include "sdl_utils/containers/SoundContainer.h"
-#include "sdl_utils/containers/MusicContainer.h"
+
+static constexpr int32_t FirstFreeChannel		= -1;
+static constexpr int32_t AllChannels			= -1;
 
 // =============================================================================
-// Mix_PlayChannel
-void Audio::PlaySound(SoundId id, int32_t loops)
+int32_t Audio::PlaySound(Mix_Chunk* chunk, int32_t loops)
 {
-	Mix_PlayChannel(Audio::FIRST_FREE_CHANNEL, g_AssetManager->GetSoundContainer()->GetSoundById(id), loops);
+	return Mix_PlayChannel(FirstFreeChannel, chunk, loops);
 }
 
 // =============================================================================
-// Mix_Pause
-void Audio::PauseSounds()
+void Audio::TogglePauseSound(int32_t channel)
 {
-	Mix_Pause(ALL_CHANNELS);
+	Mix_Pause(channel);
 }
 
 // =============================================================================
-// Mix_HaltChannel
+void Audio::TogglePauseSounds()
+{
+	Mix_Pause(AllChannels);
+}
+
+// =============================================================================
+void Audio::StopSound(int32_t channel)
+{
+	Mix_HaltChannel(channel);
+}
+
+// =============================================================================
 void Audio::StopSounds()
 {
-	Mix_HaltChannel(ALL_CHANNELS);
+	Mix_HaltChannel(AllChannels);
 }
 
 // =============================================================================
-// Mix_PlayMusic
-void Audio::PlayMusic(MusicId id, int32_t loops)
+void Audio::PlayMusic(Mix_Music* music, int32_t loops)
 {
-	Mix_PlayMusic(g_AssetManager->GetMusicContainer()->GetMusicById(id), loops);
+	Mix_PlayMusic(music, loops);
 }
 
 // =============================================================================
-// Mix_PauseMusic
-void Audio::PauseMusic()
+void Audio::TogglePauseMusic()
 {
 	Mix_PauseMusic();
 }
 
 // =============================================================================
-// Mix_HaltMusic
 void Audio::StopMusic()
 {
 	Mix_HaltMusic();
 }
 
 // =============================================================================
-// Mix_Volume
-void Audio::SetSoundsVolume(uint8_t volume)
+void Audio::SetSoundVolume(int32_t channel, uint8_t volume)
 {
-	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX, void(),
-		"Received invalid volume value.");
-
-	Mix_Volume(ALL_CHANNELS, volume);
+	Mix_Volume(channel, volume);
 }
 
 // =============================================================================
-// Mix_VolumeMusic
+void Audio::SetSoundsVolume(uint8_t volume)
+{
+	Mix_Volume(AllChannels, volume);
+}
+
+// =============================================================================
 void Audio::SetMusicVolume(uint8_t volume)
 {
-	AssertReturnIf(volume < VOLUME_ZERO || volume > VOLUME_MAX, void(),
-		"Received invalid volume value.");
-
 	Mix_VolumeMusic(volume);
 }
 
 // =============================================================================
-uint8_t Audio::GetSoundsVolume()
+uint8_t Audio::GetSoundVolume(int32_t channel)
 {
-	return Mix_Volume(ALL_CHANNELS, -1);
+	return Mix_Volume(channel, -1);
 }
 
 // =============================================================================
@@ -86,15 +90,25 @@ uint8_t Audio::GetMusicVolume()
 }
 
 // =============================================================================
-// Mix_PlayingMusic
+bool Audio::IsSoundPlaying(int32_t channel)
+{
+	return Mix_Playing(channel);
+}
+
+// =============================================================================
+bool Audio::IsSoundPaused(int32_t channel)
+{
+	return Mix_Paused(channel);
+}
+
+// =============================================================================
 bool Audio::IsMusicPlaying()
 {
 	return Mix_PlayingMusic();
 }
 
 // =============================================================================
-// Mix_PausedMusic
-bool Audio::isMusicPaused()
+bool Audio::IsMusicPaused()
 {
 	return Mix_PausedMusic();
 }

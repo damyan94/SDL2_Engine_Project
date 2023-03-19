@@ -1,22 +1,32 @@
-#ifndef ASSET_DRAWMANAGER_H_
-#define ASSET_DRAWMANAGER_H_
+#ifndef MANAGERS_ASSETMANAGER_H_
+#define MANAGERS_ASSETMANAGER_H_
 
 // C/C++ system includes
 
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "sdl_utils/input/InputEvent.h"
+#include "managers/CommonIncludes.h"
+
+#include "defines/id/ImageId.h"
+#include "defines/id/TextId.h"
+#include "defines/id/FontId.h"
+
+#include "sdl_utils/containers/image_container/ImageContainer.h"
+#include "sdl_utils/containers/text_container/TextContainer.h"
+#include "sdl_utils/containers/font_container/FontContainer.h"
+#include "sdl_utils/containers/sound_container/SoundContainer.h"
+#include "sdl_utils/containers/music_container/MusicContainer.h"
 
 // Forward declarations
 struct AssetManagerConfig;
-class ImageContainer;
-class FontContainer;
-class SoundContainer;
-class MusicContainer;
 
 class AssetManager
+	: public ImageContainer
+	, public FontContainer
+	, public TextContainer
+	, public SoundContainer
+	, public MusicContainer
 {
 public:
 	AssetManager();
@@ -30,20 +40,8 @@ public:
 
 	bool				Init(const AssetManagerConfig& cfg);
 	void				Deinit();
-	void				Update(int32_t dt);
-
-	ImageContainer*		GetImageContainer() const;
-	FontContainer* 		GetFontContainer() const;
-	SoundContainer* 	GetSoundContainer() const;
-	MusicContainer*		GetMusicContainer() const;
-
-private:
-	ImageContainer*		m_ImageContainer;
-	FontContainer*		m_FontContainer;
-	SoundContainer*		m_SoundContainer;
-	MusicContainer*		m_MusicContainer;
 };
 
 extern AssetManager* g_AssetManager;
 
-#endif // !ASSET_DRAWMANAGER_H_
+#endif // !MANAGERS_ASSETMANAGER_H_

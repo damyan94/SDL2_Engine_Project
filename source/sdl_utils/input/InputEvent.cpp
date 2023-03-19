@@ -7,7 +7,7 @@
 #include <SDL_events.h>
 
 // Own includes
-#include "utils/others/CodeReadabilityDefines.h"
+#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 InputEvent::InputEvent()

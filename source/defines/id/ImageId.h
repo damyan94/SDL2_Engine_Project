@@ -10,7 +10,6 @@
 
 // Forward declarations
 
-//TODO Maybe move this to .cfg file
 enum class ImageId
 	: int32_t
 {

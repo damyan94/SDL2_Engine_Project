@@ -2,6 +2,7 @@
 #include "sdl_utils/SDLLoader.h"
 
 // C/C++ system includes
+#include <string>
 
 // Third-party includes
 #include <SDL.h>
@@ -10,7 +11,7 @@
 #include <SDL_mixer.h>
 
 // Own includes
-#include "utils/others/CodeReadabilityDefines.h"
+#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 bool SDLLoader::Init()

@@ -6,7 +6,8 @@
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
+#include "managers/CommonIncludes.h"
+
 #include "sdl_utils/input/InputEvent.h"
 
 // Forward declarations

@@ -8,8 +8,8 @@
 // Own includes
 
 // =============================================================================
-const Point Point::Zero = Point(0, 0);
-const Point Point::Undefined = Point(0xFFFFFFFF, 0xFFFFFFFF);
+const Point Point::Zero			= Point(0, 0);
+const Point Point::Undefined	= Point(0xFFFFFFFF, 0xFFFFFFFF);
 
 // =============================================================================
 Point::Point()
@@ -19,14 +19,14 @@ Point::Point()
 }
 
 // =============================================================================
-Point::~Point()
+Point::Point(int32_t posX, int32_t posY)
+	: x(posX)
+	, y(posY)
 {
 }
 
 // =============================================================================
-Point::Point(int32_t posX, int32_t posY)
-	: x(posX)
-	, y(posY)
+Point::~Point()
 {
 }
 

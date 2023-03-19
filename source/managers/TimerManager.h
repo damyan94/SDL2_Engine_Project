@@ -6,13 +6,15 @@
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "sdl_utils/input/InputEvent.h"
+#include "managers/CommonIncludes.h"
+#include "utils/time/Time.h"
+#include "sdl_utils/containers/timer_container/TimerContainer.h"
 
 // Forward declarations
 struct TimerManagerConfig;
 
 class TimerManager
+	: public TimerContainer
 {
 public:
 	TimerManager();
@@ -26,38 +28,13 @@ public:
 
 	bool				Init(const TimerManagerConfig& cfg);
 	void				Deinit();
-	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
 
+	void				StartTimer(TimerId id, int64_t interval, ETimerType type);
+	void				StartTimer(int64_t interval, ETimerType type);
 	void				StartGlobalTimer();
 
-	void				StartTimer(TimerId& outId, int64_t interval, ETimerType type);
-	void				DestroyTimer(TimerId id);
-
-	void				SetPauseTimer(TimerId id, bool paused);
-
-	bool				IsTimerTicked(TimerId id);
-	bool				IsTimerPaused(TimerId id) const;
-	bool				DoesTimerExist(TimerId id) const;
-
 private:
-	TimerId				GetNextFreeId();
-
-private:
-	struct TimerData
-	{
-		TimerData();
-		~TimerData();
-
-		ETimerType		m_TimerType;
-		int64_t			m_Interval;
-		int64_t			m_Remaining;
-		bool			m_Ticked;
-		bool			m_Paused;
-	};
-
-	std::unordered_map<TimerId, TimerData> m_TimerContainer;
-	TimerId				m_NextUniqueId;
 	Time				m_GlobalTime;
 };
 

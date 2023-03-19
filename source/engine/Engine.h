@@ -2,12 +2,11 @@
 #define ENGINE_ENGINE_H_
 
 // C/C++ system includes
-#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
+#include "utils/CommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
 #include "managers/ManagerHandler.h"
 

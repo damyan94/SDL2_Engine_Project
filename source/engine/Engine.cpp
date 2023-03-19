@@ -1,5 +1,6 @@
 // Corresponding header
 #include "engine/Engine.h"
+#include "engine/config/EngineConfig.h"
 
 // C/C++ system includes
 #include <thread>
@@ -7,10 +8,9 @@
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "sdl_utils/SDLUtilsCommonIncludes.h"
-#include "managers/ManagersDefines.h"
-#include "engine/config/EngineConfig.h"
+#include "managers/CommonIncludes.h"
+#include "utils/time/Time.h"
+#include "sdl_utils/SDLLoader.h"
 #include "app/App.h"
 
 // =============================================================================
@@ -32,12 +32,14 @@ bool Engine::Init(const EngineConfig& cfg)
 {
 	srand((uint32_t)time(nullptr));
 
+	ReturnIf(!SDLLoader::Init(), false);
+
 	ReturnIf(!m_ManagerHandler.Init(cfg.m_ManagerHandlerConfig), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
 	m_App = new App;
 	AssertReturnIf(!m_App, false, "Failed to allocate memory.");
-	ReturnIf(!m_App->Init(), false);
+	ReturnIf(!m_App->Init(cfg.m_AppConfig), false);
 
 	m_TargetFPS = 50;
 
@@ -50,6 +52,7 @@ void Engine::Deinit()
 	m_App->Deinit();
 	m_InputEvent.Deinit();
 	m_ManagerHandler.Deinit();
+	SDLLoader::Deinit();
 }
 
 // =============================================================================
@@ -78,9 +81,6 @@ void Engine::RunApplication()
 {
 	Time clock;
 
-	Update();
-	Draw();
-
 	bool running = true;
 	while (running)
 	{
@@ -90,7 +90,6 @@ void Engine::RunApplication()
 			{
 				running = false;
 			}
-
 			HandleEvent();
 		}
 

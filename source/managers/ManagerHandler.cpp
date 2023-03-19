@@ -1,12 +1,16 @@
 // Corresponding header
 #include "managers/ManagerHandler.h"
+#include "managers/config/ManagerHandlerConfig.h"
 
 // C/C++ system includes
 
 // Third-party includes
 
 // Own includes
-#include "managers/config/ManagerHandlerConfig.h"
+#include "managers/DrawManager.h"
+#include "managers/AssetManager.h"
+#include "managers/TimerManager.h"
+#include "managers/ImGuiManager.h"
 
 // =============================================================================
 ManagerHandler::ManagerHandler()
@@ -61,8 +65,7 @@ void ManagerHandler::HandleEvent(const InputEvent& e)
 // =============================================================================
 void ManagerHandler::Update(int32_t dt)
 {
-	g_AssetManager->Update(dt);
-	g_DrawManager->Update(dt);
+	g_DrawManager->ClearScreen();
 	g_TimerManager->Update(dt);
 }
 
@@ -70,5 +73,5 @@ void ManagerHandler::Update(int32_t dt)
 void ManagerHandler::Draw() const
 {
 	g_ImGuiManager->Draw();
-	g_DrawManager->Draw();
+	g_DrawManager->FinishFrame();
 }

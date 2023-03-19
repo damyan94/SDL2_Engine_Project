@@ -7,7 +7,6 @@
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsDefines.h"
 
 // Forward declarations
 

@@ -8,7 +8,7 @@
 
 // Own includes
 //TODO Refactor all this temporary stuff
-#include "sdl_utils/Renderer.h"
+#include "sdl_utils/drawing/Renderer.h"
 #include "managers/DrawManager.h"
 
 // Point
@@ -16,7 +16,7 @@
 void SDLDrawing::DrawPoint(int32_t x, int32_t y)
 {
 	Point point(x, y);
-	SDL_RenderDrawPoint(g_DrawManager->GetRenderer()->GetBaseObject(), point.x, point.y);
+	SDL_RenderDrawPoint(g_DrawManager->GetRenderer()->GetSDLRenderer(), point.x, point.y);
 }
 
 // =============================================================================
@@ -35,7 +35,7 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2)
 {
 	Point point1(x1, y1);
 	Point point2(x2, y2);
-	SDL_RenderDrawLine(g_DrawManager->GetRenderer()->GetBaseObject(), point1.x, point1.y,
+	SDL_RenderDrawLine(g_DrawManager->GetRenderer()->GetSDLRenderer(), point1.x, point1.y,
 		point2.x, point2.y);
 }
 
@@ -55,7 +55,7 @@ void SDLDrawing::DrawLine(int32_t x1, int32_t y1, int32_t x2, int32_t y2,
 void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderDrawRect(g_DrawManager->GetRenderer()->GetBaseObject(), &sdlRect);
+	SDL_RenderDrawRect(g_DrawManager->GetRenderer()->GetSDLRenderer(), &sdlRect);
 }
 
 // =============================================================================
@@ -74,7 +74,7 @@ void SDLDrawing::DrawRectangle(int32_t x, int32_t y, int32_t w, int32_t h,
 void SDLDrawing::DrawFilledRectangle(int32_t x, int32_t y, int32_t w, int32_t h)
 {
 	SDL_Rect sdlRect{ x, y, w, h };
-	SDL_RenderFillRect(g_DrawManager->GetRenderer()->GetBaseObject(), &sdlRect);
+	SDL_RenderFillRect(g_DrawManager->GetRenderer()->GetSDLRenderer(), &sdlRect);
 }
 
 // =============================================================================
@@ -99,7 +99,7 @@ void SDLDrawing::DrawCircle(int32_t centreX, int32_t centreY, int32_t radius)
 	int32_t tx = 1;
 	int32_t ty = 1;
 	int32_t error = (tx - diameter);
-	auto renderer = g_DrawManager->GetRenderer()->GetBaseObject();
+	auto renderer = g_DrawManager->GetRenderer()->GetSDLRenderer();
 
 	while (x >= y)
 	{
@@ -153,7 +153,7 @@ void SDLDrawing::DrawFilledCircle(int32_t centreX, int32_t centreY,
 			int32_t dy = radius - j; // vertical offset
 			if (dx * dx + dy * dy <= radius * radius)
 			{
-				SDL_RenderDrawPoint(g_DrawManager->GetRenderer()->GetBaseObject(),
+				SDL_RenderDrawPoint(g_DrawManager->GetRenderer()->GetSDLRenderer(),
 					centreX + dx, centreY + dy);
 			}
 		}

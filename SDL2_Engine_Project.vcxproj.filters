@@ -24,40 +24,40 @@
     <ClCompile Include="source\app\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\Renderer.cpp">
+    <ClCompile Include="source\sdl_utils\drawing\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\sdl_utils\SDLLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\Texture.cpp">
+    <ClCompile Include="source\sdl_utils\drawing\Texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\Window.cpp">
+    <ClCompile Include="source\sdl_utils\drawing\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\sdl_utils\audio\Audio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\FontContainer.cpp">
+    <ClCompile Include="source\sdl_utils\containers\font_container\FontContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\ImageContainer.cpp">
+    <ClCompile Include="source\sdl_utils\containers\image_container\ImageContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\MusicContainer.cpp">
+    <ClCompile Include="source\sdl_utils\containers\music_container\MusicContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\containers\SoundContainer.cpp">
+    <ClCompile Include="source\sdl_utils\containers\sound_container\SoundContainer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\drawing\DrawObject.cpp">
+    <ClCompile Include="source\components\drawing\DrawObject.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\drawing\Image.cpp">
+    <ClCompile Include="source\components\drawing\Image.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\sdl_utils\drawing\Text.cpp">
+    <ClCompile Include="source\components\drawing\Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\sdl_utils\input\InputEvent.cpp">
@@ -78,13 +78,10 @@
     <ClCompile Include="source\utils\time\Time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\utils\time\Timer.cpp">
+    <ClCompile Include="source\components\time\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="source\defines\consts\GlobalConstants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\utils\input_output\ReadWriteFile.cpp">
@@ -117,9 +114,6 @@
     <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\utils\time\UtilsDefines.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\managers\DrawManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -147,12 +141,54 @@
     <ClCompile Include="source\engine\EngineConfigLoaderUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\managers\AudioManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utils\drawing\DrawParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\text_container\TextContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\font_container\FontData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\image_container\ImageData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\music_container\MusicData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\sound_container\SoundData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\text_container\TextData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\timer_container\TimerContainer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\timer_container\TimerData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\audio\AudioObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\audio\Sound.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\audio\Music.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utils\audio\AudioParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\drawing\DynamicText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\defines\consts\GlobalConstants.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h">
@@ -452,40 +488,40 @@
     <ClInclude Include="source\app\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\Renderer.h">
+    <ClInclude Include="source\sdl_utils\drawing\Renderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\SDLLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\Texture.h">
+    <ClInclude Include="source\sdl_utils\drawing\Texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\Window.h">
+    <ClInclude Include="source\sdl_utils\drawing\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\audio\Audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\FontContainer.h">
+    <ClInclude Include="source\sdl_utils\containers\font_container\FontContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\ImageContainer.h">
+    <ClInclude Include="source\sdl_utils\containers\image_container\ImageContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\MusicContainer.h">
+    <ClInclude Include="source\sdl_utils\containers\music_container\MusicContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\SoundContainer.h">
+    <ClInclude Include="source\sdl_utils\containers\sound_container\SoundContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\drawing\DrawObject.h">
+    <ClInclude Include="source\components\drawing\DrawObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\drawing\Image.h">
+    <ClInclude Include="source\components\drawing\Image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\drawing\Text.h">
+    <ClInclude Include="source\components\drawing\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\input\EventDefines.h">
@@ -509,7 +545,7 @@
     <ClInclude Include="source\utils\time\Time.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\utils\time\Timer.h">
+    <ClInclude Include="source\components\time\Timer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\utils\others\RandomNumberGenerator.h">
@@ -548,10 +584,10 @@
     <ClInclude Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\utils\UtilsDefines.h">
+    <ClInclude Include="source\utils\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\utils\UtilsCommonIncludes.h">
+    <ClInclude Include="source\utils\CommonIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\managers\DrawManager.h">
@@ -566,19 +602,16 @@
     <ClInclude Include="source\utils\input_output\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\utils\others\CodeReadabilityDefines.h">
+    <ClInclude Include="source\utils\others\CodeReadability.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\utils\input_output\Assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\SDLUtilsCommonIncludes.h">
+    <ClInclude Include="source\sdl_utils\CommonIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\managers\ManagersDefines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\sdl_utils\SDLUtilsDefines.h">
+    <ClInclude Include="source\sdl_utils\Defines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\config\EngineConfig.h">
@@ -617,10 +650,10 @@
     <ClInclude Include="source\sdl_utils\containers\config\MusicContainerConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\config\WindowConfig.h">
+    <ClInclude Include="source\sdl_utils\drawing\config\WindowConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\sdl_utils\config\RendererConfig.h">
+    <ClInclude Include="source\sdl_utils\drawing\config\RendererConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\managers\ImGuiManager.h">
@@ -630,6 +663,69 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\engine\EngineConfigLoaderUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\AudioManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\config\AudioManagerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\drawing\DrawParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\defines\id\TextId.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\text_container\TextContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\TextContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\font_container\FontData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\image_container\ImageData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\music_container\MusicData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\sound_container\SoundData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\text_container\TextData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\CommonIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\managers\Defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\timer_container\TimerContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\timer_container\TimerData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\sdl_utils\containers\config\TimerContainerConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\audio\AudioObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\audio\Sound.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\audio\Music.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\audio\AudioParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\drawing\DynamicText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

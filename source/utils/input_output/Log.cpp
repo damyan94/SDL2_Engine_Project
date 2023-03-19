@@ -9,7 +9,7 @@
 // Third-party includes
 
 // Own includes
-#include "utils/others/CodeReadabilityDefines.h"
+#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 void Log::ConsoleSetTextColor(const EConsoleTextColor color)

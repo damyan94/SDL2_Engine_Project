@@ -15,6 +15,7 @@ class RandomNumberGenerator
 public:
 	RandomNumberGenerator();
 	RandomNumberGenerator(int32_t seed);
+
 	~RandomNumberGenerator();
 
 	void				SetSeed(int32_t seed);

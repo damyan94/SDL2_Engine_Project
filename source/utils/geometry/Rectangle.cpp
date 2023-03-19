@@ -8,8 +8,8 @@
 // Own includes
 
 // =============================================================================
-const Rectangle Rectangle::Zero = Rectangle(0, 0, 0, 0);
-const Rectangle Rectangle::Undefined = Rectangle(0xFFFFFFFF, 0xFFFFFFFF, 0, 0);
+const Rectangle Rectangle::Zero			= Rectangle(0, 0, 0, 0);
+const Rectangle Rectangle::Undefined	= Rectangle(0xFFFFFFFF, 0xFFFFFFFF, 0, 0);
 
 // =============================================================================
 Rectangle::Rectangle()
@@ -21,16 +21,16 @@ Rectangle::Rectangle()
 }
 
 // =============================================================================
-Rectangle::~Rectangle()
-{
-}
-
-// =============================================================================
 Rectangle::Rectangle(int32_t posX, int32_t posY, int32_t width, int32_t height)
 	: x(posX)
 	, y(posY)
 	, w(width)
 	, h(height)
+{
+}
+
+// =============================================================================
+Rectangle::~Rectangle()
 {
 }
 

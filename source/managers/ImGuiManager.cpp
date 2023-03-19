@@ -1,5 +1,6 @@
 // Corresponding header
 #include "managers/ImGuiManager.h"
+#include "managers/config/ImGuiManagerConfig.h"
 
 // C/C++ system includes
 
@@ -9,10 +10,8 @@
 #include "imgui_impl_sdlrenderer.h"
 
 // Own includes
-#include "managers/config/ImGuiManagerConfig.h"
-
-#include "sdl_utils/Window.h"
-#include "sdl_utils/Renderer.h"
+#include "sdl_utils/drawing/Window.h"
+#include "sdl_utils/drawing/Renderer.h"
 
 #include "managers/DrawManager.h"
 
@@ -67,8 +66,8 @@ bool ImGuiManager::Init(const ImGuiManagerConfig& cfg)
 	}
 
 	// Setup Platform/Renderer backends
-	auto sdlWindow = g_DrawManager->GetWindow()->GetBaseObject();
-	auto sdlRenderer = g_DrawManager->GetRenderer()->GetBaseObject();
+	auto sdlWindow = g_DrawManager->GetWindow()->GetSDLWindow();
+	auto sdlRenderer = g_DrawManager->GetRenderer()->GetSDLRenderer();
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlWindow, sdlRenderer);
 	ImGui_ImplSDLRenderer_Init(sdlRenderer);
 

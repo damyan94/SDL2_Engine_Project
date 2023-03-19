@@ -6,15 +6,15 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/config/WindowConfig.h"
-#include "sdl_utils/config/RendererConfig.h"
+#include "sdl_utils/drawing/config/WindowConfig.h"
+#include "sdl_utils/drawing/config/RendererConfig.h"
 
 // Forward declarations
 
 struct DrawManagerConfig
 {
-	WindowConfig m_WindowConfig;
-	RendererConfig m_RendererConfig;
+	WindowConfig				m_WindowConfig;
+	RendererConfig				m_RendererConfig;
 };
 
 #endif // !MANAGERS_CONFIG_DRAWMANAGERCONFIG_H_

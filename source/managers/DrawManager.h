@@ -6,11 +6,14 @@
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "sdl_utils/input/InputEvent.h"
+#include "managers/CommonIncludes.h"
+
+#include "defines/id/ImageId.h"
+#include "defines/id/TextId.h"
 
 // Forward declarations
 struct DrawManagerConfig;
+struct DrawParameters;
 class Window;
 class Renderer;
 
@@ -28,8 +31,15 @@ public:
 
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();
-	void				Update(int32_t dt);
-	void				Draw() const;
+
+	void				ClearScreen() const;
+	void				FinishFrame() const;
+
+	void				DrawImage(ImageId id, const DrawParameters& p) const;
+	void				DrawText(TextId id, const DrawParameters& p) const;
+	void				DrawDynamicText(const String& string, const DrawParameters& p) const;
+
+	bool				IsInsideWindow(const DrawParameters& p) const;
 
 	Window*				GetWindow() const;
 	Renderer*			GetRenderer() const;

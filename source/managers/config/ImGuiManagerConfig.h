@@ -6,7 +6,7 @@
 // Third-party includes
 
 // Own includes
-#include "managers/ManagersDefines.h"
+#include "managers/Defines.h"
 
 // Forward declarations
 

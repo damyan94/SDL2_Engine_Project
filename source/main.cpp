@@ -1,12 +1,13 @@
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "utils/UtilsCommonIncludes.h"
-#include "sdl_utils/SDLLoader.h"
+#include "utils/others/CodeReadability.h"
 
 #include "engine/Engine.h"
+#include "engine/config/EngineConfig.h"
 #include "engine/EngineConfigLoader.h"
 
 #define TRACE_MEMORY_ALLOCATIONS_DEALLOCATIONS 0
@@ -39,18 +40,15 @@ void operator delete(void* p, size_t bytes) noexcept
 // =============================================================================
 int32_t main([[maybe_unused]]int32_t argC, [[maybe_unused]] char* argV[])
 {
-	ReturnIf(!SDLLoader::Init(), false);
-
-	EngineConfigLoader cfgLoader;
-	ReturnIf(!cfgLoader.Init(), EXIT_FAILURE);
+	EngineConfig* cfg = new EngineConfig;
+	ReturnIf(!EngineConfigLoader::ReadEngineConfig(*cfg), EXIT_FAILURE);
 
 	Engine app;
-	ReturnIf(!app.Init(*cfgLoader.GetConfig()), EXIT_FAILURE);
+	ReturnIf(!app.Init(*cfg), EXIT_FAILURE);
 	app.RunApplication();
 
 	app.Deinit();
-	cfgLoader.Deinit();
-	SDLLoader::Deinit();
+	SafeDelete(cfg);
 
 	return EXIT_SUCCESS;
 }

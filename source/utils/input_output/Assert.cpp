@@ -2,7 +2,6 @@
 #include "utils/input_output/Assert.h"
 
 // C/C++ system includes
-#include <chrono>
 
 #if defined WIN32 || _WIN32
 	#include <windows.h>

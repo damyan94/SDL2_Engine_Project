@@ -7,10 +7,6 @@
 // Third-party includes
 
 // Own includes
-#include "managers/DrawManager.h"
-#include "managers/AssetManager.h"
-#include "managers/TimerManager.h"
-#include "managers/ImGuiManager.h"
 
 // Forward declarations
 class InputEvent;

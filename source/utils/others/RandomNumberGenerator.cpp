@@ -7,7 +7,7 @@
 // Third-party includes
 
 // Own includes
-#include "utils/others/CodeReadabilityDefines.h"
+#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 RandomNumberGenerator::RandomNumberGenerator()

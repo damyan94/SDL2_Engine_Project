@@ -10,7 +10,6 @@
 
 // Forward declarations
 
-//TODO Maybe move this to .cfg file
 enum class SoundId
 	: int32_t
 {

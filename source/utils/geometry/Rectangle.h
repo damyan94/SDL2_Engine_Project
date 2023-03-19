@@ -14,9 +14,9 @@
 struct Rectangle
 {
 	Rectangle();
-	~Rectangle();
-
 	Rectangle(int32_t posX, int32_t posY, int32_t width, int32_t height);
+
+	~Rectangle();
 
 	bool operator==(const Rectangle& other) const;
 	bool operator!=(const Rectangle& other) const;

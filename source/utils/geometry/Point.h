@@ -13,9 +13,9 @@
 struct Point
 {
 	Point();
-	~Point();
-
 	Point(int32_t posX, int32_t posY);
+
+	~Point();
 
 	bool operator==(const Point& other) const;
 	bool operator!=(const Point& other) const;

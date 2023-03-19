@@ -12,8 +12,8 @@
 
 namespace SDLLoader
 {
-	bool Init();
-	void Deinit();
+bool Init();
+void Deinit();
 };
 
 #endif // !SDL_UTILS_SDL_LOADER_H_

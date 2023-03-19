@@ -101,6 +101,13 @@ std::string Time::GetString(ETimeStringFormat format) const
 }
 
 // =============================================================================
+String Time::GetWString(ETimeStringFormat format) const
+{
+	std::string temp = GetString(format);
+	return std::wstring(temp.begin(), temp.end());
+}
+
+// =============================================================================
 Time Time::GetNow()
 {
 	return Time();

@@ -21,6 +21,8 @@ struct MusicConfig
 
 struct MusicContainerConfig
 {
+	bool				Read();
+
 	std::unordered_map<MusicId, MusicConfig> m_MusicContainerConfig;
 };
 

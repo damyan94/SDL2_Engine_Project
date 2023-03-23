@@ -35,11 +35,18 @@ bool IsEnumValueValid(EnumType value)
 		"\nReason: " __VA_ARGS__
 #else
 	#define __ASSERT_INFO(__Condition, ...)\
+		"Check: " #__Condition\
 		"File: " __FILE__\
 		"\nFunction: " __FUNCTION__\
 		"\nLine: " _STRINGIZE(__LINE__)\
 		"\nReason: " __VA_ARGS__
 #endif // !_DEBUG
+
+#ifdef _CONFIG_ERROR_INFO
+	#undef _CONFIG_ERROR_INFO
+#endif
+
+#define _CONFIG_ERROR_INFO(__File, __Line)	"Config file corrupted: " + __File + "; Line: " + std::to_string(__Line + 1)
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================
@@ -78,6 +85,7 @@ enum class ETimeStringFormat
 	, Count
 };
 
+// Gotta be careful with this one in IsEnumValueValid<>()
 enum class EConsoleTextColor
 	: int16_t
 {
@@ -91,7 +99,7 @@ enum class EConsoleTextColor
 	, Magenta	= 95
 	, Cyan		= 96
 	, White		= 97
-	, Count		= 10 // Gotta be careful with this one in IsEnumValueValid<>()
+	, Count		= 10
 };
 
 enum class EWriteMode

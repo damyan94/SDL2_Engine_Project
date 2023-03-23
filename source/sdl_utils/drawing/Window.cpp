@@ -8,6 +8,7 @@
 #include <SDL_video.h>
 
 // Own includes
+#include "sdl_utils/Defines.h"
 
 // =============================================================================
 Window::Window()
@@ -21,7 +22,6 @@ Window::~Window()
 }
 
 // =============================================================================
-// SDL_CreateWindow
 bool Window::Init(const WindowConfig& cfg)
 {
 	m_Window = SDL_CreateWindow(
@@ -39,7 +39,6 @@ bool Window::Init(const WindowConfig& cfg)
 }
 
 // =============================================================================
-// SDL_DestroyWindow
 void Window::Deinit()
 {
 	if (m_Window)
@@ -64,7 +63,7 @@ bool Window::IsMinimized() const
 {
 	int32_t flags = SDL_GetWindowFlags(m_Window);
 
-	return flags & SDL_WindowFlags::SDL_WINDOW_MINIMIZED;
+	return flags & (int32_t)EWindowFlags::Minimized;
 }
 
 // =============================================================================

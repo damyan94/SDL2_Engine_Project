@@ -44,17 +44,18 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 			"Received already existant image id.");
 
 		ImageData newImageData;
-		Texture::CreateTextureFromFile(
+
+		ImageTextureParameters inOutParams{
 			imageCfg.m_FileName,
-			newImageData.m_Texture,
 			newImageData.m_FrameRect.w,
-			newImageData.m_FrameRect.h);
+			newImageData.m_FrameRect.h
+		};
+		Texture::CreateTextureFromFile(newImageData.m_Texture, inOutParams);
 		ReturnIf(!newImageData.m_Texture, false);
 
 		newImageData.m_FramesCount = imageCfg.m_Frames;
-		AssertReturnIf(newImageData.m_FramesCount < 0, false,
-			"Received invalid frames count.");
-
+		newImageData.m_FrameRect.w = inOutParams.m_Width;
+		newImageData.m_FrameRect.h = inOutParams.m_Height;
 		newImageData.m_FrameRect.w /= imageCfg.m_Frames;
 		newImageData.m_FrameRect.x = 0;
 		newImageData.m_FrameRect.y = 0;

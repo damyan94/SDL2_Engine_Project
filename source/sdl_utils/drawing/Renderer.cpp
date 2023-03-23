@@ -6,6 +6,7 @@
 
 // Third-party includes
 #include <SDL_render.h>
+#include <SDL_hints.h>
 
 // Own includes
 #include "utils/drawing/DrawParameters.h"
@@ -27,14 +28,27 @@ Renderer::~Renderer()
 // =============================================================================
 bool Renderer::Init(SDL_Window* window, const RendererConfig& cfg)
 {
+	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"), false,
+		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
+
+#if defined WIN32 || _WIN32
+	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_DRIVER, "direct3d"), false,
+		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
+
+#else //if defined OS_LINUX || LINUX || UNIX
+	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_DRIVER, "opengl"), false,
+		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
+
+#endif // !WIN32 || _WIN32
+
 	m_Renderer = SDL_CreateRenderer(window, -1, cfg.m_Flags);
 	AssertReturnIf(!m_Renderer, false, "SDL_CreateRenderer() failed: " + std::string(SDL_GetError()));
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawBlendMode(m_Renderer, SDL_BlendMode::SDL_BLENDMODE_BLEND),
 		false, "SDL_SetRenderDrawBlendMode() failed: " + std::string(SDL_GetError()));
 
-	SetDrawColor(cfg.m_Color);
-	m_DefaultDrawColor = cfg.m_Color;
+	SetDrawColor(cfg.m_DrawColor);
+	m_DefaultDrawColor = cfg.m_DrawColor;
 
 	return true;
 }
@@ -87,14 +101,22 @@ void Renderer::RenderTexture(SDL_Texture* texture, const DrawParameters& p)
 	const SDL_Rect dst{ p.m_Pos.x, p.m_Pos.y, p.m_Width, p.m_Height };
 	const SDL_Point cntr{ p.m_RotationCenter.x, p.m_RotationCenter.y };
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer,texture,
-		&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
-		void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
-}
+	if (p.m_Opacity == Constants::FullOpacity)
+	{
+		AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, texture,
+			&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
+			void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
+	}
+	else
+	{
+		Texture::SetTextureAlphaMod(texture, p.m_Opacity);
 
-// =============================================================================
-void Renderer::RenderDynamicText(const String& string, const DrawParameters& p)
-{
+		AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, texture,
+			&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
+			void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
+
+		Texture::SetTextureAlphaMod(texture, Constants::FullOpacity);
+	}
 }
 
 // =============================================================================

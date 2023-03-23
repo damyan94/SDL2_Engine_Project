@@ -42,20 +42,23 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color)
 	AssertReturnIf(!DoesAssetExist(id), false,
 		"Received already unexistant text id.");
 
-	auto& textData = m_TextsContainer.find(id)->second;
-	textData.m_FontId = fontId;
-	textData.m_TextColor = color;
+	TextData& textData			= m_TextsContainer.find(id)->second;
+	textData.m_FontId			= fontId;
+	textData.m_TextColor		= color;
 
 	Texture::DestroyTexture(textData.m_Texture);
 
-	Texture::CreateTextureFromText(
+	TextTextureParameters inOutParams{
 		textData.m_String,
-		textData.m_TextColor,
 		g_AssetManager->GetFontData(textData.m_FontId).m_Font,
-		textData.m_Texture,
-		textData.m_FrameRect.w,
-		textData.m_FrameRect.h);
+		textData.m_TextColor,
+		0,
+		0
+	};
+	Texture::CreateTextureFromText(textData.m_Texture, inOutParams);
 	ReturnIf(!textData.m_Texture, false);
+
+	Texture::SetTextureBlendMode(textData.m_Texture, EBlendMode::Blend);
 
 	return true;
 }
@@ -80,25 +83,26 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 			"Received already existant text id.");
 
 		TextData newTextData;
-		Texture::CreateTextureFromText(
+
+		TextTextureParameters inOutParams{
 			textCfg.m_String,
-			textCfg.m_TextColor,
 			g_AssetManager->GetFontData(textCfg.m_FontId).m_Font,
-			newTextData.m_Texture,
-			newTextData.m_FrameRect.w,
-			newTextData.m_FrameRect.h);
+			textCfg.m_TextColor,
+			0,
+			0
+		};
+		Texture::CreateTextureFromText(newTextData.m_Texture, inOutParams);
 		ReturnIf(!newTextData.m_Texture, false);
+
+		Texture::SetTextureBlendMode(newTextData.m_Texture, EBlendMode::Blend);
 
 		newTextData.m_FrameRect.x	= 0;
 		newTextData.m_FrameRect.y	= 0;
+		newTextData.m_FrameRect.w	= inOutParams.m_Width;
+		newTextData.m_FrameRect.h	= inOutParams.m_Height;
 		newTextData.m_String		= textCfg.m_String;
 		newTextData.m_FontId		= textCfg.m_FontId;
-		AssertReturnIf(!IsEnumValueValid<FontId>(newTextData.m_FontId), false,
-			"Received invalid font id.");
-
 		newTextData.m_TextColor		= textCfg.m_TextColor;
-
-		Texture::SetTextureBlendMode(newTextData.m_Texture, EBlendMode::Blend);
 
 		m_TextsContainer.emplace(id, newTextData);
 	}

@@ -13,6 +13,8 @@
 
 struct DrawManagerConfig
 {
+	bool						Read();
+
 	WindowConfig				m_WindowConfig;
 	RendererConfig				m_RendererConfig;
 };

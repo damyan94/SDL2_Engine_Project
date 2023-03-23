@@ -7,8 +7,8 @@
 
 // Own includes
 #include "utils/CommonIncludes.h"
-#include "defines/id/SoundId.h"
 #include "components/audio/AudioObject.h"
+#include "defines/id/SoundId.h"
 
 // Forward declarations
 

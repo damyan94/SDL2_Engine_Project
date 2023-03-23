@@ -7,8 +7,8 @@
 
 // Own includes
 #include "sdl_utils/containers/config/ImageContainerConfig.h"
-#include "sdl_utils/containers/config/TextContainerConfig.h"
 #include "sdl_utils/containers/config/FontContainerConfig.h"
+#include "sdl_utils/containers/config/TextContainerConfig.h"
 #include "sdl_utils/containers/config/SoundContainerConfig.h"
 #include "sdl_utils/containers/config/MusicContainerConfig.h"
 
@@ -16,9 +16,11 @@
 
 struct AssetManagerConfig
 {
+	bool						Read();
+
 	ImageContainerConfig		m_ImageContainerConfig;
-	TextContainerConfig			m_TextContainerConfig;
 	FontContainerConfig			m_FontContainerConfig;
+	TextContainerConfig			m_TextContainerConfig;
 	SoundContainerConfig		m_SoundContainerConfig;
 	MusicContainerConfig		m_MusicContainerConfig;
 };

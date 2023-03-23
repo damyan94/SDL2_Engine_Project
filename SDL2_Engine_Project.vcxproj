@@ -165,15 +165,28 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\app\config\AppConfig.cpp" />
     <ClCompile Include="source\components\audio\AudioObject.cpp" />
     <ClCompile Include="source\components\audio\Sound.cpp" />
     <ClCompile Include="source\components\audio\Music.cpp" />
     <ClCompile Include="source\components\drawing\DynamicText.cpp" />
-    <ClCompile Include="source\engine\EngineConfigLoader.cpp" />
-    <ClCompile Include="source\engine\EngineConfigLoaderUtils.cpp" />
+    <ClCompile Include="source\engine\config\EngineConfig.cpp" />
+    <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp" />
     <ClCompile Include="source\managers\AudioManager.cpp" />
+    <ClCompile Include="source\managers\config\AssetManagerConfig.cpp" />
+    <ClCompile Include="source\managers\config\AudioManagerConfig.cpp" />
+    <ClCompile Include="source\managers\config\DrawManagerConfig.cpp" />
+    <ClCompile Include="source\managers\config\ImGuiManagerConfig.cpp" />
+    <ClCompile Include="source\managers\config\ManagerHandlerConfig.cpp" />
+    <ClCompile Include="source\managers\config\TimerManagerConfig.cpp" />
     <ClCompile Include="source\managers\ImGuiManager.cpp" />
     <ClCompile Include="source\managers\ManagerHandler.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\FontContainerConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\ImageContainerConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\MusicContainerConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\SoundContainerConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\TextContainerConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\containers\config\TimerContainerConfig.cpp" />
     <ClCompile Include="source\sdl_utils\containers\font_container\FontData.cpp" />
     <ClCompile Include="source\sdl_utils\containers\image_container\ImageData.cpp" />
     <ClCompile Include="source\sdl_utils\containers\music_container\MusicData.cpp" />
@@ -182,6 +195,8 @@
     <ClCompile Include="source\sdl_utils\containers\text_container\TextContainer.cpp" />
     <ClCompile Include="source\sdl_utils\containers\timer_container\TimerContainer.cpp" />
     <ClCompile Include="source\sdl_utils\containers\timer_container\TimerData.cpp" />
+    <ClCompile Include="source\sdl_utils\drawing\config\RendererConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\drawing\config\WindowConfig.cpp" />
     <ClCompile Include="source\utils\audio\AudioParameters.cpp" />
     <ClCompile Include="source\utils\drawing\DrawParameters.cpp" />
     <ClCompile Include="source\utils\input_output\Assert.cpp" />
@@ -229,10 +244,10 @@
     <ClInclude Include="source\components\audio\Sound.h" />
     <ClInclude Include="source\components\audio\Music.h" />
     <ClInclude Include="source\components\drawing\DynamicText.h" />
+    <ClInclude Include="source\defines\ConfigFilePaths.h" />
     <ClInclude Include="source\defines\id\TextId.h" />
     <ClInclude Include="source\engine\config\EngineConfig.h" />
-    <ClInclude Include="source\engine\EngineConfigLoader.h" />
-    <ClInclude Include="source\engine\EngineConfigLoaderUtils.h" />
+    <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h" />
     <ClInclude Include="source\managers\AudioManager.h" />
     <ClInclude Include="source\managers\CommonIncludes.h" />
     <ClInclude Include="source\managers\config\AssetManagerConfig.h" />

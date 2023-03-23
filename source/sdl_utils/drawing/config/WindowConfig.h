@@ -13,6 +13,8 @@
 
 struct WindowConfig
 {
+	bool				Read();
+
 	std::string			m_Name;
 	int32_t				m_PosX;
 	int32_t				m_PosY;

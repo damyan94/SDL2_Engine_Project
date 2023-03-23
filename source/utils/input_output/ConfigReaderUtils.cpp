@@ -1,5 +1,5 @@
 // Corresponding header
-#include "engine/EngineConfigLoaderUtils.h"
+#include "utils/input_output/ConfigReaderUtils.h"
 
 // C/C++ system includes
 
@@ -16,9 +16,9 @@
 * 3. Once we find it, we read from the position after the '=' sign until we reach
 * an end condition.
 * 4. These conditions are specific to the data read:
-* 4.1. Single value - break when ' ' character(RecordSeparator) is reached;
+* 4.1. Single value - break when ';' character(RecordSeparator) is reached;
 * 4.2. Value array - stop reading single value when ','(ValuesSeparator) is reached,
-* then continue reading a new value, stop reading in the array when ' ' character
+* then continue reading a new value, stop reading in the array when ';' character
 * (RecordSeparator) is reached;
 * 4.3. String - chech if string is formatted properly (enclosed in '"' characters
 * (StringWrapper)), ignore StringWrapper characters preceded by '\\' character
@@ -28,10 +28,12 @@
 
 namespace Utils
 {
-static constexpr char RecordSeparator			= ' ';
+static constexpr char RecordSeparator			= ';';
 static constexpr char ValuesSeparator			= ',';
-static constexpr char StringWrapper				= '"';
-static constexpr char StringWrapperCancelator	= '\\';
+static constexpr char DoubleQuote				= '"';
+static constexpr char Backslash					= '\\';
+static constexpr char NewLine					= 'n';
+static constexpr char Tab						= 't';
 
 // =============================================================================
 int32_t ReadInt(const std::string& source, const std::string& str)
@@ -180,32 +182,50 @@ std::string ReadString(const std::string& source, const std::string& str)
 		"Could not find the specified string inside the source string: " + str);
 
 	const size_t startPos = strStartPos + str.size() + 1;
-	AssertReturnIf(source[startPos] != StringWrapper, result,
+	AssertReturnIf(source[startPos] != DoubleQuote, result,
 		"Incorrectly formated string, missing opening quote. String name: " + str);
 
 	bool isInsideStringWrapperCharacters = false;
+	bool backslashActive = false;
 	std::string readValue;
 	for (size_t i = startPos; i < source.size(); i++)
 	{
-		const auto& currChar = source[i];
-		BreakIf(currChar == RecordSeparator && !isInsideStringWrapperCharacters);
+		auto currChar = source[i];
 
-		if (currChar == StringWrapper && !isInsideStringWrapperCharacters)
+		if (currChar == RecordSeparator && !isInsideStringWrapperCharacters)
 		{
-			isInsideStringWrapperCharacters = true;
+			break;
+		}
+
+		if (currChar == DoubleQuote && !backslashActive)
+		{
+			isInsideStringWrapperCharacters = !isInsideStringWrapperCharacters;
 			continue;
 		}
 
-		if (currChar == StringWrapper && isInsideStringWrapperCharacters)
+		if (currChar == Backslash && isInsideStringWrapperCharacters)
 		{
-			if (!readValue.empty() && readValue.back() != StringWrapperCancelator)
+			backslashActive = true;
+			continue;
+		}
+
+		if (backslashActive)
+		{
+			switch (currChar)
 			{
+			case NewLine:
+				currChar = '\n';
+				break;
+
+			case Tab:
+				currChar = '\t';
+				break;
+
+			default:
 				break;
 			}
-			else if (!readValue.empty() && readValue.back() == StringWrapperCancelator)
-			{
-				readValue.erase(readValue.back());
-			}
+
+			backslashActive = false;
 		}
 
 		readValue += currChar;
@@ -225,44 +245,59 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 		"Could not find the specified string inside the source string: " + str);
 
 	const size_t startPos = strStartPos + str.size() + 1;
-	AssertReturnIf(source[startPos] != StringWrapper, result,
+	AssertReturnIf(source[startPos] != DoubleQuote, result,
 		"Incorrectly formated string, missing opening quote. String name: " + str);
 
 	bool isInsideStringWrapperCharacters = false;
+	bool backslashActive = false;
 	std::string readValue;
 	for (size_t i = startPos; i < source.size(); i++)
 	{
-		const auto& currChar = source[i];
+		auto currChar = source[i];
+
 		BreakIf(currChar == RecordSeparator && !isInsideStringWrapperCharacters);
 
-		if (currChar == StringWrapper && !isInsideStringWrapperCharacters)
+		if (currChar == ValuesSeparator && !isInsideStringWrapperCharacters)
 		{
-			isInsideStringWrapperCharacters = true;
+			result.emplace_back(readValue);
+			readValue.clear();
 			continue;
 		}
 
-		if (currChar == StringWrapper && isInsideStringWrapperCharacters)
+		if (currChar == DoubleQuote && !backslashActive)
 		{
-			if (!readValue.empty() && readValue.back() != StringWrapperCancelator)
-			{
-				isInsideStringWrapperCharacters = false;
-				result.emplace_back(readValue);
-				readValue.clear();
-				continue;
-			}
-			else if (!readValue.empty() && readValue.back() == StringWrapperCancelator)
-			{
-				readValue.erase(readValue.back());
-			}
-		}
-
-		if (!isInsideStringWrapperCharacters &&
-			currChar == ValuesSeparator || i >= source.size() - 1)
-		{
+			isInsideStringWrapperCharacters = !isInsideStringWrapperCharacters;
 			continue;
 		}
+
+		if (currChar == Backslash && isInsideStringWrapperCharacters)
+		{
+			backslashActive = true;
+			continue;
+		}
+
+		if (backslashActive)
+		{
+			switch (currChar)
+			{
+			case NewLine:
+				currChar = '\n';
+				break;
+
+			case Tab:
+				currChar = '\t';
+				break;
+
+			default:
+				break;
+			}
+
+			backslashActive = false;
+		}
+
 		readValue += currChar;
 	}
+	result.emplace_back(readValue);
 
 	return result;
 }

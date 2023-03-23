@@ -16,48 +16,52 @@
 #include "managers/DrawManager.h"
 
 // =============================================================================
-// IMG_Load
-void Texture::CreateSurfaceFromFile(const std::string& fileName,
-	SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight)
+void Texture::CreateSurfaceFromFile(SDL_Surface*& outSurface,
+	ImageTextureParameters& inOutParams)
 {
-	outSurface = IMG_Load(fileName.c_str());
+	outSurface = IMG_Load(inOutParams.m_FileName.c_str());
+
 	AssertReturnIf(!outSurface, void(), "IMG_Load() failed: " + std::string(SDL_GetError()));
 
-	outWidth = outSurface->w;
-	outHeight = outSurface->h;
+	inOutParams.m_Width			= outSurface->w;
+	inOutParams.m_Height		= outSurface->h;
 }
 
 // =============================================================================
-// TTF_RenderText_Solid
-void Texture::CreateSurfaceFromText(const String& text, const Color& color,
-	TTF_Font* font,	SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight)
+void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
+	TextTextureParameters& inOutParams)
 {
-	//outSurface = TTF_RenderText_Blended(font, text.c_str(),
-	//	SDL_Color{ color.r, color.g, color.b, color.a });
-	outSurface = TTF_RenderUNICODE_Blended(font, reinterpret_cast<const uint16_t*>(text.c_str()),
-		SDL_Color{ color.r, color.g, color.b, color.a });
+	SDL_Color color{
+		inOutParams.m_TextColor.r,
+		inOutParams.m_TextColor.g,
+		inOutParams.m_TextColor.b,
+		inOutParams.m_TextColor.a };
+
+	outSurface = TTF_RenderUNICODE_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.m_Font),
+		(const uint16_t*)(inOutParams.m_String.c_str()), color, 0);
+
 	AssertReturnIf(!outSurface, void(), "TTF_RenderText_Blended() failed: " +
 		std::string(SDL_GetError()));
 
-	outWidth = outSurface->w;
-	outHeight = outSurface->h;
+	inOutParams.m_Width			= outSurface->w;
+	inOutParams.m_Height		= outSurface->h;
 }
 
 // =============================================================================
-// SDL_CreateTextureFromSurface
 void Texture::CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture)
 {
 	outTexture = SDL_CreateTextureFromSurface(g_DrawManager->GetRenderer()->GetSDLRenderer(), surface);
+
 	AssertReturnIf(!outTexture, void(), "SDL_CreateTextureFromSurface() failed: " +
 		std::string(SDL_GetError()));
 }
 
 // =============================================================================
-void Texture::CreateTextureFromFile(const std::string& fileName,
-	SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight)
+void Texture::CreateTextureFromFile(SDL_Texture*& outTexture,
+	ImageTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
-	CreateSurfaceFromFile(fileName, surface, outWidth, outHeight);
+	CreateSurfaceFromFile(surface, inOutParams);
 	ReturnIf(!surface, void());
 
 	CreateTextureFromSurface(surface, outTexture);
@@ -67,11 +71,11 @@ void Texture::CreateTextureFromFile(const std::string& fileName,
 }
 
 // =============================================================================
-void Texture::CreateTextureFromText(const String& text, const Color& color,
-	TTF_Font* font, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight)
+void Texture::CreateTextureFromText(SDL_Texture*& outTexture,
+	TextTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
-	CreateSurfaceFromText(text, color, font, surface, outWidth, outHeight);
+	CreateSurfaceFromText(surface, inOutParams);
 	ReturnIf(!surface, void());
 
 	CreateTextureFromSurface(surface, outTexture);
@@ -81,15 +85,13 @@ void Texture::CreateTextureFromText(const String& text, const Color& color,
 }
 
 // =============================================================================
-// SDL_SetTextureBlendMode
 void Texture::SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode)
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, static_cast<SDL_BlendMode>(blendMode)),
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, SDL_BlendMode(blendMode)),
 		void(), "SDL_SetTextureBlendMode() failed: " + std::string(SDL_GetError()));
 }
 
 // =============================================================================
-// SDL_SetTextureAlphaMod
 void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 {
 	if (alpha < Constants::ZeroOpacity)
@@ -107,7 +109,6 @@ void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 }
 
 // =============================================================================
-// SDL_FreeSurface
 void Texture::DestroySurface(SDL_Surface*& outSurface)
 {
 	ReturnIf(!outSurface, void());
@@ -117,7 +118,6 @@ void Texture::DestroySurface(SDL_Surface*& outSurface)
 }
 
 // =============================================================================
-// SDL_DestroyTexture
 void Texture::DestroyTexture(SDL_Texture*& outTexture)
 {
 	ReturnIf(!outTexture, void());

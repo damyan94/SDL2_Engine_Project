@@ -7,9 +7,9 @@
 
 // Own includes
 #include "sdl_utils/CommonIncludes.h"
+#include "components/drawing/DrawObject.h"
 #include "defines/id/TextId.h"
 #include "defines/id/FontId.h"
-#include "components/drawing/DrawObject.h"
 
 // Forward declarations
 
@@ -32,8 +32,6 @@ public:
 
 private:
 	TextId				m_TextId;
-	FontId				m_FontId;
-	Color				m_TextColor;
 };
 
 #endif // !COMPONENTS_DRAWING_TEXT_H_

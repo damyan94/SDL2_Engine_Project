@@ -9,9 +9,10 @@
 // Third-party includes
 
 // Own includes
+#include "utils/Defines.h"
+#include "utils/drawing/Color.h"
 #include "defines/id/TextId.h"
 #include "defines/id/FontId.h"
-#include "utils/Defines.h"
 
 // Forward declarations
 
@@ -24,6 +25,8 @@ struct TextConfig
 
 struct TextContainerConfig
 {
+	bool				Read();
+
 	std::unordered_map<TextId, TextConfig> m_TextContainerConfig;
 };
 

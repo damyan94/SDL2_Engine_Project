@@ -21,6 +21,8 @@ struct ImageConfig
 
 struct ImageContainerConfig
 {
+	bool				Read();
+
 	std::unordered_map<ImageId, ImageConfig> m_ImageContainerConfig;
 };
 

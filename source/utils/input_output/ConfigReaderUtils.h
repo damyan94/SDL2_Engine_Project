@@ -1,5 +1,5 @@
-#ifndef ENGINE_ENGINECONFIGLOADERUTILS_H_
-#define ENGINE_ENGINECONFIGLOADERUTILS_H_
+#ifndef UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
+#define UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
 
 // C/C++ system includes
 #include <cstdint>
@@ -24,4 +24,4 @@ std::string					ReadString(const std::string& source, const std::string& str);
 std::vector<std::string>	ReadStringArray(const std::string& source, const std::string& str, size_t size);
 } // !Utils
 
-#endif // !ENGINE_ENGINECONFIGLOADERUTILS_H_
+#endif // !UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_

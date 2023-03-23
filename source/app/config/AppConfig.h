@@ -11,7 +11,7 @@
 
 struct AppConfig
 {
-
+	bool						Read();
 };
 
 #endif // !APP_CONFIG_APPCONFIG_H_

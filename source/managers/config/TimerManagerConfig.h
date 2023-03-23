@@ -12,6 +12,8 @@
 
 struct TimerManagerConfig
 {
+	bool						Read();
+
 	TimerContainerConfig		m_TimerContainerConfig;
 };
 

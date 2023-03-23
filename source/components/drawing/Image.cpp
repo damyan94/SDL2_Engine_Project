@@ -68,7 +68,7 @@ void Image::Draw() const
 }
 
 // =============================================================================
-void Image::SetFrame(int32_t frame)
+void Image::SetCurrFrame(int32_t frame)
 {
 	AssertReturnIf(frame <= 0 || frame > m_FramesCount, void(), "Invalid frames count.");
 

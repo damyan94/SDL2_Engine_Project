@@ -13,7 +13,9 @@
 
 struct RendererConfig
 {
-	Color				m_Color;
+	bool				Read();
+
+	Color				m_DrawColor;
 	int32_t				m_Flags;
 };
 

@@ -11,6 +11,7 @@
 
 struct AudioManagerConfig
 {
+	bool				Read();
 };
 
 #endif // !MANAGERS_CONFIG_AUDIOMANAGERCONFIG_H_

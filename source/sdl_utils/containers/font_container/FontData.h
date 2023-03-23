@@ -10,16 +10,18 @@
 
 // Forward declarations
 typedef struct _TTF_Font TTF_Font;
+enum class EFontWrapAlign : int8_t;
 
 struct FontData
 {
 	FontData();
-	FontData(TTF_Font* font, uint8_t size);
+	FontData(TTF_Font* font, uint8_t size, EFontWrapAlign wrapAlign);
 
 	~FontData();
 
 	TTF_Font*			m_Font;
 	uint8_t				m_Size;
+	EFontWrapAlign		m_WrapAlign;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_

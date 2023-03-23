@@ -44,13 +44,12 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 			"Received already exsistant sound id.");
 
 		SoundData newSound;
+
 		newSound.m_Sound = Mix_LoadWAV(soundCfg.m_FileName.c_str());
 		AssertReturnIf(!newSound.m_Sound, false,
 			"Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
 
 		newSound.m_Volume = soundCfg.m_Volume;
-		AssertReturnIf(newSound.m_Volume < 0, false,
-			"Received invalid volume.");
 
 		m_SoundContainer.emplace(id, std::move(newSound));
 	}

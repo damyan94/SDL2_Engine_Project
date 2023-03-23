@@ -132,13 +132,10 @@
     <ClCompile Include="source\managers\ManagerHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\engine\EngineConfigLoader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="source\managers\ImGuiManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\engine\EngineConfigLoaderUtils.cpp">
+    <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\managers\AudioManager.cpp">
@@ -184,6 +181,54 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\components\drawing\DynamicText.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\config\EngineConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\ManagerHandlerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\config\AppConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\DrawManagerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\AssetManagerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\AudioManagerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\TimerManagerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\managers\config\ImGuiManagerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\TimerContainerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\drawing\config\WindowConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\drawing\config\RendererConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\ImageContainerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\TextContainerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\FontContainerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\SoundContainerConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\containers\config\MusicContainerConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -635,9 +680,6 @@
     <ClInclude Include="source\app\config\AppConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\engine\EngineConfigLoader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="source\sdl_utils\containers\config\SoundContainerConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -662,7 +704,7 @@
     <ClInclude Include="source\managers\config\ImGuiManagerConfig.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\engine\EngineConfigLoaderUtils.h">
+    <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\managers\AudioManager.h">
@@ -726,6 +768,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\components\drawing\DynamicText.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\defines\ConfigFilePaths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

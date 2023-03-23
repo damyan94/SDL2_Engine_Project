@@ -2,6 +2,7 @@
 #define MANAGERS_DEFINES_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 

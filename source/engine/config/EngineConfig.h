@@ -13,6 +13,8 @@
 
 struct EngineConfig
 {
+	bool						Read();
+
 	ManagerHandlerConfig		m_ManagerHandlerConfig;
 	AppConfig					m_AppConfig;
 };

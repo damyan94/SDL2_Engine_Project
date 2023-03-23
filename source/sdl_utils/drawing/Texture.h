@@ -13,15 +13,31 @@ struct SDL_Surface;
 struct SDL_Texture;
 typedef struct _TTF_Font TTF_Font;
 
+struct ImageTextureParameters
+{
+	const std::string	m_FileName;
+	int32_t				m_Width			= 0;
+	int32_t				m_Height		= 0;
+};
+
+struct TextTextureParameters
+{
+	const String		m_String;
+	const TTF_Font*		m_Font			= nullptr;
+	const Color			m_TextColor		= Colors::Black;
+	int32_t				m_Width			= 0;
+	int32_t				m_Height		= 0;
+};
+
 namespace Texture
 {
-	void CreateSurfaceFromFile(const std::string& fileName, SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight);
-	void CreateSurfaceFromText(const String& text, const Color& color, TTF_Font* font, SDL_Surface*& outSurface, int32_t& outWidth, int32_t& outHeight);
+	void CreateSurfaceFromFile(SDL_Surface*& outSurface, ImageTextureParameters& inOutParams);
+	void CreateSurfaceFromText(SDL_Surface*& outSurface, TextTextureParameters& inOutParams);
 
 	void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture);
 
-	void CreateTextureFromFile(const std::string& fileName, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight);
-	void CreateTextureFromText(const String& text, const Color& color, TTF_Font* font, SDL_Texture*& outTexture, int32_t& outWidth, int32_t& outHeight);
+	void CreateTextureFromFile(SDL_Texture*& outTexture, ImageTextureParameters& inOutParams);
+	void CreateTextureFromText(SDL_Texture*& outTexture, TextTextureParameters& inOutParams);
 
 	void SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode);
 	void SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha);

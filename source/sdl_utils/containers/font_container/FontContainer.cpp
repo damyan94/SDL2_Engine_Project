@@ -45,15 +45,17 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 			"Received already existant font id.");
 
 		FontData newFont;
+
 		newFont.m_Font = TTF_OpenFont(
 			fontCfg.m_FileName.c_str(),
 			fontCfg.m_Size);
 		AssertReturnIf(!newFont.m_Font, false,
 			"TTF_OpenFont() failed: " + std::string(SDL_GetError()));
 
-		newFont.m_Size = fontCfg.m_Size;
-		AssertReturnIf(newFont.m_Size <= 0, false,
-			"Received invalid font size.");
+		TTF_SetFontWrappedAlign(newFont.m_Font, (int32_t)fontCfg.m_WrapAlign);
+
+		newFont.m_Size				= fontCfg.m_Size;
+		newFont.m_WrapAlign			= fontCfg.m_WrapAlign;
 
 		m_FontsContainer.emplace(id, std::move(newFont));
 	}

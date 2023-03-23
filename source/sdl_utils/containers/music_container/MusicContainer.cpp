@@ -36,7 +36,6 @@ MusicData MusicContainer::GetMusicData(MusicId id) const
 }
 
 // =============================================================================
-// Mix_LoadMUS
 bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
 	for (const auto& [id, musicCfg] : cfg.m_MusicContainerConfig)
@@ -45,13 +44,12 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 			"Received already exsistant music id.");
 
 		MusicData newMusic;
+
 		newMusic.m_Music = Mix_LoadMUS(musicCfg.m_FileName.c_str());
 		AssertReturnIf(!newMusic.m_Music, false,
 			"Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
 
 		newMusic.m_Volume = musicCfg.m_Volume;
-		AssertReturnIf(newMusic.m_Volume < 0, false,
-			"Received invalid volume.");
 
 		m_MusicContainer.emplace(id, std::move(newMusic));
 	}
@@ -60,7 +58,6 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 }
 
 // =============================================================================
-// Mix_FreeMusic
 void MusicContainer::Deinit()
 {
 	for (auto& [id, music] : m_MusicContainer)

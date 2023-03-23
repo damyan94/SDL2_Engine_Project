@@ -30,7 +30,6 @@ public:
 	const Color&		GetDefaultDrawColor();
 
 	void				RenderTexture(SDL_Texture* texture, const DrawParameters& p);
-	void				RenderDynamicText(const String& string, const DrawParameters& p);
 
 	SDL_Renderer*		GetSDLRenderer() const;
 

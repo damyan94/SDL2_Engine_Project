@@ -55,8 +55,10 @@ static void _ReleaseLog(const std::string& text)
 	Log::File(fileName.c_str(), text.c_str(), EWriteMode::App);
 }
 
+namespace Assert
+{
 // =============================================================================
-void Assert::Assert(const std::string& text)
+void Assert(const std::string& text)
 {
 	_ShowMessageBox(text);
 
@@ -69,10 +71,11 @@ void Assert::Assert(const std::string& text)
 }
 
 // =============================================================================
-void Assert::Assert(bool condition, const std::string& text)
+void Assert(bool condition, const std::string& text)
 {
 	if (condition)
 	{
 		Assert(text);
 	}
 }
+} // !namespace Assert

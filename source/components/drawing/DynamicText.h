@@ -20,7 +20,7 @@ public:
 	DynamicText();
 	~DynamicText();
 
-	bool				Init(const String& text, FontId id, const Color& textColor);
+	bool				Init(const String& string, FontId id, const Color& textColor);
 	void				Deinit();
 	void				Draw() const;
 
@@ -31,8 +31,8 @@ public:
 	const Color&		GetColor() const;
 
 private:
+	String				m_String;
 	FontId				m_FontId;
-	String				m_Text;
 	Color				m_TextColor;
 
 	SDL_Texture*		m_Texture;

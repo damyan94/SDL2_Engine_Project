@@ -7,8 +7,8 @@
 
 // Own includes
 #include "utils/CommonIncludes.h"
-#include "defines/id/ImageId.h"
 #include "components/drawing/DrawObject.h"
+#include "defines/id/ImageId.h"
 
 // Forward declarations
 
@@ -23,7 +23,7 @@ public:
 	void				Deinit();
 	void				Draw() const;
 
-	void				SetFrame(int32_t frame);
+	void				SetCurrFrame(int32_t frame);
 	void				SetPrevFrame();
 	void				SetNextFrame();
 

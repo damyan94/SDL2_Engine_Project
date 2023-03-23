@@ -69,7 +69,7 @@ void DrawManager::FinishFrame() const
 // =============================================================================
 void DrawManager::DrawImage(ImageId id, const DrawParameters& p) const
 {
-	ReturnIf(!IsInsideWindow(p), void());
+	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
 
 	SDL_Texture* texture = g_AssetManager->GetImageData(id).m_Texture;
 	m_Renderer->RenderTexture(texture, p);
@@ -78,7 +78,7 @@ void DrawManager::DrawImage(ImageId id, const DrawParameters& p) const
 // =============================================================================
 void DrawManager::DrawText(TextId id, const DrawParameters& p) const
 {
-	ReturnIf(!IsInsideWindow(p), void());
+	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
 
 	SDL_Texture* texture = g_AssetManager->GetTextData(id).m_Texture;
 	m_Renderer->RenderTexture(texture, p);
@@ -87,7 +87,7 @@ void DrawManager::DrawText(TextId id, const DrawParameters& p) const
 // =============================================================================
 void DrawManager::DrawDynamicText(const String& string, const DrawParameters& p) const
 {
-	ReturnIf(!IsInsideWindow(p), void());
+	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
 
 	//TODO major refactoring needed
 	//m_Renderer->RenderTexture(texture, p);

@@ -8,7 +8,6 @@
 
 #include "engine/Engine.h"
 #include "engine/config/EngineConfig.h"
-#include "engine/EngineConfigLoader.h"
 
 #define TRACE_MEMORY_ALLOCATIONS_DEALLOCATIONS 0
 
@@ -41,14 +40,15 @@ void operator delete(void* p, size_t bytes) noexcept
 int32_t main([[maybe_unused]]int32_t argC, [[maybe_unused]] char* argV[])
 {
 	EngineConfig* cfg = new EngineConfig;
-	ReturnIf(!EngineConfigLoader::ReadEngineConfig(*cfg), EXIT_FAILURE);
+	ReturnIf(!cfg->Read(), EXIT_FAILURE);
 
 	Engine app;
 	ReturnIf(!app.Init(*cfg), EXIT_FAILURE);
+	SafeDelete(cfg);
+
 	app.RunApplication();
 
 	app.Deinit();
-	SafeDelete(cfg);
 
 	return EXIT_SUCCESS;
 }

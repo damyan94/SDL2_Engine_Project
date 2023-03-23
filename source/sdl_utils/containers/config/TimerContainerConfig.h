@@ -9,6 +9,7 @@
 // Third-party includes
 
 // Own includes
+//TODO:
 //#include "defines/id/TimerId.h"
 #include "utils/Defines.h"
 
@@ -20,6 +21,8 @@ struct TimerConfig
 
 struct TimerContainerConfig
 {
+	bool				Read();
+
 	std::unordered_map<TimerId, TimerConfig> m_TimerContainerConfig;
 };
 

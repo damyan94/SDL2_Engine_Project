@@ -2,17 +2,20 @@
 #define MANAGERS_CONFIG_IMGUIMANAGERCONFIG_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "managers/Defines.h"
 
 // Forward declarations
+enum class EImGuiStyle : int16_t;
 
 struct ImGuiManagerConfig
 {
-	EImGuiStyle m_ImGuiStyle;
+	bool				Read();
+
+	EImGuiStyle			m_ImGuiStyle;
 };
 
 #endif // !MANAGERS_CONFIG_IMGUIMANAGERCONFIG_H_

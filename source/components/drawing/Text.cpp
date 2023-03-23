@@ -12,8 +12,6 @@
 // =============================================================================
 Text::Text()
 	: m_TextId(TextId::Invalid)
-	, m_FontId(FontId::Invalid)
-	, m_TextColor(Colors::Transparent)
 {
 }
 
@@ -47,8 +45,6 @@ bool Text::Init(TextId id)
 	m_DrawParameters.m_IsVisible		= true;
 
 	m_TextId							= id;
-	m_FontId							= data.m_FontId;
-	m_TextColor							= data.m_TextColor;
 
 	return true;
 }
@@ -62,20 +58,23 @@ void Text::Deinit()
 // =============================================================================
 void Text::Draw() const
 {
-	ReturnIf(m_DrawParameters.m_Opacity <= 0 || !m_DrawParameters.m_IsVisible, void());
+	ReturnIf(m_DrawParameters.m_Opacity <= 0 || !m_DrawParameters.m_IsVisible,void());
+
 	g_DrawManager->DrawText(m_TextId, m_DrawParameters);
 }
 
 // =============================================================================
 void Text::SetFont(FontId id)
 {
-	g_AssetManager->UpdateText(m_TextId, id, m_TextColor);
+	const TextData& textData = g_AssetManager->GetTextData(m_TextId);
+	g_AssetManager->UpdateText(m_TextId, id, textData.m_TextColor);
 }
 
 // =============================================================================
 void Text::SetTextColor(const Color& textColor)
 {
-	g_AssetManager->UpdateText(m_TextId, m_FontId, textColor);
+	const TextData& textData = g_AssetManager->GetTextData(m_TextId);
+	g_AssetManager->UpdateText(m_TextId, textData.m_FontId, textColor);
 }
 
 // =============================================================================
@@ -87,5 +86,5 @@ String Text::GetString() const
 // =============================================================================
 Color Text::GetTextColor() const
 {
-	return m_TextColor;
+	return g_AssetManager->GetTextData(m_TextId).m_TextColor;
 }

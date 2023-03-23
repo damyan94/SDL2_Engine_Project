@@ -28,7 +28,6 @@ bool App::Init(const AppConfig& cfg)
 
 	text.Init(TextId::TestId);
 	text.SetPos(50, 250);
-	text.SetTextColor(Colors::Blue);
 
 	m_Logo.Init(ImageId::Logo);
 	m_Logo.SetPos(300, 50);

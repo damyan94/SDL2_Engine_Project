@@ -16,6 +16,8 @@
 
 struct ManagerHandlerConfig
 {
+	bool						Read();
+
 	DrawManagerConfig			m_DrawManagerConfig;
 	AssetManagerConfig			m_AssetManagerConfig;
 	AudioManagerConfig			m_AudioManagerConfig;

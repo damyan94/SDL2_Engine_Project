@@ -11,12 +11,10 @@
 #include "managers/CommonIncludes.h"
 #include "utils/time/Time.h"
 #include "sdl_utils/SDLLoader.h"
-#include "app/App.h"
 
 // =============================================================================
 Engine::Engine()
-	: m_App(nullptr)
-	, m_ElapsedTimeMS(0)
+	: m_ElapsedTimeMS(0)
 	, m_TargetFPS(0)
 {
 }
@@ -24,7 +22,7 @@ Engine::Engine()
 // =============================================================================
 Engine::~Engine()
 {
-	SafeDelete(m_App);
+	Deinit();
 }
 
 // =============================================================================
@@ -37,9 +35,7 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!m_ManagerHandler.Init(cfg.m_ManagerHandlerConfig), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-	m_App = new App;
-	AssertReturnIf(!m_App, false, "Failed to allocate memory.");
-	ReturnIf(!m_App->Init(cfg.m_AppConfig), false);
+	ReturnIf(!m_App.Init(cfg.m_AppConfig), false);
 
 	m_TargetFPS = 50;
 
@@ -49,30 +45,27 @@ bool Engine::Init(const EngineConfig& cfg)
 // =============================================================================
 void Engine::Deinit()
 {
-	m_App->Deinit();
-	m_InputEvent.Deinit();
-	m_ManagerHandler.Deinit();
 	SDLLoader::Deinit();
 }
 
 // =============================================================================
 void Engine::HandleEvent()
 {
-	m_App->HandleEvent(m_InputEvent);
+	m_App.HandleEvent(m_InputEvent);
 	m_ManagerHandler.HandleEvent(m_InputEvent);
 }
 
 // =============================================================================
 void Engine::Update()
 {
-	m_App->Update(m_ElapsedTimeMS);
+	m_App.Update(m_ElapsedTimeMS);
 	m_ManagerHandler.Update(m_ElapsedTimeMS);
 }
 
 // =============================================================================
 void Engine::Draw() const
 {
-	m_App->Draw();
+	m_App.Draw();
 	m_ManagerHandler.Draw();
 }
 

@@ -7,7 +7,6 @@
 
 // Own includes
 #include "sdl_utils/CommonIncludes.h"
-#include "defines/id/FontId.h"
 #include "components/drawing/DrawObject.h"
 
 // Forward declarations
@@ -20,18 +19,18 @@ public:
 	DynamicText();
 	~DynamicText();
 
-	bool				Init(const String& string, FontId id, const Color& textColor);
+	bool				Init(const std::string& string, FontId id, const Color& textColor);
 	void				Deinit();
 	void				Draw() const;
 
-	void				SetText(const String& newText);
+	void				SetText(const std::string& newText);
 	void				SetColor(const Color& newColor);
 
-	const String&		GetText() const;
+	const std::string&	GetText() const;
 	const Color&		GetColor() const;
 
 private:
-	String				m_String;
+	std::string			m_String;
 	FontId				m_FontId;
 	Color				m_TextColor;
 

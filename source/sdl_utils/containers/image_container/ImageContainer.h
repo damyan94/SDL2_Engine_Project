@@ -6,7 +6,6 @@
 // Third-party includes
 
 // Own includes
-#include "defines/id/ImageId.h"
 #include "sdl_utils/CommonIncludes.h"
 #include "sdl_utils/containers/image_container/ImageData.h"
 

@@ -9,6 +9,7 @@
 
 // =============================================================================
 DrawObject::DrawObject()
+	: m_Texture(nullptr)
 {
 }
 
@@ -21,6 +22,7 @@ DrawObject::~DrawObject()
 void DrawObject::Reset()
 {
 	m_DrawParameters.Reset();
+	m_Texture = nullptr;
 }
 
 // Getters
@@ -28,19 +30,25 @@ void DrawObject::Reset()
 // =============================================================================
 Point DrawObject::GetPos() const
 {
-	return m_DrawParameters.m_Pos;
+	return { m_DrawParameters.m_PosRect.x, m_DrawParameters.m_PosRect.y };
 }
 
 // =============================================================================
 int32_t DrawObject::GetWidth() const
 {
-	return m_DrawParameters.m_Width;
+	return m_DrawParameters.m_PosRect.w;
 }
 
 // =============================================================================
 int32_t DrawObject::GetHeight() const
 {
-	return m_DrawParameters.m_Height;
+	return m_DrawParameters.m_PosRect.h;
+}
+
+// =============================================================================
+Rectangle DrawObject::GetPosRect() const
+{
+	return m_DrawParameters.m_PosRect;
 }
 
 // =============================================================================
@@ -90,27 +98,27 @@ EFlipMode DrawObject::GetFlipMode()
 // =============================================================================
 void DrawObject::SetPos(int32_t x, int32_t y)
 {
-	m_DrawParameters.m_Pos.x = x;
-	m_DrawParameters.m_Pos.y = y;
+	m_DrawParameters.m_PosRect.x = x;
+	m_DrawParameters.m_PosRect.y = y;
 }
 
 // =============================================================================
 void DrawObject::SetPos(const Point& pos)
 {
-	m_DrawParameters.m_Pos.x = pos.x;
-	m_DrawParameters.m_Pos.y = pos.y;
+	m_DrawParameters.m_PosRect.x = pos.x;
+	m_DrawParameters.m_PosRect.y = pos.y;
 }
 
 // =============================================================================
 void DrawObject::SetWidth(int32_t width)
 {
-	m_DrawParameters.m_Width = width;
+	m_DrawParameters.m_PosRect.w = width;
 }
 
 // =============================================================================
 void DrawObject::SetHeight(int32_t height)
 {
-	m_DrawParameters.m_Height = height;
+	m_DrawParameters.m_PosRect.h = height;
 }
 
 // =============================================================================
@@ -160,51 +168,51 @@ void DrawObject::SetFlipMode(EFlipMode mode)
 // =============================================================================
 void DrawObject::MoveUp(int32_t delta)
 {
-	m_DrawParameters.m_Pos.y -= delta;
+	m_DrawParameters.m_PosRect.y -= delta;
 }
 
 // =============================================================================
 void DrawObject::MoveDown(int32_t delta)
 {
-	m_DrawParameters.m_Pos.y += delta;
+	m_DrawParameters.m_PosRect.y += delta;
 }
 
 // =============================================================================
 void DrawObject::MoveLeft(int32_t delta)
 {
-	m_DrawParameters.m_Pos.x -= delta;
+	m_DrawParameters.m_PosRect.x -= delta;
 }
 
 // =============================================================================
 void DrawObject::MoveRight(int32_t delta)
 {
-	m_DrawParameters.m_Pos.x += delta;
+	m_DrawParameters.m_PosRect.x += delta;
 }
 
 // =============================================================================
 void DrawObject::ChangeWidthBy(int32_t delta)
 {
-	m_DrawParameters.m_Width += delta;
+	m_DrawParameters.m_PosRect.w += delta;
 }
 
 // =============================================================================
 void DrawObject::ChangeHeightBy(int32_t delta)
 {
-	m_DrawParameters.m_Height += delta;
+	m_DrawParameters.m_PosRect.h += delta;
 }
 
 // =============================================================================
 void DrawObject::Resize(int32_t width, int32_t height)
 {
-	m_DrawParameters.m_Width = width;
-	m_DrawParameters.m_Height = height;
+	m_DrawParameters.m_PosRect.w = width;
+	m_DrawParameters.m_PosRect.h = height;
 }
 
 // =============================================================================
 void DrawObject::Resize(int32_t percentage)
 {
-	m_DrawParameters.m_Width = m_DrawParameters.m_Width * percentage / 100;
-	m_DrawParameters.m_Height = m_DrawParameters.m_Height * percentage / 100;
+	m_DrawParameters.m_PosRect.w = m_DrawParameters.m_PosRect.w * percentage / 100;
+	m_DrawParameters.m_PosRect.h = m_DrawParameters.m_PosRect.h * percentage / 100;
 }
 
 // =============================================================================
@@ -260,6 +268,6 @@ bool DrawObject::GetIsVisible() const
 // =============================================================================
 bool DrawObject::ContainsPoint(const Point& point) const
 {
-	return Rectangle(m_DrawParameters.m_Pos.x, m_DrawParameters.m_Pos.y,
-		m_DrawParameters.m_Width, m_DrawParameters.m_Height).IsPointInside(point);
+	const Rectangle& posRect = m_DrawParameters.m_PosRect;
+	return Rectangle(posRect.x, posRect.y, posRect.w, posRect.h).IsPointInside(point);
 }

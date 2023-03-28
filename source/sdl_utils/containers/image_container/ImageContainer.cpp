@@ -29,10 +29,11 @@ bool ImageContainer::DoesAssetExist(ImageId id) const
 // =============================================================================
 ImageData ImageContainer::GetImageData(ImageId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), ImageData(),
-		"Received unexistant image id.");
+	auto result = m_ImagesContainer.find(id);
+	AssertReturnIf(result == m_ImagesContainer.end(), ImageData(),
+		"Received already unexistant image id.");
 
-	return m_ImagesContainer.find(id)->second;
+	return result->second;
 }
 
 // =============================================================================

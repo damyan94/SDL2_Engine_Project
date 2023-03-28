@@ -6,6 +6,7 @@
 // Third-party includes
 
 // Own includes
+#include "utils/Defines.h"
 #include "sdl_utils/containers/config/ImageContainerConfig.h"
 #include "sdl_utils/containers/config/FontContainerConfig.h"
 #include "sdl_utils/containers/config/TextContainerConfig.h"
@@ -16,7 +17,7 @@
 
 struct AssetManagerConfig
 {
-	bool						Read();
+	bool						Read(const ConfigStrings& readStrings);
 
 	ImageContainerConfig		m_ImageContainerConfig;
 	FontContainerConfig			m_FontContainerConfig;

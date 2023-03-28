@@ -245,7 +245,6 @@
     <ClInclude Include="source\components\audio\Music.h" />
     <ClInclude Include="source\components\drawing\DynamicText.h" />
     <ClInclude Include="source\defines\ConfigFilePaths.h" />
-    <ClInclude Include="source\defines\id\TextId.h" />
     <ClInclude Include="source\engine\config\EngineConfig.h" />
     <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h" />
     <ClInclude Include="source\managers\AudioManager.h" />
@@ -292,10 +291,6 @@
     <ClInclude Include="dependencies\imgui-master\imstb_truetype.h" />
     <ClInclude Include="source\managers\DrawManager.h" />
     <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h" />
-    <ClInclude Include="source\defines\id\FontId.h" />
-    <ClInclude Include="source\defines\id\ImageId.h" />
-    <ClInclude Include="source\defines\id\MusicId.h" />
-    <ClInclude Include="source\defines\id\SoundId.h" />
     <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h" />
     <ClInclude Include="source\sdl_utils\containers\cfg\MusicContainerCfg.h" />
     <ClInclude Include="source\sdl_utils\containers\cfg\SoundContainerCfg.h" />

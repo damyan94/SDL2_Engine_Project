@@ -16,20 +16,18 @@
 // =============================================================================
 bool RendererConfig::Read()
 {
-	std::vector<std::string> readStrings;
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::Renderer, readStrings), false);
-	AssertReturnIf(readStrings.size() != 2, false,
-		"Config file corrupted: " + ConfigFilePaths::Renderer);
+	ConfigStrings readStrings;
+	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::SystemConfig, readStrings), false);
+	AssertReturnIf(readStrings.size() != 8, false,
+		"Config file corrupted: " + ConfigFilePaths::SystemConfig);
 
-	auto color = Utils::ReadIntArray(readStrings[0], "color", 4);
-	AssertReturnIf(color.size() != 4, false,
-		_CONFIG_ERROR_INFO(ConfigFilePaths::Renderer, 0));
+	auto color = Utils::ReadIntArray(readStrings[6], "renderer_color", 4);
+	AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(6));
 
-	m_DrawColor = Color(color[0], color[1], color[2], color[3]);//default Colors::VeryLightGrey
+	m_DrawColor = Color(color[0], color[1], color[2], color[3]);	//default Colors::VeryLightGrey
 
-	m_Flags = Utils::ReadInt(readStrings[1], "flags"); //default 0x00000002 SDL_RENDERER_ACCELERATED;
-	AssertReturnIf(m_Flags < 0, false,
-		_CONFIG_ERROR_INFO(ConfigFilePaths::Renderer, 1));
+	m_Flags = Utils::ReadInt(readStrings[7], "renderer_flags");		//default 0x00000002 SDL_RENDERER_ACCELERATED;
+	AssertReturnIf(m_Flags < 0, false, _CONFIG_ERROR_INFO(7));
 
 	return true;
 }

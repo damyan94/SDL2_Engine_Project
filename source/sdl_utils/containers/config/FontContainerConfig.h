@@ -2,17 +2,13 @@
 #define SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_
 
 // C/C++ system includes
-#include <cstdint>
-#include <string>
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "defines/id/FontId.h"
+#include "sdl_utils/CommonIncludes.h"
 
 // Forward declarations
-enum class EFontWrapAlign : int8_t;
 
 struct FontConfig
 {
@@ -23,7 +19,7 @@ struct FontConfig
 
 struct FontContainerConfig
 {
-	bool				Read();
+	bool				Read(const ConfigStrings& readStrings);
 
 	std::unordered_map<FontId, FontConfig>	m_FontContainerConfig;
 };

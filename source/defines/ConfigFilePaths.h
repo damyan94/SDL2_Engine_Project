@@ -12,14 +12,8 @@
 
 namespace ConfigFilePaths
 {
-static const std::string Window			= "./config/sdl/window.cfg";
-static const std::string Renderer		= "./config/sdl/renderer.cfg";
-
-static const std::string ImageContainer	= "./config/assets/images.cfg";
-static const std::string TextContainer	= "./config/assets/texts.cfg";
-static const std::string FontContainer	= "./config/assets/fonts.cfg";
-static const std::string SoundContainer	= "./config/assets/sounds.cfg";
-static const std::string MusicContainer	= "./config/assets/musics.cfg";
+static const std::string SystemConfig	= "./config/system.cfg";
+static const std::string MainConfig		= "./config/config.cfg";
 } // !ConfigFilePaths
 
 #endif // !DEFINES_CONFIGFILEPATHS_H_

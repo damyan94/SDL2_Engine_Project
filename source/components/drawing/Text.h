@@ -8,8 +8,6 @@
 // Own includes
 #include "sdl_utils/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
-#include "defines/id/TextId.h"
-#include "defines/id/FontId.h"
 
 // Forward declarations
 
@@ -27,7 +25,7 @@ public:
 	void				SetFont(FontId id);
 	void				SetTextColor(const Color& textColor);
 
-	String				GetString() const;
+	std::string			GetString() const;
 	Color				GetTextColor() const;
 
 private:

@@ -8,10 +8,6 @@
 // Own includes
 #include "managers/CommonIncludes.h"
 
-#include "defines/id/ImageId.h"
-#include "defines/id/TextId.h"
-#include "defines/id/FontId.h"
-
 #include "sdl_utils/containers/image_container/ImageContainer.h"
 #include "sdl_utils/containers/text_container/TextContainer.h"
 #include "sdl_utils/containers/font_container/FontContainer.h"

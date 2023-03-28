@@ -6,38 +6,38 @@
 // Third-party includes
 
 // Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/ReadWriteFile.h"
 #include "utils/input_output/ConfigReaderUtils.h"
-#include "defines/ConfigFilePaths.h"
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
+
+static const std::string c_CategoryTypeString = "font";
 
 // =============================================================================
-bool FontContainerConfig::Read()
+bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 {
-	std::vector<std::string> readStrings;
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::FontContainer, readStrings), false);
-	AssertReturnIf(readStrings.size() != (size_t)FontId::Count, false,
-		"Config file corrupted: " + ConfigFilePaths::FontContainer);
-
-	for (size_t i = 0; i < readStrings.size(); i++)
+	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
+	if (startLine >= readStrings.size() - 1)
 	{
+		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());
+		return true;
+	}
+
+	for (size_t i = startLine; i < readStrings.size(); i++)
+	{
+		BreakIf(Utils::ReadString(readStrings[i], "type") != c_CategoryTypeString);
+
+		const int32_t id = Utils::ReadInt(readStrings[i], "id");
+
 		FontConfig newCfg;
 
 		newCfg.m_FileName = Utils::ReadString(readStrings[i], "file_name");
-		AssertReturnIf(newCfg.m_FileName.empty(), false,
-			_CONFIG_ERROR_INFO(ConfigFilePaths::FontContainer, i));
+		AssertReturnIf(newCfg.m_FileName.empty(), false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_Size = Utils::ReadInt(readStrings[i], "size");
-		AssertReturnIf(newCfg.m_Size <= 0, false,
-			_CONFIG_ERROR_INFO(ConfigFilePaths::FontContainer, i));
+		AssertReturnIf(newCfg.m_Size <= 0, false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "wrap_align"));
-		AssertReturnIf(!IsEnumValueValid(newCfg.m_WrapAlign), false,
-			_CONFIG_ERROR_INFO(ConfigFilePaths::FontContainer, i));
+		AssertReturnIf(!IsEnumValueValid(newCfg.m_WrapAlign), false, _CONFIG_ERROR_INFO(i));
 
-		m_FontContainerConfig.emplace(FontId(i), std::move(newCfg));
+		m_FontContainerConfig.emplace(FontId(id), std::move(newCfg));
 	}
 
 	return true;

@@ -14,6 +14,22 @@
 // ================================= DEFINES ===================================
 // =============================================================================
 
+#define _MinImageId		1000000
+#define _MaxImageId		1099999
+#define _MinFontId		1100000
+#define _MaxFontId		1199999
+#define _MinTextId		1200000
+#define _MaxTextId		1299999
+#define _MinSoundId		1300000
+#define _MaxSoundId		1399999
+#define _MinMusicId		1400000
+#define _MaxMusicId		1499999
+#define _MinTimerId		1500000
+#define _MaxTimerId		1599999
+#define _MinCursorId	1600000
+#define _MaxCursorId	1699999
+
+#define IsResourceIdValid(__ResIdType, __Value) (__Value >= _Min##__ResIdType && __Value <= _Max##__ResIdType)
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================

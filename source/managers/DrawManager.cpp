@@ -24,6 +24,7 @@ DrawManager::DrawManager()
 // =============================================================================
 DrawManager::~DrawManager()
 {
+	Deinit();
 	SafeDelete(m_Renderer);
 	SafeDelete(m_Window);
 }
@@ -46,8 +47,12 @@ bool DrawManager::Init(const DrawManagerConfig& cfg)
 // =============================================================================
 void DrawManager::Deinit()
 {
-	m_Renderer->Deinit();
-	m_Window->Deinit();
+}
+
+// =============================================================================
+void DrawManager::HandleEvent(const InputEvent& e)
+{
+	m_Window->HandleEvent(e);
 }
 
 // =============================================================================
@@ -64,6 +69,14 @@ void DrawManager::FinishFrame() const
 	ReturnIf(m_Window->IsMinimized(), void());
 
 	m_Renderer->FinishFrame();
+}
+
+// =============================================================================
+void DrawManager::DrawTexture(SDL_Texture* texture, const DrawParameters& p) const
+{
+	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
+
+	m_Renderer->RenderTexture(texture, p);
 }
 
 // =============================================================================
@@ -85,24 +98,13 @@ void DrawManager::DrawText(TextId id, const DrawParameters& p) const
 }
 
 // =============================================================================
-void DrawManager::DrawDynamicText(const String& string, const DrawParameters& p) const
-{
-	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
-
-	//TODO major refactoring needed
-	//m_Renderer->RenderTexture(texture, p);
-}
-
-// =============================================================================
 bool DrawManager::IsInsideWindow(const DrawParameters& p) const
 {
-	const Rectangle dstRect{ p.m_Pos.x, p.m_Pos.y, p.m_Width, p.m_Height };
-	const Rectangle& srcRect = p.m_FrameRect;
+	const Rectangle& dstRect		= p.m_PosRect;
+	const Rectangle& windowRect		= m_Window->GetWindowRect();
 
-	bool isInsideWindow = (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
-		&& (dstRect.x < m_Window->GetWindowRect().w && dstRect.y < m_Window->GetWindowRect().h);
-
-	return isInsideWindow;
+	return (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
+		&& (dstRect.x < windowRect.w && dstRect.y < windowRect.h);
 }
 
 // =============================================================================

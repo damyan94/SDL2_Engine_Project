@@ -6,8 +6,6 @@
 // Third-party includes
 
 // Own includes
-#include "defines/id/TextId.h"
-#include "defines/id/FontId.h"
 #include "sdl_utils/CommonIncludes.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 
@@ -31,6 +29,8 @@ protected:
 	void				Deinit();
 
 private:
+	ELanguage			m_CurrLanguage;
+
 	std::unordered_map<TextId, TextData> m_TextsContainer;
 };
 

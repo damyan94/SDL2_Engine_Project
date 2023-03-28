@@ -6,6 +6,7 @@
 // Third-party includes
 
 // Own includes
+#include "utils/Defines.h"
 #include "managers/config/DrawManagerConfig.h"
 #include "managers/config/AssetManagerConfig.h"
 #include "managers/config/AudioManagerConfig.h"
@@ -16,7 +17,7 @@
 
 struct ManagerHandlerConfig
 {
-	bool						Read();
+	bool						Read(const ConfigStrings& readStrings);
 
 	DrawManagerConfig			m_DrawManagerConfig;
 	AssetManagerConfig			m_AssetManagerConfig;

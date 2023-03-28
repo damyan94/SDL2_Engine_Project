@@ -17,8 +17,8 @@
 
 // =============================================================================
 DynamicText::DynamicText()
-	: m_FontId(FontId::Invalid)
-	, m_String(L"")
+	: m_FontId(FontId(-1))
+	, m_String()
 	, m_TextColor(Colors::Transparent)
 	, m_Texture(nullptr)
 {
@@ -31,7 +31,7 @@ DynamicText::~DynamicText()
 }
 
 // =============================================================================
-bool DynamicText::Init(const String& string, FontId id, const Color& textColor)
+bool DynamicText::Init(const std::string& string, FontId id, const Color& textColor)
 {
 	FontData data = g_AssetManager->GetFontData(id);
 
@@ -45,19 +45,20 @@ bool DynamicText::Init(const String& string, FontId id, const Color& textColor)
 	Texture::CreateTextureFromText(m_Texture, inOutParams);
 	ReturnIf(!m_Texture, false);
 	
-	m_DrawParameters.m_Pos				= Point::Zero;
+	m_DrawParameters.m_PosRect.x		= 0;
+	m_DrawParameters.m_PosRect.y		= 0;
 	//m_DrawParameters.m_FrameRect		= data.m_FrameRect;
-	m_DrawParameters.m_Width			= inOutParams.m_Width;
-	m_DrawParameters.m_Height			= inOutParams.m_Height;
-	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_Width;
-	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_Height;
-	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_Width;
-	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_Height;
+	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
+	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;
+	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_PosRect.h;
+	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
 	
 	m_DrawParameters.m_Opacity			= Constants::FullOpacity;
 	m_DrawParameters.m_RotationAngle	= Constants::ZeroRotation;
-	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_Width / 2,
-												m_DrawParameters.m_Height / 2);
+	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_PosRect.w / 2,
+												m_DrawParameters.m_PosRect.h / 2);
 
 	m_DrawParameters.m_ObjectType		= EObjectType::DynamicText;
 	m_DrawParameters.m_BlendMode		= EBlendMode::Blend;
@@ -81,22 +82,11 @@ void DynamicText::Deinit()
 // =============================================================================
 void DynamicText::Draw() const
 {
-	ReturnIf(!m_DrawParameters.m_IsVisible, void());
-
-	Texture::SetTextureAlphaMod(m_Texture, m_DrawParameters.m_Opacity);
-	ReturnIf(m_DrawParameters.m_Opacity <= 0, void());
-
-	Rectangle rect{
-		m_DrawParameters.m_Pos.x,
-		m_DrawParameters.m_Pos.y,
-		m_DrawParameters.m_Width,
-		m_DrawParameters.m_Height };
-
 	g_DrawManager->GetRenderer()->RenderTexture(m_Texture, m_DrawParameters);
 }
 
 // =============================================================================
-void DynamicText::SetText(const String& newText)
+void DynamicText::SetText(const std::string& newText)
 {
 	Texture::DestroyTexture(m_Texture);
 
@@ -110,12 +100,12 @@ void DynamicText::SetText(const String& newText)
 	Texture::CreateTextureFromText(m_Texture, inOutParams);
 	ReturnIf(!m_Texture, void());
 
-	m_DrawParameters.m_Width			= inOutParams.m_Width;
-	m_DrawParameters.m_Height			= inOutParams.m_Height;
-	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_Width;
-	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_Height;
-	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_Width;
-	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_Height;
+	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
+	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;
+	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_PosRect.h;
+	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
 	m_String							= newText;
 }
 
@@ -134,17 +124,17 @@ void DynamicText::SetColor(const Color& newColor)
 	Texture::CreateTextureFromText(m_Texture, inOutParams);
 	ReturnIf(!m_Texture, void());
 	
-	m_DrawParameters.m_Width			= inOutParams.m_Width;
-	m_DrawParameters.m_Height			= inOutParams.m_Height;
-	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_Width;
-	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_Height;
-	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_Width;
-	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_Height;
+	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
+	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;
+	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_FrameRect.h		= m_DrawParameters.m_PosRect.h;
+	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
 	m_TextColor							= newColor;
 }
 
 // =============================================================================
-const String& DynamicText::GetText() const
+const std::string& DynamicText::GetText() const
 {
 	return m_String;
 }

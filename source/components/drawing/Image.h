@@ -8,7 +8,6 @@
 // Own includes
 #include "utils/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
-#include "defines/id/ImageId.h"
 
 // Forward declarations
 

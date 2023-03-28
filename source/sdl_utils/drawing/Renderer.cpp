@@ -14,8 +14,8 @@
 
 // =============================================================================
 Renderer::Renderer()
-	: m_Renderer(nullptr)
-	, m_DefaultDrawColor(Colors::Black)
+	: m_DefaultDrawColor(Colors::Black)
+	, m_Renderer(nullptr)
 {
 }
 
@@ -28,7 +28,7 @@ Renderer::~Renderer()
 // =============================================================================
 bool Renderer::Init(SDL_Window* window, const RendererConfig& cfg)
 {
-	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"), false,
+	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"), false,
 		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
 
 #if defined WIN32 || _WIN32
@@ -77,28 +77,12 @@ void Renderer::FinishFrame() const
 }
 
 // =============================================================================
-void Renderer::SetDrawColor(const Color& color)
-{
-	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(
-		m_Renderer,
-		color.r,
-		color.g,
-		color.b,
-		color.a),
-		void(), "SDL_SetRenderDrawColor() failed: " + std::string(SDL_GetError()));
-}
-
-// =============================================================================
-const Color& Renderer::GetDefaultDrawColor()
-{
-	return m_DefaultDrawColor;
-}
-
-// =============================================================================
 void Renderer::RenderTexture(SDL_Texture* texture, const DrawParameters& p)
 {
+	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible, void());
+
 	const SDL_Rect src{ p.m_FrameRect.x, p.m_FrameRect.y, p.m_FrameRect.w, p.m_FrameRect.h };
-	const SDL_Rect dst{ p.m_Pos.x, p.m_Pos.y, p.m_Width, p.m_Height };
+	const SDL_Rect dst{ p.m_PosRect.x, p.m_PosRect.y, p.m_PosRect.w, p.m_PosRect.h };
 	const SDL_Point cntr{ p.m_RotationCenter.x, p.m_RotationCenter.y };
 
 	if (p.m_Opacity == Constants::FullOpacity)
@@ -117,6 +101,24 @@ void Renderer::RenderTexture(SDL_Texture* texture, const DrawParameters& p)
 
 		Texture::SetTextureAlphaMod(texture, Constants::FullOpacity);
 	}
+}
+
+// =============================================================================
+void Renderer::SetDrawColor(const Color& color)
+{
+	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawColor(
+		m_Renderer,
+		color.r,
+		color.g,
+		color.b,
+		color.a),
+		void(), "SDL_SetRenderDrawColor() failed: " + std::string(SDL_GetError()));
+}
+
+// =============================================================================
+const Color& Renderer::GetDefaultDrawColor()
+{
+	return m_DefaultDrawColor;
 }
 
 // =============================================================================

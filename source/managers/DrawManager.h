@@ -8,14 +8,13 @@
 // Own includes
 #include "managers/CommonIncludes.h"
 
-#include "defines/id/ImageId.h"
-#include "defines/id/TextId.h"
-
 // Forward declarations
 struct DrawManagerConfig;
 struct DrawParameters;
 class Window;
 class Renderer;
+class InputEvent;
+struct SDL_Texture;
 
 class DrawManager
 {
@@ -31,13 +30,14 @@ public:
 
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();
+	void				HandleEvent(const InputEvent& e);
 
 	void				ClearScreen() const;
 	void				FinishFrame() const;
 
+	void				DrawTexture(SDL_Texture* texture, const DrawParameters& p) const;
 	void				DrawImage(ImageId id, const DrawParameters& p) const;
 	void				DrawText(TextId id, const DrawParameters& p) const;
-	void				DrawDynamicText(const String& string, const DrawParameters& p) const;
 
 	bool				IsInsideWindow(const DrawParameters& p) const;
 

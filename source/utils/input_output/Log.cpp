@@ -11,6 +11,13 @@
 // Own includes
 #include "utils/others/CodeReadability.h"
 
+#define _PRINTF_VARIADIC_ARGS \
+va_list args;\
+va_start(args, fmt);\
+vfprintf(stderr, fmt, args);\
+printf("\n");\
+va_end(args)
+
 // =============================================================================
 void Log::ConsoleSetTextColor(const EConsoleTextColor color)
 {
@@ -21,18 +28,32 @@ void Log::ConsoleSetTextColor(const EConsoleTextColor color)
 // =============================================================================
 void Log::Console(const char* fmt ...)
 {
-	va_list args;
-	va_start(args, fmt);
-	vfprintf(stderr, fmt, args);
-	printf("\n");
-	va_end(args);
+	_PRINTF_VARIADIC_ARGS;
 }
 
 // =============================================================================
 void Log::Console(const EConsoleTextColor color, const char* fmt ...)
 {
 	ConsoleSetTextColor(color);
-	Console(fmt);
+	_PRINTF_VARIADIC_ARGS;
+	ConsoleSetTextColor(EConsoleTextColor::Default);
+}
+
+// =============================================================================
+void Log::ConsoleWarning(const char* fmt ...)
+{
+	ConsoleSetTextColor(EConsoleTextColor::Yellow);
+	printf("WARNING! ");
+	_PRINTF_VARIADIC_ARGS;
+	ConsoleSetTextColor(EConsoleTextColor::Default);
+}
+
+// =============================================================================
+void Log::ConsoleError(const char* fmt ...)
+{
+	ConsoleSetTextColor(EConsoleTextColor::Red);
+	printf("ERROR! ");
+	_PRINTF_VARIADIC_ARGS;
 	ConsoleSetTextColor(EConsoleTextColor::Default);
 }
 

@@ -2,14 +2,11 @@
 #define SDL_UTILS_CONTAINERS_CONFIG_IMAGECONTAINERCONFIG_H_
 
 // C/C++ system includes
-#include <cstdint>
-#include <string>
-#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "defines/id/ImageId.h"
+#include "sdl_utils/CommonIncludes.h"
 
 // Forward declarations
 
@@ -21,7 +18,7 @@ struct ImageConfig
 
 struct ImageContainerConfig
 {
-	bool				Read();
+	bool				Read(const ConfigStrings& readStrings);
 
 	std::unordered_map<ImageId, ImageConfig> m_ImageContainerConfig;
 };

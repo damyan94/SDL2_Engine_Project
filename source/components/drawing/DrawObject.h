@@ -10,6 +10,7 @@
 #include "utils/drawing/DrawParameters.h"
 
 // Forward declarations
+struct SDL_Texture;
 
 class DrawObject
 {
@@ -23,6 +24,7 @@ public:
 	Point				GetPos() const;
 	int32_t				GetWidth() const;
 	int32_t				GetHeight() const;
+	Rectangle			GetPosRect() const;
 	Rectangle			GetFrameRect() const;
 	int32_t				GetOpacity() const;
 	int32_t				GetRotationAngle() const;
@@ -68,6 +70,8 @@ public:
 
 protected:
 	DrawParameters		m_DrawParameters;
+	//Cache to reduce CPU use
+	SDL_Texture*		m_Texture;
 };
 
 #endif // !COMPONENTS_DRAWING_DRAWOBJECT_H_

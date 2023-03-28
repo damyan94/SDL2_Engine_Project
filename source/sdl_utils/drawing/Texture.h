@@ -13,6 +13,8 @@ struct SDL_Surface;
 struct SDL_Texture;
 typedef struct _TTF_Font TTF_Font;
 
+//TODO should i add typedefs for the sdl primitives such as surface, texture, font, chunk, music, cursor, etc.
+
 struct ImageTextureParameters
 {
 	const std::string	m_FileName;
@@ -22,7 +24,7 @@ struct ImageTextureParameters
 
 struct TextTextureParameters
 {
-	const String		m_String;
+	const std::string	m_String;
 	const TTF_Font*		m_Font			= nullptr;
 	const Color			m_TextColor		= Colors::Black;
 	int32_t				m_Width			= 0;

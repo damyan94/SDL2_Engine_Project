@@ -4,6 +4,7 @@
 // C/C++ system includes
 #include <cstdint>
 #include <string>
+#include <vector>
 
 // Third-party includes
 
@@ -46,7 +47,7 @@ bool IsEnumValueValid(EnumType value)
 	#undef _CONFIG_ERROR_INFO
 #endif
 
-#define _CONFIG_ERROR_INFO(__File, __Line)	"Config file corrupted: " + __File + "; Line: " + std::to_string(__Line + 1)
+#define _CONFIG_ERROR_INFO(__Line)				"Config file corrupted. Line: " + std::to_string(__Line + 1)
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================
@@ -55,6 +56,13 @@ bool IsEnumValueValid(EnumType value)
 typedef std::wstring	String;
 typedef uint64_t		TimePoint;
 typedef int32_t			TimerId;
+
+typedef std::vector<std::string> ConfigStrings;
+typedef int32_t			ImageId;
+typedef int32_t			FontId;
+typedef int32_t			TextId;
+typedef int32_t			SoundId;
+typedef int32_t			MusicId;
 
 // =============================================================================
 // =============================== ENUMERATIONS ================================

@@ -9,9 +9,7 @@
 
 // =============================================================================
 DrawParameters::DrawParameters()
-	: m_Pos(Point::Undefined)
-	, m_Width(0)
-	, m_Height(0)
+	: m_PosRect(Rectangle::Undefined)
 	, m_StandardWidth(0)
 	, m_StandardHeight(0)
 	, m_FrameRect(Rectangle::Zero)
@@ -33,10 +31,8 @@ DrawParameters::~DrawParameters()
 // =============================================================================
 void DrawParameters::Reset()
 {
-	m_Pos					= Point::Undefined;
+	m_PosRect				= Rectangle::Undefined;
 	m_FrameRect				= Rectangle::Zero;
-	m_Width					= 0;
-	m_Height				= 0;
 	m_StandardWidth			= 0;
 	m_StandardHeight		= 0;
 

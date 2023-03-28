@@ -6,39 +6,43 @@
 // Third-party includes
 
 // Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/ReadWriteFile.h"
 #include "utils/input_output/ConfigReaderUtils.h"
-#include "defines/ConfigFilePaths.h"
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
+
+static const std::string c_CategoryTypeString = "text";
 
 // =============================================================================
-bool TextContainerConfig::Read()
+bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 {
-	std::vector<std::string> readStrings;
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::TextContainer, readStrings), false);
-	AssertReturnIf(readStrings.size() != (size_t)TextId::Count, false,
-		"Config file corrupted: " + ConfigFilePaths::TextContainer);
-
-	for (size_t i = 0; i < readStrings.size(); i++)
+	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
+	if (startLine >= readStrings.size() - 1)
 	{
+		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());
+		return true;
+	}
+
+	std::string language = "bg";//Utils::ReadString(readStrings[0], L"language");
+
+	for (size_t i = startLine; i < readStrings.size(); i++)
+	{
+		BreakIf(Utils::ReadString(readStrings[i], "type") != c_CategoryTypeString);
+
+		const int32_t id = Utils::ReadInt(readStrings[i], "id");
+
 		TextConfig newCfg;
 
-		std::string temp = Utils::ReadString(readStrings[i], "string");
-		newCfg.m_String = String(temp.begin(), temp.end());
+		newCfg.m_String = Utils::ReadString(readStrings[i], language);
+		AssertReturnIf(newCfg.m_String.empty(), false, _CONFIG_ERROR_INFO(i));
 
 		auto color = Utils::ReadIntArray(readStrings[i], "color", 4);
-		AssertReturnIf(color.size() != 4, false,
-			_CONFIG_ERROR_INFO(ConfigFilePaths::TextContainer, i));
+		AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_TextColor = Color(color[0], color[1], color[2], color[3]);
 
 		newCfg.m_FontId = FontId(Utils::ReadInt(readStrings[i], "font_id"));
-		AssertReturnIf(!IsEnumValueValid(newCfg.m_FontId), false,
-			_CONFIG_ERROR_INFO(ConfigFilePaths::TextContainer, i));
+		AssertReturnIf(!IsResourceIdValid(FontId, newCfg.m_FontId), false,
+			_CONFIG_ERROR_INFO(i));
 
-		m_TextContainerConfig.emplace(TextId(i), std::move(newCfg));
+		m_TextContainerConfig.emplace(TextId(id), std::move(newCfg));
 	}
 
 	return true;

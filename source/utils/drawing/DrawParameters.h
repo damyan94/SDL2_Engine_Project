@@ -17,10 +17,8 @@ struct DrawParameters
 
 	void				Reset();
 
-	Point				m_Pos;
+	Rectangle			m_PosRect;
 	Rectangle			m_FrameRect;
-	int32_t				m_Width;
-	int32_t				m_Height;
 	int32_t				m_StandardWidth;
 	int32_t				m_StandardHeight;
 

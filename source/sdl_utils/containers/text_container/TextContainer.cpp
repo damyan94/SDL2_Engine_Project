@@ -10,8 +10,24 @@
 #include "sdl_utils/drawing/Texture.h"
 #include "managers/AssetManager.h"
 
+static std::string GetLanguageStringFromId(ELanguage id)
+{
+	switch (id)
+	{
+	case ELanguage::BG:
+		return "bg";
+
+	case ELanguage::EN:
+		return "en";
+
+	default:
+		return "";
+	}
+}
+
 // =============================================================================
 TextContainer::TextContainer()
+	: m_CurrLanguage(ELanguage::Invalid)
 {
 }
 
@@ -30,19 +46,21 @@ bool TextContainer::DoesAssetExist(TextId id) const
 // =============================================================================
 TextData TextContainer::GetTextData(TextId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), TextData(),
-		"Received unexistant text id.");
+	auto result = m_TextsContainer.find(id);
+	AssertReturnIf(result == m_TextsContainer.end(), TextData(),
+		"Received already unexistant text id.");
 
-	return m_TextsContainer.find(id)->second;
+	return result->second;
 }
 
 // =============================================================================
 bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color)
 {
-	AssertReturnIf(!DoesAssetExist(id), false,
+	auto it = m_TextsContainer.find(id);
+	AssertReturnIf(it == m_TextsContainer.end(), false,
 		"Received already unexistant text id.");
 
-	TextData& textData			= m_TextsContainer.find(id)->second;
+	TextData& textData			= it->second;
 	textData.m_FontId			= fontId;
 	textData.m_TextColor		= color;
 
@@ -77,6 +95,9 @@ bool TextContainer::UpdateAllTexts()
 // =============================================================================
 bool TextContainer::Init(const TextContainerConfig& cfg)
 {
+	m_CurrLanguage = ELanguage::EN;
+	std::string currLang = GetLanguageStringFromId(m_CurrLanguage);
+
 	for (const auto [id, textCfg] : cfg.m_TextContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false,

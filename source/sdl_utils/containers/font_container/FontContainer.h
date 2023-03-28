@@ -6,7 +6,6 @@
 // Third-party includes
 
 // Own includes
-#include "defines/id/FontId.h"
 #include "sdl_utils/CommonIncludes.h"
 #include "sdl_utils/containers/font_container/FontData.h"
 

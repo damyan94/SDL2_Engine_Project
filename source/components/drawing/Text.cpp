@@ -11,7 +11,7 @@
 
 // =============================================================================
 Text::Text()
-	: m_TextId(TextId::Invalid)
+	: m_TextId(/*TextId::Invalid*/0)
 {
 }
 
@@ -26,23 +26,25 @@ bool Text::Init(TextId id)
 {
 	const TextData& data = g_AssetManager->GetTextData(id);
 
-	m_DrawParameters.m_Pos				= Point::Zero;
+	m_DrawParameters.m_PosRect			= Rectangle::Zero;
 	m_DrawParameters.m_FrameRect		= data.m_FrameRect;
-	m_DrawParameters.m_Width			= m_DrawParameters.m_FrameRect.w;
-	m_DrawParameters.m_Height			= m_DrawParameters.m_FrameRect.h;
-	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_Width;
-	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_Height;
+	m_DrawParameters.m_PosRect.w		= m_DrawParameters.m_FrameRect.w;
+	m_DrawParameters.m_PosRect.h		= m_DrawParameters.m_FrameRect.h;
+	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
+	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
 	
 	m_DrawParameters.m_Opacity			= Constants::FullOpacity;
 	m_DrawParameters.m_RotationAngle	= Constants::ZeroRotation;
-	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_Width / 2,
-												m_DrawParameters.m_Height / 2);
+	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_PosRect.w / 2,
+												m_DrawParameters.m_PosRect.h / 2);
 
 	m_DrawParameters.m_ObjectType		= EObjectType::Text;
 	m_DrawParameters.m_BlendMode		= EBlendMode::Blend;
 	m_DrawParameters.m_FlipMode			= EFlipMode::None;
 
 	m_DrawParameters.m_IsVisible		= true;
+
+	m_Texture							= data.m_Texture;
 
 	m_TextId							= id;
 
@@ -58,9 +60,9 @@ void Text::Deinit()
 // =============================================================================
 void Text::Draw() const
 {
-	ReturnIf(m_DrawParameters.m_Opacity <= 0 || !m_DrawParameters.m_IsVisible,void());
-
-	g_DrawManager->DrawText(m_TextId, m_DrawParameters);
+	//Cache to reduce CPU use
+	//g_DrawManager->DrawText(m_TextId, m_DrawParameters);
+	g_DrawManager->DrawTexture(m_Texture, m_DrawParameters);
 }
 
 // =============================================================================
@@ -78,7 +80,7 @@ void Text::SetTextColor(const Color& textColor)
 }
 
 // =============================================================================
-String Text::GetString() const
+std::string Text::GetString() const
 {
 	return g_AssetManager->GetTextData(m_TextId).m_String;
 }

@@ -9,16 +9,20 @@
 
 // Own includes
 #include "sdl_utils/Defines.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // =============================================================================
 Window::Window()
-	: m_Window(nullptr)
+	: m_PosRect(Rectangle::Undefined)
+	, m_IsMinimized(false)
+	, m_Window(nullptr)
 {
 }
 
 // =============================================================================
 Window::~Window()
 {
+	Deinit();
 }
 
 // =============================================================================
@@ -32,6 +36,12 @@ bool Window::Init(const WindowConfig& cfg)
 		cfg.m_Height,
 		cfg.m_Flags);
 	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: " + std::string(SDL_GetError()));
+
+	m_PosRect.x = cfg.m_PosX;
+	m_PosRect.y = cfg.m_PosY;
+	m_PosRect.w = cfg.m_Width;
+	m_PosRect.h = cfg.m_Height;
+	m_IsMinimized = false;
 
 	SDL_ShowWindow(m_Window);
 
@@ -49,21 +59,27 @@ void Window::Deinit()
 }
 
 // =============================================================================
-Rectangle Window::GetWindowRect() const
+void Window::HandleEvent(const InputEvent& e)
 {
-	Rectangle windowRect = Rectangle::Undefined;
-	SDL_GetWindowPosition(m_Window, &windowRect.x, &windowRect.y);
-	SDL_GetWindowSize(m_Window, &windowRect.w, &windowRect.h);
+	ReturnIf(e.m_Type != EEventType::WindowEvent, void());
 
-	return windowRect;
+	SDL_GetWindowPosition(m_Window, &m_PosRect.x, &m_PosRect.y);
+	SDL_GetWindowSize(m_Window, &m_PosRect.w, &m_PosRect.h);
+
+	int32_t flags = SDL_GetWindowFlags(m_Window);
+	m_IsMinimized = flags & (int32_t)EWindowFlags::Minimized;
+}
+
+// =============================================================================
+const Rectangle& Window::GetWindowRect() const
+{
+	return m_PosRect;
 }
 
 // =============================================================================
 bool Window::IsMinimized() const
 {
-	int32_t flags = SDL_GetWindowFlags(m_Window);
-
-	return flags & (int32_t)EWindowFlags::Minimized;
+	return m_IsMinimized;
 }
 
 // =============================================================================

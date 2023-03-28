@@ -9,7 +9,6 @@
 
 // Own includes
 #include "utils/CommonIncludes.h"
-#include "defines/id/FontId.h"
 
 // Forward declarations
 struct SDL_Texture;
@@ -23,7 +22,7 @@ struct TextData
 
 	SDL_Texture*		m_Texture;
 	Rectangle			m_FrameRect;
-	String				m_String;
+	std::string			m_String;
 	FontId				m_FontId;
 	Color				m_TextColor;
 };

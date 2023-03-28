@@ -37,8 +37,8 @@ void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
 		inOutParams.m_TextColor.b,
 		inOutParams.m_TextColor.a };
 
-	outSurface = TTF_RenderUNICODE_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.m_Font),
-		(const uint16_t*)(inOutParams.m_String.c_str()), color, 0);
+	outSurface = TTF_RenderUTF8_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.m_Font),
+		inOutParams.m_String.c_str(), color, 0);
 
 	AssertReturnIf(!outSurface, void(), "TTF_RenderText_Blended() failed: " +
 		std::string(SDL_GetError()));

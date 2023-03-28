@@ -18,6 +18,7 @@ AssetManager::AssetManager()
 // =============================================================================
 AssetManager::~AssetManager()
 {
+	Deinit();
 }
 
 // =============================================================================
@@ -35,9 +36,4 @@ bool AssetManager::Init(const AssetManagerConfig& cfg)
 // =============================================================================
 void AssetManager::Deinit()
 {
-	MusicContainer::Deinit();
-	SoundContainer::Deinit();
-	TextContainer::Deinit();
-	FontContainer::Deinit();
-	ImageContainer::Deinit();
 }

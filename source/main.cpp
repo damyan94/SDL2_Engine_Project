@@ -42,13 +42,13 @@ int32_t main([[maybe_unused]]int32_t argC, [[maybe_unused]] char* argV[])
 	EngineConfig* cfg = new EngineConfig;
 	ReturnIf(!cfg->Read(), EXIT_FAILURE);
 
-	Engine app;
-	ReturnIf(!app.Init(*cfg), EXIT_FAILURE);
+	Engine* app = new Engine;
+	ReturnIf(!app->Init(*cfg), EXIT_FAILURE);
 	SafeDelete(cfg);
 
-	app.RunApplication();
+	app->RunApplication();
 
-	app.Deinit();
+	SafeDelete(app);
 
 	return EXIT_SUCCESS;
 }

@@ -17,7 +17,8 @@
 DynamicText::DynamicText()
 	: m_FontId(FontId(-1))
 	, m_String()
-	, m_TextColor(Colors::Transparent)
+	, m_TextColor(Colors::Black)
+	, m_WrapWidth(0)
 	, m_Texture(nullptr)
 {
 }
@@ -29,14 +30,14 @@ DynamicText::~DynamicText()
 }
 
 // =============================================================================
-bool DynamicText::Init(const std::string& string, FontId id, const Color& textColor)
+bool DynamicText::Init(const std::string& string, FontId id,
+	const Color& textColor, int32_t wrapWidth)
 {
-	FontData data = g_AssetManager->GetFontData(id);
-
 	TextTextureParameters inOutParams{
 		string,
 		g_AssetManager->GetFontData(id).m_Font,
 		textColor,
+		wrapWidth,
 		0,
 		0
 	};
@@ -66,6 +67,7 @@ bool DynamicText::Init(const std::string& string, FontId id, const Color& textCo
 	m_String							= string;
 	m_FontId							= id;
 	m_TextColor							= textColor;
+	m_WrapWidth							= wrapWidth;
 
 	return true;
 }
@@ -91,6 +93,7 @@ void DynamicText::SetText(const std::string& newText)
 		newText,
 		g_AssetManager->GetFontData(m_FontId).m_Font,
 		m_TextColor,
+		m_WrapWidth,
 		0,
 		0
 	};
@@ -115,6 +118,7 @@ void DynamicText::SetColor(const Color& newColor)
 		m_String,
 		g_AssetManager->GetFontData(m_FontId).m_Font,
 		newColor,
+		m_WrapWidth,
 		0,
 		0
 	};

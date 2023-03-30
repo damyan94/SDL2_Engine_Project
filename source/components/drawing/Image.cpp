@@ -13,7 +13,6 @@
 Image::Image()
 	: m_Id(ImageId(-1))
 	, m_CurrFrame(0)
-	, m_FramesCount(0)
 	, m_Data(nullptr)
 {
 }
@@ -28,6 +27,7 @@ Image::~Image()
 bool Image::Init(ImageId id)
 {
 	m_Data = g_AssetManager->GetImageData(id);
+	ReturnIf(!m_Data, false);
 	
 	m_DrawParameters.m_PosRect			= Rectangle::Zero;
 	m_DrawParameters.m_FrameRect		= m_Data->m_FrameRect;
@@ -49,7 +49,6 @@ bool Image::Init(ImageId id)
 
 	m_Id								= id;
 	m_CurrFrame							= 1;
-	m_FramesCount						= m_Data->m_FramesCount;
 
 	return true;
 }
@@ -70,7 +69,7 @@ void Image::Draw() const
 // =============================================================================
 void Image::SetCurrFrame(int32_t frame)
 {
-	AssertReturnIf(frame <= 0 || frame > m_FramesCount, void(), "Invalid frames count.");
+	AssertReturnIf(frame <= 0 || frame > m_Data->m_FramesCount, void(), "Invalid frames count.");
 
 	m_CurrFrame = frame;
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
@@ -90,7 +89,7 @@ void Image::SetPrevFrame()
 // =============================================================================
 void Image::SetNextFrame()
 {
-	if (m_CurrFrame < m_FramesCount)
+	if (m_CurrFrame < m_Data->m_FramesCount)
 	{
 		m_CurrFrame++;
 	}
@@ -105,7 +104,7 @@ int32_t Image::GetCurrFrame() const
 }
 
 // =============================================================================
-int32_t Image::GetFramesCount() const
+const ImageData* Image::GetData() const
 {
-	return m_FramesCount;
+	return m_Data;
 }

@@ -23,6 +23,8 @@ public:
 	void				Deinit();
 	void				Draw() const;
 
+	const TextData*		GetData() const;
+
 private:
 	TextId				m_Id;
 	const TextData*		m_Data;

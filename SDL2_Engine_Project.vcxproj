@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\app\config\AppConfig.cpp" />
+    <ClCompile Include="source\app\ui\ui_components\Button.cpp" />
     <ClCompile Include="source\engine\settings\Settings.cpp" />
     <ClCompile Include="source\components\audio\AudioObject.cpp" />
     <ClCompile Include="source\components\audio\Sound.cpp" />
@@ -241,6 +242,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
+    <ClInclude Include="source\app\ui\ui_components\Button.h" />
     <ClInclude Include="source\engine\settings\Settings.h" />
     <ClInclude Include="source\components\audio\AudioObject.h" />
     <ClInclude Include="source\components\audio\Sound.h" />

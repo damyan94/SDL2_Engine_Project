@@ -234,6 +234,9 @@
     <ClCompile Include="source\sdl_utils\Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\app\ui\ui_components\Button.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h">
@@ -762,6 +765,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\sdl_utils\Utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\ui\ui_components\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

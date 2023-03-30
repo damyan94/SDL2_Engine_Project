@@ -35,6 +35,11 @@ bool App::Init(const AppConfig& cfg)
 
 	m_Click.Init(cfg.m_SoundId);
 
+	ButtonConfig buttonCfg;
+	buttonCfg.Read();
+	m_Button.Init(buttonCfg);
+	m_Button.SetPosition({ 100, 400 });
+
 	return true;
 }
 
@@ -48,8 +53,9 @@ void App::HandleEvent(const InputEvent& e)
 {
 	if (e.m_Type == EEventType::MouseButtonDown)
 	{
-		m_Click.Play();
+		//m_Click.Play();
 	}
+	m_Button.HandleEvent(e);
 }
 
 // =============================================================================
@@ -58,6 +64,8 @@ void App::Update(int32_t dt)
 	ReturnIf(!timer.IsTicked(), void());
 
 	time.SetText(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots));
+
+	m_Button.Update(dt);
 }
 
 // =============================================================================
@@ -71,4 +79,6 @@ void App::Draw() const
 
 		m_Logo.Draw();
 	}
+
+	m_Button.Draw();
 }

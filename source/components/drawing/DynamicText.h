@@ -19,7 +19,7 @@ public:
 	DynamicText();
 	~DynamicText();
 
-	bool				Init(const std::string& string, FontId id, const Color& textColor);
+	bool				Init(const std::string& string, FontId id, const Color& textColor, int32_t wrapWidth = 0);
 	void				Deinit();
 	void				Draw() const;
 
@@ -33,6 +33,7 @@ private:
 	std::string			m_String;
 	FontId				m_FontId;
 	Color				m_TextColor;
+	int32_t				m_WrapWidth;
 
 	SDL_Texture*		m_Texture;
 };

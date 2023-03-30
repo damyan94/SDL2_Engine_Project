@@ -16,6 +16,8 @@
 #include "components/audio/Music.h"
 #include "components/time/Timer.h"
 
+#include "app/ui/ui_components/Button.h"
+
 // Forward declarations
 struct AppConfig;
 
@@ -39,6 +41,8 @@ private:
 
 	Image				m_Logo;
 	Sound				m_Click;
+
+	Button				m_Button;
 };
 
 #endif // !APP_APP_H_

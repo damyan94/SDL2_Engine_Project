@@ -63,3 +63,9 @@ void Text::Draw() const
 {
 	g_DrawManager->DrawText(*m_Data, m_DrawParameters);
 }
+
+// =============================================================================
+const TextData* Text::GetData() const
+{
+	return m_Data;
+}

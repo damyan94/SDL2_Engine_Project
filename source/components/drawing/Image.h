@@ -28,12 +28,12 @@ public:
 	void				SetNextFrame();
 
 	int32_t				GetCurrFrame() const;
-	int32_t				GetFramesCount() const;
+	
+	const ImageData*	GetData() const;
 
 private:
 	ImageId				m_Id;
 	int32_t				m_CurrFrame;
-	int32_t				m_FramesCount;
 
 	const ImageData*	m_Data;
 };

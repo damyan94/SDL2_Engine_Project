@@ -6,10 +6,11 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "managers/CommonIncludes.h"
 #include "components/audio/AudioObject.h"
 
 // Forward declarations
+struct MusicData;
 
 class Music
 	: public AudioObject
@@ -32,6 +33,8 @@ public:
 
 private:
 	MusicId				m_MusicId;
+
+	const MusicData*	m_Data;
 };
 
 #endif // !COMPONENTS_AUDIO_MUSIC_H_

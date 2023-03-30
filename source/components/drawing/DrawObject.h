@@ -10,7 +10,6 @@
 #include "utils/drawing/DrawParameters.h"
 
 // Forward declarations
-struct SDL_Texture;
 
 class DrawObject
 {
@@ -70,8 +69,6 @@ public:
 
 protected:
 	DrawParameters		m_DrawParameters;
-	//Cache to reduce CPU use
-	SDL_Texture*		m_Texture;
 };
 
 #endif // !COMPONENTS_DRAWING_DRAWOBJECT_H_

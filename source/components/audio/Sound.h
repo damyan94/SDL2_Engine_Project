@@ -6,10 +6,11 @@
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
+#include "managers/CommonIncludes.h"
 #include "components/audio/AudioObject.h"
 
 // Forward declarations
+struct SoundData;
 
 class Sound
 	: public AudioObject
@@ -33,6 +34,8 @@ public:
 private:
 	SoundId				m_SoundId;
 	int32_t				m_Channel;
+
+	const SoundData*	m_Data;
 };
 
 #endif // !COMPONENTS_AUDIO_SOUND_H_

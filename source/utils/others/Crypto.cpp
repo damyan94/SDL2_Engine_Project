@@ -6,6 +6,7 @@
 // Third-party includes
 
 // Own includes
+#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 void Crypto::CaesarEncrypt(std::wstring& text, int32_t offset)

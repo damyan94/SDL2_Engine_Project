@@ -2,11 +2,13 @@
 #define SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/Defines.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 
 // Forward declarations
@@ -16,10 +18,12 @@ class TextContainer
 {
 public:
 	bool				DoesAssetExist(TextId id) const;
-	TextData			GetTextData(TextId id) const;
+	const TextData*		GetTextData(TextId id) const;
 
-	bool				UpdateText(TextId id, FontId fontId, const Color& color);
+	bool				UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth);
 	bool				UpdateAllTexts();
+
+	void				ChangeLanguage(ELanguage newLanguage);
 
 protected:
 	TextContainer();

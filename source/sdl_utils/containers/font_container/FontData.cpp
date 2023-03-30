@@ -6,7 +6,6 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/Defines.h"
 
 // =============================================================================
 FontData::FontData()

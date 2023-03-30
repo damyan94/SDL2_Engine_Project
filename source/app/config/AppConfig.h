@@ -6,12 +6,18 @@
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/CommonIncludes.h"
 
 // Forward declarations
 
 struct AppConfig
 {
-	bool						Read();
+	bool						Read(const ConfigStrings& readStrings);
+
+	TextId						m_TextId;
+
+	ImageId						m_ImageId;
+	SoundId						m_SoundId;
 };
 
 #endif // !APP_CONFIG_APPCONFIG_H_

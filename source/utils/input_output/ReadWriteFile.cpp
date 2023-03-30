@@ -7,13 +7,18 @@
 // Third-party includes
 
 // Own includes
+#include "utils/others/CodeReadability.h"
 
+namespace ReadWriteFile
+{
 // =============================================================================
-bool ReadWriteFile::ReadFromFile(const std::string& fileName,
+bool ReadFromFile(const std::string& fileName,
 	std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
 	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
+
+	readStrings.clear();
 
 	std::string readLine;
 	while (std::getline(inStream, readLine))
@@ -30,7 +35,7 @@ bool ReadWriteFile::ReadFromFile(const std::string& fileName,
 }
 
 // =============================================================================
-bool ReadWriteFile::WriteToFile(const std::string& fileName,
+bool WriteToFile(const std::string& fileName,
 	const std::string& writeString, EWriteMode writeMode)
 {
 	std::ofstream outStream;
@@ -57,3 +62,4 @@ bool ReadWriteFile::WriteToFile(const std::string& fileName,
 
 	return true;
 }
+} // !namespace ReadWriteFile

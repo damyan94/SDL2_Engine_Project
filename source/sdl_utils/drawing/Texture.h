@@ -2,18 +2,20 @@
 #define SDL_UTILS_DRAWING_TEXTURE_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <string>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/Defines.h"
+#include "utils/drawing/Color.h"
 
 // Forward declarations
 struct SDL_Surface;
 struct SDL_Texture;
 typedef struct _TTF_Font TTF_Font;
-
-//TODO should i add typedefs for the sdl primitives such as surface, texture, font, chunk, music, cursor, etc.
+class Renderer;
 
 struct ImageTextureParameters
 {
@@ -27,25 +29,28 @@ struct TextTextureParameters
 	const std::string	m_String;
 	const TTF_Font*		m_Font			= nullptr;
 	const Color			m_TextColor		= Colors::Black;
+	const int32_t		m_WrapWidth		= 0;
 	int32_t				m_Width			= 0;
 	int32_t				m_Height		= 0;
 };
 
 namespace Texture
 {
-	void CreateSurfaceFromFile(SDL_Surface*& outSurface, ImageTextureParameters& inOutParams);
-	void CreateSurfaceFromText(SDL_Surface*& outSurface, TextTextureParameters& inOutParams);
+void SetRenderer(Renderer* renderer);
 
-	void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture);
+void CreateSurfaceFromFile(SDL_Surface*& outSurface, ImageTextureParameters& inOutParams);
+void CreateSurfaceFromText(SDL_Surface*& outSurface, TextTextureParameters& inOutParams);
 
-	void CreateTextureFromFile(SDL_Texture*& outTexture, ImageTextureParameters& inOutParams);
-	void CreateTextureFromText(SDL_Texture*& outTexture, TextTextureParameters& inOutParams);
+void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture);
 
-	void SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode);
-	void SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha);
+void CreateTextureFromFile(SDL_Texture*& outTexture, ImageTextureParameters& inOutParams);
+void CreateTextureFromText(SDL_Texture*& outTexture, TextTextureParameters& inOutParams);
 
-	void DestroySurface(SDL_Surface*& outSurface);
-	void DestroyTexture(SDL_Texture*& outTexture);
+void SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode);
+void SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha);
+
+void DestroySurface(SDL_Surface*& outSurface);
+void DestroyTexture(SDL_Texture*& outTexture);
 }
 
 #endif // !SDL_UTILS_DRAWING_TEXTURE_H_

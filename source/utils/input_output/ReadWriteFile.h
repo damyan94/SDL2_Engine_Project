@@ -2,11 +2,14 @@
 #define UTILS_INPUT_OUTPUT_READWRITEFILE_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <vector>
+#include <string>
 
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
+#include "utils/Defines.h"
 
 // Forward declarations
 

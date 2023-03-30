@@ -2,14 +2,16 @@
 #define MANAGERS_AUDIOMANAGER_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "managers/CommonIncludes.h"
 
 // Forward declarations
 struct AudioManagerConfig;
+struct SoundData;
+struct MusicData;
 
 class AudioManager
 {
@@ -26,13 +28,13 @@ public:
 	bool				Init(const AudioManagerConfig& cfg);
 	void				Deinit();
 
-	int32_t				PlaySound(SoundId id, int32_t loops = 0);
+	int32_t				PlaySound(const SoundData& data, int32_t loops = 0);
 	void				PauseSound(int32_t channel, bool paused);
 	void				PauseSounds(bool paused);
 	void				StopSound(int32_t channel);
 	void				StopSounds();
 
-	void				PlayMusic(MusicId id, int32_t loops);
+	void				PlayMusic(const MusicData& data, int32_t loops);
 	void				PauseMusic(bool paused);
 	void				StopMusic();
 

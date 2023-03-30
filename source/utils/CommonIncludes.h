@@ -19,6 +19,7 @@
 
 #include "utils/geometry/Point.h"
 #include "utils/geometry/Rectangle.h"
+#include "utils/geometry/Circle.h"
 #include "utils/geometry/Position.h"
 
 #include "utils/input_output/Log.h"

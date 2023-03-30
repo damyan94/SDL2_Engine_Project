@@ -7,6 +7,7 @@
 // Third-party includes
 
 // Own includes
+#include "utils/others/CodeReadability.h"
 #include "sdl_utils/drawing/Texture.h"
 
 // =============================================================================
@@ -27,13 +28,13 @@ bool ImageContainer::DoesAssetExist(ImageId id) const
 }
 
 // =============================================================================
-ImageData ImageContainer::GetImageData(ImageId id) const
+const ImageData* ImageContainer::GetImageData(ImageId id) const
 {
 	auto result = m_ImagesContainer.find(id);
-	AssertReturnIf(result == m_ImagesContainer.end(), ImageData(),
-		"Received already unexistant image id.");
+	AssertReturnIf(result == m_ImagesContainer.end(), nullptr,
+		"Received unexistant image id.");
 
-	return result->second;
+	return &result->second;
 }
 
 // =============================================================================

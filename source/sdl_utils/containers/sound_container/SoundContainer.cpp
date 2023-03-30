@@ -5,9 +5,10 @@
 // C/C++ system includes
 
 // Third-party includes
-#include <SDL_mixer.h>
 
 // Own includes
+#include "utils/others/CodeReadability.h"
+#include "sdl_utils/audio/Audio.h"
 
 // =============================================================================
 SoundContainer::SoundContainer()
@@ -27,12 +28,13 @@ bool SoundContainer::DoesAssetExist(SoundId id) const
 }
 
 // =============================================================================
-SoundData SoundContainer::GetSoundData(SoundId id) const
+const SoundData* SoundContainer::GetSoundData(SoundId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), SoundData(),
-		"Received unexsistant sound id.");
+	auto result = m_SoundContainer.find(id);
+	AssertReturnIf(result == m_SoundContainer.end(), nullptr,
+		"Received unexistant sound id.");
 
-	return m_SoundContainer.find(id)->second;
+	return &result->second;
 }
 
 // =============================================================================
@@ -41,13 +43,12 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 	for (const auto& [id, soundCfg] : cfg.m_SoundContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already exsistant sound id.");
+			"Received already existant sound id.");
 
 		SoundData newSound;
 
-		newSound.m_Sound = Mix_LoadWAV(soundCfg.m_FileName.c_str());
-		AssertReturnIf(!newSound.m_Sound, false,
-			"Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
+		Audio::CreateSoundFromFile(newSound.m_Sound, soundCfg.m_FileName.c_str());
+		ReturnIf(!newSound.m_Sound, false);
 
 		newSound.m_Volume = soundCfg.m_Volume;
 
@@ -62,10 +63,7 @@ void SoundContainer::Deinit()
 {
 	for (auto& [id, sound] : m_SoundContainer)
 	{
-		ContinueIf(!sound.m_Sound);
-
-		Mix_FreeChunk(sound.m_Sound);
-		sound = nullptr;
+		Audio::DestroySound(sound.m_Sound);
 	}
 
 	m_SoundContainer.clear();

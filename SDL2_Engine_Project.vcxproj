@@ -166,21 +166,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\app\config\AppConfig.cpp" />
+    <ClCompile Include="source\engine\settings\Settings.cpp" />
     <ClCompile Include="source\components\audio\AudioObject.cpp" />
     <ClCompile Include="source\components\audio\Sound.cpp" />
     <ClCompile Include="source\components\audio\Music.cpp" />
     <ClCompile Include="source\components\drawing\DynamicText.cpp" />
     <ClCompile Include="source\engine\config\EngineConfig.cpp" />
+    <ClCompile Include="source\sdl_utils\Utils.cpp" />
+    <ClCompile Include="source\utils\geometry\Circle.cpp" />
     <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp" />
     <ClCompile Include="source\managers\AudioManager.cpp" />
     <ClCompile Include="source\managers\config\AssetManagerConfig.cpp" />
     <ClCompile Include="source\managers\config\AudioManagerConfig.cpp" />
     <ClCompile Include="source\managers\config\DrawManagerConfig.cpp" />
     <ClCompile Include="source\managers\config\ImGuiManagerConfig.cpp" />
-    <ClCompile Include="source\managers\config\ManagerHandlerConfig.cpp" />
     <ClCompile Include="source\managers\config\TimerManagerConfig.cpp" />
     <ClCompile Include="source\managers\ImGuiManager.cpp" />
-    <ClCompile Include="source\managers\ManagerHandler.cpp" />
     <ClCompile Include="source\sdl_utils\containers\config\FontContainerConfig.cpp" />
     <ClCompile Include="source\sdl_utils\containers\config\ImageContainerConfig.cpp" />
     <ClCompile Include="source\sdl_utils\containers\config\MusicContainerConfig.cpp" />
@@ -226,7 +227,7 @@
     <ClCompile Include="source\sdl_utils\input\InputEvent.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\Renderer.cpp" />
     <ClCompile Include="source\sdl_utils\SDLLoader.cpp" />
-    <ClCompile Include="source\sdl_utils\sdl_drawing\SDLDrawing.cpp" />
+    <ClCompile Include="source\sdl_utils\drawing\SDLDrawing.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\Texture.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\Window.cpp" />
     <ClCompile Include="source\utils\drawing\Color.cpp" />
@@ -240,12 +241,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
+    <ClInclude Include="source\engine\settings\Settings.h" />
     <ClInclude Include="source\components\audio\AudioObject.h" />
     <ClInclude Include="source\components\audio\Sound.h" />
     <ClInclude Include="source\components\audio\Music.h" />
     <ClInclude Include="source\components\drawing\DynamicText.h" />
     <ClInclude Include="source\defines\ConfigFilePaths.h" />
     <ClInclude Include="source\engine\config\EngineConfig.h" />
+    <ClInclude Include="source\sdl_utils\Utils.h" />
+    <ClInclude Include="source\utils\geometry\Circle.h" />
     <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h" />
     <ClInclude Include="source\managers\AudioManager.h" />
     <ClInclude Include="source\managers\CommonIncludes.h" />
@@ -253,11 +257,9 @@
     <ClInclude Include="source\managers\config\AudioManagerConfig.h" />
     <ClInclude Include="source\managers\config\DrawManagerConfig.h" />
     <ClInclude Include="source\managers\config\ImGuiManagerConfig.h" />
-    <ClInclude Include="source\managers\config\ManagerHandlerConfig.h" />
     <ClInclude Include="source\managers\config\TimerManagerConfig.h" />
     <ClInclude Include="source\managers\Defines.h" />
     <ClInclude Include="source\managers\ImGuiManager.h" />
-    <ClInclude Include="source\managers\ManagerHandler.h" />
     <ClInclude Include="source\sdl_utils\drawing\config\WindowConfig.h" />
     <ClInclude Include="source\sdl_utils\drawing\config\RendererConfig.h" />
     <ClInclude Include="source\sdl_utils\containers\config\FontContainerConfig.h" />
@@ -400,7 +402,7 @@
     <ClInclude Include="source\sdl_utils\input\InputEvent.h" />
     <ClInclude Include="source\sdl_utils\drawing\Renderer.h" />
     <ClInclude Include="source\sdl_utils\SDLLoader.h" />
-    <ClInclude Include="source\sdl_utils\sdl_drawing\SDLDrawing.h" />
+    <ClInclude Include="source\sdl_utils\drawing\SDLDrawing.h" />
     <ClInclude Include="source\sdl_utils\drawing\Texture.h" />
     <ClInclude Include="source\sdl_utils\drawing\Window.h" />
     <ClInclude Include="source\utils\drawing\Color.h" />

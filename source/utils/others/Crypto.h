@@ -2,11 +2,13 @@
 #define UTILS_OTHERS_CRYPTO_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <string>
+#include <vector>
 
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
 
 // Forward declarations
 

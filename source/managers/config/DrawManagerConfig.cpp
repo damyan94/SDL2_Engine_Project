@@ -6,13 +6,12 @@
 // Third-party includes
 
 // Own includes
-#include "utils/others/CodeReadability.h"
 
 // =============================================================================
-bool DrawManagerConfig::Read()
+bool DrawManagerConfig::Read(const ConfigStrings& readStrings)
 {
-	ReturnIf(!m_WindowConfig.Read(), false);
-	ReturnIf(!m_RendererConfig.Read(), false);
+	ReturnIf(!m_WindowConfig.Read(readStrings), false);
+	ReturnIf(!m_RendererConfig.Read(readStrings), false);
 
 	return true;
 }

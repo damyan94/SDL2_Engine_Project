@@ -6,10 +6,11 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 
 // Forward declarations
+struct TextData;
 
 class Text
 	: public DrawObject
@@ -22,14 +23,9 @@ public:
 	void				Deinit();
 	void				Draw() const;
 
-	void				SetFont(FontId id);
-	void				SetTextColor(const Color& textColor);
-
-	std::string			GetString() const;
-	Color				GetTextColor() const;
-
 private:
-	TextId				m_TextId;
+	TextId				m_Id;
+	const TextData*		m_Data;
 };
 
 #endif // !COMPONENTS_DRAWING_TEXT_H_

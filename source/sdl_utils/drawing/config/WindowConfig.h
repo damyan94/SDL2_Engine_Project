@@ -8,12 +8,13 @@
 // Third-party includes
 
 // Own includes
+#include "utils/Defines.h"
 
 // Forward declarations
 
 struct WindowConfig
 {
-	bool				Read();
+	bool				Read(const ConfigStrings& readStrings);
 
 	std::string			m_Name;
 	int32_t				m_PosX;

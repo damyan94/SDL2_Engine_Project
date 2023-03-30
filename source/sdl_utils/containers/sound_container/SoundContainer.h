@@ -2,11 +2,13 @@
 #define SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDCONTAINER_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/Defines.h"
 #include "sdl_utils/containers/sound_container/SoundData.h"
 
 // Forward declarations
@@ -17,7 +19,7 @@ class SoundContainer
 {
 public:
 	bool				DoesAssetExist(SoundId id) const;
-	SoundData			GetSoundData(SoundId id) const;
+	const SoundData*	GetSoundData(SoundId id) const;
 
 protected:
 	SoundContainer();

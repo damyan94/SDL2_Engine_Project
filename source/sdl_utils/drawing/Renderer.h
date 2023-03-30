@@ -2,18 +2,22 @@
 #define SDL_UTILS_DRAWING_RENDERER_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/drawing/Color.h"
 
 // Forward declarations
 struct SDL_Renderer;
 struct SDL_Window;
 struct SDL_Texture;
+
 struct RendererConfig;
 struct DrawParameters;
+struct ImageData;
+struct TextData;
 
 class Renderer
 {
@@ -32,7 +36,10 @@ public:
 
 	void				ClearScreen() const;
 	void				FinishFrame() const;
+
 	void				RenderTexture(SDL_Texture* texture, const DrawParameters& p);
+	void				RenderImage(const ImageData& data, const DrawParameters& p);
+	void				RenderText(const TextData& data, const DrawParameters& p);
 
 	void				SetDrawColor(const Color& color);
 	const Color&		GetDefaultDrawColor();

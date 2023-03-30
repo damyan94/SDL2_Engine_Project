@@ -5,9 +5,10 @@
 // C/C++ system includes
 
 // Third-party includes
-#include <SDL_mixer.h>
 
 // Own includes
+#include "utils/others/CodeReadability.h"
+#include "sdl_utils/audio/Audio.h"
 
 // =============================================================================
 MusicContainer::MusicContainer()
@@ -27,12 +28,13 @@ bool MusicContainer::DoesAssetExist(MusicId id) const
 }
 
 // =============================================================================
-MusicData MusicContainer::GetMusicData(MusicId id) const
+const MusicData* MusicContainer::GetMusicData(MusicId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), MusicData(),
-		"Received unexsistant music id.");
+	auto result = m_MusicContainer.find(id);
+	AssertReturnIf(result == m_MusicContainer.end(), nullptr,
+		"Received unexistant music id.");
 
-	return m_MusicContainer.find(id)->second;
+	return &result->second;
 }
 
 // =============================================================================
@@ -41,13 +43,12 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 	for (const auto& [id, musicCfg] : cfg.m_MusicContainerConfig)
 	{
 		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already exsistant music id.");
+			"Received already existant music id.");
 
 		MusicData newMusic;
 
-		newMusic.m_Music = Mix_LoadMUS(musicCfg.m_FileName.c_str());
-		AssertReturnIf(!newMusic.m_Music, false,
-			"Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
+		Audio::CreateMusicFromFile(newMusic.m_Music, musicCfg.m_FileName.c_str());
+		ReturnIf(!newMusic.m_Music, false);
 
 		newMusic.m_Volume = musicCfg.m_Volume;
 
@@ -62,10 +63,7 @@ void MusicContainer::Deinit()
 {
 	for (auto& [id, music] : m_MusicContainer)
 	{
-		ContinueIf(!music.m_Music);
-
-		Mix_FreeMusic(music.m_Music);
-		music = nullptr;
+		Audio::DestroyMusic(music.m_Music);
 	}
 
 	m_MusicContainer.clear();

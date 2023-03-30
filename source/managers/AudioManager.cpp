@@ -36,9 +36,9 @@ void AudioManager::Deinit()
 }
 
 // =============================================================================
-int32_t AudioManager::PlaySound(SoundId id, int32_t loops)
+int32_t AudioManager::PlaySound(const SoundData& data, int32_t loops)
 {
-	return Audio::PlaySound(g_AssetManager->GetSoundData(id).m_Sound, loops);
+	return Audio::PlaySound(data.m_Sound, loops);
 }
 
 // =============================================================================
@@ -92,9 +92,9 @@ void AudioManager::StopSounds()
 }
 
 // =============================================================================
-void AudioManager::PlayMusic(MusicId id, int32_t loops)
+void AudioManager::PlayMusic(const MusicData& data, int32_t loops)
 {
-	Audio::PlayMusic(g_AssetManager->GetMusicData(id).m_Music, loops);
+	Audio::PlayMusic(data.m_Music, loops);
 }
 
 // =============================================================================

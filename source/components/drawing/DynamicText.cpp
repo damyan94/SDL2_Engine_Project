@@ -9,8 +9,6 @@
 
 //TODO major refactoring needed
 #include "sdl_utils/drawing/Texture.h"
-#include "sdl_utils/drawing/Renderer.h"
-#include "sdl_utils/containers/font_container/FontContainer.h"
 
 #include "managers/AssetManager.h"
 #include "managers/DrawManager.h"
@@ -47,7 +45,6 @@ bool DynamicText::Init(const std::string& string, FontId id, const Color& textCo
 	
 	m_DrawParameters.m_PosRect.x		= 0;
 	m_DrawParameters.m_PosRect.y		= 0;
-	//m_DrawParameters.m_FrameRect		= data.m_FrameRect;
 	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
 	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;
 	m_DrawParameters.m_FrameRect.w		= m_DrawParameters.m_PosRect.w;
@@ -82,7 +79,7 @@ void DynamicText::Deinit()
 // =============================================================================
 void DynamicText::Draw() const
 {
-	g_DrawManager->GetRenderer()->RenderTexture(m_Texture, m_DrawParameters);
+	g_DrawManager->DrawTexture(m_Texture, m_DrawParameters);
 }
 
 // =============================================================================

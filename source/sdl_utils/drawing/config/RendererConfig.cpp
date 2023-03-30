@@ -7,27 +7,28 @@
 
 // Own includes
 #include "utils/others/CodeReadability.h"
-#include "utils/input_output/ReadWriteFile.h"
+#include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
-#include "defines/ConfigFilePaths.h"
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
+
+static const std::string c_CategoryTypeString = "renderer";
 
 // =============================================================================
-bool RendererConfig::Read()
+bool RendererConfig::Read(const ConfigStrings& readStrings)
 {
-	ConfigStrings readStrings;
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::SystemConfig, readStrings), false);
-	AssertReturnIf(readStrings.size() != 8, false,
-		"Config file corrupted: " + ConfigFilePaths::SystemConfig);
+	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
+	if (startLine >= readStrings.size())
+	{
+		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());
+		return true;
+	}
 
-	auto color = Utils::ReadIntArray(readStrings[6], "renderer_color", 4);
-	AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(6));
+	auto color	= Utils::ReadIntArray(readStrings[startLine], "color", 4);
+	AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(startLine));
 
-	m_DrawColor = Color(color[0], color[1], color[2], color[3]);	//default Colors::VeryLightGrey
+	m_DrawColor	= Color(color[0], color[1], color[2], color[3]);		//default Colors::VeryLightGrey
 
-	m_Flags = Utils::ReadInt(readStrings[7], "renderer_flags");		//default 0x00000002 SDL_RENDERER_ACCELERATED;
-	AssertReturnIf(m_Flags < 0, false, _CONFIG_ERROR_INFO(7));
+	m_Flags		= Utils::ReadInt(readStrings[startLine], "flags");		//default 0x00000002 SDL_RENDERER_ACCELERATED;
+	AssertReturnIf(m_Flags < 0, false, _CONFIG_ERROR_INFO(startLine));
 
 	return true;
 }

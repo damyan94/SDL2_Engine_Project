@@ -6,7 +6,7 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 
 // Forward declarations

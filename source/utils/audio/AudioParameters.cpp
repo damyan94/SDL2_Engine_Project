@@ -11,7 +11,7 @@
 AudioParameters::AudioParameters()
 	: m_Loops(0)
 	, m_LoopInfinitely(false)
-	, m_Volume(Constants::ZeroVolume)
+	, m_Volume(Constants::MaxVolume)
 	, m_MaxVolume(Constants::MaxVolume)
 	, m_ObjectType(EObjectType::Invalid)
 {
@@ -28,7 +28,7 @@ void AudioParameters::Reset()
 	m_Loops					= 0;
 	m_LoopInfinitely		= false;
 
-	m_Volume				= Constants::ZeroVolume;
+	m_Volume				= Constants::MaxVolume;
 	m_MaxVolume				= Constants::MaxVolume;
 
 	m_ObjectType			= EObjectType::Invalid;

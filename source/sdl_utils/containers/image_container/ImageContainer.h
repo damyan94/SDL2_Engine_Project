@@ -2,11 +2,13 @@
 #define SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGECONTAINER_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/Defines.h"
 #include "sdl_utils/containers/image_container/ImageData.h"
 
 // Forward declarations
@@ -16,7 +18,7 @@ class ImageContainer
 {
 public:
 	bool				DoesAssetExist(ImageId id) const;
-	ImageData			GetImageData(ImageId id) const;
+	const ImageData*	GetImageData(ImageId id) const;
 
 protected:
 	ImageContainer();

@@ -7,13 +7,14 @@
 // Third-party includes
 
 // Own includes
+#include "utils/Defines.h"
 #include "utils/drawing/Color.h"
 
 // Forward declarations
 
 struct RendererConfig
 {
-	bool				Read();
+	bool				Read(const ConfigStrings& readStrings);
 
 	Color				m_DrawColor;
 	int32_t				m_Flags;

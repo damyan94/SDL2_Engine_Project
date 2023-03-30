@@ -6,7 +6,14 @@
 // Third-party includes
 
 // Own includes
-#include "managers/config/ManagerHandlerConfig.h"
+#include "sdl_utils/CommonIncludes.h"
+
+#include "managers/config/DrawManagerConfig.h"
+#include "managers/config/AssetManagerConfig.h"
+#include "managers/config/AudioManagerConfig.h"
+#include "managers/config/TimerManagerConfig.h"
+#include "managers/config/ImGuiManagerConfig.h"
+
 #include "app/config/AppConfig.h"
 
 // Forward declarations
@@ -15,7 +22,12 @@ struct EngineConfig
 {
 	bool						Read();
 
-	ManagerHandlerConfig		m_ManagerHandlerConfig;
+	DrawManagerConfig			m_DrawManagerConfig;
+	AssetManagerConfig			m_AssetManagerConfig;
+	AudioManagerConfig			m_AudioManagerConfig;
+	TimerManagerConfig			m_TimerManagerConfig;
+	ImGuiManagerConfig			m_ImGuiManagerConfig;
+
 	AppConfig					m_AppConfig;
 };
 

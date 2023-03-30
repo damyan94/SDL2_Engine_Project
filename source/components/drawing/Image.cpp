@@ -11,9 +11,10 @@
 
 // =============================================================================
 Image::Image()
-	: m_ImageId(ImageId(-1))
+	: m_Id(ImageId(-1))
 	, m_CurrFrame(0)
 	, m_FramesCount(0)
+	, m_Data(nullptr)
 {
 }
 
@@ -26,10 +27,10 @@ Image::~Image()
 // =============================================================================
 bool Image::Init(ImageId id)
 {
-	const ImageData& data = g_AssetManager->GetImageData(id);
+	m_Data = g_AssetManager->GetImageData(id);
 	
 	m_DrawParameters.m_PosRect			= Rectangle::Zero;
-	m_DrawParameters.m_FrameRect		= data.m_FrameRect;
+	m_DrawParameters.m_FrameRect		= m_Data->m_FrameRect;
 	m_DrawParameters.m_PosRect.w		= m_DrawParameters.m_FrameRect.w;
 	m_DrawParameters.m_PosRect.h		= m_DrawParameters.m_FrameRect.h;
 	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
@@ -46,11 +47,9 @@ bool Image::Init(ImageId id)
 
 	m_DrawParameters.m_IsVisible		= true;
 
-	m_Texture							= data.m_Texture;
-	
-	m_ImageId							= id;
+	m_Id								= id;
 	m_CurrFrame							= 1;
-	m_FramesCount						= data.m_FramesCount;
+	m_FramesCount						= m_Data->m_FramesCount;
 
 	return true;
 }
@@ -59,14 +58,13 @@ bool Image::Init(ImageId id)
 void Image::Deinit()
 {
 	DrawObject::Reset();
+	m_Data = nullptr;
 }
 
 // =============================================================================
 void Image::Draw() const
 {
-	//Cache to reduce CPU use
-	//g_DrawManager->DrawImage(m_ImageId, m_DrawParameters);
-	g_DrawManager->DrawTexture(m_Texture, m_DrawParameters);
+	g_DrawManager->DrawImage(*m_Data, m_DrawParameters);
 }
 
 // =============================================================================

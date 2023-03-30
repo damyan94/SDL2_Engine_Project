@@ -12,6 +12,7 @@
 // =============================================================================
 Music::Music()
 	: m_MusicId(MusicId(-1))
+	, m_Data(nullptr)
 {
 }
 
@@ -24,12 +25,13 @@ Music::~Music()
 // =============================================================================
 bool Music::Init(MusicId id)
 {
-	MusicData data = g_AssetManager->GetMusicData(id);
+	m_Data = g_AssetManager->GetMusicData(id);
+	ReturnIf(!m_Data, false);
 
 	m_AudioParameters.m_Loops			= 0;
 	m_AudioParameters.m_LoopInfinitely	= false;
 
-	m_AudioParameters.m_Volume			= data.m_Volume;
+	m_AudioParameters.m_Volume			= m_Data->m_Volume;
 	m_AudioParameters.m_MaxVolume		= Constants::MaxVolume;
 
 	m_AudioParameters.m_ObjectType		= EObjectType::Sound;
@@ -43,6 +45,7 @@ bool Music::Init(MusicId id)
 void Music::Deinit()
 {
 	AudioObject::Reset();
+	m_Data = nullptr;
 }
 
 // =============================================================================
@@ -50,7 +53,7 @@ void Music::Play()
 {
 	ReturnIf(m_AudioParameters.m_Volume <= 0, void());
 
-	g_AudioManager->PlayMusic(m_MusicId, m_AudioParameters.m_Loops);
+	g_AudioManager->PlayMusic(*m_Data, m_AudioParameters.m_Loops);
 }
 
 // =============================================================================

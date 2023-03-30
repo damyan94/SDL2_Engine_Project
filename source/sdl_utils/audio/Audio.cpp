@@ -7,9 +7,50 @@
 #include <SDL_mixer.h>
 
 // Own includes
+#include "utils/others/CodeReadability.h"
 
 static constexpr int32_t FirstFreeChannel		= -1;
 static constexpr int32_t AllChannels			= -1;
+
+// =============================================================================
+bool Audio::CreateSoundFromFile(Mix_Chunk*& outSound, const std::string& fileName)
+{
+	outSound = Mix_LoadWAV(fileName.c_str());
+
+	AssertReturnIf(!outSound, false,
+		"Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
+
+	return true;
+}
+
+// =============================================================================
+bool Audio::CreateMusicFromFile(Mix_Music*& outMusic, const std::string& fileName)
+{
+	outMusic = Mix_LoadMUS(fileName.c_str());
+
+	AssertReturnIf(!outMusic, false,
+		"Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
+
+	return true;
+}
+
+// =============================================================================
+void Audio::DestroySound(Mix_Chunk*& outSound)
+{
+	ReturnIf(!outSound, void());
+
+	Mix_FreeChunk(outSound);
+	outSound = nullptr;
+}
+
+// =============================================================================
+void Audio::DestroyMusic(Mix_Music*& outMusic)
+{
+	ReturnIf(!outMusic, void());
+
+	Mix_FreeMusic(outMusic);
+	outMusic = nullptr;
+}
 
 // =============================================================================
 int32_t Audio::PlaySound(Mix_Chunk* chunk, int32_t loops)

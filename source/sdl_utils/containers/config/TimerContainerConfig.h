@@ -9,9 +9,8 @@
 // Third-party includes
 
 // Own includes
-//TODO:
-//#include "defines/id/TimerId.h"
 #include "utils/Defines.h"
+#include "sdl_utils/Defines.h"
 
 // Forward declarations
 

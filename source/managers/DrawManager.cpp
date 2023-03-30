@@ -8,8 +8,11 @@
 
 // Own includes
 #include "utils/drawing/DrawParameters.h"
+#include "sdl_utils/input/InputEvent.h"
 #include "sdl_utils/drawing/Window.h"
 #include "sdl_utils/drawing/Renderer.h"
+#include "sdl_utils/drawing/Texture.h"
+#include "sdl_utils/drawing/SDLDrawing.h"
 #include "managers/AssetManager.h"
 
 DrawManager* g_DrawManager = nullptr;
@@ -40,6 +43,9 @@ bool DrawManager::Init(const DrawManagerConfig& cfg)
 
 	ReturnIf(!m_Window->Init(cfg.m_WindowConfig), false);
 	ReturnIf(!m_Renderer->Init(m_Window->GetSDLWindow(), cfg.m_RendererConfig), false);
+
+	Texture::SetRenderer(m_Renderer);
+	SDLDrawing::SetRenderer(m_Renderer);
 
 	return true;
 }
@@ -80,21 +86,19 @@ void DrawManager::DrawTexture(SDL_Texture* texture, const DrawParameters& p) con
 }
 
 // =============================================================================
-void DrawManager::DrawImage(ImageId id, const DrawParameters& p) const
+void DrawManager::DrawImage(const ImageData& data, const DrawParameters& p) const
 {
 	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
 
-	SDL_Texture* texture = g_AssetManager->GetImageData(id).m_Texture;
-	m_Renderer->RenderTexture(texture, p);
+	m_Renderer->RenderImage(data, p);
 }
 
 // =============================================================================
-void DrawManager::DrawText(TextId id, const DrawParameters& p) const
+void DrawManager::DrawText(const TextData& data, const DrawParameters& p) const
 {
 	ReturnIf(m_Window->IsMinimized() || !IsInsideWindow(p), void());
 
-	SDL_Texture* texture = g_AssetManager->GetTextData(id).m_Texture;
-	m_Renderer->RenderTexture(texture, p);
+	m_Renderer->RenderText(data, p);
 }
 
 // =============================================================================

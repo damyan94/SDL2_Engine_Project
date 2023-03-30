@@ -10,8 +10,8 @@
 // Forward declarations
 enum class EEventType
 {
-	Unknown				= -1
-	, FirstEvent		= 0
+	Unknown						= -1
+	, FirstEvent				= 0
 	
 	// Application events
 	, Quit						= 256 // 0x100
@@ -24,46 +24,46 @@ enum class EEventType
 	, LocaleChanged				= 263
 	
 	// Display events
-	, DisplayEvent		= 336 // 0x150
+	, DisplayEvent				= 336 // 0x150
 	
 	// Window events
-	, WindowEvent		= 512 // 0x200
-	, SysWMEvent		= 513
+	, WindowEvent				= 512 // 0x200
+	, SysWMEvent				= 513
 	
 	// Keyboard events
-	, KeyboardPress		= 768 // 0x300
-	, KeyboardRelease	= 769
-	, TextEditing		= 770
-	, TextInput			= 771
-	, KeyMapChanged		= 772
-	, TextEditingExt	= 773
+	, KeyboardPress				= 768 // 0x300
+	, KeyboardRelease			= 769
+	, TextEditing				= 770
+	, TextInput					= 771
+	, KeyMapChanged				= 772
+	, TextEditingExt			= 773
 	
 	// Mouse events
-	, MouseMotion		= 1024 // 0x400
-	, MouseButtonDown	= 1025
-	, MouseButtonUp		= 1026
-	, MouseWheel		= 1027
-	, MouseHoldMotion	= 1028
+	, MouseMotion				= 1024 // 0x400
+	, MouseButtonDown			= 1025
+	, MouseButtonUp				= 1026
+	, MouseWheel				= 1027
+	, MouseHoldMotion			= 1028
 	
 	// Touch events
-	, FingerDown		= 1792 // 0x700
-	, FingerUp			= 1793
-	, FingerMotion		= 1794
+	, FingerDown				= 1792 // 0x700
+	, FingerUp					= 1793
+	, FingerMotion				= 1794
 	
 	// Gesture events
-	, DollarGesture		= 2048 // 0x800
-	, DollarRecord		= 2049
-	, MultiGesture		= 2050
+	, DollarGesture				= 2048 // 0x800
+	, DollarRecord				= 2049
+	, MultiGesture				= 2050
 	
 	// Audio hotplug events
 	, AudioDeviceAdded			= 4352 // 0x1100
 	, AudioDeviceRemoved		= 4353
 	
 	// Sensor events
-	, SensorUpdate		= 4608 // 0x1200
+	, SensorUpdate				= 4608 // 0x1200
 	
 	// User events
-	, UserEvent			= 32768 // 0x8000
+	, UserEvent					= 32768 // 0x8000
 };
 
 enum class EKeyboardKey

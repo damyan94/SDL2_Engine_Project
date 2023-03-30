@@ -8,7 +8,6 @@
 // Own includes
 #include "utils/CommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
-#include "managers/ManagerHandler.h"
 #include "app/App.h"
 
 // Forward declarations
@@ -34,7 +33,6 @@ private:
 
 private:
 	InputEvent			m_InputEvent;
-	ManagerHandler		m_ManagerHandler;
 
 	App					m_App;
 

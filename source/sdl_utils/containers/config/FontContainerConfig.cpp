@@ -6,6 +6,8 @@
 // Third-party includes
 
 // Own includes
+#include "utils/others/CodeReadability.h"
+#include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
 static const std::string c_CategoryTypeString = "font";
@@ -14,7 +16,7 @@ static const std::string c_CategoryTypeString = "font";
 bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 {
 	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
-	if (startLine >= readStrings.size() - 1)
+	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());
 		return true;

@@ -9,26 +9,33 @@
 #include <SDL_ttf.h>
 
 // Own includes
-#include "sdl_utils/drawing/Window.h"
+#include "utils/others/CodeReadability.h"
 #include "sdl_utils/drawing/Renderer.h"
 
-//TODO Refactor
-#include "managers/DrawManager.h"
+static Renderer* s_Renderer = nullptr;
+
+namespace Texture
+{
+// =============================================================================
+void SetRenderer(Renderer* renderer)
+{
+	s_Renderer = renderer;
+}
 
 // =============================================================================
-void Texture::CreateSurfaceFromFile(SDL_Surface*& outSurface,
+void CreateSurfaceFromFile(SDL_Surface*& outSurface,
 	ImageTextureParameters& inOutParams)
 {
 	outSurface = IMG_Load(inOutParams.m_FileName.c_str());
 
 	AssertReturnIf(!outSurface, void(), "IMG_Load() failed: " + std::string(SDL_GetError()));
 
-	inOutParams.m_Width			= outSurface->w;
-	inOutParams.m_Height		= outSurface->h;
+	inOutParams.m_Width = outSurface->w;
+	inOutParams.m_Height = outSurface->h;
 }
 
 // =============================================================================
-void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
+void CreateSurfaceFromText(SDL_Surface*& outSurface,
 	TextTextureParameters& inOutParams)
 {
 	SDL_Color color{
@@ -38,26 +45,26 @@ void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
 		inOutParams.m_TextColor.a };
 
 	outSurface = TTF_RenderUTF8_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.m_Font),
-		inOutParams.m_String.c_str(), color, 0);
+		inOutParams.m_String.c_str(), color, inOutParams.m_WrapWidth);
 
 	AssertReturnIf(!outSurface, void(), "TTF_RenderText_Blended() failed: " +
 		std::string(SDL_GetError()));
 
-	inOutParams.m_Width			= outSurface->w;
-	inOutParams.m_Height		= outSurface->h;
+	inOutParams.m_Width = outSurface->w;
+	inOutParams.m_Height = outSurface->h;
 }
 
 // =============================================================================
-void Texture::CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture)
+void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture)
 {
-	outTexture = SDL_CreateTextureFromSurface(g_DrawManager->GetRenderer()->GetSDLRenderer(), surface);
+	outTexture = SDL_CreateTextureFromSurface(s_Renderer->GetSDLRenderer(), surface);
 
 	AssertReturnIf(!outTexture, void(), "SDL_CreateTextureFromSurface() failed: " +
 		std::string(SDL_GetError()));
 }
 
 // =============================================================================
-void Texture::CreateTextureFromFile(SDL_Texture*& outTexture,
+void CreateTextureFromFile(SDL_Texture*& outTexture,
 	ImageTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
@@ -71,7 +78,7 @@ void Texture::CreateTextureFromFile(SDL_Texture*& outTexture,
 }
 
 // =============================================================================
-void Texture::CreateTextureFromText(SDL_Texture*& outTexture,
+void CreateTextureFromText(SDL_Texture*& outTexture,
 	TextTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
@@ -85,14 +92,14 @@ void Texture::CreateTextureFromText(SDL_Texture*& outTexture,
 }
 
 // =============================================================================
-void Texture::SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode)
+void SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode)
 {
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(texture, SDL_BlendMode(blendMode)),
 		void(), "SDL_SetTextureBlendMode() failed: " + std::string(SDL_GetError()));
 }
 
 // =============================================================================
-void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
+void SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 {
 	if (alpha < Constants::ZeroOpacity)
 	{
@@ -109,7 +116,7 @@ void Texture::SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha)
 }
 
 // =============================================================================
-void Texture::DestroySurface(SDL_Surface*& outSurface)
+void DestroySurface(SDL_Surface*& outSurface)
 {
 	ReturnIf(!outSurface, void());
 
@@ -118,10 +125,11 @@ void Texture::DestroySurface(SDL_Surface*& outSurface)
 }
 
 // =============================================================================
-void Texture::DestroyTexture(SDL_Texture*& outTexture)
+void DestroyTexture(SDL_Texture*& outTexture)
 {
 	ReturnIf(!outTexture, void());
 
 	SDL_DestroyTexture(outTexture);
 	outTexture = nullptr;
 }
+} // !namespace Texture

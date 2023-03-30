@@ -27,13 +27,13 @@ bool App::Init(const AppConfig& cfg)
 	time.Init(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots), 1100002, Colors::Black);
 	time.SetPos(50, 50);
 
-	text.Init(/*TextId::TestId*/1200000);
+	text.Init(cfg.m_TextId);
 	text.SetPos(50, 250);
 
-	m_Logo.Init(/*ImageId::Logo*/1000000);
+	m_Logo.Init(cfg.m_ImageId);
 	m_Logo.SetPos(300, 50);
 
-	m_Click.Init(/*SoundId::MouseClick*/1300000);
+	m_Click.Init(cfg.m_SoundId);
 
 	return true;
 }
@@ -63,8 +63,12 @@ void App::Update(int32_t dt)
 // =============================================================================
 void App::Draw() const
 {
-	time.Draw();
-	text.Draw();
+	for (int i = 0; i < 1; i++)
+	{
+		time.Draw();
+		
+		text.Draw();
 
-	m_Logo.Draw();
+		m_Logo.Draw();
+	}
 }

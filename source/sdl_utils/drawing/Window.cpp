@@ -8,13 +8,14 @@
 #include <SDL_video.h>
 
 // Own includes
-#include "sdl_utils/Defines.h"
+#include "utils/others/CodeReadability.h"
 #include "sdl_utils/input/InputEvent.h"
 
 // =============================================================================
 Window::Window()
 	: m_PosRect(Rectangle::Undefined)
 	, m_IsMinimized(false)
+	, m_IsFullscreen(false)
 	, m_Window(nullptr)
 {
 }
@@ -37,11 +38,11 @@ bool Window::Init(const WindowConfig& cfg)
 		cfg.m_Flags);
 	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: " + std::string(SDL_GetError()));
 
-	m_PosRect.x = cfg.m_PosX;
-	m_PosRect.y = cfg.m_PosY;
-	m_PosRect.w = cfg.m_Width;
-	m_PosRect.h = cfg.m_Height;
-	m_IsMinimized = false;
+	m_PosRect.x			= cfg.m_PosX;
+	m_PosRect.y			= cfg.m_PosY;
+	m_PosRect.w			= cfg.m_Width;
+	m_PosRect.h			= cfg.m_Height;
+	m_IsMinimized		= false;
 
 	SDL_ShowWindow(m_Window);
 
@@ -80,6 +81,20 @@ const Rectangle& Window::GetWindowRect() const
 bool Window::IsMinimized() const
 {
 	return m_IsMinimized;
+}
+
+// =============================================================================
+void Window::SetFullscreen(bool fullscreen)
+{
+	m_IsFullscreen = fullscreen;
+	if (m_IsFullscreen)
+	{
+		SDL_SetWindowFullscreen(m_Window, (int32_t)EWindowFlags::FullscreenDesktop);
+	}
+	else
+	{
+		SDL_SetWindowFullscreen(m_Window, 0);
+	}
 }
 
 // =============================================================================

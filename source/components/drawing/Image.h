@@ -6,10 +6,11 @@
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
+#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 
 // Forward declarations
+struct ImageData;
 
 class Image
 	: public DrawObject
@@ -30,9 +31,11 @@ public:
 	int32_t				GetFramesCount() const;
 
 private:
-	ImageId				m_ImageId;
+	ImageId				m_Id;
 	int32_t				m_CurrFrame;
 	int32_t				m_FramesCount;
+
+	const ImageData*	m_Data;
 };
 
 #endif // !COMPONENTS_DRAWING_IMAGE_H_

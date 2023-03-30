@@ -2,19 +2,23 @@
 #define SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <string>
+#include <unordered_map>
 
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
+#include "utils/Defines.h"
+#include "sdl_utils/Defines.h"
 
 // Forward declarations
 
 struct FontConfig
 {
 	std::string			m_FileName;
-	uint32_t			m_Size;
-	EFontWrapAlign		m_WrapAlign;
+	uint32_t			m_Size					= 0;
+	EFontWrapAlign		m_WrapAlign				= EFontWrapAlign::Invalid;
 };
 
 struct FontContainerConfig

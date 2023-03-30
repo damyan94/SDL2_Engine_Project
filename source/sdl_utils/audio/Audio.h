@@ -2,11 +2,12 @@
 #define SDL_UTILS_AUDIO_AUDIO_H_
 
 // C/C++ system includes
+#include <cstdint>
+#include <string>
 
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
 
 // Forward declarations
 struct Mix_Chunk;
@@ -14,6 +15,12 @@ typedef struct _Mix_Music Mix_Music;
 
 namespace Audio
 {
+bool				CreateSoundFromFile(Mix_Chunk*& outSound, const std::string& fileName);
+bool				CreateMusicFromFile(Mix_Music*& outMusic, const std::string& fileName);
+
+void				DestroySound(Mix_Chunk*& outSound);
+void				DestroyMusic(Mix_Music*& outMusic);
+
 int32_t				PlaySound(Mix_Chunk* chunk, int32_t loops = 0);
 void				TogglePauseSound(int32_t channel);
 void				TogglePauseSounds();

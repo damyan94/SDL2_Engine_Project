@@ -2,11 +2,11 @@
 #define MANAGERS_DRAWMANAGER_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "managers/CommonIncludes.h"
 
 // Forward declarations
 struct DrawManagerConfig;
@@ -15,6 +15,9 @@ class Window;
 class Renderer;
 class InputEvent;
 struct SDL_Texture;
+
+struct ImageData;
+struct TextData;
 
 class DrawManager
 {
@@ -36,8 +39,8 @@ public:
 	void				FinishFrame() const;
 
 	void				DrawTexture(SDL_Texture* texture, const DrawParameters& p) const;
-	void				DrawImage(ImageId id, const DrawParameters& p) const;
-	void				DrawText(TextId id, const DrawParameters& p) const;
+	void				DrawImage(const ImageData& data, const DrawParameters& p) const;
+	void				DrawText(const TextData& data, const DrawParameters& p) const;
 
 	bool				IsInsideWindow(const DrawParameters& p) const;
 

@@ -13,6 +13,7 @@
 Sound::Sound()
 	: m_SoundId(SoundId(-1))
 	, m_Channel(0)
+	, m_Data(nullptr)
 {
 }
 
@@ -25,12 +26,13 @@ Sound::~Sound()
 // =============================================================================
 bool Sound::Init(SoundId id)
 {
-	SoundData data = g_AssetManager->GetSoundData(id);
+	m_Data = g_AssetManager->GetSoundData(id);
+	ReturnIf(!m_Data, false);
 
 	m_AudioParameters.m_Loops			= 0;
 	m_AudioParameters.m_LoopInfinitely	= false;
 
-	m_AudioParameters.m_Volume			= data.m_Volume;
+	m_AudioParameters.m_Volume			= m_Data->m_Volume;
 	m_AudioParameters.m_MaxVolume		= Constants::MaxVolume;
 
 	m_AudioParameters.m_ObjectType		= EObjectType::Sound;
@@ -45,6 +47,7 @@ bool Sound::Init(SoundId id)
 void Sound::Deinit()
 {
 	AudioObject::Reset();
+	m_Data = nullptr;
 }
 
 // =============================================================================
@@ -52,7 +55,7 @@ void Sound::Play()
 {
 	ReturnIf(m_AudioParameters.m_Volume <= 0, void());
 	
-	m_Channel = g_AudioManager->PlaySound(m_SoundId, m_AudioParameters.m_Loops);
+	m_Channel = g_AudioManager->PlaySound(*m_Data, m_AudioParameters.m_Loops);
 }
 
 // =============================================================================

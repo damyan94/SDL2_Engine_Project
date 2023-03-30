@@ -2,11 +2,14 @@
 #define UTILS_DRAWING_DRAWPARAMETERS_H_
 
 // C/C++ system includes
+#include <cstdint>
 
 // Third-party includes
 
 // Own includes
-#include "utils/CommonIncludes.h"
+#include "utils/Defines.h"
+#include "utils/geometry/Point.h"
+#include "utils/geometry/Rectangle.h"
 
 // Forward declarations
 

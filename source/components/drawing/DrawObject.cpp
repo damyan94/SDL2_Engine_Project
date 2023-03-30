@@ -9,7 +9,6 @@
 
 // =============================================================================
 DrawObject::DrawObject()
-	: m_Texture(nullptr)
 {
 }
 
@@ -22,7 +21,6 @@ DrawObject::~DrawObject()
 void DrawObject::Reset()
 {
 	m_DrawParameters.Reset();
-	m_Texture = nullptr;
 }
 
 // Getters

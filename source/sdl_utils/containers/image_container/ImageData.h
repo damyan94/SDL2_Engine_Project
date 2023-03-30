@@ -19,9 +19,9 @@ struct ImageData
 
 	~ImageData();
 
-	SDL_Texture*		m_Texture;
-	Rectangle			m_FrameRect;
-	int32_t				m_FramesCount;
+	SDL_Texture*		m_Texture				= nullptr;
+	Rectangle			m_FrameRect				= Rectangle::Undefined;
+	int32_t				m_FramesCount			= 0;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGEDATA_H_

@@ -45,7 +45,6 @@ void InputEvent::Deinit()
 }
 
 // =============================================================================
-// SDL_PollEvent
 bool InputEvent::PollEvent()
 {
 	if (SDL_PollEvent(m_Event))

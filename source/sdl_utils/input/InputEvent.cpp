@@ -19,6 +19,7 @@ InputEvent::InputEvent()
 	, m_Wheel(EMouseWheel::UpDownTreshold)
 	, m_MouseHold(false)
 	, m_Pos(Point::Undefined)
+	, m_TextInput(nullptr)
 	, m_Event(nullptr)
 {
 }
@@ -60,6 +61,7 @@ bool InputEvent::PollEvent()
 		m_Keymod = (EKeymod)SDL_GetModState(); //TODO why not working?
 		m_Keystates = SDL_GetKeyboardState(NULL); //TODO why this also not working
 		m_Type = (EEventType)m_Event->type;
+		m_Event->text.text;
 
 		switch (m_Type)
 		{
@@ -112,6 +114,13 @@ bool InputEvent::PollEvent()
 			}
 			break;
 
+		case EEventType::TextInput:
+			m_Key = (EKeyboardKey)m_Event->key.keysym.sym;
+			//keymod = SDL_GetModState();//_event->key.keysym.mod;
+			m_Mouse = EMouseKey::Unknown;
+			m_TextInput = m_Event->text.text;
+			break;
+
 		default:
 			m_Key = EKeyboardKey::Unknown;
 			m_Mouse = EMouseKey::Unknown;
@@ -122,6 +131,19 @@ bool InputEvent::PollEvent()
 	}
 
 	return false;
+}
+
+// =============================================================================
+void InputEvent::ToggleTextInput(bool enable)
+{
+	if (enable)
+	{
+		SDL_StartTextInput();
+	}
+	else
+	{
+		SDL_StopTextInput();
+	}
 }
 
 // =============================================================================

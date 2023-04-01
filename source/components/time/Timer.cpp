@@ -23,7 +23,7 @@ Timer::~Timer()
 // The default unit of time for the timers is a millisecond
 void Timer::Start(int64_t interval, ETimerType type)
 {
-	g_TimerManager->StartTimer(m_Id, interval, type);
+	m_Id = g_TimerManager->StartTimer(interval, type);
 }
 
 // =============================================================================

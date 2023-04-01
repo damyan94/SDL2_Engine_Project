@@ -18,6 +18,12 @@ public:
 	Settings();
 	~Settings();
 
+	Settings(const Settings& other) = delete;
+	Settings(Settings&& other) = delete;
+
+	Settings& operator=(const Settings& other) = delete;
+	Settings& operator=(Settings&& other) = delete;
+
 	bool				Read();
 	bool				Write();
 

@@ -1,5 +1,5 @@
-#ifndef APP_UI_UI_COMPONENTS_BUTTON_H_
-#define APP_UI_UI_COMPONENTS_BUTTON_H_
+#ifndef COMPONENTS_UI_CHECKBOX_H_
+#define COMPONENTS_UI_CHECKBOX_H_
 
 // C/C++ system includes
 #include <cstdint>
@@ -11,39 +11,48 @@
 #include "sdl_utils/Defines.h"
 #include "sdl_utils/input/InputEvent.h"
 
+#include "components/ui/base_classes/UIComponentBase.h"
 #include "components/drawing/Image.h"
 #include "components/drawing/Text.h"
 #include "components/audio/Sound.h"
 
 // Forward declarations
 
-struct ButtonConfig
+struct CheckboxConfig
 {
-	bool						Read();
+	bool				Read();
 
-	ImageId						m_ImageId;
-	TextId						m_TextId;
-	SoundId						m_SoundId;
+	ImageId				m_ImageId;
+	TextId				m_TextId;
+	SoundId				m_SoundId;
 };
 
-class Button
+enum class ECheckboxFrames
+{
+	Normal				= 1
+	, Selected			= 2
+};
+
+class Checkbox
+	: public UIComponentBase
 {
 public:
-	Button();
-	~Button();
+	Checkbox();
+	~Checkbox();
 
-	bool				Init(const ButtonConfig& cfg);
+	bool				Init(const CheckboxConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
 	void				Draw() const;
 
-	void				SetPosition(const Point& pos);
+	void				SetPosition(const Point& newPos);
+
+	void				Reset();
 
 private:
-	Image				m_Image;
 	Text				m_Text;
 	Sound				m_Sound;
 };
 
-#endif // !APP_UI_UI_COMPONENTS_BUTTON_H_
+#endif // !COMPONENTS_UI_CHECKBOX_H_

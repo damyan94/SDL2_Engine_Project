@@ -19,7 +19,7 @@ class TimerContainer
 public:
 	bool				DoesTimerExist(TimerId id) const;
 	void				StartTimer(TimerId id, int64_t interval, ETimerType type);
-	void				StartTimer(int64_t interval, ETimerType type);
+	TimerId				StartTimer(int64_t interval, ETimerType type);
 	void				DestroyTimer(TimerId id);
 
 	void				SetPauseTimer(TimerId id, bool paused);

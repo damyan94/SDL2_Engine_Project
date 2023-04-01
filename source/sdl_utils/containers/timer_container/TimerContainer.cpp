@@ -19,7 +19,7 @@ bool TimerContainer::DoesTimerExist(TimerId id) const
 // The default unit of time for the timers is a millisecond
 void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 {
-	AssertReturnIf(DoesTimerExist(id), void(), "Received already exsistant timer id.");
+	AssertReturnIf(DoesTimerExist(id), void(), "Received already existant timer id.");
 
 	TimerData newTimer;
 	newTimer.m_TimerType = type;
@@ -33,9 +33,12 @@ void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 }
 
 // =============================================================================
-void TimerContainer::StartTimer(int64_t interval, ETimerType type)
+TimerId TimerContainer::StartTimer(int64_t interval, ETimerType type)
 {
-	StartTimer(GetNextFreeId(), interval, type);
+	TimerId id = GetNextFreeId();
+	StartTimer(id, interval, type);
+
+	return id;
 }
 
 // =============================================================================
@@ -75,7 +78,7 @@ bool TimerContainer::IsTimerPaused(TimerId id) const
 
 // =============================================================================
 TimerContainer::TimerContainer()
-	: m_NextUniqueId(1000000)
+	: m_NextUniqueId(0)
 {
 }
 

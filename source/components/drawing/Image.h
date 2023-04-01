@@ -8,9 +8,9 @@
 // Own includes
 #include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
+#include "sdl_utils/containers/image_container/ImageData.h"
 
 // Forward declarations
-struct ImageData;
 
 class Image
 	: public DrawObject

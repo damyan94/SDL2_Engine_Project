@@ -25,6 +25,8 @@ public:
 
 	bool				PollEvent();
 
+	static void			ToggleTextInput(bool enable);
+
 	SDL_Event*			GetBaseObject() const;
 
 public:
@@ -38,6 +40,8 @@ public:
 	bool				m_MouseHold;
 
 	Point				m_Pos;
+
+	char*				m_TextInput;
 
 private:
 	SDL_Event*			m_Event;

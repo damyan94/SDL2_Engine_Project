@@ -49,9 +49,9 @@ void TimerManager::StartTimer(TimerId id, int64_t interval, ETimerType type)
 }
 
 // =============================================================================
-void TimerManager::StartTimer(int64_t interval, ETimerType type)
+TimerId TimerManager::StartTimer(int64_t interval, ETimerType type)
 {
-	TimerContainer::StartTimer(interval, type);
+	return TimerContainer::StartTimer(interval, type);
 }
 
 // =============================================================================

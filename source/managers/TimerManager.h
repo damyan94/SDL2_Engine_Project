@@ -31,7 +31,7 @@ public:
 	void				Update(int32_t dt);
 
 	void				StartTimer(TimerId id, int64_t interval, ETimerType type);
-	void				StartTimer(int64_t interval, ETimerType type);
+	TimerId				StartTimer(int64_t interval, ETimerType type);
 	void				StartGlobalTimer();
 
 private:

@@ -40,6 +40,19 @@ bool App::Init(const AppConfig& cfg)
 	m_Button.Init(buttonCfg);
 	m_Button.SetPosition({ 100, 400 });
 
+	CheckboxConfig cbCfg;
+	cbCfg.Read();
+	m_Checkbox.Init(cbCfg);
+	m_Checkbox.SetPosition({ 100, 500 });
+
+	RadioButtonConfig rbCfg;
+	rbCfg.Read();
+	m_RadioButton.Init(rbCfg);
+	m_RadioButton.SetPosition({ 100, 600 });
+
+	m_TextBox.Init({ 1000004 });
+	m_TextBox.SetPosition({ 100, 650 });
+
 	return true;
 }
 
@@ -56,16 +69,22 @@ void App::HandleEvent(const InputEvent& e)
 		//m_Click.Play();
 	}
 	m_Button.HandleEvent(e);
+	m_Checkbox.HandleEvent(e);
+	m_RadioButton.HandleEvent(e);
+	m_TextBox.HandleEvent(e);
 }
 
 // =============================================================================
 void App::Update(int32_t dt)
 {
-	ReturnIf(!timer.IsTicked(), void());
+	//ReturnIf(!timer.IsTicked(), void());
 
 	time.SetText(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots));
 
 	m_Button.Update(dt);
+	m_Checkbox.Update(dt);
+	m_RadioButton.Update(dt);
+	m_TextBox.Update(dt);
 }
 
 // =============================================================================
@@ -81,4 +100,7 @@ void App::Draw() const
 	}
 
 	m_Button.Draw();
+	m_Checkbox.Draw();
+	m_RadioButton.Draw();
+	m_TextBox.Draw();
 }

@@ -166,7 +166,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\app\config\AppConfig.cpp" />
-    <ClCompile Include="source\app\ui\ui_components\Button.cpp" />
+    <ClCompile Include="source\components\ui\base_classes\UIComponentBase.cpp" />
+    <ClCompile Include="source\components\ui\Button.cpp" />
+    <ClCompile Include="source\components\ui\Checkbox.cpp" />
+    <ClCompile Include="source\components\ui\RadioButton.cpp" />
+    <ClCompile Include="source\components\ui\TextBox.cpp" />
+    <ClCompile Include="source\components\ui\ui_utils\TextInputter.cpp" />
     <ClCompile Include="source\engine\settings\Settings.cpp" />
     <ClCompile Include="source\components\audio\AudioObject.cpp" />
     <ClCompile Include="source\components\audio\Sound.cpp" />
@@ -242,7 +247,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
-    <ClInclude Include="source\app\ui\ui_components\Button.h" />
+    <ClInclude Include="source\components\ui\base_classes\UIComponentBase.h" />
+    <ClInclude Include="source\components\ui\Button.h" />
+    <ClInclude Include="source\components\ui\Checkbox.h" />
+    <ClInclude Include="source\components\ui\RadioButton.h" />
+    <ClInclude Include="source\components\ui\TextBox.h" />
+    <ClInclude Include="source\components\ui\ui_utils\TextInputter.h" />
     <ClInclude Include="source\engine\settings\Settings.h" />
     <ClInclude Include="source\components\audio\AudioObject.h" />
     <ClInclude Include="source\components\audio\Sound.h" />

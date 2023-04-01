@@ -1,5 +1,5 @@
 // Corresponding header
-#include "app/ui/ui_components/Button.h"
+#include "components/ui/Button.h"
 
 // C/C++ system includes
 
@@ -14,7 +14,7 @@
 #include "defines/ConfigFilePaths.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 
-static const std::string c_CategoryTypeString = "ui";
+static const std::string c_CategoryTypeString = "button";
 
 // =============================================================================
 bool ButtonConfig::Read()
@@ -53,16 +53,16 @@ Button::Button()
 Button::~Button()
 {
 	Deinit();
+	UIComponentBase::~UIComponentBase();
 }
 
 // =============================================================================
 bool Button::Init(const ButtonConfig& cfg)
 {
-	m_Image.Init(cfg.m_ImageId);
+	UIComponentBase::Init({ cfg.m_ImageId });
+
 	m_Text.Init(cfg.m_TextId);
 	m_Sound.Init(cfg.m_SoundId);
-
-	m_Image.Resize(200);
 
 	return true;
 }
@@ -70,27 +70,21 @@ bool Button::Init(const ButtonConfig& cfg)
 // =============================================================================
 void Button::Deinit()
 {
+	UIComponentBase::Deinit();
 }
 
 // =============================================================================
 void Button::HandleEvent(const InputEvent& e)
 {
-	if ((e.m_Type == EEventType::KeyboardPress || e.m_Type == EEventType::KeyboardRelease) &&
-		(e.m_Key == EKeyboardKey::E || e.m_Key == EKeyboardKey::R))
-	{
-		SetPosition(m_Image.GetPos());
-	}
+	HandleMouseHoverEvent(e);
 
-	ReturnIf(!m_Image.ContainsPoint(e.m_Pos), void());
-
-	if (e.m_Type == EEventType::MouseButtonDown)
+	if (m_Image.ContainsPoint(e.m_Pos) && e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
 	{
-		m_Image.SetNextFrame();
-		m_Sound.Play();
+		HandleMouseClickPressEvent(e);
 	}
-	else if (e.m_Type == EEventType::MouseButtonUp)
+	else if (m_IsPressed && e.m_Type == EEventType::MouseButtonUp && e.m_Mouse == EMouseKey::Left)
 	{
-		m_Image.SetPrevFrame();
+		HandleMouseClickReleaseEvent(e);
 	}
 }
 
@@ -102,15 +96,64 @@ void Button::Update(int32_t dt)
 // =============================================================================
 void Button::Draw() const
 {
-	m_Image.Draw();
+	UIComponentBase::Draw();
 	m_Text.Draw();
 }
 
 // =============================================================================
-void Button::SetPosition(const Point& pos)
+void Button::SetPosition(const Point& newPos)
 {
-	m_Image.SetPos(pos);
+	UIComponentBase::SetPosition(newPos);
 
-	const auto textPos = Position::MiddleCenter(m_Text.GetData()->m_FrameRect, m_Image.GetPosRect());
+	const auto& textPos = Position::MiddleCenter(m_Text.GetData()->m_FrameRect, m_Image.GetPosRect());
 	m_Text.SetPos(textPos);
+}
+
+// =============================================================================
+void Button::Reset()
+{
+	UIComponentBase::Reset();
+	m_Image.SetCurrFrame((int32_t)EButtonFrame::Normal);
+	SetPosition(m_Pos);
+}
+
+// =============================================================================
+void Button::HandleMouseHoverEvent(const InputEvent& e)
+{
+	if (m_Image.GetData()->m_FramesCount == 3)
+	{
+		if (m_Image.ContainsPoint(e.m_Pos) && !m_IsPressed)
+		{
+			m_Image.SetCurrFrame((int32_t)EButtonFrame::Selected);
+		}
+		else if (!m_Image.ContainsPoint(e.m_Pos) && !m_IsPressed)
+		{
+			m_Image.SetCurrFrame((int32_t)EButtonFrame::Normal);
+		}
+	}
+}
+
+// =============================================================================
+void Button::HandleMouseClickPressEvent(const InputEvent& e)
+{
+	m_IsPressed = true;
+	m_Image.SetCurrFrame((int32_t)EButtonFrame::Clicked);
+	m_Text.MoveDown(1);
+	m_Text.MoveRight(1);
+	m_Sound.Play();
+}
+
+// =============================================================================
+void Button::HandleMouseClickReleaseEvent(const InputEvent& e)
+{
+	Reset();
+	if (m_Image.ContainsPoint(e.m_Pos))
+	{
+		m_WasClicked = true;
+
+		if (m_Image.GetData()->m_FramesCount == 3)
+		{
+			m_Image.SetCurrFrame((int32_t)EButtonFrame::Selected);
+		}
+	}
 }

@@ -34,7 +34,7 @@ bool DynamicText::Init(const std::string& string, FontId id,
 	const Color& textColor, int32_t wrapWidth)
 {
 	TextTextureParameters inOutParams{
-		string,
+		string.empty() ? " " : string,
 		g_AssetManager->GetFontData(id).m_Font,
 		textColor,
 		wrapWidth,
@@ -90,7 +90,7 @@ void DynamicText::SetText(const std::string& newText)
 	Texture::DestroyTexture(m_Texture);
 
 	TextTextureParameters inOutParams{
-		newText,
+		newText.empty() ? " " : newText,
 		g_AssetManager->GetFontData(m_FontId).m_Font,
 		m_TextColor,
 		m_WrapWidth,

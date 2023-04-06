@@ -301,4 +301,27 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 
 	return result;
 }
+
+// =============================================================================
+String ReadStringHashed(const std::string& source, const std::string& str)
+{
+	String result(ReadString(source, str));
+
+	return result;
+}
+
+// =============================================================================
+std::vector<String> ReadStringArrayHashed(const std::string& source, const std::string& str, size_t size)
+{
+	std::vector<String> result;
+	auto unhashedStrings = ReadStringArray(source, str, size);
+	result.reserve(unhashedStrings.size() * (32 + sizeof(Hash32)));
+
+	for (auto&& unhashedString : unhashedStrings)
+	{
+		result.push_back(String(std::move(unhashedString)));
+	}
+
+	return result;
+}
 } // !namespace Utils

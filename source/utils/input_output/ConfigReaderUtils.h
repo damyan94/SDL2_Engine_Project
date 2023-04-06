@@ -4,11 +4,11 @@
 // C/C++ system includes
 #include <cstdint>
 #include <vector>
-#include <string>
 
 // Third-party includes
 
 // Own includes
+#include "utils/string/String.h"
 
 // Forward declarations
 
@@ -22,6 +22,9 @@ std::vector<double>			ReadDoubleArray(const std::string& source, const std::stri
 
 std::string					ReadString(const std::string& source, const std::string& str);
 std::vector<std::string>	ReadStringArray(const std::string& source, const std::string& str, size_t size);
+
+String						ReadStringHashed(const std::string& source, const std::string& str);
+std::vector<String>			ReadStringArrayHashed(const std::string& source, const std::string& str, size_t size);
 } // !Utils
 
 #endif // !UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_

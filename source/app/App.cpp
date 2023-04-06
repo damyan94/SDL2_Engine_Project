@@ -8,6 +8,8 @@
 
 // Own includes
 #include "utils/time/Time.h"
+#include "utils/string/String.h"
+#include "app/ui/menus/start_menu/config/StartMenuConfig.h"
 
 // =============================================================================
 App::App()
@@ -24,7 +26,7 @@ App::~App()
 bool App::Init(const AppConfig& cfg)
 {
 	timer.Start(1000, ETimerType::Pulse);
-	time.Init(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots), 1100002, Colors::Black);
+	time.Init(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots), Utils::JenkinsOneAtATime("consola_18"), Colors::Black);
 	time.SetPos(50, 50);
 
 	text.Init(cfg.m_TextId);
@@ -35,23 +37,7 @@ bool App::Init(const AppConfig& cfg)
 
 	m_Click.Init(cfg.m_SoundId);
 
-	ButtonConfig buttonCfg;
-	buttonCfg.Read();
-	m_Button.Init(buttonCfg);
-	m_Button.SetPosition({ 100, 400 });
-
-	CheckboxConfig cbCfg;
-	cbCfg.Read();
-	m_Checkbox.Init(cbCfg);
-	m_Checkbox.SetPosition({ 100, 500 });
-
-	RadioButtonConfig rbCfg;
-	rbCfg.Read();
-	m_RadioButton.Init(rbCfg);
-	m_RadioButton.SetPosition({ 100, 600 });
-
-	m_TextBox.Init({ 1000004 });
-	m_TextBox.SetPosition({ 100, 650 });
+	m_StartMenu.Init(cfg.m_StartMenuConfig);
 
 	return true;
 }
@@ -68,10 +54,7 @@ void App::HandleEvent(const InputEvent& e)
 	{
 		//m_Click.Play();
 	}
-	m_Button.HandleEvent(e);
-	m_Checkbox.HandleEvent(e);
-	m_RadioButton.HandleEvent(e);
-	m_TextBox.HandleEvent(e);
+	m_StartMenu.HandleEvent(e);
 }
 
 // =============================================================================
@@ -81,10 +64,7 @@ void App::Update(int32_t dt)
 
 	time.SetText(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots));
 
-	m_Button.Update(dt);
-	m_Checkbox.Update(dt);
-	m_RadioButton.Update(dt);
-	m_TextBox.Update(dt);
+	m_StartMenu.Update(dt);
 }
 
 // =============================================================================
@@ -99,8 +79,5 @@ void App::Draw() const
 		m_Logo.Draw();
 	}
 
-	m_Button.Draw();
-	m_Checkbox.Draw();
-	m_RadioButton.Draw();
-	m_TextBox.Draw();
+	m_StartMenu.Draw();
 }

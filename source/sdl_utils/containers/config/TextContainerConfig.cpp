@@ -11,23 +11,23 @@
 #include "utils/input_output/ConfigReaderUtils.h"
 #include "sdl_utils/Utils.h"
 
-static const std::string c_CategoryTypeString = "text";
+static const std::string c_CategoryString = "text";
 
 // =============================================================================
 bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 {
-	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
+	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryString);
 	if (startLine >= readStrings.size())
 	{
-		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());
+		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryString.c_str());
 		return true;
 	}
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "type") != c_CategoryTypeString);
+		BreakIf(Utils::ReadString(readStrings[i], "category") != c_CategoryString);
 
-		const int32_t id = Utils::ReadInt(readStrings[i], "id");
+		const int32_t id = Utils::ReadStringHashed(readStrings[i], "id").m_Hash;
 
 		TextConfig newCfg;
 
@@ -36,9 +36,9 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 
 		newCfg.m_TextColor = Color(color[0], color[1], color[2], color[3]);
 
-		newCfg.m_FontId = FontId(Utils::ReadInt(readStrings[i], "font_id"));
-		AssertReturnIf(!IsResourceIdValid(FontId, newCfg.m_FontId), false,
-			_CONFIG_ERROR_INFO(i));
+		newCfg.m_FontId = FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
+		/*AssertReturnIf(!IsResourceIdValid(FontId, newCfg.m_FontId), false,
+			_CONFIG_ERROR_INFO(i));*/
 
 		newCfg.m_WrapWidth = Utils::ReadInt(readStrings[i], "wrap_width");
 		AssertReturnIf(newCfg.m_WrapWidth < 0, false, _CONFIG_ERROR_INFO(i));

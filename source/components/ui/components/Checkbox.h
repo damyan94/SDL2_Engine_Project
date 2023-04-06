@@ -1,5 +1,5 @@
-#ifndef COMPONENTS_UI_CHECKBOX_H_
-#define COMPONENTS_UI_CHECKBOX_H_
+#ifndef COMPONENTS_UI_COMPONENTS_CHECKBOX_H_
+#define COMPONENTS_UI_COMPONENTS_CHECKBOX_H_
 
 // C/C++ system includes
 #include <cstdint>
@@ -17,15 +17,7 @@
 #include "components/audio/Sound.h"
 
 // Forward declarations
-
-struct CheckboxConfig
-{
-	bool				Read();
-
-	ImageId				m_ImageId;
-	TextId				m_TextId;
-	SoundId				m_SoundId;
-};
+struct CheckboxConfig;
 
 enum class ECheckboxFrames
 {
@@ -41,18 +33,17 @@ public:
 	~Checkbox();
 
 	bool				Init(const CheckboxConfig& cfg);
-	void				Deinit();
-	void				HandleEvent(const InputEvent& e);
-	void				Update(int32_t dt);
-	void				Draw() const;
+	void				Deinit() final;
+	void				HandleEvent(const InputEvent& e) final;
+	void				Update(int32_t dt) final;
+	void				Draw() const final;
 
-	void				SetPosition(const Point& newPos);
-
-	void				Reset();
+	void				SetPosition(const Point& newPos) final;
+	void				Reset() final;
 
 private:
 	Text				m_Text;
 	Sound				m_Sound;
 };
 
-#endif // !COMPONENTS_UI_CHECKBOX_H_
+#endif // !COMPONENTS_UI_COMPONENTS_CHECKBOX_H_

@@ -147,6 +147,11 @@ void Engine::RunApplication()
 void Engine::Sleep()
 {
 	const int32_t timePerFrame = 1000 / m_TargetFPS;
+	if (m_ElapsedTimeMS > 100)
+	{
+		m_ElapsedTimeMS = timePerFrame;
+	}
+
 	const int32_t sleepTime = timePerFrame - m_ElapsedTimeMS;
 
 	if (sleepTime > 0)

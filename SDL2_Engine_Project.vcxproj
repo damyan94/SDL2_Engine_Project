@@ -166,11 +166,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\app\config\AppConfig.cpp" />
+    <ClCompile Include="source\app\ui\menus\start_menu\config\StartMenuConfig.cpp" />
+    <ClCompile Include="source\app\ui\menus\start_menu\StartMenu.cpp" />
     <ClCompile Include="source\components\ui\base_classes\UIComponentBase.cpp" />
-    <ClCompile Include="source\components\ui\Button.cpp" />
-    <ClCompile Include="source\components\ui\Checkbox.cpp" />
-    <ClCompile Include="source\components\ui\RadioButton.cpp" />
-    <ClCompile Include="source\components\ui\TextBox.cpp" />
+    <ClCompile Include="source\components\ui\base_classes\UIMenuBase.cpp" />
+    <ClCompile Include="source\components\ui\components\Button.cpp" />
+    <ClCompile Include="source\components\ui\components\Checkbox.cpp" />
+    <ClCompile Include="source\components\ui\components\config\ButtonConfig.cpp" />
+    <ClCompile Include="source\components\ui\components\config\CheckboxConfig.cpp" />
+    <ClCompile Include="source\components\ui\components\config\RadioButtonConfig.cpp" />
+    <ClCompile Include="source\components\ui\components\config\TextBoxConfig.cpp" />
+    <ClCompile Include="source\components\ui\components\RadioButton.cpp" />
+    <ClCompile Include="source\components\ui\components\TextBox.cpp" />
     <ClCompile Include="source\components\ui\ui_utils\TextInputter.cpp" />
     <ClCompile Include="source\engine\settings\Settings.cpp" />
     <ClCompile Include="source\components\audio\AudioObject.cpp" />
@@ -239,19 +246,28 @@
     <ClCompile Include="source\utils\drawing\Color.cpp" />
     <ClCompile Include="source\utils\geometry\Point.cpp" />
     <ClCompile Include="source\utils\geometry\Rectangle.cpp" />
+    <ClCompile Include="source\utils\others\Hash.cpp" />
     <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp" />
     <ClCompile Include="source\utils\others\Crypto.cpp" />
+    <ClCompile Include="source\utils\string\String.cpp" />
     <ClCompile Include="source\utils\time\Time.cpp" />
     <ClCompile Include="source\components\time\Timer.cpp" />
     <ClCompile Include="source\managers\TimerManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
+    <ClInclude Include="source\app\ui\menus\start_menu\config\StartMenuConfig.h" />
+    <ClInclude Include="source\app\ui\menus\start_menu\StartMenu.h" />
     <ClInclude Include="source\components\ui\base_classes\UIComponentBase.h" />
-    <ClInclude Include="source\components\ui\Button.h" />
-    <ClInclude Include="source\components\ui\Checkbox.h" />
-    <ClInclude Include="source\components\ui\RadioButton.h" />
-    <ClInclude Include="source\components\ui\TextBox.h" />
+    <ClInclude Include="source\components\ui\base_classes\UIMenuBase.h" />
+    <ClInclude Include="source\components\ui\components\Button.h" />
+    <ClInclude Include="source\components\ui\components\Checkbox.h" />
+    <ClInclude Include="source\components\ui\components\config\ButtonConfig.h" />
+    <ClInclude Include="source\components\ui\components\config\CheckboxConfig.h" />
+    <ClInclude Include="source\components\ui\components\config\RadioButtonConfig.h" />
+    <ClInclude Include="source\components\ui\components\config\TextBoxConfig.h" />
+    <ClInclude Include="source\components\ui\components\RadioButton.h" />
+    <ClInclude Include="source\components\ui\components\TextBox.h" />
     <ClInclude Include="source\components\ui\ui_utils\TextInputter.h" />
     <ClInclude Include="source\engine\settings\Settings.h" />
     <ClInclude Include="source\components\audio\AudioObject.h" />
@@ -304,10 +320,6 @@
     <ClInclude Include="dependencies\imgui-master\imstb_textedit.h" />
     <ClInclude Include="dependencies\imgui-master\imstb_truetype.h" />
     <ClInclude Include="source\managers\DrawManager.h" />
-    <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h" />
-    <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h" />
-    <ClInclude Include="source\sdl_utils\containers\cfg\MusicContainerCfg.h" />
-    <ClInclude Include="source\sdl_utils\containers\cfg\SoundContainerCfg.h" />
     <ClInclude Include="dependencies\sdl2\include\begin_code.h" />
     <ClInclude Include="dependencies\sdl2\include\close_code.h" />
     <ClInclude Include="dependencies\sdl2\include\SDL.h" />
@@ -421,8 +433,10 @@
     <ClInclude Include="source\utils\geometry\Point.h" />
     <ClInclude Include="source\utils\geometry\Rectangle.h" />
     <ClInclude Include="source\utils\others\CodeReadability.h" />
+    <ClInclude Include="source\utils\others\Hash.h" />
     <ClInclude Include="source\utils\others\RandomNumberGenerator.h" />
     <ClInclude Include="source\utils\others\Crypto.h" />
+    <ClInclude Include="source\utils\string\String.h" />
     <ClInclude Include="source\utils\time\Time.h" />
     <ClInclude Include="source\components\time\Timer.h" />
     <ClInclude Include="source\utils\CommonIncludes.h" />

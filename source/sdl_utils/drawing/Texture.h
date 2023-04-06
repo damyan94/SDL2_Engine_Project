@@ -10,6 +10,7 @@
 // Own includes
 #include "utils/Defines.h"
 #include "utils/drawing/Color.h"
+#include "utils/string/String.h"
 
 // Forward declarations
 struct SDL_Surface;

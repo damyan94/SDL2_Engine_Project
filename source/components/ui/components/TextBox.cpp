@@ -1,5 +1,6 @@
 // Corresponding header
-#include "components/ui/TextBox.h"
+#include "components/ui/components/TextBox.h"
+#include "components/ui/components/config/TextBoxConfig.h"
 
 // C/C++ system includes
 
@@ -8,20 +9,8 @@
 // Own includes
 #include "utils/others/CodeReadability.h"
 #include "utils/geometry/Position.h"
-
-#include "utils/input_output/ReadWriteFile.h"
-#include "utils/input_output/ConfigReaderUtils.h"
-#include "defines/ConfigFilePaths.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 #include "sdl_utils/drawing/SDLDrawing.h"
-
-static const std::string c_CategoryTypeString = "text_box";
-
-// =============================================================================
-bool TextBoxConfig::Read()
-{
-	return true;
-}
 
 // =============================================================================
 TextBox::TextBox()
@@ -44,7 +33,9 @@ bool TextBox::Init(const TextBoxConfig& cfg)
 	//_text.SetPos(10000, 10000);
 	//_text.Hide();
 
-	m_TextInputter.Init({ 32, "", 1100000, Colors::Black });
+	TextInputterConfig tiCfg{ cfg.m_Pos, cfg.m_MaxChars, "", cfg.m_FontId, cfg.m_TextColor };
+	m_TextInputter.Init(tiCfg);
+	SetPosition(cfg.m_Pos);
 
 	return true;
 }

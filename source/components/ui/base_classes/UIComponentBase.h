@@ -17,7 +17,8 @@
 
 struct UIComponentBaseCfg
 {
-	ImageId m_ImageId	= -1;
+	Point				m_Pos					= Point::Undefined;
+	ImageId				m_ImageId				= -1;
 };
 
 class UIComponentBase
@@ -26,11 +27,14 @@ public:
 	UIComponentBase();
 	~UIComponentBase();
 
-	bool				Init(const UIComponentBaseCfg& cfg);
-	void				Deinit();
-	void				HandleEvent(const InputEvent& e);
-	void				Update(int32_t dt);
-	void				Draw() const;
+	/*virtual*/ bool		Init(const UIComponentBaseCfg& cfg);
+	virtual void		Deinit();
+	virtual void		HandleEvent(const InputEvent& e);
+	virtual void		Update(int32_t dt);
+	virtual void		Draw() const;
+
+	virtual void		SetPosition(const Point& newPos);
+	virtual void		Reset();
 
 	int32_t				GetWidth() const;
 	int32_t				GetHeight() const;
@@ -39,13 +43,9 @@ public:
 	bool				GetWasClicked() const;
 	bool				GetIsActive() const;
 
-	void				SetPosition(const Point& newPos);
-
 	void				SetIsPressed(bool pressed);
 	void				SetWasClicked(bool clicked);
 	void				SetIsActive(bool active);
-
-	void				Reset();
 
 protected:
 	Point				m_Pos;

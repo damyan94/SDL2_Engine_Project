@@ -13,6 +13,8 @@ static const std::string c_CategoryTypeString = "image";
 // =============================================================================
 bool AppConfig::Read(const ConfigStrings& readStrings)
 {
+	m_StartMenuConfig.Read(readStrings);
+
 	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
 	if (startLine >= readStrings.size())
 	{
@@ -20,9 +22,9 @@ bool AppConfig::Read(const ConfigStrings& readStrings)
 		return true;
 	}
 
-	m_ImageId	= Utils::ReadInt(readStrings[1], "id");
-	m_TextId	= Utils::ReadInt(readStrings[2], "id");
-	m_SoundId	= Utils::ReadInt(readStrings[3], "id");
+	m_ImageId	= Utils::ReadStringHashed(readStrings[1], "id").m_Hash;
+	m_TextId	= Utils::ReadStringHashed(readStrings[2], "id").m_Hash;
+	m_SoundId	= Utils::ReadStringHashed(readStrings[3], "id").m_Hash;
 
 	return true;
 }

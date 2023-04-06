@@ -237,34 +237,50 @@
     <ClCompile Include="source\components\ui\base_classes\UIComponentBase.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\components\ui\Button.cpp">
+    <ClCompile Include="source\components\ui\components\Button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\components\ui\Checkbox.cpp">
+    <ClCompile Include="source\components\ui\components\Checkbox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\components\ui\RadioButton.cpp">
+    <ClCompile Include="source\components\ui\components\RadioButton.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="source\components\ui\ui_utils\TextInputter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source\components\ui\TextBox.cpp">
+    <ClCompile Include="source\components\ui\components\TextBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\ui\base_classes\UIMenuBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\ui\menus\start_menu\StartMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\app\ui\menus\start_menu\config\StartMenuConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\ui\components\config\ButtonConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\ui\components\config\CheckboxConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\ui\components\config\RadioButtonConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\components\ui\components\config\TextBoxConfig.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utils\others\Hash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="source\utils\string\String.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="source\sdl_utils\containers\cfg\FontContainerCfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\cfg\ImageContainerCfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\cfg\MusicContainerCfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="source\sdl_utils\containers\cfg\SoundContainerCfg.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dependencies\sdl2\include\begin_code.h">
       <Filter>Header Files</Filter>
@@ -785,19 +801,46 @@
     <ClInclude Include="source\components\ui\base_classes\UIComponentBase.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\components\ui\Button.h">
+    <ClInclude Include="source\components\ui\components\Button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\components\ui\Checkbox.h">
+    <ClInclude Include="source\components\ui\components\Checkbox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\components\ui\RadioButton.h">
+    <ClInclude Include="source\components\ui\components\RadioButton.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="source\components\ui\ui_utils\TextInputter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="source\components\ui\TextBox.h">
+    <ClInclude Include="source\components\ui\components\TextBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\ui\base_classes\UIMenuBase.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\ui\menus\start_menu\StartMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\app\ui\menus\start_menu\config\StartMenuConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\ui\components\config\ButtonConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\ui\components\config\CheckboxConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\ui\components\config\RadioButtonConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\components\ui\components\config\TextBoxConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\others\Hash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="source\utils\string\String.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

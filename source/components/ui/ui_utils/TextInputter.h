@@ -24,9 +24,10 @@ class InputEvent;
 
 struct TextInputterConfig
 {
+	Point				m_Pos					= Point::Undefined;
 	int32_t				m_MaxChars				= 0;
 	std::string			m_TextString;
-	int32_t				m_FontId				= -1;
+	FontId				m_FontId				= -1;
 	Color				m_Color					= Colors::Black;
 };
 
@@ -47,7 +48,7 @@ public:
 	void				ToggleShouldHandleEnterKey(bool enterKey);
 
 	int32_t				GetHeight() const;
-	const std::string&	GetTextContent() const;
+	const std::string& GetTextContent() const;
 
 	void				Reset();
 

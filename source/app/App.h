@@ -16,10 +16,7 @@
 #include "components/audio/Music.h"
 #include "components/time/Timer.h"
 
-#include "components/ui/Button.h"
-#include "components/ui/Checkbox.h"
-#include "components/ui/RadioButton.h"
-#include "components/ui/TextBox.h"
+#include "app/ui/menus/start_menu/StartMenu.h"
 
 // Forward declarations
 struct AppConfig;
@@ -45,10 +42,7 @@ private:
 	Image				m_Logo;
 	Sound				m_Click;
 
-	Button				m_Button;
-	Checkbox			m_Checkbox;
-	RadioButton			m_RadioButton;
-	TextBox				m_TextBox;
+	StartMenu			m_StartMenu;
 };
 
 #endif // !APP_APP_H_

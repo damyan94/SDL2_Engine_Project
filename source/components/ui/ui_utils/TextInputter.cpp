@@ -14,6 +14,7 @@ static const int32_t	c_MaxHistoryRecords		= 100;
 static const int32_t	c_CursorTickTime		= 1000;
 static const char*		c_CursorSymbol			= "|";
 
+//TODO move to some utils namespace
 // =============================================================================
 template<typename String>
 std::wstring UTF8BytesToWideString(const String& utf8_Bytes)
@@ -49,22 +50,23 @@ TextInputter::~TextInputter()
 // =============================================================================
 bool TextInputter::Init(const TextInputterConfig& cfg)
 {
-	m_MaxChars = cfg.m_MaxChars;
-	m_TextContent = cfg.m_TextString;
+	SetPosition(cfg.m_Pos);
 
-	if (m_TextContent.size() <= 0)
-	{
-		m_Text.Init(cfg.m_TextString, cfg.m_FontId, cfg.m_Color);
-	}
+	m_MaxChars			= cfg.m_MaxChars;
+	m_TextContent		= cfg.m_TextString;
+	m_WSTextContent		= UTF8BytesToWideString(m_TextContent);
+	m_CursorPos			= m_TextContent.size();
+	m_WSCursorPos		= m_WSTextContent.size();
 
-	m_Cursor.Init(c_CursorSymbol, cfg.m_FontId, cfg.m_Color);
-	m_Cursor.Hide();
-	m_CursorPos = m_TextContent.size();
-	m_WSTextContent = UTF8BytesToWideString(m_TextContent);
-	m_WSCursorPos = m_WSTextContent.size();
+	m_History.reserve(c_MaxHistoryRecords * 32);
 
 	m_CursorTimer.Start(c_CursorTickTime, ETimerType::Pulse);
 	m_CursorTimer.SetPause(true);
+
+	m_Text.Init(cfg.m_TextString, cfg.m_FontId, cfg.m_Color);
+
+	m_Cursor.Init(c_CursorSymbol, cfg.m_FontId, cfg.m_Color);
+	m_Cursor.Hide();
 
 	return true;
 }
@@ -77,7 +79,8 @@ void TextInputter::Deinit()
 // =============================================================================
 void TextInputter::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsActive/* || e.m_Type != EEventType::KeyboardPress*/, void());
+	ReturnIf(!m_IsActive, void());
+	ReturnIf(!(e.m_Type == EEventType::KeyboardPress || e.m_Type == EEventType::TextInput), void());
 
 	if (e.m_Key == EKeyboardKey::Escape)
 	{
@@ -257,17 +260,17 @@ void TextInputter::HandleTextInput(const InputEvent& e)
 	ReturnIf((int32_t)m_WSTextContent.size() >= m_MaxChars, void());
 
 	size_t inputSize = strlen(e.m_TextInput);
-	for(size_t i = 0; i < inputSize; i++)
+	for (size_t i = 0; i < inputSize; i++)
 	{
 		m_TextContent.insert(m_CursorPos, 1, e.m_TextInput[i]);
 		m_CursorPos++;
 	}
 	const auto& wSCharsToInsert = UTF8BytesToWideString(e.m_TextInput);
-	m_WSTextContent		+= wSCharsToInsert;
-	m_WSCursorPos		+= wSCharsToInsert.size();
+	m_WSTextContent += wSCharsToInsert;
+	m_WSCursorPos += wSCharsToInsert.size();
 
-	m_CurrHistory		= m_History.size();
-	m_IsDirty			= true;
+	m_CurrHistory = m_History.size();
+	m_IsDirty = true;
 }
 
 // =============================================================================
@@ -322,6 +325,6 @@ void TextInputter::HandleEnterKey(const InputEvent& e)
 	m_WSTextContent = UTF8BytesToWideString(m_TextContent);
 	m_WSCursorPos = m_WSTextContent.size();
 	m_Text.SetText("");
-	
+
 	m_IsDirty = true;
 }

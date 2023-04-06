@@ -31,7 +31,7 @@ enum class ELanguage : int8_t;
 #define _MinCursorId	1600000
 #define _MaxCursorId	1699999
 
-#define IsResourceIdValid(__ResIdType, __Value) (__Value >= _Min##__ResIdType && __Value <= _Max##__ResIdType)
+#define IsResourceIdValid(__ResIdType, __Value) //(__Value >= _Min##__ResIdType && __Value <= _Max##__ResIdType)
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================

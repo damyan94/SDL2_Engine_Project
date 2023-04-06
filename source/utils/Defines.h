@@ -53,16 +53,17 @@ bool IsEnumValueValid(EnumType value)
 // ================================= TYPEDEFS ==================================
 // =============================================================================
 
-typedef std::wstring	String;
 typedef uint64_t		TimePoint;
-typedef int32_t			TimerId;
+typedef uint32_t		TimerId;
 
 typedef std::vector<std::string> ConfigStrings;
-typedef int32_t			ImageId;
-typedef int32_t			FontId;
-typedef int32_t			TextId;
-typedef int32_t			SoundId;
-typedef int32_t			MusicId;
+typedef uint32_t		ImageId;
+typedef uint32_t		FontId;
+typedef uint32_t		TextId;
+typedef uint32_t		SoundId;
+typedef uint32_t		MusicId;
+
+typedef uint32_t		UIComponentId;
 
 // =============================================================================
 // =============================== ENUMERATIONS ================================

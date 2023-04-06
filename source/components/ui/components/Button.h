@@ -1,5 +1,5 @@
-#ifndef COMPONENTS_UI_BUTTON_H_
-#define COMPONENTS_UI_BUTTON_H_
+#ifndef COMPONENTS_UI_COMPONENTS_BUTTON_H_
+#define COMPONENTS_UI_COMPONENTS_BUTTON_H_
 
 // C/C++ system includes
 #include <cstdint>
@@ -17,15 +17,7 @@
 #include "components/audio/Sound.h"
 
 // Forward declarations
-
-struct ButtonConfig
-{
-	bool				Read();
-
-	ImageId				m_ImageId;
-	TextId				m_TextId;
-	SoundId				m_SoundId;
-};
+struct ButtonConfig;
 
 enum class EButtonFrame
 {
@@ -42,14 +34,13 @@ public:
 	~Button();
 
 	bool				Init(const ButtonConfig& cfg);
-	void				Deinit();
-	void				HandleEvent(const InputEvent& e);
-	void				Update(int32_t dt);
-	void				Draw() const;
+	void				Deinit() final;
+	void				HandleEvent(const InputEvent& e) final;
+	void				Update(int32_t dt) final;
+	void				Draw() const final;
 
-	void				SetPosition(const Point& newPos);
-
-	void				Reset();
+	void				SetPosition(const Point& newPos) final;
+	void				Reset() final;
 
 private:
 	void				HandleMouseHoverEvent(const InputEvent& e);
@@ -61,4 +52,4 @@ private:
 	Sound				m_Sound;
 };
 
-#endif // !COMPONENTS_UI_BUTTON_H_
+#endif // !COMPONENTS_UI_COMPONENTS_BUTTON_H_

@@ -3,7 +3,6 @@
 
 // C/C++ system includes
 #include <cstdint>
-#include <string>
 #include <unordered_map>
 
 // Third-party includes
@@ -11,6 +10,7 @@
 // Own includes
 #include "utils/Defines.h"
 #include "sdl_utils/Defines.h"
+#include "utils/string/String.h"
 #include "utils/drawing/Color.h"
 
 // Forward declarations

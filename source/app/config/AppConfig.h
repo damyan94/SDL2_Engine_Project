@@ -7,6 +7,7 @@
 
 // Own includes
 #include "sdl_utils/CommonIncludes.h"
+#include "app/ui/menus/start_menu/config/StartMenuConfig.h"
 
 // Forward declarations
 
@@ -18,6 +19,8 @@ struct AppConfig
 
 	ImageId						m_ImageId;
 	SoundId						m_SoundId;
+
+	StartMenuConfig				m_StartMenuConfig;
 };
 
 #endif // !APP_CONFIG_APPCONFIG_H_

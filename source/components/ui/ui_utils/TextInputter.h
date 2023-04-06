@@ -27,7 +27,7 @@ struct TextInputterConfig
 	Point				m_Pos					= Point::Undefined;
 	int32_t				m_MaxChars				= 0;
 	std::string			m_TextString;
-	FontId				m_FontId				= -1;
+	FontId				m_FontId				= 0;
 	Color				m_Color					= Colors::Black;
 };
 

@@ -18,7 +18,7 @@
 struct TextConfig
 {
 	Color				m_TextColor				= Colors::Black;
-	FontId				m_FontId				= -1;
+	FontId				m_FontId				= 0;
 	int32_t				m_WrapWidth				= 0;
 	LanguageStringMap	m_LanguageStrings;
 };

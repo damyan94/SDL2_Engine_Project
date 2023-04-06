@@ -11,7 +11,7 @@
 TextData::TextData()
 	: m_Texture(nullptr)
 	, m_FrameRect(Rectangle::Undefined)
-	, m_FontId(-1)
+	, m_FontId(0)
 	, m_WrapWidth(0)
 {
 }

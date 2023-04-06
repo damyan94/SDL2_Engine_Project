@@ -18,7 +18,7 @@
 struct UIComponentBaseCfg
 {
 	Point				m_Pos					= Point::Undefined;
-	ImageId				m_ImageId				= -1;
+	ImageId				m_ImageId				= 0;
 };
 
 class UIComponentBase

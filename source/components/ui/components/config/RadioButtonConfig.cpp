@@ -35,17 +35,9 @@ bool RadioButtonConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
 		AssertReturnIf(pos.size() != 2, false, _CONFIG_ERROR_INFO(i));
 		m_Pos = Point(pos[0], pos[1]);
 
-		m_ImageId = Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
-		/*AssertReturnIf(!IsResourceIdValid(ImageId, m_ImageId), false,
-			_CONFIG_ERROR_INFO(i));*/
-
-		m_TextId = Utils::ReadStringHashed(readStrings[i], "text_id").m_Hash;
-		/*AssertReturnIf(!IsResourceIdValid(TextId, m_TextId), false,
-			_CONFIG_ERROR_INFO(i));*/
-
-		m_SoundId = Utils::ReadStringHashed(readStrings[i], "sound_id").m_Hash;
-		/*AssertReturnIf(!IsResourceIdValid(SoundId, m_SoundId), false,
-			_CONFIG_ERROR_INFO(i));*/
+		m_ImageId	= Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
+		m_TextId	= Utils::ReadStringHashed(readStrings[i], "text_id").m_Hash;
+		m_SoundId	= Utils::ReadStringHashed(readStrings[i], "sound_id").m_Hash;
 	}
 
 	return true;

@@ -24,7 +24,7 @@ struct TextData
 
 	SDL_Texture*		m_Texture				= nullptr;
 	Rectangle			m_FrameRect				= Rectangle::Undefined;
-	FontId				m_FontId				= -1;
+	FontId				m_FontId				= 0;
 	Color				m_TextColor				= Colors::Black;
 	int32_t				m_WrapWidth				= 0;
 	LanguageStringMap	m_LanguageStrings;

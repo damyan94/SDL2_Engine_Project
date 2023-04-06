@@ -15,7 +15,7 @@
 
 // =============================================================================
 DynamicText::DynamicText()
-	: m_FontId(FontId(-1))
+	: m_FontId(FontId(0))
 	, m_String()
 	, m_TextColor(Colors::Black)
 	, m_WrapWidth(0)

@@ -37,8 +37,6 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 		newCfg.m_TextColor = Color(color[0], color[1], color[2], color[3]);
 
 		newCfg.m_FontId = FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
-		/*AssertReturnIf(!IsResourceIdValid(FontId, newCfg.m_FontId), false,
-			_CONFIG_ERROR_INFO(i));*/
 
 		newCfg.m_WrapWidth = Utils::ReadInt(readStrings[i], "wrap_width");
 		AssertReturnIf(newCfg.m_WrapWidth < 0, false, _CONFIG_ERROR_INFO(i));

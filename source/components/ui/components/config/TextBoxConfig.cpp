@@ -35,16 +35,12 @@ bool TextBoxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
 		AssertReturnIf(pos.size() != 2, false, _CONFIG_ERROR_INFO(i));
 		m_Pos = Point(pos[0], pos[1]);
 
-		m_ImageId = Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
-		/*AssertReturnIf(!IsResourceIdValid(ImageId, m_ImageId), false,
-			_CONFIG_ERROR_INFO(i));*/
+		m_ImageId	= Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
 
-		m_MaxChars = Utils::ReadInt(readStrings[i], "max_chars");
+		m_MaxChars	= Utils::ReadInt(readStrings[i], "max_chars");
 		AssertReturnIf(m_MaxChars <= 0, false, _CONFIG_ERROR_INFO(i));
 
-		m_FontId = FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
-		/*AssertReturnIf(!IsResourceIdValid(FontId, m_FontId), false,
-			_CONFIG_ERROR_INFO(i));*/
+		m_FontId	= FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
 
 		const auto& color = Utils::ReadIntArray(readStrings[i], "text_color", 4);
 		AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(i));

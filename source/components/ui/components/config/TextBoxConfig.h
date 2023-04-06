@@ -19,9 +19,9 @@ struct TextBoxConfig
 	bool				Read(const ConfigStrings& readStrings, UIComponentId id);
 	
 	Point				m_Pos					= Point::Undefined;
-	ImageId				m_ImageId				= -1;
+	ImageId				m_ImageId				= 0;
 	int32_t				m_MaxChars				= 0;
-	FontId				m_FontId				= -1;
+	FontId				m_FontId				= 0;
 	Color				m_TextColor				= Colors::Black;
 };
 

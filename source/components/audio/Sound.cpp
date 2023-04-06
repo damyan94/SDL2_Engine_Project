@@ -11,7 +11,7 @@
 
 // =============================================================================
 Sound::Sound()
-	: m_SoundId(SoundId(-1))
+	: m_SoundId(SoundId(0))
 	, m_Channel(0)
 	, m_Data(nullptr)
 {

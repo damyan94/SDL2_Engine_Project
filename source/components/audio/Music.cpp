@@ -11,7 +11,7 @@
 
 // =============================================================================
 Music::Music()
-	: m_MusicId(MusicId(-1))
+	: m_MusicId(MusicId(0))
 	, m_Data(nullptr)
 {
 }

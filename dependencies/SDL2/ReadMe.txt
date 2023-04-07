@@ -1,1 +1,0 @@
-Copy and paste the dlls from the respective folders to the appropriate build directory.

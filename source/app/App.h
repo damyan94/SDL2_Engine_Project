@@ -37,10 +37,8 @@ private:
 	DynamicText			time;
 	Timer				timer;
 
-	Text				text;
-
 	Image				m_Logo;
-	Sound				m_Click;
+	Text				text;
 
 	StartMenu			m_StartMenu;
 };

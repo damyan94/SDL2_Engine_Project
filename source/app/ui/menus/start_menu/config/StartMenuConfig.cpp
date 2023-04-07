@@ -10,7 +10,7 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_CategoryString = "start_menu";
+static const std::string c_CategoryString = "menu";
 
 // =============================================================================
 bool StartMenuConfig::Read(const ConfigStrings& readStrings)
@@ -27,6 +27,10 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 		BreakIf(Utils::ReadString(readStrings[i], "type") != c_CategoryTypeString);
 
 	}*/
+	auto posRect = Utils::ReadIntArray(readStrings[startLine], "position", 4);
+	AssertReturnIf(posRect.size() != 4, false, _CONFIG_ERROR_INFO(startLine));
+
+	m_PosRect = Rectangle(posRect[0], posRect[1], posRect[2], posRect[3]);
 
 	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 4);
 	std::vector<Hash32> uiComponentsIds;

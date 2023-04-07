@@ -10,6 +10,7 @@
 // Own includes
 #include "utils/Defines.h"
 #include "sdl_utils/Defines.h"
+#include "utils/geometry/Rectangle.h"
 
 // Forward declarations
 class InputEvent;
@@ -28,6 +29,7 @@ public:
 	virtual void		Draw() const = 0;
 
 protected:
+	Rectangle			m_PosRect;
 	std::vector<UIComponentBase*> m_UIComponents;
 	UIMenuBase*			m_Parent;
 };

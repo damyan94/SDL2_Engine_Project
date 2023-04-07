@@ -36,5 +36,5 @@ bool String::operator==(const String& other)
 // =============================================================================
 void String::Rehash()
 {
-	m_Hash = Utils::JenkinsOneAtATime(m_String);
+	m_Hash = Utils::Hash(m_String);
 }

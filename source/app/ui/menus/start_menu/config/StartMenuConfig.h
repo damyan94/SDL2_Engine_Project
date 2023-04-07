@@ -9,6 +9,7 @@
 // Own includes
 #include "utils/Defines.h"
 #include "sdl_utils/Defines.h"
+#include "utils/geometry/Rectangle.h"
 
 #include "components/ui/components/config/ButtonConfig.h"
 #include "components/ui/components/config/CheckboxConfig.h"
@@ -20,6 +21,8 @@
 struct StartMenuConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
+
+	Rectangle			m_PosRect;
 
 	ButtonConfig	    m_ButtonConfig;
 	CheckboxConfig		m_CheckboxConfig;

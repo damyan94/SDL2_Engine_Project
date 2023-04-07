@@ -15,7 +15,7 @@ static const std::string c_CategoryTypeString = "renderer";
 // =============================================================================
 bool RendererConfig::Read(const ConfigStrings& readStrings)
 {
-	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
+	size_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
 	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryTypeString.c_str());

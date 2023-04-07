@@ -12,7 +12,7 @@
 namespace Utils
 {
 // =============================================================================
-Hash32 JenkinsOneAtATime(const std::string& str)
+Hash32 Hash(const std::string& str)
 {
     Hash32 hash = 0;
     size_t length = str.size();

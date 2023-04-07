@@ -49,6 +49,7 @@ void Checkbox::HandleEvent(const InputEvent& e)
 	{
 		m_IsActive = !m_IsActive;
 		m_Image.SetCurrFrame(m_IsActive + (int32_t)ECheckboxFrames::Normal);
+		m_Sound.Play();
 	}
 }
 

@@ -10,21 +10,21 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_CategoryString = "image";
+static const std::string c_TypeString = "image";
 
 // =============================================================================
 bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 {
-	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryString);
+	size_t startLine = Utils::ReadInt(readStrings[0], c_TypeString);
 	if (startLine >= readStrings.size())
 	{
-		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryString.c_str());
+		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_TypeString.c_str());
 		return true;
 	}
 	
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "category") != c_CategoryString);
+		BreakIf(Utils::ReadString(readStrings[i], "type") != c_TypeString);
 
 		const int32_t id = Utils::ReadStringHashed(readStrings[i], "id").m_Hash;
 

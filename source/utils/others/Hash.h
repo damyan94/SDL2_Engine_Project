@@ -16,7 +16,8 @@ typedef uint64_t Hash64;
 
 namespace Utils
 {
-Hash32 JenkinsOneAtATime(const std::string& str);
+// Jenkins One At A Time hashing algorithm
+Hash32 Hash(const std::string& str);
 } // !namespace Utils
 
 #endif // !UTILS_OTHERS_HASH_H_

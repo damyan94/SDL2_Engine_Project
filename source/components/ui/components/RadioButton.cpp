@@ -50,6 +50,7 @@ void RadioButton::HandleEvent(const InputEvent& e)
 		m_WasClicked = true;
 		m_IsActive = !m_IsActive;
 		m_Image.SetCurrFrame(m_IsActive + (int32_t)ERadioButtonFrames::Normal);
+		m_Sound.Play();
 	}
 }
 

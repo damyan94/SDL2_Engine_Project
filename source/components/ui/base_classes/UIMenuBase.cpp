@@ -9,7 +9,8 @@
 
 // =============================================================================
 UIMenuBase::UIMenuBase()
-	: m_Parent(nullptr)
+	: m_PosRect(Rectangle::Undefined)
+	, m_Parent(nullptr)
 {
 }
 

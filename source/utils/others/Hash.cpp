@@ -2,7 +2,6 @@
 #include "utils/others/Hash.h"
 
 // C/C++ system includes
-#include <functional>
 
 // Third-party includes
 

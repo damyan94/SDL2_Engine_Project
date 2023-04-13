@@ -38,6 +38,7 @@ private:
 
 	int32_t				m_ElapsedTimeMS;
 	int32_t				m_TargetFPS;
+	int32_t				m_TargetTimePerFrame;
 };
 
 #endif // !ENGINE_ENGINE_H_

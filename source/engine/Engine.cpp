@@ -19,10 +19,13 @@
 #include "managers/ImGuiManager.h"
 #include "engine/settings/Settings.h"
 
+static constexpr int32_t c_MaxDelayBetweenFrames = 100;
+
 // =============================================================================
 Engine::Engine()
 	: m_ElapsedTimeMS(0)
 	, m_TargetFPS(0)
+	, m_TargetTimePerFrame(0)
 {
 }
 
@@ -68,6 +71,7 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!m_App.Init(cfg.m_AppConfig), false);
 
 	m_TargetFPS = g_Settings->GetTargetFPS();
+	m_TargetTimePerFrame = 1000 / m_TargetFPS;
 
 	return true;
 }
@@ -87,6 +91,7 @@ void Engine::HandleEvent()
 	g_ImGuiManager->HandleEvent(m_InputEvent);
 	m_App.HandleEvent(m_InputEvent);
 
+	//TODO Move this to the settings menu or other appropriate place
 	if (m_InputEvent.m_Key == EKeyboardKey::E && m_InputEvent.m_Type == EEventType::KeyboardPress)
 	{
 		g_AssetManager->ChangeLanguage(ELanguage::EN);
@@ -101,9 +106,11 @@ void Engine::HandleEvent()
 void Engine::Update()
 {
 	g_TimerManager->Update(m_ElapsedTimeMS);
-	m_App.Update(m_ElapsedTimeMS < 100
+
+	// Handle delays here so that we do not compromise our timers
+	m_App.Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
 		? m_ElapsedTimeMS
-		: m_ElapsedTimeMS = 1000 / m_TargetFPS);
+		: m_ElapsedTimeMS = m_TargetTimePerFrame);
 }
 
 // =============================================================================
@@ -146,13 +153,7 @@ void Engine::RunApplication()
 // =============================================================================
 void Engine::Sleep()
 {
-	const int32_t timePerFrame = 1000 / m_TargetFPS;
-	if (m_ElapsedTimeMS > 100)
-	{
-		m_ElapsedTimeMS = timePerFrame;
-	}
-
-	const int32_t sleepTime = timePerFrame - m_ElapsedTimeMS;
+	const int32_t sleepTime = m_TargetTimePerFrame - m_ElapsedTimeMS;
 
 	if (sleepTime > 0)
 	{

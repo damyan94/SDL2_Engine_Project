@@ -9,58 +9,68 @@
 #include "utils/others/CodeReadability.h"
 
 // =============================================================================
-void Crypto::CaesarEncrypt(std::wstring& text, int32_t offset)
+void Crypto::CaesarEncrypt(std::string& text, int32_t offset)
 {
-	for (wchar_t& letter : text)
+	for (auto& letter : text)
 	{
 		letter += offset;
 	}
 }
 
 // =============================================================================
-void Crypto::CaesarDecrypt(std::wstring& text, int32_t offset)
+void Crypto::CaesarDecrypt(std::string& text, int32_t offset)
 {
-	for (wchar_t& letter : text)
+	for (auto& letter : text)
 	{
 		letter -= offset;
 	}
 }
 
 // =============================================================================
-void Crypto::CaesarMovingEncrypt(std::wstring& text, int32_t offset)
+void Crypto::CaesarMovingEncrypt(std::string& text, int32_t offset, int32_t limit)
 {
 	int32_t d = 0;
-	for (wchar_t& letter : text)
+	for (auto& letter : text)
 	{
 		letter += (offset + d);
 		d++;
+
+		if (d >= limit)
+		{
+			d = 0;
+		}
 	}
 }
 
 // =============================================================================
-void Crypto::CaesarMovingDecrypt(std::wstring& text, int32_t offset)
+void Crypto::CaesarMovingDecrypt(std::string& text, int32_t offset, int32_t limit)
 {
 	int32_t d = 0;
-	for (wchar_t& letter : text)
+	for (auto& letter : text)
 	{
 		letter -= (offset + d);
 		d++;
+
+		if (d >= limit)
+		{
+			d = 0;
+		}
 	}
 }
 
 // =============================================================================
-std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::wstring& text,
+std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::string& text,
 	int32_t magicValue)
 {
 	int32_t textSize = (int32_t)text.size();
-	std::wstring newText;
+	std::string newText;
 	std::vector<int32_t> offsets;
 	offsets.reserve(textSize);
 
 	for (int32_t i = 0; i < textSize; i++)
 	{
 		int32_t r = 0;
-		wchar_t newLetter = 'a';
+		auto newLetter = 'a';
 
 		do
 		{
@@ -105,18 +115,18 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::wstring& text
 //}
 
 // =============================================================================
-bool Crypto::CaesarRandomDecrypt(std::wstring& text,
+bool Crypto::CaesarRandomDecrypt(std::string& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue)
 {
 	AssertReturnIf(text.size() != offsets.size(), false,
 		"Decrypting function received invalid input.");
 
 	int32_t textSize = (int32_t)text.size();
-	std::wstring newText;
+	std::string newText;
 
 	for (int32_t i = 0; i < textSize; i++)
 	{
-		wchar_t newLetter = text[i];
+		auto newLetter = text[i];
 		newLetter -= (offsets[i] + magicValue);
 		newText += newLetter;
 	}
@@ -127,18 +137,18 @@ bool Crypto::CaesarRandomDecrypt(std::wstring& text,
 }
 
 // =============================================================================
-std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::wstring& text,
+std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::string& text,
 	int32_t magicValue, int32_t fillingCount)
 {
 	int32_t textSize = (int32_t)text.size();
-	std::wstring newText;
+	std::string newText;
 	std::vector<int32_t> offsets;
 	offsets.reserve(size_t(textSize) * size_t(fillingCount));
 
 	for (int32_t i = 0; i < textSize * fillingCount; i++)
 	{
 		int32_t r = 0;
-		wchar_t newLetter = 'a';
+		auto newLetter = 'a';
 
 		if (i % fillingCount == 0)
 		{
@@ -200,20 +210,20 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::ws
 //}
 
 // =============================================================================
-bool Crypto::CaesarRandomDecryptWithFilling(std::wstring& text,
+bool Crypto::CaesarRandomDecryptWithFilling(std::string& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue, int32_t fillingCount)
 {
 	// Error, decrypting function received invalid input.
 	ReturnIf(text.size() != offsets.size(), false);
 
 	int32_t textSize = (int32_t)text.size();
-	std::wstring newText;
+	std::string newText;
 
 	for (int32_t i = 0; i < textSize; i++)
 	{
 		if (i % fillingCount == 0)
 		{
-			wchar_t newLetter = text[i];
+			auto newLetter = text[i];
 			newLetter -= (offsets[i] + magicValue);
 			newText += newLetter;
 		}
@@ -225,9 +235,9 @@ bool Crypto::CaesarRandomDecryptWithFilling(std::wstring& text,
 }
 
 // =============================================================================
-void Crypto::InvertBits(std::wstring& text)
+void Crypto::InvertBits(std::string& text)
 {
-	for (wchar_t& letter : text)
+	for (auto& letter : text)
 	{
 		letter = ~letter;
 	}

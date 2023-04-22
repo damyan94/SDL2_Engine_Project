@@ -23,14 +23,15 @@ public:
 	virtual ~UIMenuBase();
 	
 	///*virtual*/ bool		Init();
-	virtual void		Deinit() = 0;
-	virtual void		HandleEvent(const InputEvent& e) = 0;
-	virtual void		Update(int32_t dt) = 0;
-	virtual void		Draw() const = 0;
+	virtual void		Deinit();
+	virtual void		HandleEvent(const InputEvent& e);
+	virtual void		Update(int32_t dt);
+	virtual void		Draw() const;
 
 protected:
 	Rectangle			m_PosRect;
 	std::vector<UIComponentBase*> m_UIComponents;
+	
 	UIMenuBase*			m_Parent;
 };
 

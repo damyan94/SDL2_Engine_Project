@@ -11,7 +11,7 @@
 #include "utils/input_output/ConfigReaderUtils.h"
 #include "sdl_utils/Utils.h"
 
-static const std::string c_SettingsFileName = "config/settings.cfg";
+static const std::string c_SettingsFileName = "./config/settings.cfg";
 
 Settings* const g_Settings = new Settings;
 
@@ -30,17 +30,15 @@ Settings::~Settings()
 // =============================================================================
 bool Settings::Read()
 {
-	ConfigStrings readStrings;
+	std::string readString;
 
-	ReturnIf(!ReadWriteFile::ReadFromFile(c_SettingsFileName, readStrings), false);
-	AssertReturnIf(readStrings.size() != 2, false,
-		"Settings file corrupted: " + c_SettingsFileName);
+	ReturnIf(!ReadWriteFile::ReadFromFile(c_SettingsFileName, readString), false);
 
-	m_TargetFPS = Utils::ReadInt(readStrings[0], "fps");
-	AssertReturnIf(m_TargetFPS <= 0 || m_TargetFPS >= 100, false,
-		"FPS must be between 0 and 100.");
+	m_TargetFPS = Utils::ReadInt(readString, "fps");
+	AssertReturnIf(m_TargetFPS <= 0 || m_TargetFPS > 100, false,
+		"FPS must be between 1 and 100.");
 
-	const std::string langString = Utils::ReadString(readStrings[1], "language");
+	const std::string langString = Utils::ReadString(readString, "language");
 	m_Language = Utils::GetLanguageIdFromString(langString);
 	AssertReturnIf(!IsEnumValueValid(m_Language), false,
 		"Invalid language received from settings file: " + c_SettingsFileName);
@@ -53,8 +51,9 @@ bool Settings::Write()
 {
 	std::string writeString;
 
-	writeString +="fps=" + std::to_string(m_TargetFPS) + '\n';
-	writeString +="language=\"" + Utils::GetLanguageStringFromId(m_Language) + "\"";
+	writeString += "# Important: do not change the order of the settings!\n\n";
+	writeString +="fps=" + std::to_string(m_TargetFPS) + ";\n";
+	writeString +="language=" + Utils::GetLanguageStringFromId(m_Language) + ";\n";
 
 	ReadWriteFile::WriteToFile(c_SettingsFileName, writeString, EWriteMode::Out);
 

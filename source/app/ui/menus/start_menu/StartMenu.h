@@ -23,21 +23,22 @@
 // Forward declarations
 struct StartMenuConfig;
 
-enum class EStartMenuUIComponent
-{
-	Invalid = -1
-
-	, Button
-	, Checkbox
-	, RadioButton
-	, TextBox
-
-	, Count
-};
-
 class StartMenu
 	: public UIMenuBase
 {
+public:
+	enum class EUIComponentId
+	{
+		Invalid = -1
+
+		, Button
+		, Checkbox
+		, RadioButton
+		, TextBox
+
+		, Count
+	};
+
 public:
 	StartMenu();
 	~StartMenu();

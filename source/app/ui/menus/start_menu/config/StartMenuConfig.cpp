@@ -33,16 +33,11 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 	m_PosRect = Rectangle(posRect[0], posRect[1], posRect[2], posRect[3]);
 
 	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 4);
-	std::vector<Hash32> uiComponentsIds;
-	for (const auto& component : componentsStringIds)
-	{
-		uiComponentsIds.emplace_back(component.m_Hash);
-	}
 
-	m_ButtonConfig.Read(readStrings, uiComponentsIds[0]);
-	m_CheckboxConfig.Read(readStrings, uiComponentsIds[1]);
-	m_RadioButtonConfig.Read(readStrings, uiComponentsIds[2]);
-	m_TextBoxConfig.Read(readStrings, uiComponentsIds[3]);
+	m_ButtonConfig.Read(readStrings, componentsStringIds[0].m_Hash);
+	m_CheckboxConfig.Read(readStrings, componentsStringIds[1].m_Hash);
+	m_RadioButtonConfig.Read(readStrings, componentsStringIds[2].m_Hash);
+	m_TextBoxConfig.Read(readStrings, componentsStringIds[3].m_Hash);
 
 	return true;
 }

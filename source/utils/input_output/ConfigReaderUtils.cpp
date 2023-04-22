@@ -20,17 +20,19 @@
 * 4.2. Value array - stop reading single value when ','(ValuesSeparator) is reached,
 * then continue reading a new value, stop reading in the array when ';' character
 * (RecordSeparator) is reached;
-* 4.3. String - chech if string is formatted properly (enclosed in '"' characters
-* (StringWrapper)), ignore StringWrapper characters preceded by '\\' character
-* (StringWrapperCancelator);
-* 4.4. String array - 
+* 4.3. String - check each character if it is '\\', ignore the '\\' and apply
+* or disregard special behavior if needed:
+* - 'n' preceded by '\\' is treated as '\n'
+* - 't' preceded by '\\' is treated as '\t'
+* - ';' preceded by '\\' is treated as ';', i.e. not treated as RecordSeparator
+* - ',' preceded by '\\' is treated as ',', i.e. not treated as ValuesSeparator
+* 4.4. String array - same as string but reads multiple comma separated values.
 */
 
 namespace Utils
 {
 static constexpr char RecordSeparator			= ';';
 static constexpr char ValuesSeparator			= ',';
-static constexpr char DoubleQuote				= '"';
 static constexpr char Backslash					= '\\';
 static constexpr char NewLine					= 'n';
 static constexpr char Tab						= 't';
@@ -182,28 +184,14 @@ std::string ReadString(const std::string& source, const std::string& str)
 		"Could not find the specified string inside the source string: " + str);
 
 	const size_t startPos = strStartPos + str.size() + 1;
-	AssertReturnIf(source[startPos] != DoubleQuote, result,
-		"Incorrectly formated string, missing opening quote. String name: " + str);
 
-	bool isInsideStringWrapperCharacters = false;
 	bool backslashActive = false;
 	std::string readValue;
 	for (size_t i = startPos; i < source.size(); i++)
 	{
 		auto currChar = source[i];
 
-		if (currChar == RecordSeparator && !isInsideStringWrapperCharacters)
-		{
-			break;
-		}
-
-		if (currChar == DoubleQuote && !backslashActive)
-		{
-			isInsideStringWrapperCharacters = !isInsideStringWrapperCharacters;
-			continue;
-		}
-
-		if (currChar == Backslash && isInsideStringWrapperCharacters)
+		if (currChar == Backslash && !backslashActive)
 		{
 			backslashActive = true;
 			continue;
@@ -226,6 +214,13 @@ std::string ReadString(const std::string& source, const std::string& str)
 			}
 
 			backslashActive = false;
+		}
+		else // !backslashActive
+		{
+			if (currChar == RecordSeparator)
+			{
+				break;
+			}
 		}
 
 		readValue += currChar;
@@ -245,32 +240,14 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 		"Could not find the specified string inside the source string: " + str);
 
 	const size_t startPos = strStartPos + str.size() + 1;
-	AssertReturnIf(source[startPos] != DoubleQuote, result,
-		"Incorrectly formated string, missing opening quote. String name: " + str);
 
-	bool isInsideStringWrapperCharacters = false;
 	bool backslashActive = false;
 	std::string readValue;
 	for (size_t i = startPos; i < source.size(); i++)
 	{
 		auto currChar = source[i];
 
-		BreakIf(currChar == RecordSeparator && !isInsideStringWrapperCharacters);
-
-		if (currChar == ValuesSeparator && !isInsideStringWrapperCharacters)
-		{
-			result.emplace_back(readValue);
-			readValue.clear();
-			continue;
-		}
-
-		if (currChar == DoubleQuote && !backslashActive)
-		{
-			isInsideStringWrapperCharacters = !isInsideStringWrapperCharacters;
-			continue;
-		}
-
-		if (currChar == Backslash && isInsideStringWrapperCharacters)
+		if (currChar == Backslash && !backslashActive)
 		{
 			backslashActive = true;
 			continue;
@@ -294,10 +271,23 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 
 			backslashActive = false;
 		}
+		else // !backslashActive
+		{
+			if (currChar == RecordSeparator)
+			{
+				break;
+			}
+			else if (currChar == ValuesSeparator)
+			{
+				result.emplace_back(std::move(readValue));
+				readValue.clear();
+				continue;
+			}
+		}
 
 		readValue += currChar;
 	}
-	result.emplace_back(readValue);
+	result.emplace_back(std::move(readValue));
 
 	return result;
 }

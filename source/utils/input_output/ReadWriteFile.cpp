@@ -12,8 +12,29 @@
 namespace ReadWriteFile
 {
 // =============================================================================
-bool ReadFromFile(const std::string& fileName,
-	std::vector<std::string>& readStrings)
+bool ReadFromFile(const std::string& fileName, std::string& readString)
+{
+	std::ifstream inStream(fileName, std::ios::in);
+	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
+
+	readString.clear();
+
+	std::string readLine;
+	while (std::getline(inStream, readLine))
+	{
+		//The '#' symbol will indicate a commented line in the input file
+		ContinueIf(readLine[0] == '#' || readLine.size() <= 0);
+
+		readString += readLine;
+	}
+
+	inStream.close();
+
+	return true;
+}
+
+// =============================================================================
+bool ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
 	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);

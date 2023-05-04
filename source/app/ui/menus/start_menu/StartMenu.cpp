@@ -24,17 +24,17 @@ StartMenu::~StartMenu()
 // =============================================================================
 bool StartMenu::Init(const StartMenuConfig& cfg)
 {
+	m_Id = EMenuId::StartMenu;
 	m_PosRect = cfg.m_PosRect;
 	m_UIComponents.resize((size_t)EUIComponentId::Count);
 	
 #define ALLOCATE_AND_INIT(_Id, _Type)\
-m_UIComponents[(int32_t)_Id] = new _Type;\
-ReturnIf(!static_cast<_Type*>(m_UIComponents[(int32_t)_Id])->Init(cfg.m_##_Type##Config), false)
+m_UIComponents[(int32_t)EUIComponentId::_Id] = new _Type;\
+ReturnIf(!static_cast<_Type*>(m_UIComponents[(int32_t)EUIComponentId::_Id])->Init(cfg.m_##_Id##Config), false)
 
-	ALLOCATE_AND_INIT(EUIComponentId::Button, Button);
-	ALLOCATE_AND_INIT(EUIComponentId::Checkbox, Checkbox);
-	ALLOCATE_AND_INIT(EUIComponentId::RadioButton, RadioButton);
-	ALLOCATE_AND_INIT(EUIComponentId::TextBox, TextBox);
+	ALLOCATE_AND_INIT(ButtonNewGame, Button);
+	ALLOCATE_AND_INIT(ButtonSettings, Button);
+	ALLOCATE_AND_INIT(ButtonQuit, Button);
 
 	return true;
 }
@@ -49,6 +49,15 @@ void StartMenu::Deinit()
 void StartMenu::HandleEvent(const InputEvent& e)
 {
 	UIMenuBase::HandleEvent(e);
+
+#define ON_CLICK(_Id)\
+if (m_UIComponents[(size_t)EUIComponentId::_Id]->GetWasClicked())\
+	On##_Id##Click();\
+static_cast<Button*>(m_UIComponents[(size_t)EUIComponentId::_Id])->OnClickHandled()
+
+	ON_CLICK(ButtonNewGame);
+	ON_CLICK(ButtonSettings);
+	ON_CLICK(ButtonQuit);
 }
 
 // =============================================================================
@@ -58,10 +67,31 @@ void StartMenu::Update(int32_t dt)
 }
 
 // =============================================================================
-void StartMenu::Draw() const
+void StartMenu::Activate()
 {
-	SDLDrawing::DrawFilledRectangle(m_PosRect, Colors::VeryLightOrange);
-	SDLDrawing::DrawRectangle(m_PosRect, Colors::Black);
+	UIMenuBase::Activate();
+}
 
-	UIMenuBase::Draw();
+// =============================================================================
+void StartMenu::Deactivate()
+{
+	UIMenuBase::Deactivate();
+}
+
+// =============================================================================
+void StartMenu::OnButtonNewGameClick()
+{
+	Log::Console("New game");
+}
+
+// =============================================================================
+void StartMenu::OnButtonSettingsClick()
+{
+	Log::Console("Settings");
+}
+
+// =============================================================================
+void StartMenu::OnButtonQuitClick()
+{
+	exit(0);
 }

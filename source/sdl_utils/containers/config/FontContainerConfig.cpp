@@ -10,7 +10,7 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_TypeString = "font";
+static const std::string c_TypeString = "FONT";
 
 // =============================================================================
 bool FontContainerConfig::Read(const ConfigStrings& readStrings)

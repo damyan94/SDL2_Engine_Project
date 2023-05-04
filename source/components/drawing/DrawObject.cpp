@@ -18,6 +18,12 @@ DrawObject::~DrawObject()
 }
 
 // =============================================================================
+const DrawParameters& DrawObject::GetDrawParameters() const
+{
+	return m_DrawParameters;
+}
+
+// =============================================================================
 void DrawObject::Reset()
 {
 	m_DrawParameters.Reset();

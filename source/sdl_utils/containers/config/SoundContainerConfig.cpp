@@ -10,7 +10,7 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_TypeString = "sound";
+static const std::string c_TypeString = "SOUND";
 
 // =============================================================================
 bool SoundContainerConfig::Read(const ConfigStrings& readStrings)

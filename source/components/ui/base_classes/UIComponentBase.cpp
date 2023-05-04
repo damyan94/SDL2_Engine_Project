@@ -9,7 +9,8 @@
 
 // =============================================================================
 UIComponentBase::UIComponentBase()
-	: m_IsPressed(false)
+	: m_IsEnabled(false)
+	, m_IsPressed(false)
 	, m_WasClicked(false)
 	, m_IsActive(false)
 {
@@ -29,27 +30,6 @@ bool UIComponentBase::Init(const UIComponentBaseCfg& cfg)
 }
 
 // =============================================================================
-void UIComponentBase::Deinit()
-{
-}
-
-// =============================================================================
-void UIComponentBase::HandleEvent(const InputEvent& e)
-{
-}
-
-// =============================================================================
-void UIComponentBase::Update(int32_t dt)
-{
-}
-
-// =============================================================================
-void UIComponentBase::Draw() const
-{
-	m_Image.Draw();
-}
-
-// =============================================================================
 int32_t UIComponentBase::GetWidth() const
 {
 	return m_Image.GetWidth();
@@ -59,6 +39,12 @@ int32_t UIComponentBase::GetWidth() const
 int32_t UIComponentBase::GetHeight() const
 {
 	return m_Image.GetHeight();
+}
+
+// =============================================================================
+bool UIComponentBase::GetIsEnabled() const
+{
+	return m_IsEnabled;
 }
 
 // =============================================================================
@@ -87,21 +73,35 @@ void UIComponentBase::SetPosition(const Point& newPos)
 }
 
 // =============================================================================
+void UIComponentBase::SetIsEnabled(bool enable)
+{
+	m_IsEnabled = enable;
+	if (enable)
+	{
+		m_Image.Show();
+	}
+	else
+	{
+		m_Image.Hide();
+	}
+}
+
+// =============================================================================
 void UIComponentBase::SetIsPressed(bool pressed)
 {
-	m_IsPressed = true;
+	m_IsPressed = pressed;
 }
 
 // =============================================================================
 void UIComponentBase::SetWasClicked(bool clicked)
 {
-	m_WasClicked = true;
+	m_WasClicked = clicked;
 }
 
 // =============================================================================
 void UIComponentBase::SetIsActive(bool active)
 {
-	m_IsActive = true;
+	m_IsActive = active;
 }
 
 // =============================================================================

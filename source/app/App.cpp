@@ -7,11 +7,8 @@
 // Third-party includes
 
 // Own includes
-#include "utils/time/Time.h"
-#include "utils/string/String.h"
-#include "app/ui/menus/start_menu/config/StartMenuConfig.h"
 
-//#include "app/OpenGLExperiment.h"
+App* g_App = nullptr;
 
 // =============================================================================
 App::App()
@@ -27,18 +24,10 @@ App::~App()
 // =============================================================================
 bool App::Init(const AppConfig& cfg)
 {
-	timer.Start(1000, ETimerType::Pulse);
-	time.Init(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots), Utils::Hash("consola_18"), Colors::Black);
-	time.SetPos(50, 50);
+	m_MenuManager.Init(cfg.m_MenuManagerConfig);
+	m_Game.Init(cfg.m_GameConfig);
 
-	m_Logo.Init(cfg.m_ImageId);
-	m_Logo.SetPos(cfg.m_ImagePos);
-	text.Init(cfg.m_TextId);
-	text.SetPos(cfg.m_TextPos);
-
-	m_StartMenu.Init(cfg.m_StartMenuConfig);
-
-	//OpenGl::InitFlagTest();
+	m_MenuManager.FocusMenu(EMenuId::StartMenu);
 
 	return true;
 }
@@ -46,33 +35,33 @@ bool App::Init(const AppConfig& cfg)
 // =============================================================================
 void App::Deinit()
 {
+	m_Game.Deinit();
+	m_MenuManager.Deinit();
 }
 
 // =============================================================================
 void App::HandleEvent(const InputEvent& e)
 {
-	m_StartMenu.HandleEvent(e);
+	if (e.m_Type == EEventType::KeyboardPress && e.m_Key == EKeyboardKey::BackQuote)
+	{
+		m_MenuManager.IsMenuActive(EMenuId::ConsoleMenu)
+			? m_MenuManager.DeactivateMenu(EMenuId::ConsoleMenu)
+			: m_MenuManager.ActivateMenu(EMenuId::ConsoleMenu);
+	}
+
+	m_MenuManager.HandleEvent(e);
+	m_Game.HandleEvent(e);
 }
 
 // =============================================================================
 void App::Update(int32_t dt)
 {
-	time.SetText(Time::GetNow().GetString(ETimeStringFormat::yyyymmddHHmmss_Dots));
-
-	m_StartMenu.Update(dt);
+	m_MenuManager.Update(dt);
+	m_Game.Update(dt);
 }
 
 // =============================================================================
-void App::Draw() const
+const Camera& App::GetCamera()
 {
-	for (int i = 0; i < 1; i++)
-	{
-		time.Draw();
-		m_Logo.Draw();
-		text.Draw();
-	}
-	
-	m_StartMenu.Draw();
-
-	//OpenGl::DrawFlagTest();
+	return m_Game.GetCamera();
 }

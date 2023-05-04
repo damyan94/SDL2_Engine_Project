@@ -48,6 +48,8 @@ bool Text::Init(TextId id)
 
 	m_Id								= id;
 
+	g_DrawManager->AddText(this);
+
 	return true;
 }
 
@@ -55,13 +57,8 @@ bool Text::Init(TextId id)
 void Text::Deinit()
 {
 	DrawObject::Reset();
+	g_DrawManager->RemoveText(this);
 	m_Data = nullptr;
-}
-
-// =============================================================================
-void Text::Draw() const
-{
-	g_DrawManager->DrawText(*m_Data, m_DrawParameters);
 }
 
 // =============================================================================

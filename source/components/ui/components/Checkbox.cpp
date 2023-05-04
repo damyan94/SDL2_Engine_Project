@@ -38,12 +38,13 @@ bool Checkbox::Init(const CheckboxConfig& cfg)
 // =============================================================================
 void Checkbox::Deinit()
 {
-	UIComponentBase::Deinit();
 }
 
 // =============================================================================
 void Checkbox::HandleEvent(const InputEvent& e)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	if ((m_Image.ContainsPoint(e.m_Pos) || m_Text.ContainsPoint(e.m_Pos))
 		&& e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
 	{
@@ -56,13 +57,7 @@ void Checkbox::HandleEvent(const InputEvent& e)
 // =============================================================================
 void Checkbox::Update(int32_t dt)
 {
-}
-
-// =============================================================================
-void Checkbox::Draw() const
-{
-	UIComponentBase::Draw();
-	m_Text.Draw();
+	ReturnIf(!m_IsEnabled, void());
 }
 
 // =============================================================================
@@ -80,4 +75,18 @@ void Checkbox::Reset()
 	m_IsActive = false;
 	m_Image.SetCurrFrame((int32_t)ECheckboxFrames::Normal);
 	SetPosition(m_Pos);
+}
+
+// =============================================================================
+void Checkbox::SetIsEnabled(bool enable)
+{
+	UIComponentBase::SetIsEnabled(enable);
+	if (enable)
+	{
+		m_Text.Show();
+	}
+	else
+	{
+		m_Text.Hide();
+	}
 }

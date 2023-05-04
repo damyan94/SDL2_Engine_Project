@@ -31,10 +31,9 @@ public:
 	{
 		Invalid = -1
 
-		, Button
-		, Checkbox
-		, RadioButton
-		, TextBox
+		, ButtonNewGame
+		, ButtonSettings
+		, ButtonQuit
 
 		, Count
 	};
@@ -47,9 +46,14 @@ public:
 	void				Deinit() final;
 	void				HandleEvent(const InputEvent& e) final;
 	void				Update(int32_t dt) final;
-	void				Draw() const final;
+
+	void				Activate() final;
+	void				Deactivate() final;
 
 private:
+	void				OnButtonNewGameClick();
+	void				OnButtonSettingsClick();
+	void				OnButtonQuitClick();
 };
 
 #endif // !APP_UI_MENUS_START_MENU_STARTMENU_H_

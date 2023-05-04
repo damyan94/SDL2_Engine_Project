@@ -63,7 +63,7 @@ namespace OpenGl
 // =============================================================================
 void InitFlagTest()
 {
-	auto window = g_DrawManager->GetWindow()->GetSDLWindow();
+	auto window = g_DrawManager->GetWindow().GetSDLWindow();
 	SDL_GL_CreateContext(window);
 
 	glewInit();
@@ -94,7 +94,7 @@ void DrawFlagTest()
 
 	glRecti(-1, -1, 1, 1);
 
-	auto window = g_DrawManager->GetWindow()->GetSDLWindow();
+	auto window = g_DrawManager->GetWindow().GetSDLWindow();
 	SDL_GL_SwapWindow(window);
 }
 }
@@ -155,7 +155,7 @@ namespace OpenGl
 // =============================================================================
 void InitTriangleTest()
 {
-	auto window = g_DrawManager->GetWindow()->GetSDLWindow();
+	auto window = g_DrawManager->GetWindow().GetSDLWindow();
 	SDL_GL_CreateContext(window);
 
 	glewInit();
@@ -176,7 +176,7 @@ void DrawTriangleTest()
 	}
 	glEnd();
 
-	auto window = g_DrawManager->GetWindow()->GetSDLWindow();
+	auto window = g_DrawManager->GetWindow().GetSDLWindow();
 	SDL_GL_SwapWindow(window);
 }
 } // !namespace OpenGl

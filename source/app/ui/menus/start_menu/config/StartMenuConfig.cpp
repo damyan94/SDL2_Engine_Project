@@ -10,7 +10,7 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_CategoryString = "menu";
+static const std::string c_CategoryString = "MENU";
 
 // =============================================================================
 bool StartMenuConfig::Read(const ConfigStrings& readStrings)
@@ -32,12 +32,12 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 
 	m_PosRect = Rectangle(posRect[0], posRect[1], posRect[2], posRect[3]);
 
-	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 4);
+	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 3);
+	AssertReturnIf(componentsStringIds.size() != 3, false, _CONFIG_ERROR_INFO(startLine));
 
-	m_ButtonConfig.Read(readStrings, componentsStringIds[0].m_Hash);
-	m_CheckboxConfig.Read(readStrings, componentsStringIds[1].m_Hash);
-	m_RadioButtonConfig.Read(readStrings, componentsStringIds[2].m_Hash);
-	m_TextBoxConfig.Read(readStrings, componentsStringIds[3].m_Hash);
+	m_ButtonNewGameConfig.Read(readStrings, componentsStringIds[0].m_Hash);
+	m_ButtonSettingsConfig.Read(readStrings, componentsStringIds[1].m_Hash);
+	m_ButtonQuitConfig.Read(readStrings, componentsStringIds[2].m_Hash);
 
 	return true;
 }

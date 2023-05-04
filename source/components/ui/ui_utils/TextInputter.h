@@ -41,16 +41,18 @@ public:
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
-	void				Draw() const;
 
 	void				SetPosition(const Point& newPos);
 	void				ToggleActive(bool activate);
 	void				ToggleShouldHandleEnterKey(bool enterKey);
 
 	int32_t				GetHeight() const;
-	const std::string& GetTextContent() const;
+	const std::string&	GetTextContent() const;
 
 	void				Reset();
+
+	void				Show();
+	void				Hide();
 
 private:
 	void				HandleHistoryNavigation(const InputEvent& e);
@@ -61,6 +63,7 @@ private:
 
 private:
 	Point				m_Pos;
+	bool				m_IsEnabled;
 	bool				m_IsActive;
 	bool				m_IsDirty;
 	bool				m_ShouldHandleEnterKey;

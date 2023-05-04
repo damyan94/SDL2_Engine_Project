@@ -50,6 +50,8 @@ bool Image::Init(ImageId id)
 	m_Id								= id;
 	m_CurrFrame							= 1;
 
+	g_DrawManager->AddImage(this);
+
 	return true;
 }
 
@@ -57,13 +59,8 @@ bool Image::Init(ImageId id)
 void Image::Deinit()
 {
 	DrawObject::Reset();
+	g_DrawManager->RemoveImage(this);
 	m_Data = nullptr;
-}
-
-// =============================================================================
-void Image::Draw() const
-{
-	g_DrawManager->DrawImage(*m_Data, m_DrawParameters);
 }
 
 // =============================================================================

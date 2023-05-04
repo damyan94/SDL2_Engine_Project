@@ -66,8 +66,8 @@ bool ImGuiManager::Init(const ImGuiManagerConfig& cfg)
 	}
 
 	// Setup Platform/Renderer backends
-	auto sdlWindow = g_DrawManager->GetWindow()->GetSDLWindow();
-	auto sdlRenderer = g_DrawManager->GetRenderer()->GetSDLRenderer();
+	auto sdlWindow = g_DrawManager->GetWindow().GetSDLWindow();
+	auto sdlRenderer = g_DrawManager->GetRenderer().GetSDLRenderer();
 	ImGui_ImplSDL2_InitForSDLRenderer(sdlWindow, sdlRenderer);
 	ImGui_ImplSDLRenderer_Init(sdlRenderer);
 

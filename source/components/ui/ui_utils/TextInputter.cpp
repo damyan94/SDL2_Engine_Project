@@ -79,6 +79,8 @@ void TextInputter::Deinit()
 // =============================================================================
 void TextInputter::HandleEvent(const InputEvent& e)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	ReturnIf(!m_IsActive, void());
 	ReturnIf(!(e.m_Type == EEventType::KeyboardPress || e.m_Type == EEventType::TextInput), void());
 
@@ -98,6 +100,8 @@ void TextInputter::HandleEvent(const InputEvent& e)
 // =============================================================================
 void TextInputter::Update(int32_t dt)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	if (!m_CursorTimer.IsPaused() && m_CursorTimer.IsTicked())
 	{
 		if (m_Cursor.GetIsVisible())
@@ -116,13 +120,6 @@ void TextInputter::Update(int32_t dt)
 	m_Text.SetText(m_TextContent);
 
 	m_IsDirty = false;
-}
-
-// =============================================================================
-void TextInputter::Draw() const
-{
-	m_Text.Draw();
-	m_Cursor.Draw();
 }
 
 // =============================================================================
@@ -169,6 +166,22 @@ void TextInputter::Reset()
 	m_CursorTimer.SetPause(true);
 	m_Cursor.Hide();
 	InputEvent::ToggleTextInput(false);
+}
+
+// =============================================================================
+void TextInputter::Show()
+{
+	m_IsEnabled = true;
+	m_Text.Show();
+	m_Cursor.Show();
+}
+
+// =============================================================================
+void TextInputter::Hide()
+{
+	m_IsEnabled = false;
+	m_Text.Hide();
+	m_Cursor.Hide();
 }
 
 // =============================================================================

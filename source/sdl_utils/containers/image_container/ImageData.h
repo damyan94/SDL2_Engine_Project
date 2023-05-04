@@ -10,16 +10,15 @@
 #include "utils/geometry/Rectangle.h"
 
 // Forward declarations
-struct SDL_Texture;
+class Texture;
 
 struct ImageData
 {
 	ImageData();
-	ImageData(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount);
-
+	ImageData(Texture* texture, Rectangle frameRect, int32_t framesCount);
 	~ImageData();
 
-	SDL_Texture*		m_Texture				= nullptr;
+	Texture*			m_Texture;
 	Rectangle			m_FrameRect				= Rectangle::Undefined;
 	int32_t				m_FramesCount			= 0;
 };

@@ -12,7 +12,7 @@
 #include "utils/geometry/Position.h"
 #include "defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "checkbox";
+static const std::string c_TypeString = "CHECKBOX";
 
 // =============================================================================
 bool CheckboxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)

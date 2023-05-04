@@ -6,8 +6,11 @@
 // Third-party includes
 
 // Own includes
-#include "sdl_utils/CommonIncludes.h"
-#include "app/ui/menus/start_menu/config/StartMenuConfig.h"
+#include "utils/Defines.h"
+#include "sdl_utils/Defines.h"
+#include "app/Defines.h"
+#include "app/ui/menus/config/MenuManagerConfig.h"
+#include "app/game/config/GameConfig.h"
 
 // Forward declarations
 
@@ -15,15 +18,8 @@ struct AppConfig
 {
 	bool						Read(const ConfigStrings& readStrings);
 
-	TextId						m_TextId;
-	Point						m_TextPos;
-
-	ImageId						m_ImageId;
-	Point						m_ImagePos;
-
-	SoundId						m_SoundId;
-
-	StartMenuConfig				m_StartMenuConfig;
+	MenuManagerConfig			m_MenuManagerConfig;
+	GameConfig					m_GameConfig;
 };
 
 #endif // !APP_CONFIG_APPCONFIG_H_

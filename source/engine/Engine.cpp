@@ -19,6 +19,8 @@
 #include "managers/ImGuiManager.h"
 #include "engine/settings/Settings.h"
 
+//#define USE_IMGUI
+
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;
 
 // =============================================================================
@@ -33,7 +35,12 @@ Engine::Engine()
 Engine::~Engine()
 {
 	Deinit();
+
+#ifdef USE_IMGUI
 	SafeDelete(g_ImGuiManager);
+#endif
+
+	SafeDelete(g_App);
 	SafeDelete(g_TimerManager);
 	SafeDelete(g_AudioManager);
 	SafeDelete(g_AssetManager);
@@ -50,25 +57,21 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!SDLLoader::Init(), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-	g_DrawManager = new DrawManager;
-	g_AssetManager = new AssetManager;
-	g_AudioManager = new AudioManager;
-	g_TimerManager = new TimerManager;
-	g_ImGuiManager = new ImGuiManager;
+#define ALLOCATE_AND_INIT(_Type)\
+g_##_Type = new _Type;\
+AssertReturnIf(!g_##_Type, false, "Failed to allocate memory.");\
+ReturnIf(!g_##_Type->Init(cfg.m_##_Type##Config), false)
 
-	AssertReturnIf(!g_DrawManager, false, "Failed to allocate memory.");
-	AssertReturnIf(!g_AssetManager, false, "Failed to allocate memory.");
-	AssertReturnIf(!g_AudioManager, false, "Failed to allocate memory.");
-	AssertReturnIf(!g_TimerManager, false, "Failed to allocate memory.");
-	AssertReturnIf(!g_ImGuiManager, false, "Failed to allocate memory.");
+	ALLOCATE_AND_INIT(DrawManager);
+	ALLOCATE_AND_INIT(AssetManager);
+	ALLOCATE_AND_INIT(AudioManager);
+	ALLOCATE_AND_INIT(TimerManager);
 
-	ReturnIf(!g_DrawManager->Init(cfg.m_DrawManagerConfig), false);
-	ReturnIf(!g_AssetManager->Init(cfg.m_AssetManagerConfig), false);
-	ReturnIf(!g_AudioManager->Init(cfg.m_AudioManagerConfig), false);
-	ReturnIf(!g_TimerManager->Init(cfg.m_TimerManagerConfig), false);
-	ReturnIf(!g_ImGuiManager->Init(cfg.m_ImGuiManagerConfig), false);
+#ifdef USE_IMGUI
+	ALLOCATE_AND_INIT(ImGuiManager);
+#endif
 
-	ReturnIf(!m_App.Init(cfg.m_AppConfig), false);
+	ALLOCATE_AND_INIT(App);
 
 	m_TargetFPS = g_Settings->GetTargetFPS();
 	m_TargetTimePerFrame = 1000 / m_TargetFPS;
@@ -88,15 +91,21 @@ void Engine::Deinit()
 void Engine::HandleEvent()
 {
 	g_DrawManager->HandleEvent(m_InputEvent);
+
+#ifdef USE_IMGUI
 	g_ImGuiManager->HandleEvent(m_InputEvent);
-	m_App.HandleEvent(m_InputEvent);
+#endif
+
+	g_App->HandleEvent(m_InputEvent);
 
 	//TODO Move this to the settings menu or other appropriate place
-	if (m_InputEvent.m_Key == EKeyboardKey::E && m_InputEvent.m_Type == EEventType::KeyboardPress)
+	if (m_InputEvent.m_Key == EKeyboardKey::E &&
+		m_InputEvent.m_Type == EEventType::KeyboardPress)
 	{
 		g_AssetManager->ChangeLanguage(ELanguage::EN);
 	}
-	else if (m_InputEvent.m_Key == EKeyboardKey::R && m_InputEvent.m_Type == EEventType::KeyboardPress)
+	else if (m_InputEvent.m_Key == EKeyboardKey::R &&
+		m_InputEvent.m_Type == EEventType::KeyboardPress)
 	{
 		g_AssetManager->ChangeLanguage(ELanguage::BG);
 	}
@@ -108,7 +117,7 @@ void Engine::Update()
 	g_TimerManager->Update(m_ElapsedTimeMS);
 
 	// Handle delays here so that we do not compromise our timers
-	m_App.Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
+	g_App->Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
 		? m_ElapsedTimeMS
 		: m_ElapsedTimeMS = m_TargetTimePerFrame);
 }
@@ -117,9 +126,11 @@ void Engine::Update()
 void Engine::Draw() const
 {
 	g_DrawManager->ClearScreen();
+	g_DrawManager->Draw();
 
-	m_App.Draw();
+#ifdef USE_IMGUI
 	g_ImGuiManager->Draw();
+#endif
 
 	g_DrawManager->FinishFrame();
 }

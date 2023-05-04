@@ -21,7 +21,6 @@ public:
 
 	bool				Init(ImageId id);
 	void				Deinit();
-	void				Draw() const;
 
 	void				SetCurrFrame(int32_t frame);
 	void				SetPrevFrame();

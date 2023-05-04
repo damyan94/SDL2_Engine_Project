@@ -21,7 +21,6 @@ public:
 
 	bool				Init(TextId id);
 	void				Deinit();
-	void				Draw() const;
 
 	const TextData*		GetData() const;
 

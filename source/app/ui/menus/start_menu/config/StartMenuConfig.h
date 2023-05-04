@@ -24,10 +24,9 @@ struct StartMenuConfig
 
 	Rectangle			m_PosRect;
 
-	ButtonConfig	    m_ButtonConfig;
-	CheckboxConfig		m_CheckboxConfig;
-	RadioButtonConfig	m_RadioButtonConfig;
-	TextBoxConfig		m_TextBoxConfig;
+	ButtonConfig	    m_ButtonNewGameConfig;
+	ButtonConfig	    m_ButtonSettingsConfig;
+	ButtonConfig	    m_ButtonQuitConfig;
 };
 
 #endif // !APP_UI_MENUS_START_MENU_CONFIG_STARTMENUCONFIG_H_

@@ -15,6 +15,7 @@
 // Forward declarations
 class Renderer;
 
+//TODO rework so that we can add DrawCommands that can be drawn by the g_DrawManager
 namespace SDLDrawing
 {
 void SetRenderer(Renderer* renderer);

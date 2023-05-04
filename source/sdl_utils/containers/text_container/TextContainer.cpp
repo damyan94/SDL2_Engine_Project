@@ -52,7 +52,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 	textData.m_TextColor		= color;
 	textData.m_WrapWidth		= wrapWidth;
 
-	Texture::DestroyTexture(textData.m_Texture);
+	textData.m_Texture->DestroyTexture();
 
 	TextTextureParameters inOutParams{
 		textData.m_LanguageStrings.find(m_CurrLanguage)->second,
@@ -62,13 +62,13 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 		0,
 		0
 	};
-	Texture::CreateTextureFromText(textData.m_Texture, inOutParams);
-	ReturnIf(!textData.m_Texture, false);
+	textData.m_Texture->CreateTextureFromText(inOutParams);
+	ReturnIf(!textData.m_Texture->Get(), false);
 
 	textData.m_FrameRect.w = inOutParams.m_Width;
 	textData.m_FrameRect.h = inOutParams.m_Height;
 
-	Texture::SetTextureBlendMode(textData.m_Texture, EBlendMode::Blend);
+	textData.m_Texture->SetTextureBlendMode(EBlendMode::Blend);
 
 	return true;
 }
@@ -104,6 +104,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 			"Received already existant text id.");
 
 		TextData newTextData;
+		newTextData.m_Texture = new Texture;
 
 		TextTextureParameters inOutParams{
 			textCfg.m_LanguageStrings.find(m_CurrLanguage)->second,
@@ -113,10 +114,10 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 			0,
 			0
 		};
-		Texture::CreateTextureFromText(newTextData.m_Texture, inOutParams);
-		ReturnIf(!newTextData.m_Texture, false);
+		newTextData.m_Texture->CreateTextureFromText(inOutParams);
+		ReturnIf(!newTextData.m_Texture->Get(), false);
 
-		Texture::SetTextureBlendMode(newTextData.m_Texture, EBlendMode::Blend);
+		newTextData.m_Texture->SetTextureBlendMode(EBlendMode::Blend);
 
 		newTextData.m_FrameRect.x	= 0;
 		newTextData.m_FrameRect.y	= 0;
@@ -139,7 +140,7 @@ void TextContainer::Deinit()
 {
 	for (auto& [id, textData] : m_TextsContainer)
 	{
-		Texture::DestroyTexture(textData.m_Texture);
+		textData.m_Texture->DestroyTexture();
 	}
 
 	m_TextsContainer.clear();

@@ -12,7 +12,7 @@
 #include "utils/geometry/Position.h"
 #include "defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "radio_button";
+static const std::string c_TypeString = "RADIO_BUTTON";
 
 // =============================================================================
 bool RadioButtonConfig::Read(const ConfigStrings& readStrings, UIComponentId id)

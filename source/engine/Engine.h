@@ -34,8 +34,6 @@ private:
 private:
 	InputEvent			m_InputEvent;
 
-	App					m_App;
-
 	int32_t				m_ElapsedTimeMS;
 	int32_t				m_TargetFPS;
 	int32_t				m_TargetTimePerFrame;

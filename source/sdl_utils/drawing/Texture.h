@@ -35,23 +35,33 @@ struct TextTextureParameters
 	int32_t				m_Height		= 0;
 };
 
-namespace Texture
+class Texture
 {
-void SetRenderer(Renderer* renderer);
+public:
+	Texture();
+	~Texture();
 
-void CreateSurfaceFromFile(SDL_Surface*& outSurface, ImageTextureParameters& inOutParams);
-void CreateSurfaceFromText(SDL_Surface*& outSurface, TextTextureParameters& inOutParams);
+	static void SetRenderer(Renderer* renderer);
+	SDL_Texture* Get();
 
-void CreateTextureFromSurface(SDL_Surface* surface, SDL_Texture*& outTexture);
+	void CreateTextureFromFile(ImageTextureParameters& inOutParams);
+	void CreateTextureFromText(TextTextureParameters& inOutParams);
 
-void CreateTextureFromFile(SDL_Texture*& outTexture, ImageTextureParameters& inOutParams);
-void CreateTextureFromText(SDL_Texture*& outTexture, TextTextureParameters& inOutParams);
+	void SetTextureBlendMode(const EBlendMode& blendMode);
+	void SetTextureAlphaMod(int32_t alpha);
 
-void SetTextureBlendMode(SDL_Texture*& texture, const EBlendMode& blendMode);
-void SetTextureAlphaMod(SDL_Texture* texture, int32_t alpha);
+	void DestroyTexture();
 
-void DestroySurface(SDL_Surface*& outSurface);
-void DestroyTexture(SDL_Texture*& outTexture);
-}
+private:
+	void CreateSurfaceFromFile(SDL_Surface*& outSurface, ImageTextureParameters& inOutParams);
+	void CreateSurfaceFromText(SDL_Surface*& outSurface, TextTextureParameters& inOutParams);
+
+	void CreateTextureFromSurface(SDL_Surface* surface);
+
+	void DestroySurface(SDL_Surface*& outSurface);
+
+private:
+	SDL_Texture* m_Texture;
+};
 
 #endif // !SDL_UTILS_DRAWING_TEXTURE_H_

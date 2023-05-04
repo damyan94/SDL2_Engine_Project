@@ -46,14 +46,15 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 			"Received already existant image id.");
 
 		ImageData newImageData;
+		newImageData.m_Texture = new Texture;
 
 		ImageTextureParameters inOutParams{
 			imageCfg.m_FileName,
 			newImageData.m_FrameRect.w,
 			newImageData.m_FrameRect.h
 		};
-		Texture::CreateTextureFromFile(newImageData.m_Texture, inOutParams);
-		ReturnIf(!newImageData.m_Texture, false);
+		newImageData.m_Texture->CreateTextureFromFile(inOutParams);
+		ReturnIf(!newImageData.m_Texture->Get(), false);
 
 		newImageData.m_FramesCount = imageCfg.m_Frames;
 		newImageData.m_FrameRect.w = inOutParams.m_Width;
@@ -62,7 +63,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 		newImageData.m_FrameRect.x = 0;
 		newImageData.m_FrameRect.y = 0;
 
-		Texture::SetTextureBlendMode(newImageData.m_Texture, EBlendMode::Blend);
+		newImageData.m_Texture->SetTextureBlendMode(EBlendMode::Blend);
 
 		m_ImagesContainer.emplace(id, std::move(newImageData));
 	}
@@ -75,7 +76,7 @@ void ImageContainer::Deinit()
 {
 	for (auto& [id, imageData] : m_ImagesContainer)
 	{
-		Texture::DestroyTexture(imageData.m_Texture);
+		imageData.m_Texture->DestroyTexture();
 	}
 
 	m_ImagesContainer.clear();

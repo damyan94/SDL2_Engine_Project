@@ -10,7 +10,7 @@
 #include "utils/input_output/Log.h"
 #include "utils/input_output/ConfigReaderUtils.h"
 
-static const std::string c_TypeString = "image";
+static const std::string c_TypeString = "IMAGE";
 
 // =============================================================================
 bool ImageContainerConfig::Read(const ConfigStrings& readStrings)

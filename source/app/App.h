@@ -9,17 +9,12 @@
 #include "managers/CommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
 
-#include "components/drawing/Image.h"
-#include "components/drawing/Text.h"
-#include "components/drawing/DynamicText.h"
-#include "components/audio/Sound.h"
-#include "components/audio/Music.h"
-#include "components/time/Timer.h"
-
-#include "app/ui/menus/start_menu/StartMenu.h"
+#include "app/ui/menus/MenuManager.h"
+#include "app/game/Game.h"
 
 // Forward declarations
 struct AppConfig;
+class Camera;
 
 class App
 {
@@ -27,20 +22,25 @@ public:
 	App();
 	~App();
 
+	App(const App& other) = delete;
+	App(App&& other) = delete;
+
+	App& operator=(const App& other) = delete;
+	App& operator=(App&& other) = delete;
+
 	bool				Init(const AppConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
-	void				Draw() const;
+
+public:
+	const Camera&		GetCamera();
 
 private:
-	DynamicText			time;
-	Timer				timer;
-
-	Image				m_Logo;
-	Text				text;
-
-	StartMenu			m_StartMenu;
+	MenuManager			m_MenuManager;
+	Game				m_Game;
 };
+
+extern App* g_App;
 
 #endif // !APP_APP_H_

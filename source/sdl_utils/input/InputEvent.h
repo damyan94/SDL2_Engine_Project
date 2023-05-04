@@ -36,7 +36,7 @@ public:
 	const uint8_t*		m_Keystates;
 
 	EMouseKey			m_Mouse;
-	EMouseWheel			m_Wheel;
+	float				m_Wheel;
 	bool				m_MouseHold;
 
 	Point				m_Pos;

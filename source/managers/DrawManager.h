@@ -3,21 +3,23 @@
 
 // C/C++ system includes
 #include <cstdint>
+#include <deque>
 
 // Third-party includes
 
 // Own includes
+#include "sdl_utils/input/InputEvent.h"
+#include "sdl_utils/drawing/Window.h"
+#include "sdl_utils/drawing/Renderer.h"
 
 // Forward declarations
 struct DrawManagerConfig;
 struct DrawParameters;
-class Window;
-class Renderer;
-class InputEvent;
-struct SDL_Texture;
 
-struct ImageData;
-struct TextData;
+class Texture;
+class Image;
+class Text;
+class DynamicText;
 
 class DrawManager
 {
@@ -34,22 +36,37 @@ public:
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
+	void				Draw() const;
 
 	void				ClearScreen() const;
 	void				FinishFrame() const;
 
-	void				DrawTexture(SDL_Texture* texture, const DrawParameters& p) const;
-	void				DrawImage(const ImageData& data, const DrawParameters& p) const;
-	void				DrawText(const TextData& data, const DrawParameters& p) const;
 
 	bool				IsInsideWindow(const DrawParameters& p) const;
 
-	Window*				GetWindow() const;
-	Renderer*			GetRenderer() const;
+	Window&				GetWindow();
+	Renderer&			GetRenderer();
+
+	void				AddImage(Image* item);
+	void				RemoveImage(Image* item);
+	void				AddText(Text* item);
+	void				RemoveText(Text* item);
+	void				AddDynamicText(DynamicText* item);
+	void				RemoveDynamicText(DynamicText* item);
+
+	mutable int32_t		m_DrawCalls;
 
 private:
-	Window*				m_Window;
-	Renderer*			m_Renderer;
+	void				DrawTexture(Texture* texture, const DrawParameters& p) const;
+
+private:
+	Window				m_Window;
+	Renderer			m_Renderer;
+
+	//TODO maybe std::shared_ptr and maybe add priority/layer to DrawParameters
+	std::deque<Image*>			m_Images;
+	std::deque<Text*>			m_Texts;
+	std::deque<DynamicText*>	m_DynamicTexts;
 };
 
 extern DrawManager* g_DrawManager;

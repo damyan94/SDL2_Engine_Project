@@ -16,7 +16,7 @@ InputEvent::InputEvent()
 	, m_Keymod(EKeymod::None)
 	, m_Keystates(nullptr)
 	, m_Mouse(EMouseKey::Unknown)
-	, m_Wheel(EMouseWheel::UpDownTreshold)
+	, m_Wheel(0)
 	, m_MouseHold(false)
 	, m_Pos(Point::Undefined)
 	, m_TextInput(nullptr)
@@ -102,7 +102,7 @@ bool InputEvent::PollEvent()
 		case EEventType::MouseWheel:
 			m_Key = EKeyboardKey::Unknown;
 			m_Mouse = EMouseKey::Unknown;
-			m_Wheel = (EMouseWheel)m_Event->wheel.y;
+			m_Wheel = m_Event->wheel.y;
 			break;
 
 		case EEventType::MouseMotion:

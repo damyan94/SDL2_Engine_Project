@@ -29,9 +29,6 @@ TextBox::~TextBox()
 bool TextBox::Init(const TextBoxConfig& cfg)
 {
 	m_Image.Init(cfg.m_ImageId);
-	//_text.Init(L" ", cfg.fontId, cfg.textColor);
-	//_text.SetPos(10000, 10000);
-	//_text.Hide();
 
 	TextInputterConfig tiCfg{ cfg.m_Pos, cfg.m_MaxChars, "", cfg.m_FontId, cfg.m_TextColor };
 	m_TextInputter.Init(tiCfg);
@@ -43,12 +40,13 @@ bool TextBox::Init(const TextBoxConfig& cfg)
 // =============================================================================
 void TextBox::Deinit()
 {
-	UIComponentBase::Deinit();
 }
 
 // =============================================================================
 void TextBox::HandleEvent(const InputEvent& e)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	if (m_Image.ContainsPoint(e.m_Pos) && e.m_Type == EEventType::MouseButtonDown
 		&& e.m_Mouse == EMouseKey::Left)
 	{
@@ -74,22 +72,9 @@ void TextBox::HandleEvent(const InputEvent& e)
 // =============================================================================
 void TextBox::Update(int32_t dt)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	m_TextInputter.Update(dt);
-}
-
-// =============================================================================
-void TextBox::Draw() const
-{
-	UIComponentBase::Draw();
-	m_TextInputter.Draw();
-
-	if (m_IsActive)
-	{
-		SDLDrawing::DrawRectangle({ m_Pos.x - 1, m_Pos.y - 1,
-			m_Image.GetWidth() + 2, m_Image.GetHeight() + 2}, Colors::SkyBlue );
-		SDLDrawing::DrawRectangle({m_Pos.x - 2, m_Pos.y - 2,
-			m_Image.GetWidth() + 4, m_Image.GetHeight() + 4}, Colors::SkyBlue);
-	}
 }
 
 // =============================================================================
@@ -103,7 +88,8 @@ void TextBox::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);
 
-	m_TextInputter.SetPosition(Point(m_Pos.x + 4, m_Pos.y + (m_Image.GetHeight() - m_TextInputter.GetHeight()) / 2));
+	m_TextInputter.SetPosition(Point(m_Pos.x + 4, m_Pos.y +
+		(m_Image.GetHeight() - m_TextInputter.GetHeight()) / 2));
 }
 
 // =============================================================================
@@ -117,4 +103,18 @@ void TextBox::Reset()
 {
 	m_TextInputter.Reset();
 	m_IsActive = false;
+}
+
+// =============================================================================
+void TextBox::SetIsEnabled(bool enable)
+{
+	UIComponentBase::SetIsEnabled(enable);
+	if (enable)
+	{
+		m_TextInputter.Show();
+	}
+	else
+	{
+		m_TextInputter.Hide();
+	}
 }

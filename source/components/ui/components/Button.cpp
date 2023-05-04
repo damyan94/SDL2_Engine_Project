@@ -38,12 +38,13 @@ bool Button::Init(const ButtonConfig& cfg)
 // =============================================================================
 void Button::Deinit()
 {
-	UIComponentBase::Deinit();
 }
 
 // =============================================================================
 void Button::HandleEvent(const InputEvent& e)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	HandleMouseHoverEvent(e);
 
 	if (m_Image.ContainsPoint(e.m_Pos) && e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
@@ -59,13 +60,13 @@ void Button::HandleEvent(const InputEvent& e)
 // =============================================================================
 void Button::Update(int32_t dt)
 {
+	ReturnIf(!m_IsEnabled, void());
 }
 
 // =============================================================================
-void Button::Draw() const
+void Button::OnClickHandled()
 {
-	UIComponentBase::Draw();
-	m_Text.Draw();
+	m_WasClicked = false;
 }
 
 // =============================================================================
@@ -83,6 +84,20 @@ void Button::Reset()
 	UIComponentBase::Reset();
 	m_Image.SetCurrFrame((int32_t)EButtonFrame::Normal);
 	SetPosition(m_Pos);
+}
+
+// =============================================================================
+void Button::SetIsEnabled(bool enable)
+{
+	UIComponentBase::SetIsEnabled(enable);
+	if (enable)
+	{
+		m_Text.Show();
+	}
+	else
+	{
+		m_Text.Hide();
+	}
 }
 
 // =============================================================================

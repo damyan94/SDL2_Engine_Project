@@ -12,7 +12,7 @@
 #include "utils/geometry/Position.h"
 #include "defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "button";
+static const std::string c_TypeString = "BUTTON";
 
 // =============================================================================
 bool ButtonConfig::Read(const ConfigStrings& readStrings, UIComponentId id)

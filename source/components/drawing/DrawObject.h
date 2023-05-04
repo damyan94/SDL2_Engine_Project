@@ -17,6 +17,7 @@ public:
 	DrawObject();
 	~DrawObject();
 
+	const DrawParameters& GetDrawParameters() const;
 	void				Reset();
 
 	// Getters

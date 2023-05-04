@@ -90,6 +90,16 @@
     <ClCompile Include="source\components\time\Timer.cpp" />
     <ClCompile Include="source\managers\TimerManager.cpp" />
     <ClCompile Include="source\app\OpenGLExperiment.cpp" />
+    <ClCompile Include="source\app\ui\menus\MenuManager.cpp" />
+    <ClCompile Include="source\app\ui\menus\config\MenuManagerConfig.cpp" />
+    <ClCompile Include="source\app\game\Game.cpp" />
+    <ClCompile Include="source\app\game\config\GameConfig.cpp" />
+    <ClCompile Include="source\app\game\Camera.cpp" />
+    <ClCompile Include="source\app\game\GameObject.cpp" />
+    <ClCompile Include="source\app\game\config\GameObjectConfig.cpp" />
+    <ClCompile Include="source\app\AppHelpers.cpp" />
+    <ClCompile Include="source\app\ui\menus\console_menu\ConsoleMenu.cpp" />
+    <ClCompile Include="source\managers\ManagersHelpers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
@@ -280,6 +290,18 @@
     <ClInclude Include="source\utils\Defines.h" />
     <ClInclude Include="source\managers\TimerManager.h" />
     <ClInclude Include="source\app\OpenGLExperiment.h" />
+    <ClInclude Include="source\app\ui\menus\MenuManager.h" />
+    <ClInclude Include="source\app\ui\menus\config\MenuManagerConfig.h" />
+    <ClInclude Include="source\app\Defines.h" />
+    <ClInclude Include="source\app\game\Game.h" />
+    <ClInclude Include="source\app\game\config\GameConfig.h" />
+    <ClInclude Include="source\app\game\Camera.h" />
+    <ClInclude Include="source\app\game\GameObject.h" />
+    <ClInclude Include="source\app\game\config\GameObjectConfig.h" />
+    <ClInclude Include="source\app\IApp.h" />
+    <ClInclude Include="source\app\AppHelpers.h" />
+    <ClInclude Include="source\app\ui\menus\console_menu\ConsoleMenu.h" />
+    <ClInclude Include="source\managers\ManagersHelpers.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\icon.ico" />

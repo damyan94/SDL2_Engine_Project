@@ -10,6 +10,7 @@
 // Own includes
 #include "utils/Defines.h"
 #include "sdl_utils/Defines.h"
+#include "app/Defines.h"
 #include "utils/geometry/Rectangle.h"
 
 // Forward declarations
@@ -26,13 +27,21 @@ public:
 	virtual void		Deinit();
 	virtual void		HandleEvent(const InputEvent& e);
 	virtual void		Update(int32_t dt);
-	virtual void		Draw() const;
+
+	virtual void		Activate();
+	virtual void		Deactivate();
+
+	EMenuId				GetId() const;
+	Rectangle			GetPosRect() const;
+	bool				GetIsActive() const;
 
 protected:
-	Rectangle			m_PosRect;
-	std::vector<UIComponentBase*> m_UIComponents;
-	
 	UIMenuBase*			m_Parent;
+	EMenuId				m_Id;
+	Rectangle			m_PosRect;
+	bool				m_IsActive;
+
+	std::vector<UIComponentBase*> m_UIComponents;
 };
 
 #endif // !COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_

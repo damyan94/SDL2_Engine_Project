@@ -12,7 +12,7 @@
 #include "utils/geometry/Position.h"
 #include "defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "textbox";
+static const std::string c_TypeString = "TEXTBOX";
 
 // =============================================================================
 bool TextBoxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)

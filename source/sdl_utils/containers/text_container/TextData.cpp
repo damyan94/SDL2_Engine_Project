@@ -17,7 +17,7 @@ TextData::TextData()
 }
 
 // =============================================================================
-TextData::TextData(SDL_Texture* texture, Rectangle frameRect, FontId fontId, int32_t wrapWidth)
+TextData::TextData(Texture* texture, Rectangle frameRect, FontId fontId, int32_t wrapWidth)
 	: m_Texture(texture)
 	, m_FrameRect(frameRect)
 	, m_FontId(fontId)

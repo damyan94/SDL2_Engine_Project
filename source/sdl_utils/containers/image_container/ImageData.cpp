@@ -16,7 +16,7 @@ ImageData::ImageData()
 }
 
 // =============================================================================
-ImageData::ImageData(SDL_Texture* texture, Rectangle frameRect, int32_t framesCount)
+ImageData::ImageData(Texture* texture, Rectangle frameRect, int32_t framesCount)
 	: m_Texture(texture)
 	, m_FrameRect(frameRect)
 	, m_FramesCount(framesCount)

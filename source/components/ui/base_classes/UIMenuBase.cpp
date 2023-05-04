@@ -10,8 +10,10 @@
 
 // =============================================================================
 UIMenuBase::UIMenuBase()
-	: m_PosRect(Rectangle::Undefined)
-	, m_Parent(nullptr)
+	: m_Parent(nullptr)
+	, m_Id(EMenuId::Invalid)
+	, m_PosRect(Rectangle::Undefined)
+	, m_IsActive(false)
 {
 }
 
@@ -27,7 +29,7 @@ UIMenuBase::~UIMenuBase()
 // =============================================================================
 void UIMenuBase::Deinit()
 {
-	for (const auto uiComponent : m_UIComponents)
+	for (auto uiComponent : m_UIComponents)
 	{
 		uiComponent->Deinit();
 	}
@@ -52,10 +54,39 @@ void UIMenuBase::Update(int32_t dt)
 }
 
 // =============================================================================
-void UIMenuBase::Draw() const
+void UIMenuBase::Activate()
 {
+	m_IsActive = true;
 	for (const auto uiComponent : m_UIComponents)
 	{
-		uiComponent->Draw();
+		uiComponent->SetIsEnabled(true);
 	}
+}
+
+// =============================================================================
+void UIMenuBase::Deactivate()
+{
+	m_IsActive = false;
+	for (const auto uiComponent : m_UIComponents)
+	{
+		uiComponent->SetIsEnabled(false);
+	}
+}
+
+// =============================================================================
+EMenuId UIMenuBase::GetId() const
+{
+	return m_Id;
+}
+
+// =============================================================================
+Rectangle UIMenuBase::GetPosRect() const
+{
+	return m_PosRect;
+}
+
+// =============================================================================
+bool UIMenuBase::GetIsActive() const
+{
+	return m_IsActive;
 }

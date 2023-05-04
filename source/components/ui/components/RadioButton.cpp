@@ -38,12 +38,13 @@ bool RadioButton::Init(const RadioButtonConfig& cfg)
 // =============================================================================
 void RadioButton::Deinit()
 {
-	UIComponentBase::Deinit();
 }
 
 // =============================================================================
 void RadioButton::HandleEvent(const InputEvent& e)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	if ((m_Image.ContainsPoint(e.m_Pos) || m_Text.ContainsPoint(e.m_Pos))
 		&& e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
 	{
@@ -57,15 +58,10 @@ void RadioButton::HandleEvent(const InputEvent& e)
 // =============================================================================
 void RadioButton::Update(int32_t dt)
 {
+	ReturnIf(!m_IsEnabled, void());
+
 	m_WasClicked = false;
 	m_Image.SetCurrFrame(m_IsActive + (int32_t)ERadioButtonFrames::Normal);
-}
-
-// =============================================================================
-void RadioButton::Draw() const
-{
-	UIComponentBase::Draw();
-	m_Text.Draw();
 }
 
 // =============================================================================
@@ -84,4 +80,18 @@ void RadioButton::Reset()
 	m_IsActive = false;
 	m_Image.SetCurrFrame((int32_t)ERadioButtonFrames::Normal);
 	SetPosition(m_Pos);
+}
+
+// =============================================================================
+void RadioButton::SetIsEnabled(bool enable)
+{
+	UIComponentBase::SetIsEnabled(enable);
+	if (enable)
+	{
+		m_Text.Show();
+	}
+	else
+	{
+		m_Text.Hide();
+	}
 }

@@ -35,6 +35,9 @@ bool Renderer::Init(SDL_Window* window, const RendererConfig& cfg)
 	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0"), false,
 		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
 
+	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_BATCHING, "1"), false,
+		"SDL_SetHint() failed: " + std::string(SDL_GetError()));
+
 	m_Renderer = SDL_CreateRenderer(window, -1, cfg.m_Flags);
 	AssertReturnIf(!m_Renderer, false, "SDL_CreateRenderer() failed: " + std::string(SDL_GetError()));
 
@@ -71,7 +74,7 @@ void Renderer::FinishFrame() const
 }
 
 // =============================================================================
-void Renderer::RenderTexture(SDL_Texture* texture, const DrawParameters& p)
+void Renderer::RenderTexture(Texture* texture, const DrawParameters& p) const
 {
 	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible, void());
 
@@ -79,37 +82,13 @@ void Renderer::RenderTexture(SDL_Texture* texture, const DrawParameters& p)
 	const SDL_Rect dst{ p.m_PosRect.x, p.m_PosRect.y, p.m_PosRect.w, p.m_PosRect.h };
 	const SDL_Point cntr{ p.m_RotationCenter.x, p.m_RotationCenter.y };
 
-	Texture::SetTextureAlphaMod(texture, p.m_Opacity);
+	texture->SetTextureAlphaMod(p.m_Opacity);
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, texture,
+	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, texture->Get(),
 		&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
 		void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
 
-	Texture::SetTextureAlphaMod(texture, Constants::FullOpacity);
-}
-
-// =============================================================================
-void Renderer::RenderImage(const ImageData& data, const DrawParameters& p)
-{
-	RenderTexture(data.m_Texture, p);
-}
-
-// =============================================================================
-void Renderer::RenderText(const TextData& data, const DrawParameters& p)
-{
-	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible, void());
-
-	const SDL_Rect src{ p.m_FrameRect.x, p.m_FrameRect.y, data.m_FrameRect.w, data.m_FrameRect.h };
-	const SDL_Rect dst{ p.m_PosRect.x, p.m_PosRect.y, data.m_FrameRect.w, data.m_FrameRect.h };
-	const SDL_Point cntr{ p.m_RotationCenter.x, p.m_RotationCenter.y };
-
-	Texture::SetTextureAlphaMod(data.m_Texture, p.m_Opacity);
-
-	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, data.m_Texture,
-		&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
-		void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
-
-	Texture::SetTextureAlphaMod(data.m_Texture, Constants::FullOpacity);
+	texture->SetTextureAlphaMod(Constants::FullOpacity);
 }
 
 // =============================================================================

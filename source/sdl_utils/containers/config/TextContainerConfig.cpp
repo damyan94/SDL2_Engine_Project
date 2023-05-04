@@ -11,7 +11,7 @@
 #include "utils/input_output/ConfigReaderUtils.h"
 #include "sdl_utils/Utils.h"
 
-static const std::string c_TypeString = "text";
+static const std::string c_TypeString = "TEXT";
 
 // =============================================================================
 bool TextContainerConfig::Read(const ConfigStrings& readStrings)

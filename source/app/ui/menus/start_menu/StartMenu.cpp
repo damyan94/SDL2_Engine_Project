@@ -1,12 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/ui/menus/start_menu/StartMenu.h"
 #include "app/ui/menus/start_menu/config/StartMenuConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "sdl_utils/input/InputEvent.h"
 #include "sdl_utils/drawing/SDLDrawing.h"
 

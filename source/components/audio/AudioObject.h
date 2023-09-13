@@ -1,15 +1,7 @@
 #ifndef COMPONENTS_AUDIO_AUDIOOBJECT_H_
 #define COMPONENTS_AUDIO_AUDIOOBJECT_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/CommonIncludes.h"
-#include "utils/audio/AudioParameters.h"
-
-// Forward declarations
+#include "sdl_utils/audio/AudioParameters.h"
 
 class AudioObject
 {

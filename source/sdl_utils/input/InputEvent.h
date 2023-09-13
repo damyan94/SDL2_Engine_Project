@@ -1,17 +1,8 @@
 #ifndef SDL_UTILS_INPUT_INPUT_EVENT_H_
 #define SDL_UTILS_INPUT_INPUT_EVENT_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
 #include "sdl_utils/input/EventDefines.h"
 
-// Forward declarations
 union SDL_Event;
 
 class InputEvent

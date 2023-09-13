@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/drawing/DynamicText.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 //TODO major refactoring needed
 #include "sdl_utils/drawing/Texture.h"

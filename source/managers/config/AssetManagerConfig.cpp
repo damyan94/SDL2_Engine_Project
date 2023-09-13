@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/config/AssetManagerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 bool AssetManagerConfig::Read(const ConfigStrings& readStrings)

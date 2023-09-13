@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/others/Crypto.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 void Crypto::CaesarEncrypt(std::string& text, int32_t offset)

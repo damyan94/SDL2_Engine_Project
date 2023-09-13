@@ -1,16 +1,9 @@
 #ifndef ENGINE_ENGINE_H_
 #define ENGINE_ENGINE_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/CommonIncludes.h"
 #include "sdl_utils/input/InputEvent.h"
 #include "app/App.h"
 
-// Forward declarations
 struct EngineConfig;
 
 class Engine

@@ -1,16 +1,6 @@
 #ifndef COMPONENTS_UI_UI_UTILS_TEXTINPUTTER_H_
 #define COMPONENTS_UI_UI_UTILS_TEXTINPUTTER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <vector>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "sdl_utils/input/InputEvent.h"
 
 #include "components/ui/base_classes/UIComponentBase.h"
@@ -19,7 +9,6 @@
 #include "components/audio/Sound.h"
 #include "components/time/Timer.h"
 
-// Forward declarations
 class InputEvent;
 
 struct TextInputterConfig

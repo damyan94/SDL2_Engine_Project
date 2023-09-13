@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/time/Time.h"
-
-// C/C++ system includes
-#include <chrono>
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 Time::Time()

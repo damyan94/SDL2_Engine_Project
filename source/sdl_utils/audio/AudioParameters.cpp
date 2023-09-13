@@ -1,11 +1,6 @@
-// Corresponding header
-#include "utils/audio/AudioParameters.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
+#include "sdl_utils/audio/AudioParameters.h"
 
 // =============================================================================
 AudioParameters::AudioParameters()

@@ -1,14 +1,6 @@
 #ifndef SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICDATA_H_
 #define SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICDATA_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 typedef struct _Mix_Music Mix_Music;
 
 struct MusicData

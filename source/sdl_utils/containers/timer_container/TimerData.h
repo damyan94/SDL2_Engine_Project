@@ -1,17 +1,6 @@
 #ifndef SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERDATA_H_
 #define SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERDATA_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
-
-// Forward declarations
-
 struct TimerData
 {
 	TimerData();

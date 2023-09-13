@@ -1,14 +1,10 @@
-// Corresponding header
+#include "stdafx.h"
+
+#include <SDL_video.h>
+
 #include "sdl_utils/drawing/Window.h"
 #include "sdl_utils/drawing/config/WindowConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-#include <SDL_video.h>
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 #include "sdl_utils/input/InputEvent.h"
 
 // =============================================================================

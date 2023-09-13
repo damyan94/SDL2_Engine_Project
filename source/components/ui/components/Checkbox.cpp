@@ -1,13 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/components/Checkbox.h"
 #include "components/ui/components/config/CheckboxConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 const int32_t STANDARD_SPACING = 4;
 

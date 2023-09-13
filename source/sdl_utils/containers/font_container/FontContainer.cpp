@@ -1,14 +1,9 @@
-// Corresponding header
-#include "sdl_utils/containers/font_container/FontContainer.h"
-#include "sdl_utils/containers/config/FontContainerConfig.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include <SDL_ttf.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
+#include "sdl_utils/containers/font_container/FontContainer.h"
+#include "sdl_utils/containers/config/FontContainerConfig.h"
 
 // =============================================================================
 FontContainer::FontContainer()

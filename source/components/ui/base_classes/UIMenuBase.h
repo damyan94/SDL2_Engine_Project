@@ -1,19 +1,8 @@
 #ifndef COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_
 #define COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <vector>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "app/Defines.h"
-#include "utils/geometry/Rectangle.h"
 
-// Forward declarations
 class InputEvent;
 class UIComponentBase;
 

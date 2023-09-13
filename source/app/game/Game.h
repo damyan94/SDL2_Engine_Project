@@ -1,16 +1,7 @@
 #ifndef APP_GAME_GAME_H_
 #define APP_GAME_GAME_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "app/Defines.h"
-#include "utils/geometry/Point.h"
 #include "sdl_utils/input/InputEvent.h"
 
 #include "app/game/Camera.h"

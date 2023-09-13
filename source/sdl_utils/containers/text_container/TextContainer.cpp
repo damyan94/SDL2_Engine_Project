@@ -1,13 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/text_container/TextContainer.h"
 #include "sdl_utils/containers/config/TextContainerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 #include "sdl_utils/drawing/Texture.h"
 #include "managers/AssetManager.h"
 #include "engine/settings/Settings.h"

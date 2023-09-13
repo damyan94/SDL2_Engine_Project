@@ -1,11 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/base_classes/UIMenuBase.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "components/ui/base_classes/UIComponentBase.h"
 
 // =============================================================================

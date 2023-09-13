@@ -1,13 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/ManagersHelpers.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "managers/DrawManager.h"
-#include "ManagersHelpers.h"
 
 namespace Helpers
 {

@@ -97,7 +97,7 @@
       <Optimization>Disabled</Optimization>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <UseFullPaths>true</UseFullPaths>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -118,7 +118,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <UseFullPaths>false</UseFullPaths>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -138,7 +138,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <UseFullPaths>true</UseFullPaths>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -153,7 +153,7 @@
     <ClCompile>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <UseFullPaths>false</UseFullPaths>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -196,9 +196,18 @@
     <ClCompile Include="source\components\drawing\DynamicText.cpp" />
     <ClCompile Include="source\engine\config\EngineConfig.cpp" />
     <ClCompile Include="source\managers\ManagersHelpers.cpp" />
-    <ClCompile Include="source\sdl_utils\Utils.cpp" />
-    <ClCompile Include="source\utils\geometry\Circle.cpp" />
-    <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp" />
+    <ClCompile Include="source\utils\geometry\Circle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\managers\AudioManager.cpp" />
     <ClCompile Include="source\managers\config\AssetManagerConfig.cpp" />
     <ClCompile Include="source\managers\config\AudioManagerConfig.cpp" />
@@ -222,24 +231,89 @@
     <ClCompile Include="source\sdl_utils\containers\timer_container\TimerData.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\config\RendererConfig.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\config\WindowConfig.cpp" />
-    <ClCompile Include="source\utils\audio\AudioParameters.cpp" />
-    <ClCompile Include="source\utils\drawing\DrawParameters.cpp" />
-    <ClCompile Include="source\utils\input_output\Assert.cpp" />
-    <ClCompile Include="source\utils\input_output\Log.cpp" />
+    <ClCompile Include="source\sdl_utils\audio\AudioParameters.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\sdl_utils\drawing\DrawParameters.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\input_output\Assert.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\input_output\Log.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\managers\AssetManager.cpp" />
-    <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdl.cpp" />
-    <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.cpp" />
-    <ClCompile Include="dependencies\imgui-master\imgui.cpp" />
-    <ClCompile Include="dependencies\imgui-master\imgui_demo.cpp" />
-    <ClCompile Include="dependencies\imgui-master\imgui_draw.cpp" />
-    <ClCompile Include="dependencies\imgui-master\imgui_tables.cpp" />
-    <ClCompile Include="dependencies\imgui-master\imgui_widgets.cpp" />
+    <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdl.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\backends\imgui_impl_sdlrenderer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\imgui.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\imgui_demo.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\imgui_draw.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\imgui_tables.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="dependencies\imgui-master\imgui_widgets.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\managers\DrawManager.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
     <ClCompile Include="source\app\App.cpp" />
     <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\utils\geometry\Position.cpp" />
-    <ClCompile Include="source\utils\input_output\ReadWriteFile.cpp" />
+    <ClCompile Include="source\utils\geometry\Position.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\input_output\ReadWriteFile.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\sdl_utils\audio\Audio.cpp" />
     <ClCompile Include="source\sdl_utils\containers\font_container\FontContainer.cpp" />
     <ClCompile Include="source\sdl_utils\containers\image_container\ImageContainer.cpp" />
@@ -254,16 +328,62 @@
     <ClCompile Include="source\sdl_utils\drawing\SDLDrawing.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\Texture.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\Window.cpp" />
-    <ClCompile Include="source\utils\drawing\Color.cpp" />
-    <ClCompile Include="source\utils\geometry\Point.cpp" />
-    <ClCompile Include="source\utils\geometry\Rectangle.cpp" />
-    <ClCompile Include="source\utils\others\Hash.cpp" />
-    <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp" />
-    <ClCompile Include="source\utils\others\Crypto.cpp" />
-    <ClCompile Include="source\utils\string\String.cpp" />
-    <ClCompile Include="source\utils\time\Time.cpp" />
+    <ClCompile Include="source\utils\drawing\Color.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\geometry\Point.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\geometry\Rectangle.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\others\Hash.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\others\RandomNumberGenerator.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\others\Crypto.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\string\String.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\utils\time\Time.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="source\components\time\Timer.cpp" />
     <ClCompile Include="source\managers\TimerManager.cpp" />
+    <ClCompile Include="source\stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
@@ -300,11 +420,9 @@
     <ClInclude Include="source\defines\ConfigFilePaths.h" />
     <ClInclude Include="source\engine\config\EngineConfig.h" />
     <ClInclude Include="source\managers\ManagersHelpers.h" />
-    <ClInclude Include="source\sdl_utils\Utils.h" />
     <ClInclude Include="source\utils\geometry\Circle.h" />
     <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h" />
     <ClInclude Include="source\managers\AudioManager.h" />
-    <ClInclude Include="source\managers\CommonIncludes.h" />
     <ClInclude Include="source\managers\config\AssetManagerConfig.h" />
     <ClInclude Include="source\managers\config\AudioManagerConfig.h" />
     <ClInclude Include="source\managers\config\DrawManagerConfig.h" />
@@ -326,12 +444,11 @@
     <ClInclude Include="source\sdl_utils\containers\sound_container\SoundData.h" />
     <ClInclude Include="source\sdl_utils\containers\text_container\TextData.h" />
     <ClInclude Include="source\sdl_utils\containers\text_container\TextContainer.h" />
-    <ClInclude Include="source\sdl_utils\CommonIncludes.h" />
     <ClInclude Include="source\sdl_utils\containers\timer_container\TimerContainer.h" />
     <ClInclude Include="source\sdl_utils\containers\timer_container\TimerData.h" />
     <ClInclude Include="source\sdl_utils\Defines.h" />
-    <ClInclude Include="source\utils\audio\AudioParameters.h" />
-    <ClInclude Include="source\utils\drawing\DrawParameters.h" />
+    <ClInclude Include="source\sdl_utils\audio\AudioParameters.h" />
+    <ClInclude Include="source\sdl_utils\drawing\DrawParameters.h" />
     <ClInclude Include="source\utils\input_output\Assert.h" />
     <ClInclude Include="source\utils\input_output\Log.h" />
     <ClInclude Include="source\managers\AssetManager.h" />
@@ -463,9 +580,9 @@
     <ClInclude Include="source\utils\string\String.h" />
     <ClInclude Include="source\utils\time\Time.h" />
     <ClInclude Include="source\components\time\Timer.h" />
-    <ClInclude Include="source\utils\CommonIncludes.h" />
     <ClInclude Include="source\utils\Defines.h" />
     <ClInclude Include="source\managers\TimerManager.h" />
+    <ClInclude Include="source\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\icon.ico" />

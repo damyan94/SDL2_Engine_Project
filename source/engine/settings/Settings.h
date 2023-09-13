@@ -1,17 +1,6 @@
 #ifndef ENGINE_SETTINGS_SETTINGS_H_
 #define ENGINE_SETTINGS_SETTINGS_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
-
-// Forward declarations
-
 class Settings
 {
 public:

@@ -1,12 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/App.h"
 #include "app/config/AppConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 App* g_App = nullptr;
 

@@ -1,14 +1,6 @@
 #ifndef MANAGERS_AUDIOMANAGER_H_
 #define MANAGERS_AUDIOMANAGER_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 struct AudioManagerConfig;
 struct SoundData;
 struct MusicData;

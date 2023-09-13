@@ -1,4 +1,5 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/OpenGLExperiment.h"
 
 //TODO This is here because it conflicts with some function Rectangle from the Windows API
@@ -6,14 +7,9 @@
 #include "sdl_utils/drawing/Renderer.h"
 #include "managers/DrawManager.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include "SDL.h"
 #include "GL/glew.h"
 #include "GL/wglew.h"
-
-// Own includes
 
 // !!! Important: Disable the SDL rendering in Engine::Draw before running OpenGl
 

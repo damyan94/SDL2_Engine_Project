@@ -1,16 +1,8 @@
 #ifndef MANAGERS_IMGUIMANAGER_H_
 #define MANAGERS_IMGUIMANAGER_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
-
 #include "sdl_utils/input/InputEvent.h"
 
-// Forward declarations
 struct ImGuiManagerConfig;
 
 class ImGuiManager

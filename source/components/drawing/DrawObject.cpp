@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/drawing/DrawObject.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 DrawObject::DrawObject()

@@ -1,13 +1,8 @@
-// Corresponding header
-#include "sdl_utils/input/InputEvent.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include <SDL_events.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
+#include "sdl_utils/input/InputEvent.h"
 
 // =============================================================================
 InputEvent::InputEvent()

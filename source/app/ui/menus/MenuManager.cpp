@@ -1,12 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/ui/menus/MenuManager.h"
 #include "app/ui/menus/config/MenuManagerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "app/ui/menus/console_menu/ConsoleMenu.h"
 #include "app/ui/menus/start_menu/StartMenu.h"
 

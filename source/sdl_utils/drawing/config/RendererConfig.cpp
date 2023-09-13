@@ -1,14 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/drawing/config/RendererConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/Log.h"
-#include "utils/input_output/ConfigReaderUtils.h"
 
 static const std::string c_CategoryTypeString = "renderer";
 

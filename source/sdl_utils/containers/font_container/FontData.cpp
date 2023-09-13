@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/font_container/FontData.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 FontData::FontData()

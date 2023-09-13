@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/geometry/Position.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 Point Position::TopLeft(const Rectangle& object, const Rectangle& container)

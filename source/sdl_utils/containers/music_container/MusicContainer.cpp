@@ -1,13 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/music_container/MusicContainer.h"
 #include "sdl_utils/containers/config/MusicContainerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 #include "sdl_utils/audio/Audio.h"
 
 // =============================================================================

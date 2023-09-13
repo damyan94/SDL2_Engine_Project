@@ -1,17 +1,6 @@
 #ifndef UTILS_TIME_TIME_H_
 #define UTILS_TIME_TIME_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-
-// Forward declarations
-
 class Time
 {
 public:

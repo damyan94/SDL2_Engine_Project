@@ -1,18 +1,6 @@
 #ifndef COMPONENTS_UI_COMPONENTS_CONFIG_BUTTON_H_
 #define COMPONENTS_UI_COMPONENTS_CONFIG_BUTTON_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
-#include "utils/geometry/Point.h"
-
-// Forward declarations
-
 struct ButtonConfig
 {
 	bool				Read(const ConfigStrings& readStrings, UIComponentId id);

@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/geometry/Point.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 const Point Point::Zero			= Point(0, 0);

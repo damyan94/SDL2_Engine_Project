@@ -1,13 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/image_container/ImageContainer.h"
 #include "sdl_utils/containers/config/ImageContainerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 #include "sdl_utils/drawing/Texture.h"
 
 // =============================================================================

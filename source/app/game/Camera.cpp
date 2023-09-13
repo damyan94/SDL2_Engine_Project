@@ -1,14 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/game/Camera.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/input_output/Log.h"
-#include "utils/others/CodeReadability.h"
-#include "utils/string/String.h"
 #include "managers/ManagersHelpers.h"
 #include "components/drawing/DynamicText.h"
 

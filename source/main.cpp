@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 // C/C++ system includes
 #include <cstdint>
 

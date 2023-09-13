@@ -1,15 +1,8 @@
 #ifndef COMPONENTS_AUDIO_MUSIC_H_
 #define COMPONENTS_AUDIO_MUSIC_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
 #include "components/audio/AudioObject.h"
 
-// Forward declarations
 struct MusicData;
 
 class Music

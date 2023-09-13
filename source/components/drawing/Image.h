@@ -1,16 +1,8 @@
 #ifndef COMPONENTS_DRAWING_IMAGE_H_
 #define COMPONENTS_DRAWING_IMAGE_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 #include "sdl_utils/containers/image_container/ImageData.h"
-
-// Forward declarations
 
 class Image
 	: public DrawObject

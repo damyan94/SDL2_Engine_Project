@@ -1,19 +1,9 @@
 #ifndef COMPONENTS_UI_BASE_CLASSES_UICOMPONENTSBASE_H
 #define COMPONENTS_UI_BASE_CLASSES_UICOMPONENTSBASE_H
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "sdl_utils/input/InputEvent.h"
 
 #include "components/drawing/Image.h"
-
-// Forward declarations
 
 struct UIComponentBaseCfg
 {

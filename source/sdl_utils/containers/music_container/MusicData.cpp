@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/music_container/MusicData.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
 
 // =============================================================================
 MusicData::MusicData()

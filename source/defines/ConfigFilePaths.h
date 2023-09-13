@@ -1,14 +1,7 @@
 #ifndef DEFINES_CONFIGFILEPATHS_H_
 #define DEFINES_CONFIGFILEPATHS_H_
 
-// C/C++ system includes
 #include <string>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 
 namespace ConfigFilePaths
 {

@@ -1,15 +1,8 @@
 #ifndef COMPONENTS_DRAWING_TEXT_H_
 #define COMPONENTS_DRAWING_TEXT_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 
-// Forward declarations
 struct TextData;
 
 class Text

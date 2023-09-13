@@ -1,15 +1,11 @@
-// Corresponding header
-#include "sdl_utils/drawing/Texture.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include <SDL_surface.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
+#include "sdl_utils/drawing/Texture.h"
+
 #include "sdl_utils/drawing/Renderer.h"
 
 static Renderer* s_Renderer = nullptr;

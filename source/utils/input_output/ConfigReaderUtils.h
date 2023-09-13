@@ -1,17 +1,6 @@
 #ifndef UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
 #define UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <vector>
-
-// Third-party includes
-
-// Own includes
-#include "utils/string/String.h"
-
-// Forward declarations
-
 namespace Utils
 {
 int32_t						ReadInt(const std::string& source, const std::string& str);

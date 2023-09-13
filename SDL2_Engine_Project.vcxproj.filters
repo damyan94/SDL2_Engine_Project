@@ -21,7 +21,6 @@
     <ClCompile Include="source\components\audio\Music.cpp" />
     <ClCompile Include="source\components\drawing\DynamicText.cpp" />
     <ClCompile Include="source\engine\config\EngineConfig.cpp" />
-    <ClCompile Include="source\sdl_utils\Utils.cpp" />
     <ClCompile Include="source\utils\geometry\Circle.cpp" />
     <ClCompile Include="source\utils\input_output\ConfigReaderUtils.cpp" />
     <ClCompile Include="source\managers\AudioManager.cpp" />
@@ -47,8 +46,8 @@
     <ClCompile Include="source\sdl_utils\containers\timer_container\TimerData.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\config\RendererConfig.cpp" />
     <ClCompile Include="source\sdl_utils\drawing\config\WindowConfig.cpp" />
-    <ClCompile Include="source\utils\audio\AudioParameters.cpp" />
-    <ClCompile Include="source\utils\drawing\DrawParameters.cpp" />
+    <ClCompile Include="source\sdl_utils\audio\AudioParameters.cpp" />
+    <ClCompile Include="source\sdl_utils\drawing\DrawParameters.cpp" />
     <ClCompile Include="source\utils\input_output\Assert.cpp" />
     <ClCompile Include="source\utils\input_output\Log.cpp" />
     <ClCompile Include="source\managers\AssetManager.cpp" />
@@ -100,6 +99,7 @@
     <ClCompile Include="source\app\AppHelpers.cpp" />
     <ClCompile Include="source\app\ui\menus\console_menu\ConsoleMenu.cpp" />
     <ClCompile Include="source\managers\ManagersHelpers.cpp" />
+    <ClCompile Include="source\stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="source\app\config\AppConfig.h" />
@@ -123,11 +123,9 @@
     <ClInclude Include="source\components\drawing\DynamicText.h" />
     <ClInclude Include="source\defines\ConfigFilePaths.h" />
     <ClInclude Include="source\engine\config\EngineConfig.h" />
-    <ClInclude Include="source\sdl_utils\Utils.h" />
     <ClInclude Include="source\utils\geometry\Circle.h" />
     <ClInclude Include="source\utils\input_output\ConfigReaderUtils.h" />
     <ClInclude Include="source\managers\AudioManager.h" />
-    <ClInclude Include="source\managers\CommonIncludes.h" />
     <ClInclude Include="source\managers\config\AssetManagerConfig.h" />
     <ClInclude Include="source\managers\config\AudioManagerConfig.h" />
     <ClInclude Include="source\managers\config\DrawManagerConfig.h" />
@@ -149,12 +147,11 @@
     <ClInclude Include="source\sdl_utils\containers\sound_container\SoundData.h" />
     <ClInclude Include="source\sdl_utils\containers\text_container\TextData.h" />
     <ClInclude Include="source\sdl_utils\containers\text_container\TextContainer.h" />
-    <ClInclude Include="source\sdl_utils\CommonIncludes.h" />
     <ClInclude Include="source\sdl_utils\containers\timer_container\TimerContainer.h" />
     <ClInclude Include="source\sdl_utils\containers\timer_container\TimerData.h" />
     <ClInclude Include="source\sdl_utils\Defines.h" />
-    <ClInclude Include="source\utils\audio\AudioParameters.h" />
-    <ClInclude Include="source\utils\drawing\DrawParameters.h" />
+    <ClInclude Include="source\sdl_utils\audio\AudioParameters.h" />
+    <ClInclude Include="source\sdl_utils\drawing\DrawParameters.h" />
     <ClInclude Include="source\utils\input_output\Assert.h" />
     <ClInclude Include="source\utils\input_output\Log.h" />
     <ClInclude Include="source\managers\AssetManager.h" />
@@ -286,7 +283,6 @@
     <ClInclude Include="source\utils\string\String.h" />
     <ClInclude Include="source\utils\time\Time.h" />
     <ClInclude Include="source\components\time\Timer.h" />
-    <ClInclude Include="source\utils\CommonIncludes.h" />
     <ClInclude Include="source\utils\Defines.h" />
     <ClInclude Include="source\managers\TimerManager.h" />
     <ClInclude Include="source\app\OpenGLExperiment.h" />
@@ -302,6 +298,7 @@
     <ClInclude Include="source\app\AppHelpers.h" />
     <ClInclude Include="source\app\ui\menus\console_menu\ConsoleMenu.h" />
     <ClInclude Include="source\managers\ManagersHelpers.h" />
+    <ClInclude Include="source\stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\images\icon.ico" />

@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/others/Hash.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 namespace Utils
 {

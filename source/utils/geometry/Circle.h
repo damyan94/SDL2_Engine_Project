@@ -1,16 +1,6 @@
 #ifndef UTILS_GEOMETRY_CIRCLE_H_
 #define UTILS_GEOMETRY_CIRCLE_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/geometry/Point.h"
-
-// Forward declarations
-
 struct Circle
 {
 	Circle();

@@ -1,14 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/components/TextBox.h"
 #include "components/ui/components/config/TextBoxConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/geometry/Position.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 #include "sdl_utils/drawing/SDLDrawing.h"
 

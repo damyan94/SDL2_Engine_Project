@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/geometry/Rectangle.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 const Rectangle Rectangle::Zero			= Rectangle(0, 0, 0, 0);

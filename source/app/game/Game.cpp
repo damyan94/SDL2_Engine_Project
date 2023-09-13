@@ -1,15 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/game/Game.h"
 #include "app/game/config/GameConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/Log.h"
-#include "utils/string/String.h"
 #include "app/game/config/GameObjectConfig.h"
 
 #define W 6

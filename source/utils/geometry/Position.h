@@ -1,16 +1,6 @@
 #ifndef UTILS_GEOMETRY_POSITION_H_
 #define UTILS_GEOMETRY_POSITION_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
-
-// Forward declarations
-
 namespace Position
 {
 	Point TopLeft(const Rectangle& object, const Rectangle& container);

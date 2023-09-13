@@ -1,15 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/components/config/TextBoxConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/Log.h"
-#include "utils/input_output/ConfigReaderUtils.h"
-#include "utils/geometry/Position.h"
 #include "defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "TEXTBOX";

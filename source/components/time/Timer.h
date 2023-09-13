@@ -1,17 +1,6 @@
 #ifndef COMPONENTS_TIME_TIMER_H_
 #define COMPONENTS_TIME_TIMER_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
-
-// Forward declarations
-
 class Timer
 {
 public:

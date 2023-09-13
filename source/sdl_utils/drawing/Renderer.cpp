@@ -1,20 +1,13 @@
-// Corresponding header
-#include "sdl_utils/drawing/Renderer.h"
-#include "sdl_utils/drawing/config/RendererConfig.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include <SDL_render.h>
 #include <SDL_hints.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/drawing/DrawParameters.h"
-#include "sdl_utils/drawing/Texture.h"
+#include "sdl_utils/drawing/Renderer.h"
+#include "sdl_utils/drawing/config/RendererConfig.h"
 
-#include "sdl_utils/containers/image_container/ImageData.h"
-#include "sdl_utils/containers/text_container/TextData.h"
+#include "sdl_utils/drawing/DrawParameters.h"
+#include "sdl_utils/drawing/Texture.h"
 
 // =============================================================================
 Renderer::Renderer()
@@ -84,8 +77,14 @@ void Renderer::RenderTexture(Texture* texture, const DrawParameters& p) const
 
 	texture->SetTextureAlphaMod(p.m_Opacity);
 
-	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(m_Renderer, texture->Get(),
-		&src, &dst, p.m_RotationAngle, &cntr, (SDL_RendererFlip)p.m_FlipMode),
+	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(
+		m_Renderer,
+		texture->Get(),
+		&src,
+		&dst,
+		p.m_RotationAngle,
+		&cntr,
+		(SDL_RendererFlip)p.m_FlipMode),
 		void(), "SDL_RenderCopyEx() failed: " + std::string(SDL_GetError()));
 
 	texture->SetTextureAlphaMod(Constants::FullOpacity);

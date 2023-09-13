@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/image_container/ImageData.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 ImageData::ImageData()

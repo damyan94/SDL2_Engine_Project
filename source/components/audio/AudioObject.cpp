@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/audio/AudioObject.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 AudioObject::AudioObject()

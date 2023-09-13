@@ -1,15 +1,6 @@
 #ifndef SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_
 #define SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "sdl_utils/Defines.h"
-
-// Forward declarations
 typedef struct _TTF_Font TTF_Font;
 
 struct FontData

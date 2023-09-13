@@ -1,11 +1,6 @@
 #ifndef APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
 #define APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "components/ui/base_classes/UIMenuBase.h"
 
 #include "sdl_utils/input/InputEvent.h"
@@ -16,7 +11,6 @@
 #include "components/audio/Music.h"
 #include "components/time/Timer.h"
 
-// Forward declarations
 struct ConsoleMenuConfig;
 
 class ConsoleMenu

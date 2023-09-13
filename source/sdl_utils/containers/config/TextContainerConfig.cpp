@@ -1,15 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/config/TextContainerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/Log.h"
-#include "utils/input_output/ConfigReaderUtils.h"
-#include "sdl_utils/Utils.h"
 
 static const std::string c_TypeString = "TEXT";
 

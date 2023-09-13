@@ -1,15 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "engine/Engine.h"
 #include "engine/config/EngineConfig.h"
 
-// C/C++ system includes
-#include <thread>
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
-#include "utils/time/Time.h"
 #include "sdl_utils/SDLLoader.h"
 
 #include "managers/DrawManager.h"
@@ -18,8 +11,6 @@
 #include "managers/TimerManager.h"
 #include "managers/ImGuiManager.h"
 #include "engine/settings/Settings.h"
-
-//#define USE_IMGUI
 
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;
 

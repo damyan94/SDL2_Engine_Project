@@ -1,11 +1,6 @@
 #ifndef APP_UI_MENUS_START_MENU_STARTMENU_H_
 #define APP_UI_MENUS_START_MENU_STARTMENU_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "components/ui/base_classes/UIMenuBase.h"
 
 #include "components/drawing/Image.h"
@@ -20,7 +15,6 @@
 #include "components/ui/components/RadioButton.h"
 #include "components/ui/components/TextBox.h"
 
-// Forward declarations
 struct StartMenuConfig;
 
 class StartMenu

@@ -1,12 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/AssetManager.h"
 #include "managers/config/AssetManagerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 AssetManager* g_AssetManager = nullptr;
 

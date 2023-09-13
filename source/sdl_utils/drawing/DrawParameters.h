@@ -1,17 +1,5 @@
-#ifndef UTILS_DRAWING_DRAWPARAMETERS_H_
-#define UTILS_DRAWING_DRAWPARAMETERS_H_
-
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
-
-// Forward declarations
+#ifndef SDL_UTILS_DRAWING_DRAWPARAMETERS_H_
+#define SDL_UTILS_DRAWING_DRAWPARAMETERS_H_
 
 struct DrawParameters
 {
@@ -36,4 +24,4 @@ struct DrawParameters
 	bool				m_IsVisible;
 };
 
-#endif // !UTILS_DRAWING_DRAWPARAMETERS_H_
+#endif // !SDL_UTILS_DRAWING_DRAWPARAMETERS_H_

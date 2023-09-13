@@ -1,15 +1,6 @@
 #ifndef SDL_UTILS_AUDIO_AUDIO_H_
 #define SDL_UTILS_AUDIO_AUDIO_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 struct Mix_Chunk;
 typedef struct _Mix_Music Mix_Music;
 

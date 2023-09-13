@@ -1,12 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/AudioManager.h"
 #include "managers/config/AudioManagerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "sdl_utils/audio/Audio.h"
 #include "managers/AssetManager.h"
 

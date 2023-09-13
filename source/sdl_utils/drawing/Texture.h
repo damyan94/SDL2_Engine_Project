@@ -1,18 +1,6 @@
 #ifndef SDL_UTILS_DRAWING_TEXTURE_H_
 #define SDL_UTILS_DRAWING_TEXTURE_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "utils/drawing/Color.h"
-#include "utils/string/String.h"
-
-// Forward declarations
 struct SDL_Surface;
 struct SDL_Texture;
 typedef struct _TTF_Font TTF_Font;

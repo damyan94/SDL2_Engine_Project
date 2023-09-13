@@ -1,15 +1,6 @@
 #ifndef APP_DEFINES_H_
 #define APP_DEFINES_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
-
 // =============================================================================
 // ================================= DEFINES ===================================
 // =============================================================================

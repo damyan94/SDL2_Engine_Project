@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/config/DrawManagerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 bool DrawManagerConfig::Read(const ConfigStrings& readStrings)

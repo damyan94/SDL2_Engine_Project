@@ -1,17 +1,8 @@
 #ifndef SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTCONTAINER_H_
 #define SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTCONTAINER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
 #include "sdl_utils/containers/font_container/FontData.h"
 
-// Forward declarations
 typedef struct _TTF_Font TTF_Font;
 struct FontContainerConfig;
 

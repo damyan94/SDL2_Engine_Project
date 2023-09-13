@@ -1,12 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/ui/menus/console_menu/ConsoleMenu.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/string/String.h"
 #include "sdl_utils/drawing/SDLDrawing.h"
 #include "managers/ManagersHelpers.h"
 #include "app/AppHelpers.h"

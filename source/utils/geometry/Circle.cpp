@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/geometry/Circle.h"
-
-// C/C++ system includes
-#include <math.h>
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 const Circle Circle::Zero		= Circle(0, 0, 0);

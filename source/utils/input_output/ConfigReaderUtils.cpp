@@ -1,12 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/input_output/ConfigReaderUtils.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 /**
 * Brief Description

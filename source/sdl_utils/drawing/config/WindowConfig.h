@@ -1,17 +1,6 @@
 #ifndef SDL_UTILS_DRAWING_CONFIG_WINDOWCONFIG_H_
 #define SDL_UTILS_DRAWING_CONFIG_WINDOWCONFIG_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-
-// Forward declarations
-
 struct WindowConfig
 {
 	bool				Read(const ConfigStrings& readStrings);

@@ -1,18 +1,10 @@
 #ifndef MANAGERS_DRAWMANAGER_H_
 #define MANAGERS_DRAWMANAGER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <deque>
-
-// Third-party includes
-
-// Own includes
 #include "sdl_utils/input/InputEvent.h"
 #include "sdl_utils/drawing/Window.h"
 #include "sdl_utils/drawing/Renderer.h"
 
-// Forward declarations
 struct DrawManagerConfig;
 struct DrawParameters;
 
@@ -64,6 +56,7 @@ private:
 	Renderer			m_Renderer;
 
 	//TODO maybe std::shared_ptr and maybe add priority/layer to DrawParameters
+	// or even better, make this ordered multimap and the key will be the drawing order
 	std::deque<Image*>			m_Images;
 	std::deque<Text*>			m_Texts;
 	std::deque<DynamicText*>	m_DynamicTexts;

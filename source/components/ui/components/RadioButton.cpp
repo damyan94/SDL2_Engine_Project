@@ -1,13 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/components/RadioButton.h"
 #include "components/ui/components/config/RadioButtonConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 const int32_t STANDARD_SPACING = 4;
 

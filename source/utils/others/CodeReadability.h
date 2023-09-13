@@ -1,15 +1,8 @@
 #ifndef UTILS_OTHERS_CODEREADABILITY_H_
 #define UTILS_OTHERS_CODEREADABILITY_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "utils/Defines.h"
 #include "utils/input_output/Assert.h"
-
-// Forward declarations
 
 #ifdef ReturnIf
 	#undef ReturnIf

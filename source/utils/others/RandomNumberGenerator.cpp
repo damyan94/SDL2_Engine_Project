@@ -1,13 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/others/RandomNumberGenerator.h"
-
-// C/C++ system includes
-#include <time.h>
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 RandomNumberGenerator::RandomNumberGenerator()

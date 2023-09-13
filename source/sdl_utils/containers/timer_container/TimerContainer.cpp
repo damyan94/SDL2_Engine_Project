@@ -1,13 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "sdl_utils/containers/timer_container/TimerContainer.h"
 #include "sdl_utils/containers/config/TimerContainerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 // =============================================================================
 bool TimerContainer::DoesTimerExist(TimerId id) const

@@ -1,11 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/time/Timer.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "managers/TimerManager.h"
 
 // =============================================================================

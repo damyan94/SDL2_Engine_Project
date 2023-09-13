@@ -1,13 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/input_output/ReadWriteFile.h"
-
-// C/C++ system includes
-#include <fstream>
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 namespace ReadWriteFile
 {

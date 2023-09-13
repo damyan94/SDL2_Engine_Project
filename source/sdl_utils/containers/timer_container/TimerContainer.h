@@ -1,17 +1,8 @@
 #ifndef SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_
 #define SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
 #include "sdl_utils/containers/timer_container/TimerData.h"
 
-// Forward declarations
 struct TimerContainerConfig;
 
 class TimerContainer

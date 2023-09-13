@@ -1,11 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/AppHelpers.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 #include "app/App.h"
 
 namespace Helpers

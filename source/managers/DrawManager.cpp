@@ -1,13 +1,9 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/DrawManager.h"
 #include "managers/config/DrawManagerConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/drawing/DrawParameters.h"
+#include "sdl_utils/drawing/DrawParameters.h"
 #include "sdl_utils/drawing/Texture.h"
 #include "sdl_utils/drawing/SDLDrawing.h"
 #include "managers/AssetManager.h"

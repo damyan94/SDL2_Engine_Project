@@ -1,13 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "engine/config/EngineConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/input_output/ReadWriteFile.h"
-#include "utils/input_output/ConfigReaderUtils.h"
 #include "defines/ConfigFilePaths.h"
 
 // =============================================================================

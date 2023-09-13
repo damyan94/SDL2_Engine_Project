@@ -1,17 +1,11 @@
-// Corresponding header
-#include "sdl_utils/SDLLoader.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-#include <string>
-
-// Third-party includes
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
+#include "sdl_utils/SDLLoader.h"
 
 // =============================================================================
 bool SDLLoader::Init()

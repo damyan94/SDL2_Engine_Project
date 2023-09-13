@@ -1,7 +1,6 @@
-// Corresponding header
-#include "utils/input_output/Assert.h"
+#include "stdafx.h"
 
-// C/C++ system includes
+#include "utils/input_output/Assert.h"
 
 #if defined WIN32 || _WIN32
 	#include <windows.h>
@@ -9,11 +8,6 @@
 	#include <syslog.h>
 #endif // !WIN32 || _WIN32
 
-// Third-party includes
-
-// Own includes
-#include "utils/input_output/Log.h"
-#include "utils/time/Time.h"
 
 // =============================================================================
 static void _ShowMessageBox(const std::string& text)

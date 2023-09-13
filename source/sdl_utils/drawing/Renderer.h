@@ -1,22 +1,11 @@
 #ifndef SDL_UTILS_DRAWING_RENDERER_H_
 #define SDL_UTILS_DRAWING_RENDERER_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/drawing/Color.h"
-
-// Forward declarations
 struct SDL_Renderer;
 struct SDL_Window;
 
 struct RendererConfig;
 struct DrawParameters;
-struct ImageData;
-struct TextData;
 class Texture;
 
 class Renderer

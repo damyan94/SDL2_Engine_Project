@@ -1,13 +1,10 @@
-// Corresponding header
-#include "components/ui/ui_utils/TextInputter.h"
+#include "stdafx.h"
 
-// C/C++ system includes
 #include <locale>
 #include <codecvt>
 
-// Third-party includes
+#include "components/ui/ui_utils/TextInputter.h"
 
-// Own includes
 #include "sdl_utils/input/InputEvent.h"
 
 static const int32_t	c_MaxHistoryRecords		= 100;

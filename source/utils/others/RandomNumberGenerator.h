@@ -1,15 +1,6 @@
 #ifndef UTILS_OTHERS_RANDOMNUMBERGENERATOR_H_
 #define UTILS_OTHERS_RANDOMNUMBERGENERATOR_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
-
 class RandomNumberGenerator
 {
 public:

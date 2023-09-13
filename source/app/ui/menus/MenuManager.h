@@ -1,19 +1,9 @@
 #ifndef APP_UI_MENUS_MENUMANAGER_H_
 #define APP_UI_MENUS_MENUMANAGER_H_
 
-// C/C++ system includes
-#include <deque>
-#include <vector>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "app/Defines.h"
 #include "components/ui/base_classes/UIMenuBase.h"
 
-// Forward declarations
 struct MenuManagerConfig;
 
 class MenuManager

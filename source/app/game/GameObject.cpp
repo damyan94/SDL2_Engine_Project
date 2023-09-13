@@ -1,14 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "app/game/GameObject.h"
 #include "app/game/config/GameObjectConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/input_output/Log.h"
 #include "app/AppHelpers.h"
 
 // =============================================================================

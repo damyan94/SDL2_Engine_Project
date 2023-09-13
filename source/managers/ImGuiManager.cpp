@@ -1,15 +1,12 @@
-// Corresponding header
-#include "managers/ImGuiManager.h"
-#include "managers/config/ImGuiManagerConfig.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include "imgui.h"
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_sdlrenderer.h"
 
-// Own includes
+#include "managers/ImGuiManager.h"
+#include "managers/config/ImGuiManagerConfig.h"
+
 #include "sdl_utils/drawing/Window.h"
 #include "sdl_utils/drawing/Renderer.h"
 

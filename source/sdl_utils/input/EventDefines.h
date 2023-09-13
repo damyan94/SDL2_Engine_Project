@@ -1,13 +1,6 @@
 #ifndef SDL_UTILS_INPUT_EVENTDEFINES_H_
 #define SDL_UTILS_INPUT_EVENTDEFINES_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 enum class EEventType
 {
 	Unknown						= -1

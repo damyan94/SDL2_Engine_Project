@@ -1,17 +1,8 @@
 #ifndef SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_
 #define SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 
-// Forward declarations
 struct TextContainerConfig;
 
 class TextContainer

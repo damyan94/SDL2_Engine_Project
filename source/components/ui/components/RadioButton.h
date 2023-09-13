@@ -1,14 +1,6 @@
 #ifndef COMPONENTS_UI_COMPONENTS_RADIOBUTTON_H_
 #define COMPONENTS_UI_COMPONENTS_RADIOBUTTON_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "sdl_utils/input/InputEvent.h"
 
 #include "components/ui/base_classes/UIComponentBase.h"
@@ -16,7 +8,6 @@
 #include "components/drawing/Text.h"
 #include "components/audio/Sound.h"
 
-// Forward declarations
 struct RadioButtonConfig;
 
 enum class ERadioButtonFrames

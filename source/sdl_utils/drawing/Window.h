@@ -1,17 +1,6 @@
 #ifndef SDL_UTILS_DRAWING_WINDOW_H_
 #define SDL_UTILS_DRAWING_WINDOW_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
-#include "utils/geometry/Rectangle.h"
-
-// Forward declarations
 struct SDL_Window;
 struct WindowConfig;
 class InputEvent;

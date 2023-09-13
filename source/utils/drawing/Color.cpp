@@ -1,11 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/drawing/Color.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 // =============================================================================
 Color::Color()

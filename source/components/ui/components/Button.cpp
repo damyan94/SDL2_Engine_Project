@@ -1,14 +1,8 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "components/ui/components/Button.h"
 #include "components/ui/components/config/ButtonConfig.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
-#include "utils/geometry/Position.h"
 #include "sdl_utils/containers/text_container/TextData.h"
 
 // =============================================================================

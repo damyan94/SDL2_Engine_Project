@@ -1,15 +1,6 @@
 #ifndef UTILS_GEOMETRY_POINT_H_
 #define UTILS_GEOMETRY_POINT_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
-
 struct Point
 {
 	Point();

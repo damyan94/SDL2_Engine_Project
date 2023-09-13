@@ -1,12 +1,7 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "managers/TimerManager.h"
 #include "managers/config/TimerManagerConfig.h"
-
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
 
 TimerManager* g_TimerManager = nullptr;
 

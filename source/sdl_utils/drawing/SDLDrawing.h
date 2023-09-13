@@ -1,18 +1,6 @@
 #ifndef SDL_UTILS_DRAWING_SDLDRAWING_H_
 #define SDL_UTILS_DRAWING_SDLDRAWING_H_
 
-// C/C++ system includes
-#include <cstdint>
-
-// Third-party includes
-
-// Own includes
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
-#include "utils/geometry/Circle.h"
-#include "utils/drawing/Color.h"
-
-// Forward declarations
 class Renderer;
 
 //TODO rework so that we can add DrawCommands that can be drawn by the g_DrawManager

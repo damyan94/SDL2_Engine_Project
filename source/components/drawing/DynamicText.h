@@ -1,15 +1,8 @@
 #ifndef COMPONENTS_DRAWING_DYNAMICTEXT_H_
 #define COMPONENTS_DRAWING_DYNAMICTEXT_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "managers/CommonIncludes.h"
 #include "components/drawing/DrawObject.h"
 
-// Forward declarations
 struct SDL_Texture;
 struct TextData;
 

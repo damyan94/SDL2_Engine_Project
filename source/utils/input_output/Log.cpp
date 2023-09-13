@@ -1,15 +1,6 @@
-// Corresponding header
+#include "stdafx.h"
+
 #include "utils/input_output/Log.h"
-
-// C/C++ system includes
-#include <cstdio>
-#include <cstdarg>
-#include <fstream>
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/CodeReadability.h"
 
 #define _PRINTF_VARIADIC_ARGS \
 va_list args;\

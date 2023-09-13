@@ -1,15 +1,7 @@
 #ifndef COMPONENTS_DRAWING_DRAWOBJECT_H_
 #define COMPONENTS_DRAWING_DRAWOBJECT_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/CommonIncludes.h"
-#include "utils/drawing/DrawParameters.h"
-
-// Forward declarations
+#include "sdl_utils/drawing/DrawParameters.h"
 
 class DrawObject
 {

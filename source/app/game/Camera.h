@@ -1,19 +1,8 @@
 #ifndef Camera_GAME_CAMERA_H_
 #define Camera_GAME_CAMERA_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-#include "sdl_utils/Defines.h"
 #include "app/Defines.h"
-#include "utils/geometry/Point.h"
-#include "utils/geometry/Rectangle.h"
 #include "sdl_utils/input/InputEvent.h"
-
-// Forward declarations
 
 class Camera
 {

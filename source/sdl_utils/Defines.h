@@ -1,15 +1,9 @@
 #ifndef SDL_UTILS_DEFINES_H_
 #define SDL_UTILS_DEFINES_H_
 
-// C/C++ system includes
 #include <cstdint>
 #include <unordered_map>
 
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 enum class ELanguage : int8_t;
 
 // =============================================================================
@@ -115,5 +109,33 @@ enum class ETimerType
 namespace Constants
 {
 } // !namespace Constants
+
+//TODO remove this from here as it is only temporary here
+//namespace Utils
+//{
+//ELanguage				GetLanguageIdFromString(const std::string& langString);
+//std::string				GetLanguageStringFromId(ELanguage id);
+//} // !namespace Utils
+
+namespace Utils
+{
+// =============================================================================
+inline ELanguage GetLanguageIdFromString(const std::string& langString)
+{
+	if (langString == "bg") return ELanguage::BG;
+	if (langString == "en") return ELanguage::EN;
+
+	return ELanguage::Invalid;
+}
+
+// =============================================================================
+inline std::string GetLanguageStringFromId(ELanguage id)
+{
+	if (id == ELanguage::BG) return "bg";
+	if (id == ELanguage::EN) return "en";
+
+	return "";
+}
+} // !namespace Utils
 
 #endif // !SDL_UTILS_DEFINES_H_

@@ -1,17 +1,8 @@
 #ifndef SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDCONTAINER_H_
 #define SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDCONTAINER_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <unordered_map>
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
 #include "sdl_utils/containers/sound_container/SoundData.h"
 
-// Forward declarations
 struct Mix_Chunk;
 struct SoundContainerConfig;
 

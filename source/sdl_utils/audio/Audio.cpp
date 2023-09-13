@@ -1,13 +1,8 @@
-// Corresponding header
-#include "sdl_utils/audio/Audio.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
 #include <SDL_mixer.h>
 
-// Own includes
-#include "utils/others/CodeReadability.h"
+#include "sdl_utils/audio/Audio.h"
 
 static constexpr int32_t FirstFreeChannel		= -1;
 static constexpr int32_t AllChannels			= -1;

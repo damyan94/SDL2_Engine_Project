@@ -1,17 +1,6 @@
 #ifndef UTILS_STRING_STRING_H_
 #define UTILS_STRING_STRING_H_
 
-// C/C++ system includes
-#include <cstdint>
-#include <string>
-
-// Third-party includes
-
-// Own includes
-#include "utils/others/Hash.h"
-
-// Forward declarations
-
 class String
 {
 public:

@@ -1,16 +1,9 @@
 #ifndef UTILS_DEFINES_H_
 #define UTILS_DEFINES_H_
 
-// C/C++ system includes
 #include <cstdint>
 #include <string>
 #include <vector>
-
-// Third-party includes
-
-// Own includes
-
-// Forward declarations
 
 template <typename EnumType>
 bool IsEnumValueValid(EnumType value)
@@ -47,12 +40,13 @@ bool IsEnumValueValid(EnumType value)
 	#undef _CONFIG_ERROR_INFO
 #endif
 
-#define _CONFIG_ERROR_INFO(__Line)				"Config file corrupted. Line: " + std::to_string(__Line + 1)
+#define _CONFIG_ERROR_INFO(__Line) "Config file corrupted. Line: " + std::to_string(__Line + 1)
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================
 // =============================================================================
 
+//TODO think of strong type for these values
 typedef uint64_t		TimePoint;
 typedef uint32_t		TimerId;
 
@@ -98,7 +92,7 @@ enum class ETimeStringFormat
 enum class EConsoleTextColor
 	: int16_t
 {
-	Invalid = -1
+	Invalid		= -1
 	, Default	= 37
 	, Black		= 90
 	, Red		= 91
@@ -146,7 +140,7 @@ enum class EBlendMode
 enum class EFlipMode
 	: int8_t
 {
-	Invalid = -1
+	Invalid	= -1
 	, None
 	, Horizontal
 	, Vertical
@@ -174,7 +168,7 @@ inline constexpr int64_t TimeMinutesInYear		= TimeMinutesInDay * TimeDaysInYear;
 
 inline constexpr int64_t TimeHoursInYear		= TimeHoursInDay * TimeDaysInYear;
 
-inline constexpr int64_t TimerMinInterval		= 20;
+inline constexpr int64_t TimerMinInterval		= 20; // Milliseconds
 
 inline constexpr int32_t ZeroOpacity			= 0;
 inline constexpr int32_t FullOpacity			= 255;
@@ -182,7 +176,7 @@ inline constexpr int32_t ZeroRotation			= 0;
 inline constexpr int32_t FullRotation			= 360;
 
 inline constexpr int32_t ZeroVolume				= 0;
-inline constexpr int32_t MaxVolume				= 0;
+inline constexpr int32_t MaxVolume				= 127;
 } // !namespace Constants
 
 #endif // !UTILS_DEFINES_H_

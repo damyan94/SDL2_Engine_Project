@@ -1,11 +1,6 @@
-// Corresponding header
-#include "utils/drawing/DrawParameters.h"
+#include "stdafx.h"
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
+#include "sdl_utils/drawing/DrawParameters.h"
 
 // =============================================================================
 DrawParameters::DrawParameters()
@@ -31,7 +26,10 @@ DrawParameters::~DrawParameters()
 // =============================================================================
 void DrawParameters::Reset()
 {
-	m_PosRect				= Rectangle::Undefined;
+	//TODO use this hack everywhere
+	*this = DrawParameters();
+
+	/*m_PosRect				= Rectangle::Undefined;
 	m_FrameRect				= Rectangle::Zero;
 	m_StandardWidth			= 0;
 	m_StandardHeight		= 0;
@@ -44,5 +42,5 @@ void DrawParameters::Reset()
 	m_BlendMode				= EBlendMode::Blend;
 	m_FlipMode				= EFlipMode::None;
 
-	m_IsVisible				= true;
+	m_IsVisible				= true;*/
 }

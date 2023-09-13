@@ -1,15 +1,6 @@
 #ifndef UTILS_INPUT_OUTPUT_LOG_H_
 #define UTILS_INPUT_OUTPUT_LOG_H_
 
-// C/C++ system includes
-
-// Third-party includes
-
-// Own includes
-#include "utils/Defines.h"
-
-// Forward declarations
-
 namespace Log
 {
 void ConsoleSetTextColor(const EConsoleTextColor color);

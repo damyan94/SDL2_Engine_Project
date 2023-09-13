@@ -29,6 +29,7 @@ std::string WideStringToUTF8Bytes(const WString& wideString)
 // =============================================================================
 TextInputter::TextInputter()
 	: m_Pos(Point::Undefined)
+	, m_IsEnabled(false)
 	, m_IsActive(false)
 	, m_IsDirty(false)
 	, m_ShouldHandleEnterKey(false)

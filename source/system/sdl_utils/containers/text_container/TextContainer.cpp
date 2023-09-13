@@ -4,6 +4,7 @@
 #include "system/sdl_utils/containers/config/TextContainerConfig.h"
 
 #include "system/sdl_utils/drawing/Texture.h"
+//TODO this must not be here
 #include "system/managers/AssetManager.h"
 
 // =============================================================================

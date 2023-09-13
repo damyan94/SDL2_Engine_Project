@@ -9,21 +9,23 @@ vfprintf(stderr, fmt, args);\
 printf("\n");\
 va_end(args)
 
+namespace Log
+{
 // =============================================================================
-void Log::ConsoleSetTextColor(const EConsoleTextColor color)
+void ConsoleSetTextColor(const EConsoleTextColor color)
 {
 	auto colorText = "\033[" + std::to_string((int16_t)color) + "m";
 	printf(colorText.c_str());
 }
 
 // =============================================================================
-void Log::Console(const char* fmt ...)
+void Console(const char* fmt ...)
 {
 	_PRINTF_VARIADIC_ARGS;
 }
 
 // =============================================================================
-void Log::Console(const EConsoleTextColor color, const char* fmt ...)
+void Console(const EConsoleTextColor color, const char* fmt ...)
 {
 	ConsoleSetTextColor(color);
 	_PRINTF_VARIADIC_ARGS;
@@ -31,7 +33,7 @@ void Log::Console(const EConsoleTextColor color, const char* fmt ...)
 }
 
 // =============================================================================
-void Log::ConsoleWarning(const char* fmt ...)
+void ConsoleWarning(const char* fmt ...)
 {
 	ConsoleSetTextColor(EConsoleTextColor::Yellow);
 	printf("WARNING! ");
@@ -40,7 +42,7 @@ void Log::ConsoleWarning(const char* fmt ...)
 }
 
 // =============================================================================
-void Log::ConsoleError(const char* fmt ...)
+void ConsoleError(const char* fmt ...)
 {
 	ConsoleSetTextColor(EConsoleTextColor::Red);
 	printf("ERROR! ");
@@ -49,7 +51,7 @@ void Log::ConsoleError(const char* fmt ...)
 }
 
 // =============================================================================
-void Log::File(const char* fileName, const char* text, const EWriteMode mode)
+void File(const char* fileName, const char* text, const EWriteMode mode)
 {
 	std::ofstream datFile;
 	datFile.open(fileName, mode == EWriteMode::App ? std::ofstream::app : std::ofstream::out);
@@ -58,3 +60,4 @@ void Log::File(const char* fileName, const char* text, const EWriteMode mode)
 	datFile.write(text, strlen(text));
 	datFile.close();
 }
+} // !namespace Log

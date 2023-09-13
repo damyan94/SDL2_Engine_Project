@@ -23,6 +23,7 @@ struct TextTextureParameters
 	int32_t				m_Height		= 0;
 };
 
+//TODO maybe have this as base class and have ImageTexture and TextTexture that extend it
 class Texture
 {
 public:

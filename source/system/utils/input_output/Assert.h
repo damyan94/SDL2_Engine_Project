@@ -5,6 +5,6 @@ namespace Assert
 {
 void Assert(const std::string& text);
 void Assert(bool condition, const std::string& text);
-}
+} // !namespace Assert
 
 #endif // !UTILS_INPUT_OUTPUT_ASSERT_H_

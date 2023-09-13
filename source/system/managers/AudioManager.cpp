@@ -4,7 +4,8 @@
 #include "system/managers/config/AudioManagerConfig.h"
 
 #include "system/sdl_utils/audio/Audio.h"
-#include "system/managers/AssetManager.h"
+#include "system/sdl_utils/containers/sound_container/SoundData.h"
+#include "system/sdl_utils/containers/music_container/MusicData.h"
 
 AudioManager* g_AudioManager = nullptr;
 

@@ -6,7 +6,8 @@
 #include "system/sdl_utils/drawing/DrawParameters.h"
 #include "system/sdl_utils/drawing/Texture.h"
 #include "system/sdl_utils/drawing/SDLDrawing.h"
-#include "system/managers/AssetManager.h"
+#include "system/sdl_utils/containers/image_container/ImageData.h"
+#include "system/sdl_utils/containers/text_container/TextData.h"
 
 #include "system/components/drawing/Image.h"
 #include "system/components/drawing/Text.h"

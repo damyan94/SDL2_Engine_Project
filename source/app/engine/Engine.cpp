@@ -5,6 +5,7 @@
 
 #include "system/sdl_utils/SDLLoader.h"
 
+//TODO maybe wrap all this in a System.h and have a similar API to the engine
 #include "system/managers/DrawManager.h"
 #include "system/managers/AssetManager.h"
 #include "system/managers/AudioManager.h"

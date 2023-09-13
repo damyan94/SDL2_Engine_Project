@@ -1,20 +1,12 @@
 #ifndef APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
 #define APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
 
-#include "components/ui/base_classes/UIMenuBase.h"
-
-#include "sdl_utils/input/InputEvent.h"
-#include "components/drawing/Image.h"
-#include "components/drawing/Text.h"
-#include "components/drawing/DynamicText.h"
-#include "components/audio/Sound.h"
-#include "components/audio/Music.h"
-#include "components/time/Timer.h"
+#include "app/ui/menus/CustomUIMenuBase.h"
 
 struct ConsoleMenuConfig;
 
 class ConsoleMenu
-	: public UIMenuBase
+	: public CustomUIMenuBase
 {
 public:
 	ConsoleMenu();

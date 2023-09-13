@@ -2,8 +2,7 @@
 
 #include "app/game/Camera.h"
 
-#include "managers/ManagersHelpers.h"
-#include "components/drawing/DynamicText.h"
+#include "system/managers/ManagersHelpers.h"
 
 // =============================================================================
 Camera::Camera()

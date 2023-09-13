@@ -1,9 +1,6 @@
 #ifndef Camera_GAME_CAMERA_H_
 #define Camera_GAME_CAMERA_H_
 
-#include "app/Defines.h"
-#include "sdl_utils/input/InputEvent.h"
-
 class Camera
 {
 private:

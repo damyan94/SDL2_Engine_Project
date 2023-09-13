@@ -3,9 +3,6 @@
 #include "app/ui/menus/start_menu/StartMenu.h"
 #include "app/ui/menus/start_menu/config/StartMenuConfig.h"
 
-#include "sdl_utils/input/InputEvent.h"
-#include "sdl_utils/drawing/SDLDrawing.h"
-
 // =============================================================================
 StartMenu::StartMenu()
 {

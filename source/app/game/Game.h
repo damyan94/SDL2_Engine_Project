@@ -1,9 +1,6 @@
 #ifndef APP_GAME_GAME_H_
 #define APP_GAME_GAME_H_
 
-#include "app/Defines.h"
-#include "sdl_utils/input/InputEvent.h"
-
 #include "app/game/Camera.h"
 #include "app/game/GameObject.h"
 

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="components\audio\AudioObject.cpp" />
+    <ClCompile Include="components\audio\Music.cpp" />
+    <ClCompile Include="components\audio\Sound.cpp" />
+    <ClCompile Include="components\drawing\DrawObject.cpp" />
+    <ClCompile Include="components\drawing\DynamicText.cpp" />
+    <ClCompile Include="components\drawing\Image.cpp" />
+    <ClCompile Include="components\drawing\Text.cpp" />
+    <ClCompile Include="components\time\Timer.cpp" />
+    <ClCompile Include="components\ui\base_classes\UIComponentBase.cpp" />
+    <ClCompile Include="components\ui\base_classes\UIMenuBase.cpp" />
+    <ClCompile Include="components\ui\components\Button.cpp" />
+    <ClCompile Include="components\ui\components\Checkbox.cpp" />
+    <ClCompile Include="components\ui\components\config\ButtonConfig.cpp" />
+    <ClCompile Include="components\ui\components\config\CheckboxConfig.cpp" />
+    <ClCompile Include="components\ui\components\config\RadioButtonConfig.cpp" />
+    <ClCompile Include="components\ui\components\config\TextBoxConfig.cpp" />
+    <ClCompile Include="components\ui\components\RadioButton.cpp" />
+    <ClCompile Include="components\ui\components\TextBox.cpp" />
+    <ClCompile Include="components\ui\ui_utils\TextInputter.cpp" />
+    <ClCompile Include="managers\AssetManager.cpp" />
+    <ClCompile Include="managers\AudioManager.cpp" />
+    <ClCompile Include="managers\config\AssetManagerConfig.cpp" />
+    <ClCompile Include="managers\config\AudioManagerConfig.cpp" />
+    <ClCompile Include="managers\config\DrawManagerConfig.cpp" />
+    <ClCompile Include="managers\config\ImGuiManagerConfig.cpp" />
+    <ClCompile Include="managers\config\TimerManagerConfig.cpp" />
+    <ClCompile Include="managers\DrawManager.cpp" />
+    <ClCompile Include="managers\ImGuiManager.cpp" />
+    <ClCompile Include="managers\ManagersHelpers.cpp" />
+    <ClCompile Include="managers\TimerManager.cpp" />
+    <ClCompile Include="sdl_utils\audio\Audio.cpp" />
+    <ClCompile Include="sdl_utils\audio\AudioParameters.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\FontContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\ImageContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\MusicContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\SoundContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\TextContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\config\TimerContainerConfig.cpp" />
+    <ClCompile Include="sdl_utils\containers\font_container\FontContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\font_container\FontData.cpp" />
+    <ClCompile Include="sdl_utils\containers\image_container\ImageContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\image_container\ImageData.cpp" />
+    <ClCompile Include="sdl_utils\containers\music_container\MusicContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\music_container\MusicData.cpp" />
+    <ClCompile Include="sdl_utils\containers\sound_container\SoundContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\sound_container\SoundData.cpp" />
+    <ClCompile Include="sdl_utils\containers\text_container\TextContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\text_container\TextData.cpp" />
+    <ClCompile Include="sdl_utils\containers\timer_container\TimerContainer.cpp" />
+    <ClCompile Include="sdl_utils\containers\timer_container\TimerData.cpp" />
+    <ClCompile Include="sdl_utils\drawing\config\RendererConfig.cpp" />
+    <ClCompile Include="sdl_utils\drawing\config\WindowConfig.cpp" />
+    <ClCompile Include="sdl_utils\drawing\DrawParameters.cpp" />
+    <ClCompile Include="sdl_utils\drawing\Renderer.cpp" />
+    <ClCompile Include="sdl_utils\drawing\SDLDrawing.cpp" />
+    <ClCompile Include="sdl_utils\drawing\Texture.cpp" />
+    <ClCompile Include="sdl_utils\drawing\Window.cpp" />
+    <ClCompile Include="sdl_utils\input\InputEvent.cpp" />
+    <ClCompile Include="sdl_utils\SDLLoader.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="utils\drawing\Color.cpp" />
+    <ClCompile Include="utils\geometry\Circle.cpp" />
+    <ClCompile Include="utils\geometry\Point.cpp" />
+    <ClCompile Include="utils\geometry\Position.cpp" />
+    <ClCompile Include="utils\geometry\Rectangle.cpp" />
+    <ClCompile Include="utils\input_output\Assert.cpp" />
+    <ClCompile Include="utils\input_output\ConfigReaderUtils.cpp" />
+    <ClCompile Include="utils\input_output\Log.cpp" />
+    <ClCompile Include="utils\input_output\ReadWriteFile.cpp" />
+    <ClCompile Include="utils\others\Crypto.cpp" />
+    <ClCompile Include="utils\others\Hash.cpp" />
+    <ClCompile Include="utils\others\RandomNumberGenerator.cpp" />
+    <ClCompile Include="utils\string\String.cpp" />
+    <ClCompile Include="utils\time\Time.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="components\audio\AudioObject.h" />
+    <ClInclude Include="components\audio\Music.h" />
+    <ClInclude Include="components\audio\Sound.h" />
+    <ClInclude Include="components\drawing\DrawObject.h" />
+    <ClInclude Include="components\drawing\DynamicText.h" />
+    <ClInclude Include="components\drawing\Image.h" />
+    <ClInclude Include="components\drawing\Text.h" />
+    <ClInclude Include="components\time\Timer.h" />
+    <ClInclude Include="components\ui\base_classes\UIComponentBase.h" />
+    <ClInclude Include="components\ui\base_classes\UIMenuBase.h" />
+    <ClInclude Include="components\ui\components\Button.h" />
+    <ClInclude Include="components\ui\components\Checkbox.h" />
+    <ClInclude Include="components\ui\components\config\ButtonConfig.h" />
+    <ClInclude Include="components\ui\components\config\CheckboxConfig.h" />
+    <ClInclude Include="components\ui\components\config\RadioButtonConfig.h" />
+    <ClInclude Include="components\ui\components\config\TextBoxConfig.h" />
+    <ClInclude Include="components\ui\components\RadioButton.h" />
+    <ClInclude Include="components\ui\components\TextBox.h" />
+    <ClInclude Include="components\ui\ui_utils\TextInputter.h" />
+    <ClInclude Include="defines\ConfigFilePaths.h" />
+    <ClInclude Include="managers\AssetManager.h" />
+    <ClInclude Include="managers\AudioManager.h" />
+    <ClInclude Include="managers\config\AssetManagerConfig.h" />
+    <ClInclude Include="managers\config\AudioManagerConfig.h" />
+    <ClInclude Include="managers\config\DrawManagerConfig.h" />
+    <ClInclude Include="managers\config\ImGuiManagerConfig.h" />
+    <ClInclude Include="managers\config\TimerManagerConfig.h" />
+    <ClInclude Include="managers\Defines.h" />
+    <ClInclude Include="managers\DrawManager.h" />
+    <ClInclude Include="managers\ImGuiManager.h" />
+    <ClInclude Include="managers\ManagersHelpers.h" />
+    <ClInclude Include="managers\TimerManager.h" />
+    <ClInclude Include="sdl_utils\audio\Audio.h" />
+    <ClInclude Include="sdl_utils\audio\AudioParameters.h" />
+    <ClInclude Include="sdl_utils\containers\config\FontContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\config\ImageContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\config\MusicContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\config\SoundContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\config\TextContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\config\TimerContainerConfig.h" />
+    <ClInclude Include="sdl_utils\containers\font_container\FontContainer.h" />
+    <ClInclude Include="sdl_utils\containers\font_container\FontData.h" />
+    <ClInclude Include="sdl_utils\containers\image_container\ImageContainer.h" />
+    <ClInclude Include="sdl_utils\containers\image_container\ImageData.h" />
+    <ClInclude Include="sdl_utils\containers\music_container\MusicContainer.h" />
+    <ClInclude Include="sdl_utils\containers\music_container\MusicData.h" />
+    <ClInclude Include="sdl_utils\containers\sound_container\SoundContainer.h" />
+    <ClInclude Include="sdl_utils\containers\sound_container\SoundData.h" />
+    <ClInclude Include="sdl_utils\containers\text_container\TextContainer.h" />
+    <ClInclude Include="sdl_utils\containers\text_container\TextData.h" />
+    <ClInclude Include="sdl_utils\containers\timer_container\TimerContainer.h" />
+    <ClInclude Include="sdl_utils\containers\timer_container\TimerData.h" />
+    <ClInclude Include="sdl_utils\Defines.h" />
+    <ClInclude Include="sdl_utils\drawing\config\RendererConfig.h" />
+    <ClInclude Include="sdl_utils\drawing\config\WindowConfig.h" />
+    <ClInclude Include="sdl_utils\drawing\DrawParameters.h" />
+    <ClInclude Include="sdl_utils\drawing\Renderer.h" />
+    <ClInclude Include="sdl_utils\drawing\SDLDrawing.h" />
+    <ClInclude Include="sdl_utils\drawing\Texture.h" />
+    <ClInclude Include="sdl_utils\drawing\Window.h" />
+    <ClInclude Include="sdl_utils\input\EventDefines.h" />
+    <ClInclude Include="sdl_utils\input\InputEvent.h" />
+    <ClInclude Include="sdl_utils\SDLLoader.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="utils\Defines.h" />
+    <ClInclude Include="utils\drawing\Color.h" />
+    <ClInclude Include="utils\geometry\Circle.h" />
+    <ClInclude Include="utils\geometry\Point.h" />
+    <ClInclude Include="utils\geometry\Position.h" />
+    <ClInclude Include="utils\geometry\Rectangle.h" />
+    <ClInclude Include="utils\input_output\Assert.h" />
+    <ClInclude Include="utils\input_output\ConfigReaderUtils.h" />
+    <ClInclude Include="utils\input_output\Log.h" />
+    <ClInclude Include="utils\input_output\ReadWriteFile.h" />
+    <ClInclude Include="utils\others\CodeReadability.h" />
+    <ClInclude Include="utils\others\Crypto.h" />
+    <ClInclude Include="utils\others\Hash.h" />
+    <ClInclude Include="utils\others\RandomNumberGenerator.h" />
+    <ClInclude Include="utils\string\String.h" />
+    <ClInclude Include="utils\time\Time.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{8F43BFBF-CE33-42B6-832C-F43CED914CED}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>System</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)\Temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <TargetName>System</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IntDir>$(SolutionDir)build\$(Configuration)\Temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <TargetName>System</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <IntDir>$(SolutionDir)build\$(Configuration)\Temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <TargetName>System</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IntDir>$(SolutionDir)build\$(Configuration)\Temp\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
+    <TargetName>System</TargetName>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source\system;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <UseFullPaths>true</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glew32.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\GLEW\lib\Release\x64;$(SolutionDir)dependencies\GLEW\bin\Release\x64;$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source\system;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <TargetMachine>MachineX86</TargetMachine>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glew32.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\GLEW\lib\Release\x64;$(SolutionDir)dependencies\GLEW\bin\Release\x64;$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source\system;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <UseFullPaths>true</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glew32.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\GLEW\lib\Release\x64;$(SolutionDir)dependencies\GLEW\bin\Release\x64;$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalIncludeDirectories>$(SolutionDir)dependencies\GLEW\include;$(SolutionDir)dependencies\imgui-master\backends;$(SolutionDir)dependencies\imgui-master;$(SolutionDir)dependencies\SDL2\SDL2\include;$(SolutionDir)dependencies\SDL2\SDL2_image\include;$(SolutionDir)dependencies\SDL2\SDL2_ttf\include;$(SolutionDir)dependencies\SDL2\SDL2_mixer\include;$(SolutionDir)source\system;$(SolutionDir)source;$(SolutionDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <UseFullPaths>false</UseFullPaths>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glew32.lib;SDL2.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;SDL2main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)dependencies\GLEW\lib\Release\x64;$(SolutionDir)dependencies\GLEW\bin\Release\x64;$(SolutionDir)dependencies\SDL2\SDL2\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_image\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_ttf\lib\x64;$(SolutionDir)dependencies\SDL2\SDL2_mixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <EntryPointSymbol>mainCRTStartup</EntryPointSymbol>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

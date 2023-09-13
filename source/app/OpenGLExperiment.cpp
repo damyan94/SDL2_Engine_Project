@@ -3,9 +3,9 @@
 #include "app/OpenGLExperiment.h"
 
 //TODO This is here because it conflicts with some function Rectangle from the Windows API
-#include "sdl_utils/drawing/Window.h"
-#include "sdl_utils/drawing/Renderer.h"
-#include "managers/DrawManager.h"
+#include "system/sdl_utils/drawing/Window.h"
+#include "system/sdl_utils/drawing/Renderer.h"
+#include "system/managers/DrawManager.h"
 
 #include "SDL.h"
 #include "GL/glew.h"

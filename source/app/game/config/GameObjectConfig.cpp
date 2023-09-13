@@ -2,8 +2,6 @@
 
 #include "app/game/config/GameObjectConfig.h"
 
-#include "utils/input_output/ConfigReaderUtils.h"
-
 static const std::string c_CategoryString = "MENU";
 
 // =============================================================================

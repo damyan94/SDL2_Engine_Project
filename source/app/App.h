@@ -1,8 +1,6 @@
 #ifndef APP_APP_H_
 #define APP_APP_H_
 
-#include "sdl_utils/input/InputEvent.h"
-
 #include "app/ui/menus/MenuManager.h"
 #include "app/game/Game.h"
 

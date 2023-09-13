@@ -1,14 +1,6 @@
 #ifndef APP_GAME_GAMEOBJECT_H_
 #define APP_GAME_GAMEOBJECT_H_
 
-#include "app/Defines.h"
-#include "sdl_utils/input/InputEvent.h"
-
-#include "components/drawing/Image.h"
-#include "components/drawing/Text.h"
-#include "components/drawing/DynamicText.h"
-#include "components/audio/Sound.h"
-
 struct GameObjectConfig;
 
 class GameObject

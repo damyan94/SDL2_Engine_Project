@@ -2,8 +2,7 @@
 
 #include "app/ui/menus/console_menu/ConsoleMenu.h"
 
-#include "sdl_utils/drawing/SDLDrawing.h"
-#include "managers/ManagersHelpers.h"
+#include "system/managers/ManagersHelpers.h"
 #include "app/AppHelpers.h"
 
 // =============================================================================

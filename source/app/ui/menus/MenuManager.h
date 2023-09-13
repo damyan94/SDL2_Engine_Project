@@ -1,8 +1,7 @@
 #ifndef APP_UI_MENUS_MENUMANAGER_H_
 #define APP_UI_MENUS_MENUMANAGER_H_
 
-#include "app/Defines.h"
-#include "components/ui/base_classes/UIMenuBase.h"
+#include "system/components/ui/base_classes/UIMenuBase.h"
 
 struct MenuManagerConfig;
 

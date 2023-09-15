@@ -40,9 +40,17 @@
 #define ContinueIf(__Condition)						if(__Condition) continue
 #define BreakIf(__Condition)						if(__Condition) break
 
+#define ReturnUnless(__Condition, __Result)			ReturnIf(!__Condition, __Result)
+#define ContinueUnless(__Condition)					ContinueIf(!__Condition)
+#define BreakUnless(__Condition)					BreakIf(!__Condition)
+
 #define AssertReturnIf(__Condition, __Result, ...)	if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) return __Result
 #define AssertContinueIf(__Condition, ...)			if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) continue
 #define AssertBreakIf(__Condition, ...)				if(__Condition) Assert::Assert(__ASSERT_INFO(__Condition, __VA_ARGS__)); if(__Condition) break
+
+#define AssertReturnUnless(__Condition, __Result)	AssertReturnIf(!__Condition, __Result, ...)
+#define AssertContinueUnless(__Condition)			AssertContinueIf(!__Condition, ...)
+#define AssertBreakUnless(__Condition)				AssertBreakIf(!__Condition, ...)
 
 #define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
 #define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)

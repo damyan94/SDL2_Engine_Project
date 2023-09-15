@@ -3,7 +3,7 @@
 
 #include "system/stdafx.h"
 
-#include "app/Defines.h"
+#include "app/defines/Defines.h"
 
 #include "system/sdl_utils/input/InputEvent.h"
 #include "system/sdl_utils/drawing/SDLDrawing.h"

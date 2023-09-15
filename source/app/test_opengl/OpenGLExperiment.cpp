@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "app/OpenGLExperiment.h"
+#include "app/test_opengl/OpenGLExperiment.h"
 
 //TODO This is here because it conflicts with some function Rectangle from the Windows API
 #include "system/sdl_utils/drawing/Window.h"

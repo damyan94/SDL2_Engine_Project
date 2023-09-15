@@ -1,7 +1,7 @@
 #ifndef APP_CONFIG_APPCONFIG_H_
 #define APP_CONFIG_APPCONFIG_H_
 
-#include "app/Defines.h"
+#include "app/defines/Defines.h"
 #include "app/ui/menus/config/MenuManagerConfig.h"
 #include "app/game/config/GameConfig.h"
 

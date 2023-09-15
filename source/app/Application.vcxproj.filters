@@ -14,13 +14,16 @@
     <ClCompile Include="ui\menus\MenuManager.cpp" />
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppHelpers.cpp" />
-    <ClCompile Include="OpenGLExperiment.cpp" />
+    <ClCompile Include="test_opengl\OpenGLExperiment.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="engine\config\EngineConfig.cpp" />
     <ClCompile Include="engine\settings\Settings.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="ui\menus\CustomUIMenuBase.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="components\Component.cpp" />
+    <ClCompile Include="components\GameWorldPositionComponent.cpp" />
+    <ClCompile Include="components\ImageComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config\AppConfig.h" />
@@ -36,13 +39,15 @@
     <ClInclude Include="ui\menus\MenuManager.h" />
     <ClInclude Include="App.h" />
     <ClInclude Include="AppHelpers.h" />
-    <ClInclude Include="Defines.h" />
-    <ClInclude Include="IApp.h" />
-    <ClInclude Include="OpenGLExperiment.h" />
+    <ClInclude Include="defines\Defines.h" />
+    <ClInclude Include="test_opengl\OpenGLExperiment.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="engine\config\EngineConfig.h" />
     <ClInclude Include="engine\settings\Settings.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="ui\menus\CustomUIMenuBase.h" />
+    <ClInclude Include="components\Component.h" />
+    <ClInclude Include="components\GameWorldPositionComponent.h" />
+    <ClInclude Include="components\ImageComponent.h" />
   </ItemGroup>
 </Project>

@@ -4,7 +4,6 @@
 #include "app/game/Camera.h"
 #include "app/game/GameObject.h"
 
-// Forward declarations
 struct GameConfig;
 
 class Game

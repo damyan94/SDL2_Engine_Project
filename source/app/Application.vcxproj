@@ -21,17 +21,20 @@
   <ItemGroup>
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppHelpers.cpp" />
+    <ClCompile Include="components\Component.cpp" />
     <ClCompile Include="config\AppConfig.cpp" />
+    <ClCompile Include="components\ImageComponent.cpp" />
     <ClCompile Include="engine\config\EngineConfig.cpp" />
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="engine\settings\Settings.cpp" />
+    <ClCompile Include="components\GameWorldPositionComponent.cpp" />
     <ClCompile Include="game\Camera.cpp" />
     <ClCompile Include="game\config\GameConfig.cpp" />
     <ClCompile Include="game\config\GameObjectConfig.cpp" />
     <ClCompile Include="game\Game.cpp" />
     <ClCompile Include="game\GameObject.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="OpenGLExperiment.cpp" />
+    <ClCompile Include="test_opengl\OpenGLExperiment.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -48,18 +51,20 @@
   <ItemGroup>
     <ClInclude Include="App.h" />
     <ClInclude Include="AppHelpers.h" />
+    <ClInclude Include="components\Component.h" />
     <ClInclude Include="config\AppConfig.h" />
-    <ClInclude Include="Defines.h" />
+    <ClInclude Include="components\ImageComponent.h" />
+    <ClInclude Include="defines\Defines.h" />
     <ClInclude Include="engine\config\EngineConfig.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="engine\settings\Settings.h" />
+    <ClInclude Include="components\GameWorldPositionComponent.h" />
     <ClInclude Include="game\Camera.h" />
     <ClInclude Include="game\config\GameConfig.h" />
     <ClInclude Include="game\config\GameObjectConfig.h" />
     <ClInclude Include="game\Game.h" />
     <ClInclude Include="game\GameObject.h" />
-    <ClInclude Include="IApp.h" />
-    <ClInclude Include="OpenGLExperiment.h" />
+    <ClInclude Include="test_opengl\OpenGLExperiment.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ui\menus\config\MenuManagerConfig.h" />
     <ClInclude Include="ui\menus\console_menu\ConsoleMenu.h" />

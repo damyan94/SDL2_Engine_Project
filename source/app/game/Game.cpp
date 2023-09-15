@@ -5,8 +5,11 @@
 
 #include "app/game/config/GameObjectConfig.h"
 
-#define W 6
-#define H 6
+#include "app/components/GameWorldPositionComponent.h"
+#include "app/components/ImageComponent.h"
+
+#define W 60
+#define H 60
 
 enum class ETerrainTileType
 	: int8_t
@@ -44,13 +47,23 @@ bool Game::Init(const GameConfig& cfg)
 	for(size_t i = 0; i < H; i++)
 		for (size_t j = 0; j < W; j++)
 		{
-			auto& tile = m_Tiles[i * W + j];
-			tile = new GameObject;
 			GameObjectConfig c{ String("TERRAIN_TILES").m_Hash };
-			tile->Init(c);
-			tile->m_Image.SetCurrFrame(rand() % 8 + 1);
-			tile->m_WorldPos = Point(j * 40, i * 40);
-			tile->Update(0);
+
+			auto& tileObject = m_Tiles[i * W + j];
+			tileObject = new GameObject;
+
+			tileObject->AddComponent<GameWorldPositionComponent>();
+			tileObject->AddComponent<ImageComponent>();
+
+			auto position = tileObject->GetComponent<GameWorldPositionComponent>();
+			auto image = tileObject->GetComponent<ImageComponent>();
+
+			image->Init(c.m_ImageId);
+			image->SetCurrFrame(rand() % 8 + 1);
+			image->SetPos(j * 40, i * 40);
+			position->SetPosition(j * 40, i * 40);
+
+			tileObject->Update(0);
 		}
 
 	return true;
@@ -74,9 +87,22 @@ void Game::Update(int32_t dt)
 	m_Camera.Update(dt);
 	ReturnIf(!m_Camera.HasCameraChanged(), void());
 
-	for (auto& tile : m_Tiles)
+	const auto& cameraPos = m_Camera.GetPos();
+
+	for (auto tileObject : m_Tiles)
 	{
-		tile->Update(dt);
+		/*for (auto component : tileObject->GetAllComponents())
+		{
+			component->Update(dt);
+		}*/
+		//TODO performance bottle neck, must optimize how we get specific components
+		auto worldPos = tileObject->GetComponent<GameWorldPositionComponent>();
+		ContinueUnless(worldPos);
+
+		auto image = tileObject->GetComponent<ImageComponent>();
+		ContinueUnless(image);
+
+		image->SetPos(worldPos->GetPosition().x - cameraPos.x, worldPos->GetPosition().y - cameraPos.y);
 	}
 }
 

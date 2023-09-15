@@ -1,50 +1,40 @@
 #include "stdafx.h"
 
-#include "app/game/GameObject.h"
-#include "app/game/config/GameObjectConfig.h"
-
-#include "app/components/Component.h"
+#include "app/components/GameWorldPositionComponent.h"
 
 // =============================================================================
-GameObject::GameObject()
+const String GameWorldPositionComponent::m_Name("GameWorldPositionComponent");
+
+// =============================================================================
+GameWorldPositionComponent::GameWorldPositionComponent()
 {
 }
 
 // =============================================================================
-GameObject::~GameObject()
-{
-	Deinit();
-}
-
-// =============================================================================
-bool GameObject::Init(const GameObjectConfig& cfg)
-{
-	return true;
-}
-
-// =============================================================================
-void GameObject::Deinit()
-{
-	for (auto& component : m_Components)
-	{
-		SafeDelete(component);
-	}
-
-	m_Components.clear();
-}
-
-// =============================================================================
-void GameObject::HandleEvent(const InputEvent& e)
+GameWorldPositionComponent::~GameWorldPositionComponent()
 {
 }
 
 // =============================================================================
-void GameObject::Update(int32_t dt)
+const String& GameWorldPositionComponent::GetName() const
 {
+	return m_Name;
 }
 
 // =============================================================================
-std::vector<Component*>& GameObject::GetAllComponents()
+Point GameWorldPositionComponent::GetPosition() const
 {
-	return m_Components;
+	return m_Position;
+}
+
+// =============================================================================
+void GameWorldPositionComponent::SetPosition(const Point& pos)
+{
+	m_Position = pos;
+}
+
+// =============================================================================
+void GameWorldPositionComponent::SetPosition(int32_t x, int32_t y)
+{
+	m_Position = Point(x, y);
 }

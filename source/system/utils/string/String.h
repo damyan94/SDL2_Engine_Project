@@ -9,7 +9,13 @@ public:
 
 	~String();
 
-	bool operator==(const String& other);
+	String(const String& other);
+	String(String&& other);
+
+	String& operator=(const String& other);
+	String& operator=(String&& other);
+
+	bool operator==(const String& other) const;
 
 	void				Rehash();
 

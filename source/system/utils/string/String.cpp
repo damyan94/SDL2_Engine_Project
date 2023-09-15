@@ -22,7 +22,39 @@ String::~String()
 }
 
 // =============================================================================
-bool String::operator==(const String& other)
+String::String(const String& other)
+	: m_String(other.m_String)
+	, m_Hash(other.m_Hash)
+{
+}
+
+// =============================================================================
+String::String(String&& other)
+	: m_String(std::move(other.m_String))
+	, m_Hash(other.m_Hash)
+{
+}
+
+// =============================================================================
+String& String::operator=(const String& other)
+{
+	m_String = other.m_String;
+	m_Hash = other.m_Hash;
+
+	return *this;
+}
+
+// =============================================================================
+String& String::operator=(String&& other)
+{
+	m_String = std::move(other.m_String);
+	m_Hash = other.m_Hash;
+
+	return *this;
+}
+
+// =============================================================================
+bool String::operator==(const String& other) const
 {
 	return m_Hash == other.m_Hash;
 }

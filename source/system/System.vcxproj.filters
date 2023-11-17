@@ -75,6 +75,7 @@
     <ClCompile Include="utils\string\String.cpp" />
     <ClCompile Include="utils\time\Time.cpp" />
     <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="utils\containers\BinaryStruct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="components\audio\AudioObject.h" />
@@ -157,5 +158,6 @@
     <ClInclude Include="utils\time\Time.h" />
     <ClInclude Include="utils\Defines.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="utils\containers\BinaryStruct.h" />
   </ItemGroup>
 </Project>

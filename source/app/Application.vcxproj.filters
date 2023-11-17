@@ -3,10 +3,8 @@
   <ItemGroup>
     <ClCompile Include="config\AppConfig.cpp" />
     <ClCompile Include="game\config\GameConfig.cpp" />
-    <ClCompile Include="game\config\GameObjectConfig.cpp" />
     <ClCompile Include="game\Camera.cpp" />
     <ClCompile Include="game\Game.cpp" />
-    <ClCompile Include="game\GameObject.cpp" />
     <ClCompile Include="ui\menus\config\MenuManagerConfig.cpp" />
     <ClCompile Include="ui\menus\console_menu\ConsoleMenu.cpp" />
     <ClCompile Include="ui\menus\start_menu\config\StartMenuConfig.cpp" />
@@ -21,17 +19,12 @@
     <ClCompile Include="engine\Engine.cpp" />
     <ClCompile Include="ui\menus\CustomUIMenuBase.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="components\Component.cpp" />
-    <ClCompile Include="components\GameWorldPositionComponent.cpp" />
-    <ClCompile Include="components\ImageComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config\AppConfig.h" />
     <ClInclude Include="game\config\GameConfig.h" />
-    <ClInclude Include="game\config\GameObjectConfig.h" />
     <ClInclude Include="game\Camera.h" />
     <ClInclude Include="game\Game.h" />
-    <ClInclude Include="game\GameObject.h" />
     <ClInclude Include="ui\menus\config\MenuManagerConfig.h" />
     <ClInclude Include="ui\menus\console_menu\ConsoleMenu.h" />
     <ClInclude Include="ui\menus\start_menu\config\StartMenuConfig.h" />
@@ -46,8 +39,5 @@
     <ClInclude Include="engine\settings\Settings.h" />
     <ClInclude Include="engine\Engine.h" />
     <ClInclude Include="ui\menus\CustomUIMenuBase.h" />
-    <ClInclude Include="components\Component.h" />
-    <ClInclude Include="components\GameWorldPositionComponent.h" />
-    <ClInclude Include="components\ImageComponent.h" />
   </ItemGroup>
 </Project>

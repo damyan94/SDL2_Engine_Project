@@ -2,7 +2,6 @@
 #define APP_GAME_GAME_H_
 
 #include "app/game/Camera.h"
-#include "app/game/GameObject.h"
 
 struct GameConfig;
 
@@ -27,8 +26,6 @@ public:
 
 private:
 	Camera				m_Camera;
-	//Terrain				m_Terrain;
-	std::vector<GameObject*> m_Tiles;
 };
 
 #endif // !APP_GAME_GAME_H_

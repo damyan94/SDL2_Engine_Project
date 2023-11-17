@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="utils\containers\BinaryStruct.cpp" />
     <ClCompile Include="components\audio\AudioObject.cpp" />
     <ClCompile Include="components\audio\Music.cpp" />
     <ClCompile Include="components\audio\Sound.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="utils\time\Time.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="utils\containers\BinaryStruct.h" />
     <ClInclude Include="components\audio\AudioObject.h" />
     <ClInclude Include="components\audio\Music.h" />
     <ClInclude Include="components\audio\Sound.h" />

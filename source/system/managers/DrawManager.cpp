@@ -48,6 +48,9 @@ void DrawManager::Deinit()
 void DrawManager::HandleEvent(const InputEvent& e)
 {
 	m_Window.HandleEvent(e);
+	//TODO Check if window is resized, then update position of all images that have fixed relative position (UI)
+	// e.g. Button1.SetPositionFixed(Rectangle*? parent, EHowToPosition htp, Point pos);
+	// enum class EHowToPosition { Center, Left, Right, Top, Bottom, TopLeft, ... etc. };
 }
 
 // =============================================================================

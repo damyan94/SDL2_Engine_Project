@@ -14,9 +14,14 @@
 #include <deque>
 #include <unordered_map>
 
+#include <iostream>
 #include <fstream>
 #include <thread>
 #include <chrono>
+#include <algorithm>
+#include <memory>
+#include <utility>
+#include <functional>
 
 // Third-party includes
 

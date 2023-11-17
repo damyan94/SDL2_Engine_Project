@@ -289,9 +289,7 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 // =============================================================================
 String ReadStringHashed(const std::string& source, const std::string& str)
 {
-	String result(ReadString(source, str));
-
-	return result;
+	return String(ReadString(source, str));
 }
 
 // =============================================================================

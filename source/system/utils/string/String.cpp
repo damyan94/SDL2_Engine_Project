@@ -9,6 +9,14 @@ String::String()
 }
 
 // =============================================================================
+String::String(const char* string)
+	: m_String(string)
+	, m_Hash(0)
+{
+	Rehash();
+}
+
+// =============================================================================
 String::String(const std::string& string)
 	: m_String(string)
 	, m_Hash(0)

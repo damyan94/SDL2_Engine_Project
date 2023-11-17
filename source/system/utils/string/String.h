@@ -5,6 +5,7 @@ class String
 {
 public:
 	String();
+	String(const char* string);
 	String(const std::string& string);
 
 	~String();

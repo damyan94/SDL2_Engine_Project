@@ -7,6 +7,16 @@ public:
 	Time();
 	~Time();
 
+private:
+	Time(TimePoint ms);
+
+public:
+	bool operator==(const Time& other) const;
+	bool operator!=(const Time& other) const;
+
+	Time operator+(const Time& other) const;
+	Time operator-(const Time& other) const;
+
 	void				SetToNow();
 
 	uint64_t			GetAs(EUnitOfTime unit) const;

@@ -15,6 +15,36 @@ Time::~Time()
 }
 
 // =============================================================================
+Time::Time(TimePoint ms)
+	: m_Microseconds(ms)
+{
+}
+
+// =============================================================================
+bool Time::operator==(const Time& other) const
+{
+	return m_Microseconds == other.m_Microseconds;
+}
+
+// =============================================================================
+bool Time::operator!=(const Time& other) const
+{
+	return !operator==(other);
+}
+
+// =============================================================================
+Time Time::operator+(const Time& other) const
+{
+	return Time(m_Microseconds + other.m_Microseconds);
+}
+
+// =============================================================================
+Time Time::operator-(const Time& other) const
+{
+	return Time(m_Microseconds - other.m_Microseconds);
+}
+
+// =============================================================================
 void Time::SetToNow()
 {
 	m_Microseconds = std::chrono::duration_cast<std::chrono::microseconds>

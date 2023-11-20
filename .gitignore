@@ -8,10 +8,8 @@
 *.db-wal
 *.opendb
 *.ipch
-/build/Win32/Debug/Temp/
-/build/Win32/Release/Temp/
-/build/x64/Debug/Temp/
-/build/x64/Release/Temp/
 /.vs/
 /.git/
 /build
+/prj/vs2019
+!/prj/premake5.exe

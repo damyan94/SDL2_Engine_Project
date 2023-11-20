@@ -97,7 +97,8 @@ std::string Time::GetString(ETimeStringFormat format) const
 
 	constexpr uint8_t resultLength = 40;
 	char result[resultLength]{'\0'};
-	tm* timeinfo = localtime(&timeSeconds);
+	tm* timeinfo = nullptr;
+	localtime_s(timeinfo, &timeSeconds);
 
 	switch (format)
 	{

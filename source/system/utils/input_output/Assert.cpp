@@ -13,7 +13,7 @@
 static void _ShowMessageBox(const std::string& text)
 {
 #if defined WIN32 || _WIN32
-	MessageBox(nullptr, text.c_str(), "Error!", MB_ICONERROR | MB_OK);
+	MessageBoxA(nullptr, text.c_str(), "Error!", MB_ICONERROR | MB_OK);
 #else //if defined OS_LINUX || LINUX || UNIX
 	//TODO Insert Linux message box here
 #endif // !WIN32 || _WIN32

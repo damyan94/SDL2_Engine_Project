@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "system/sdl_utils/containers/config/ImageContainerConfig.h"
+#include "defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "IMAGE";
 
@@ -22,7 +23,7 @@ bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 
 		ImageConfig newCfg;
 
-		newCfg.m_FileName = Utils::ReadString(readStrings[i], "file_name");
+		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
 		AssertReturnIf(newCfg.m_FileName.empty(), false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_Frames = Utils::ReadInt(readStrings[i], "frames");

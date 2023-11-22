@@ -2,7 +2,7 @@
 
 #include "application/engine/settings/Settings.h"
 
-static const std::string c_SettingsFileName = "../../config/settings.cfg";
+static const std::string c_SettingsFileName = "../../../config/settings.cfg";
 
 Settings* const g_Settings = new Settings;
 

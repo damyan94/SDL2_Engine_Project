@@ -2,6 +2,8 @@
 
 #include "system/sdl_utils/containers/config/MusicContainerConfig.h"
 
+#include "defines/ConfigFilePaths.h"
+
 static const std::string c_TypeString = "MUSIC";
 
 // =============================================================================
@@ -22,7 +24,7 @@ bool MusicContainerConfig::Read(const ConfigStrings& readStrings)
 
 		MusicConfig newCfg;
 
-		newCfg.m_FileName = Utils::ReadString(readStrings[i], "file_name");
+		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
 		AssertReturnIf(newCfg.m_FileName.empty(), false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_Volume = Utils::ReadInt(readStrings[i], "volume");

@@ -2,6 +2,8 @@
 
 #include "system/sdl_utils/containers/config/FontContainerConfig.h"
 
+#include "defines/ConfigFilePaths.h"
+
 static const std::string c_TypeString = "FONT";
 
 // =============================================================================
@@ -22,7 +24,7 @@ bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 
 		FontConfig newCfg;
 
-		newCfg.m_FileName = Utils::ReadString(readStrings[i], "file_name");
+		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
 		AssertReturnIf(newCfg.m_FileName.empty(), false, _CONFIG_ERROR_INFO(i));
 
 		newCfg.m_Size = Utils::ReadInt(readStrings[i], "size");

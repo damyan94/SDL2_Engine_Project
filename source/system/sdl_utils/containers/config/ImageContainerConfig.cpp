@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "system/sdl_utils/containers/config/ImageContainerConfig.h"
-#include "defines/ConfigFilePaths.h"
+#include "system/defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "IMAGE";
 

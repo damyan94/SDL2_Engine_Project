@@ -2,7 +2,7 @@
 
 #include "system/sdl_utils/containers/config/FontContainerConfig.h"
 
-#include "defines/ConfigFilePaths.h"
+#include "system/defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "FONT";
 

@@ -2,7 +2,9 @@
 
 #include "application/engine/settings/Settings.h"
 
-static const std::string c_SettingsFileName = "../../../config/settings.cfg";
+#include "system//defines/ConfigFilePaths.h"
+
+static const std::string c_SettingsFileName = ConfigFilePaths::MainDir + "config/settings.cfg";
 
 Settings* const g_Settings = new Settings;
 

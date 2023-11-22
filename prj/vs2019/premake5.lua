@@ -1,5 +1,6 @@
 workspace "SDL2_Engine_Project"
 	architecture "x64"
+	startproject "Application"
 
 	configurations
 	{
@@ -81,11 +82,6 @@ project "System"
 			"WIN32",
 			"WIN64",
 		}
-		
-		postbuildcommands
-		{
-			
-		}
 	
 	filter "configurations:Debug"
 		symbols "On"
@@ -118,6 +114,7 @@ project "Application"
 	
 	warnings "Default"
 	characterset ("ASCII")
+	entrypoint "mainCRTStartup"
 	
 	targetdir (outputdir)
 	objdir (outputdir .. "/Temp/%{prj.name}")
@@ -183,11 +180,6 @@ project "Application"
 			"WIN32",
 			"WIN64",
 		}
-		
-		postbuildcommands
-		{
-			
-		}
 	
 	filter "configurations:Debug"
 		symbols "On"
@@ -198,7 +190,7 @@ project "Application"
 		}
 		
 	filter "configurations:Release"
-	optimize "On"
+		optimize "On"
 		
 		defines
 		{
@@ -206,7 +198,8 @@ project "Application"
 		}
 		
 	filter "configurations:Distribution"
-	optimize "On"
+		optimize "On"
+		kind "WindowedApp"
 		
 		defines
 		{

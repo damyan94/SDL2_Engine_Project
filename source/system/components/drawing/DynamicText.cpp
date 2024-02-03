@@ -76,8 +76,11 @@ void DynamicText::Deinit()
 	{
 		g_DrawManager->RemoveDynamicText(this);
 	}
-	m_Data->m_Texture->DestroyTexture();
-	SafeDelete(m_Data);
+	if (m_Data)//TODO find why this is nullptr
+	{
+		m_Data->m_Texture->DestroyTexture();
+		SafeDelete(m_Data);
+	}
 }
 
 // =============================================================================

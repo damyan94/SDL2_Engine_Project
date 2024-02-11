@@ -97,7 +97,7 @@ void DynamicText::SetText(const std::string& newText)
 		0
 	};
 	m_Data->m_Texture->CreateTextureFromText(inOutParams);
-	ReturnIf(!m_Data->m_Texture->Get(), void());
+	ReturnIf(!m_Data->m_Texture->Get());
 
 	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
 	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;
@@ -122,7 +122,7 @@ void DynamicText::SetColor(const Color& newColor)
 		0
 	};
 	m_Data->m_Texture->CreateTextureFromText(inOutParams);
-	ReturnIf(!m_Data->m_Texture->Get(), void());
+	ReturnIf(!m_Data->m_Texture->Get());
 	
 	m_DrawParameters.m_PosRect.w		= inOutParams.m_Width;
 	m_DrawParameters.m_PosRect.h		= inOutParams.m_Height;

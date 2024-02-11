@@ -47,14 +47,14 @@ void ConsoleMenu::Deinit()
 // =============================================================================
 void ConsoleMenu::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsActive, void());
+	ReturnIf(!m_IsActive);
 }
 
 // =============================================================================
 void ConsoleMenu::Update(int32_t dt)
 {
-	ReturnIf(!m_IsActive, void());
-	ReturnIf(!m_TimerUpdate.IsTicked(), void());
+	ReturnIf(!m_IsActive);
+	ReturnIf(!m_TimerUpdate.IsTicked());
 
 	m_TextDrawCalls.SetText("Draw calls: " + std::to_string(Helpers::GetDrawCalls()));
 	m_TextCameraPos.SetText("Camera position: " + std::to_string(Helpers::GetCameraPosition().x) +

@@ -29,8 +29,7 @@ bool TextContainer::DoesAssetExist(TextId id) const
 const TextData* TextContainer::GetTextData(TextId id) const
 {
 	auto result = m_TextsContainer.find(id);
-	AssertReturnIf(result == m_TextsContainer.end(), nullptr,
-		"Received unexistant text id.");
+	AssertReturnIf(result == m_TextsContainer.end(), nullptr);
 
 	return &result->second;
 }
@@ -39,8 +38,7 @@ const TextData* TextContainer::GetTextData(TextId id) const
 bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth)
 {
 	auto it = m_TextsContainer.find(id);
-	AssertReturnIf(it == m_TextsContainer.end(), false,
-		"Received unexistant text id.");
+	AssertReturnIf(it == m_TextsContainer.end(), false);
 
 	TextData& textData			= it->second;
 	textData.m_FontId			= fontId;
@@ -95,8 +93,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 
 	for (const auto [id, textCfg] : cfg.m_TextContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already existant text id.");
+		AssertReturnIf(DoesAssetExist(id), false);
 
 		TextData newTextData;
 		newTextData.m_Texture = new Texture;

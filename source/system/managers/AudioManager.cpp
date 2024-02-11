@@ -122,8 +122,7 @@ void AudioManager::StopMusic()
 // =============================================================================
 void AudioManager::SetSoundVolume(int32_t channel, uint8_t volume)
 {
-	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume,
-		void(), "Received invalid volume value.");
+	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
 
 	Audio::SetSoundVolume(channel, volume);
 }
@@ -131,8 +130,7 @@ void AudioManager::SetSoundVolume(int32_t channel, uint8_t volume)
 // =============================================================================
 void AudioManager::SetSoundsVolume(uint8_t volume)
 {
-	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume,
-		void(), "Received invalid volume value.");
+	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
 
 	Audio::SetSoundsVolume(volume);
 }
@@ -140,8 +138,7 @@ void AudioManager::SetSoundsVolume(uint8_t volume)
 // =============================================================================
 void AudioManager::SetMusicVolume(uint8_t volume)
 {
-	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume,
-		void(), "Received invalid volume value.");
+	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
 
 	Audio::SetMusicVolume(volume);
 }

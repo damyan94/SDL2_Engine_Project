@@ -82,7 +82,7 @@ void DrawManager::Draw() const
 // =============================================================================
 void DrawManager::ClearScreen() const
 {
-	ReturnIf(m_Window.IsMinimized(), void());
+	ReturnIf(m_Window.IsMinimized());
 
 	m_Renderer.ClearScreen();
 	m_DrawCalls = 0;
@@ -91,7 +91,7 @@ void DrawManager::ClearScreen() const
 // =============================================================================
 void DrawManager::FinishFrame() const
 {
-	ReturnIf(m_Window.IsMinimized(), void());
+	ReturnIf(m_Window.IsMinimized());
 
 	m_Renderer.FinishFrame();
 }
@@ -121,7 +121,7 @@ Renderer& DrawManager::GetRenderer()
 // =============================================================================
 void DrawManager::AddImage(Image* item)
 {
-	ReturnIf(!item, void());
+	ReturnIf(!item);
 	m_Images.emplace_back(item);
 }
 
@@ -129,14 +129,14 @@ void DrawManager::AddImage(Image* item)
 void DrawManager::RemoveImage(Image* item)
 {
 	auto it = std::find(m_Images.begin(), m_Images.end(), item);
-	ReturnIf(it == m_Images.end(), void());
+	ReturnIf(it == m_Images.end());
 	m_Images.erase(it);
 }
 
 // =============================================================================
 void DrawManager::AddText(Text* item)
 {
-	ReturnIf(!item, void());
+	ReturnIf(!item);
 	m_Texts.emplace_back(item);
 }
 
@@ -144,14 +144,14 @@ void DrawManager::AddText(Text* item)
 void DrawManager::RemoveText(Text* item)
 {
 	auto it = std::find(m_Texts.begin(), m_Texts.end(), item);
-	ReturnIf(it == m_Texts.end(), void());
+	ReturnIf(it == m_Texts.end());
 	m_Texts.erase(it);
 }
 
 // =============================================================================
 void DrawManager::AddDynamicText(DynamicText* item)
 {
-	ReturnIf(!item, void());
+	ReturnIf(!item);
 	m_DynamicTexts.emplace_back(item);
 }
 
@@ -159,14 +159,14 @@ void DrawManager::AddDynamicText(DynamicText* item)
 void DrawManager::RemoveDynamicText(DynamicText* item)
 {
 	auto it = std::find(m_DynamicTexts.begin(), m_DynamicTexts.end(), item);
-	ReturnIf(it == m_DynamicTexts.end(), void());
+	ReturnIf(it == m_DynamicTexts.end());
 	m_DynamicTexts.erase(it);
 }
 
 // =============================================================================
 void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
 {
-	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p), void());
+	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
 
 	m_Renderer.RenderTexture(texture, p);
 	m_DrawCalls++;

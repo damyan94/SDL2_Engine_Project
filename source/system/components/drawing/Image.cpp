@@ -62,7 +62,7 @@ void Image::Deinit()
 // =============================================================================
 void Image::SetCurrFrame(int32_t frame)
 {
-	AssertReturnIf(frame <= 0 || frame > m_Data->m_FramesCount, void(), "Invalid frames count.");
+	AssertReturnIf(frame <= 0 || frame > m_Data->m_FramesCount);
 
 	m_CurrFrame = frame;
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;

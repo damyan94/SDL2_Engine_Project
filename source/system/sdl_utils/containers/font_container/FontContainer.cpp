@@ -25,8 +25,7 @@ bool FontContainer::DoesAssetExist(FontId id) const
 // =============================================================================
 FontData FontContainer::GetFontData(FontId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), FontData(),
-		"Received unexistant font id.");
+	AssertReturnIf(!DoesAssetExist(id), FontData());
 
 	return m_FontsContainer.find(id)->second;
 }
@@ -36,16 +35,14 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 {
 	for (const auto& [id, fontCfg] : cfg.m_FontContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already existant font id.");
+		AssertReturnIf(DoesAssetExist(id), false);
 
 		FontData newFont;
 
 		newFont.m_Font = TTF_OpenFont(
 			fontCfg.m_FileName.c_str(),
 			fontCfg.m_Size);
-		AssertReturnIf(!newFont.m_Font, false,
-			"TTF_OpenFont() failed: " + std::string(SDL_GetError()));
+		AssertReturnIf(!newFont.m_Font && SDL_GetError(), false);
 
 		TTF_SetFontWrappedAlign(newFont.m_Font, (int32_t)fontCfg.m_WrapAlign);
 

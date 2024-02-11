@@ -37,7 +37,7 @@ void Checkbox::Deinit()
 // =============================================================================
 void Checkbox::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
 	if ((m_Image.ContainsPoint(e.m_Pos) || m_Text.ContainsPoint(e.m_Pos))
 		&& e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
@@ -51,7 +51,7 @@ void Checkbox::HandleEvent(const InputEvent& e)
 // =============================================================================
 void Checkbox::Update(int32_t dt)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 }
 
 // =============================================================================

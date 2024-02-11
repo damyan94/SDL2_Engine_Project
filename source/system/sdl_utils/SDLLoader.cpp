@@ -10,17 +10,17 @@
 // =============================================================================
 bool SDLLoader::Init()
 {
-	AssertReturnIf(EXIT_SUCCESS != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO),
-		false, "SDL_Init() failed: " + std::string(SDL_GetError()));
+	AssertReturnIf(EXIT_SUCCESS != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO)
+		&& SDL_GetError(), false);
 
-	AssertReturnIf(EXIT_SUCCESS == (IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG),
-		false, "IMG_Init() failed " + std::string(SDL_GetError()));
+	AssertReturnIf(EXIT_SUCCESS == (IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)
+		&& SDL_GetError(), false);
 
-	AssertReturnIf(EXIT_SUCCESS != TTF_Init(),
-		false, "TTF_Init() failed " + std::string(SDL_GetError()));
+	AssertReturnIf(EXIT_SUCCESS != TTF_Init()
+		&& SDL_GetError(), false);
 
-	AssertReturnIf(0 > Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048),
-		false, "Mix_OpenAudio() failed. " + std::string(SDL_GetError()));
+	AssertReturnIf(0 > Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 4, 2048)
+		&& SDL_GetError(), false);
 
 	return true;
 }

@@ -23,20 +23,20 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 		TextConfig newCfg;
 
 		auto color = Utils::ReadIntArray(readStrings[i], "color", 4);
-		AssertReturnIf(color.size() != 4, false, _CONFIG_ERROR_INFO(i));
+		AssertReturnIf(color.size() != 4 && _CONFIG_ERROR_INFO(i), false);
 
 		newCfg.m_TextColor = Color(color[0], color[1], color[2], color[3]);
 
 		newCfg.m_FontId = FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
 
 		newCfg.m_WrapWidth = Utils::ReadInt(readStrings[i], "wrap_width");
-		AssertReturnIf(newCfg.m_WrapWidth < 0, false, _CONFIG_ERROR_INFO(i));
+		AssertReturnIf(newCfg.m_WrapWidth < 0 && _CONFIG_ERROR_INFO(i), false);
 
 		for (int32_t j = (int32_t)ELanguage::Invalid + 1; j < (int32_t)ELanguage::Count; j++)
 		{
 			const auto currLanguage = ELanguage(j);
 			std::string languageString = Utils::ReadString(readStrings[i], Utils::GetLanguageStringFromId(currLanguage));
-			AssertReturnIf(languageString.empty(), false, _CONFIG_ERROR_INFO(i));
+			AssertReturnIf(languageString.empty() && _CONFIG_ERROR_INFO(i), false);
 
 			newCfg.m_LanguageStrings.emplace(currLanguage, std::move(languageString));
 		}

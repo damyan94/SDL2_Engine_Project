@@ -26,8 +26,7 @@ bool SoundContainer::DoesAssetExist(SoundId id) const
 const SoundData* SoundContainer::GetSoundData(SoundId id) const
 {
 	auto result = m_SoundContainer.find(id);
-	AssertReturnIf(result == m_SoundContainer.end(), nullptr,
-		"Received unexistant sound id.");
+	AssertReturnIf(result == m_SoundContainer.end(), nullptr);
 
 	return &result->second;
 }
@@ -37,8 +36,7 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
 	for (const auto& [id, soundCfg] : cfg.m_SoundContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already existant sound id.");
+		AssertReturnIf(DoesAssetExist(id), false);
 
 		SoundData newSound;
 

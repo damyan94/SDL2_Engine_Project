@@ -49,7 +49,7 @@ void Sound::Deinit()
 // =============================================================================
 void Sound::Play()
 {
-	ReturnIf(m_AudioParameters.m_Volume <= 0, void());
+	ReturnIf(m_AudioParameters.m_Volume <= 0);
 	
 	m_Channel = g_AudioManager->PlaySound(*m_Data, m_AudioParameters.m_Loops);
 }

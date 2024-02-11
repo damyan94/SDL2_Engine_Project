@@ -28,13 +28,12 @@ bool Settings::Read()
 	ReturnIf(!ReadWriteFile::ReadFromFile(c_SettingsFileName, readString), false);
 
 	m_TargetFPS = Utils::ReadInt(readString, "fps");
-	AssertReturnIf(m_TargetFPS <= 0 || m_TargetFPS > 100, false,
-		"FPS must be between 1 and 100.");
+	AssertReturnIf(m_TargetFPS <= 0 || m_TargetFPS > 100, false);
 
 	const std::string langString = Utils::ReadString(readString, "language");
 	m_Language = Utils::GetLanguageIdFromString(langString);
-	AssertReturnIf(!IsEnumValueValid(m_Language), false,
-		"Invalid language received from settings file: " + c_SettingsFileName);
+	AssertReturnIf(!IsEnumValueValid(m_Language) &&
+		("Invalid language received from settings file: " + c_SettingsFileName).c_str(), false);
 
 	return true;
 }

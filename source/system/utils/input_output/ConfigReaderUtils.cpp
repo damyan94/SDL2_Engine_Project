@@ -36,8 +36,8 @@ int32_t ReadInt(const std::string& source, const std::string& str)
 {
 	int32_t result = -1;
 	const size_t strStartPos = source.find(str);
-	AssertReturnIf(strStartPos == std::string::npos, result,
-		"Could not find the specified string inside the source string: " + str);
+	AssertReturnIf(strStartPos == std::string::npos &&
+		("Could not find the specified string inside the source string: " + str).c_str(), result);
 
 	const size_t startPos = strStartPos + str.size() + 1;
 	std::string readValue;
@@ -54,7 +54,7 @@ int32_t ReadInt(const std::string& source, const std::string& str)
 	}
 	catch(const std::exception& e)
 	{
-		AssertReturnIf(true, result, "Exception thrown: " + std::string(e.what()));
+		AssertReturnIf(("Exception thrown: " + std::string(e.what())).c_str(), result);
 	}
 
 	return result;
@@ -66,8 +66,8 @@ std::vector<int32_t> ReadIntArray(const std::string& source, const std::string& 
 	std::vector<int32_t> result;
 	result.reserve(size);
 	const size_t strStartPos = source.find(str);
-	AssertReturnIf(strStartPos == std::string::npos, result,
-		"Could not find the specified string inside the source string: " + str);
+	AssertReturnIf(strStartPos == std::string::npos &&
+		("Could not find the specified string inside the source string: " + str).c_str(), result);
 
 	const size_t startPos = strStartPos + str.size() + 1;
 	std::string readValue;
@@ -82,7 +82,7 @@ std::vector<int32_t> ReadIntArray(const std::string& source, const std::string& 
 			}
 			catch (const std::exception& e)
 			{
-				AssertReturnIf(true, result, "Exception thrown: " + std::string(e.what()));
+				AssertReturnIf(("Exception thrown: " + std::string(e.what())).c_str(), result);
 			}
 
 			BreakIf(currChar == RecordSeparator);
@@ -105,8 +105,8 @@ double ReadDouble(const std::string& source, const std::string& str)
 {
 	double result = -1;
 	const size_t strStartPos = source.find(str);
-	AssertReturnIf(strStartPos == std::string::npos, result,
-		"Could not find the specified string inside the source string: " + str);
+	AssertReturnIf(strStartPos == std::string::npos &&
+		("Could not find the specified string inside the source string: " + str).c_str(), result);
 
 	const size_t startPos = strStartPos + str.size() + 1;
 	std::string readValue;
@@ -123,7 +123,7 @@ double ReadDouble(const std::string& source, const std::string& str)
 	}
 	catch (const std::exception& e)
 	{
-		AssertReturnIf(true, result, "Exception thrown: " + std::string(e.what()));
+		AssertReturnIf(("Exception thrown : " + std::string(e.what())).c_str(), result);
 	}
 
 	return result;
@@ -135,8 +135,8 @@ std::vector<double> ReadDoubleArray(const std::string& source, const std::string
 	std::vector<double> result;
 	result.reserve(size);
 	const size_t strStartPos = source.find(str);
-	AssertReturnIf(strStartPos == std::string::npos, result,
-		"Could not find the specified string inside the source string: " + str);
+	AssertReturnIf(strStartPos == std::string::npos &&
+		("Could not find the specified string inside the source string: " + str).c_str(), result);
 
 	const size_t startPos = strStartPos + str.size() + 1;
 	std::string readValue;
@@ -151,7 +151,7 @@ std::vector<double> ReadDoubleArray(const std::string& source, const std::string
 			}
 			catch (const std::exception& e)
 			{
-				AssertReturnIf(true, result, "Exception thrown: " + std::string(e.what()));
+				AssertReturnIf(("Exception thrown: " + std::string(e.what())).c_str(), result);
 			}
 
 			BreakIf(currChar == RecordSeparator);
@@ -230,8 +230,8 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 	std::vector<std::string> result;
 	result.reserve(size * 32);
 	const size_t strStartPos = source.find(str);
-	AssertReturnIf(strStartPos == std::string::npos, result,
-		"Could not find the specified string inside the source string: " + str);
+	AssertReturnIf(strStartPos == std::string::npos &&
+		("Could not find the specified string inside the source string: " + str).c_str(), result);
 
 	const size_t startPos = strStartPos + str.size() + 1;
 

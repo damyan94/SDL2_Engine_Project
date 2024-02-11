@@ -25,10 +25,10 @@ bool MusicContainerConfig::Read(const ConfigStrings& readStrings)
 		MusicConfig newCfg;
 
 		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
-		AssertReturnIf(newCfg.m_FileName.empty(), false, _CONFIG_ERROR_INFO(i));
+		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
 		newCfg.m_Volume = Utils::ReadInt(readStrings[i], "volume");
-		AssertReturnIf(newCfg.m_Volume <= 0, false, _CONFIG_ERROR_INFO(i));
+		AssertReturnIf(newCfg.m_Volume <= 0 && _CONFIG_ERROR_INFO(i), false);
 
 		m_MusicContainerConfig.emplace(MusicId(i), std::move(newCfg));
 	}

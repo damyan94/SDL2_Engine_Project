@@ -15,22 +15,22 @@ bool WindowConfig::Read(const ConfigStrings& readStrings)
 	}
 
 	m_Name		= Utils::ReadString(readStrings[startLine], "title");
-	AssertReturnIf(m_Name.empty(), false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_Name.empty() && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_PosX		= Utils::ReadInt(readStrings[startLine], "pos_x");	//default 0x1FFF0000u SDL_WINDOWPOS_UNDEFINED
-	AssertReturnIf(m_PosX < 0, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_PosX < 0 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_PosY		= Utils::ReadInt(readStrings[startLine], "pos_y");	//default 0x1FFF0000u SDL_WINDOWPOS_UNDEFINED
-	AssertReturnIf(m_PosX < 0, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_PosX < 0 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_Width		= Utils::ReadInt(readStrings[startLine], "width");
-	AssertReturnIf(m_Width < 0, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_Width < 0 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_Height	= Utils::ReadInt(readStrings[startLine], "height");
-	AssertReturnIf(m_Height < 0, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_Height < 0 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_Flags		= Utils::ReadInt(readStrings[startLine], "flags");	//default 0x00000004 SDL_WINDOW_SHOWN
-	AssertReturnIf(m_Flags < 0, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(m_Flags < 0 && _CONFIG_ERROR_INFO(startLine), false);
 
 	return true;
 }

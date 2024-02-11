@@ -13,13 +13,12 @@ bool TimerContainer::DoesTimerExist(TimerId id) const
 // The default unit of time for the timers is a millisecond
 void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 {
-	AssertReturnIf(DoesTimerExist(id), void(), "Received already existant timer id.");
+	AssertReturnIf(DoesTimerExist(id));
 
 	TimerData newTimer;
 	newTimer.m_TimerType = type;
 	newTimer.m_Interval = interval;
-	AssertReturnIf(interval < Constants::TimerMinInterval, void(),
-		"Received invalid timer interval.");
+	AssertReturnIf(interval < Constants::TimerMinInterval);
 
 	newTimer.m_Remaining = interval;
 

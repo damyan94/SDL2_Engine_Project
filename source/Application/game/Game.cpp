@@ -47,7 +47,7 @@ void Game::HandleEvent(const InputEvent& e)
 void Game::Update(int32_t dt)
 {
 	m_Camera.Update(dt);
-	ReturnUnless(m_Camera.HasCameraChanged(), void());
+	ReturnUnless(m_Camera.HasCameraChanged());
 
 	const auto& cameraPos = m_Camera.GetPos();
 }

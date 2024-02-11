@@ -38,14 +38,11 @@ project "System"
 		"../../dependencies/SDL2/SDL2_ttf/include",
 		"../../dependencies/SDL2/SDL2_mixer/include",
 		"../../dependencies/imgui-master",
-		"../../dependencies/imgui-master/backends",
-		"../../dependencies/GLEW/include"
+		"../../dependencies/imgui-master/backends"
 	}
 	
 	libdirs
 	{
-		"../../dependencies/GLEW/lib/Release/x64",
-		"../../dependencies/GLEW/bin/Release/x64",
 		"../../dependencies/SDL2/SDL2/lib/x64",
 		"../../dependencies/SDL2/SDL2_image/lib/x64",
 		"../../dependencies/SDL2/SDL2_ttf/lib/x64",
@@ -54,8 +51,6 @@ project "System"
 	
 	links
 	{
-		"opengl32",
-		"glew32",
 		"SDL2",
 		"SDL2_image",
 		"SDL2_ttf",
@@ -135,14 +130,11 @@ project "Application"
 		"../../dependencies/SDL2/SDL2_ttf/include",
 		"../../dependencies/SDL2/SDL2_mixer/include",
 		"../../dependencies/imgui-master",
-		"../../dependencies/imgui-master/backends",
-		"../../dependencies/GLEW/include"
+		"../../dependencies/imgui-master/backends"
 	}
 	
 	libdirs
 	{
-		"../../dependencies/GLEW/lib/Release/x64",
-		"../../dependencies/GLEW/bin/Release/x64",
 		"../../dependencies/SDL2/SDL2/lib/x64",
 		"../../dependencies/SDL2/SDL2_image/lib/x64",
 		"../../dependencies/SDL2/SDL2_ttf/lib/x64",
@@ -151,8 +143,6 @@ project "Application"
 	
 	links
 	{
-		"opengl32",
-		"glew32",
 		"SDL2",
 		"SDL2_image",
 		"SDL2_ttf",

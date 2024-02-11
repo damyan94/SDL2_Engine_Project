@@ -77,10 +77,10 @@ void TextInputter::Deinit()
 // =============================================================================
 void TextInputter::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
-	ReturnIf(!m_IsActive, void());
-	ReturnIf(!(e.m_Type == EEventType::KeyboardPress || e.m_Type == EEventType::TextInput), void());
+	ReturnIf(!m_IsActive);
+	ReturnIf(!(e.m_Type == EEventType::KeyboardPress || e.m_Type == EEventType::TextInput));
 
 	if (e.m_Key == EKeyboardKey::Escape)
 	{
@@ -98,7 +98,7 @@ void TextInputter::HandleEvent(const InputEvent& e)
 // =============================================================================
 void TextInputter::Update(int32_t dt)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
 	if (!m_CursorTimer.IsPaused() && m_CursorTimer.IsTicked())
 	{
@@ -113,7 +113,7 @@ void TextInputter::Update(int32_t dt)
 	}
 	m_Cursor.SetPos(m_Pos.x + m_WSCursorPos * m_Cursor.GetWidth() - 3, m_Pos.y + 1);
 
-	ReturnIf(!m_IsActive || !m_IsDirty, void());
+	ReturnIf(!m_IsActive || !m_IsDirty);
 
 	m_Text.SetText(m_TextContent);
 
@@ -186,8 +186,8 @@ void TextInputter::Hide()
 void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 {
 	// Handle history navigation
-	ReturnIf(e.m_Type != EEventType::KeyboardPress, void());
-	ReturnIf(!(e.m_Key == EKeyboardKey::Up || e.m_Key == EKeyboardKey::Down), void());
+	ReturnIf(e.m_Type != EEventType::KeyboardPress);
+	ReturnIf(!(e.m_Key == EKeyboardKey::Up || e.m_Key == EKeyboardKey::Down));
 
 	if (e.m_Key == EKeyboardKey::Up)
 	{
@@ -239,12 +239,12 @@ void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 {
 	// Handle arrow keys navigation
-	ReturnIf(e.m_Type != EEventType::KeyboardPress, void());
-	ReturnIf(!(e.m_Key == EKeyboardKey::Left || e.m_Key == EKeyboardKey::Right), void());
+	ReturnIf(e.m_Type != EEventType::KeyboardPress);
+	ReturnIf(!(e.m_Key == EKeyboardKey::Left || e.m_Key == EKeyboardKey::Right));
 
 	if (e.m_Key == EKeyboardKey::Left)
 	{
-		ReturnIf(m_WSCursorPos <= 0, void());
+		ReturnIf(m_WSCursorPos <= 0);
 
 		m_WSCursorPos--;
 		size_t movedBytes = WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
@@ -252,7 +252,7 @@ void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 	}
 	else if (e.m_Key == EKeyboardKey::Right)
 	{
-		ReturnIf(m_WSCursorPos >= m_WSTextContent.size(), void());
+		ReturnIf(m_WSCursorPos >= m_WSTextContent.size());
 
 		size_t movedBytes = WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
 		m_WSCursorPos++;
@@ -266,9 +266,9 @@ void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 void TextInputter::HandleTextInput(const InputEvent& e)
 {
 	// Handle keyboard input
-	ReturnIf(e.m_Type != EEventType::TextInput, void());
-	ReturnIf(!e.m_TextInput, void());
-	ReturnIf((int32_t)m_WSTextContent.size() >= m_MaxChars, void());
+	ReturnIf(e.m_Type != EEventType::TextInput);
+	ReturnIf(!e.m_TextInput);
+	ReturnIf((int32_t)m_WSTextContent.size() >= m_MaxChars);
 
 	size_t inputSize = strlen(e.m_TextInput);
 	for (size_t i = 0; i < inputSize; i++)
@@ -288,12 +288,12 @@ void TextInputter::HandleTextInput(const InputEvent& e)
 void TextInputter::HandleDeletion(const InputEvent& e)
 {
 	// Handle backspace and delete
-	ReturnIf(e.m_Type != EEventType::KeyboardPress, void());
-	ReturnIf(!(e.m_Key == EKeyboardKey::Backspace || e.m_Key == EKeyboardKey::Delete), void());
+	ReturnIf(e.m_Type != EEventType::KeyboardPress);
+	ReturnIf(!(e.m_Key == EKeyboardKey::Backspace || e.m_Key == EKeyboardKey::Delete));
 
 	if (e.m_Key == EKeyboardKey::Backspace)
 	{
-		ReturnIf(m_CursorPos <= 0 || m_WSCursorPos <= 0, void());
+		ReturnIf(m_CursorPos <= 0 || m_WSCursorPos <= 0);
 
 		m_WSCursorPos--;
 		auto& wSCharToDelete = m_WSTextContent[m_WSCursorPos];
@@ -305,7 +305,7 @@ void TextInputter::HandleDeletion(const InputEvent& e)
 	}
 	else if (e.m_Key == EKeyboardKey::Delete)
 	{
-		ReturnIf(m_CursorPos >= (int32_t)m_TextContent.size() || m_WSCursorPos >= (int32_t)m_WSTextContent.size(), void());
+		ReturnIf(m_CursorPos >= (int32_t)m_TextContent.size() || m_WSCursorPos >= (int32_t)m_WSTextContent.size());
 
 		auto& wSCharToDelete = m_WSTextContent[m_WSCursorPos];
 		size_t bytesToDelete = WideStringToUTF8Bytes(wSCharToDelete).size();
@@ -320,8 +320,8 @@ void TextInputter::HandleDeletion(const InputEvent& e)
 void TextInputter::HandleEnterKey(const InputEvent& e)
 {
 	// Handle enter key
-	ReturnIf(e.m_Type != EEventType::KeyboardPress, void());
-	ReturnIf(!(e.m_Key == EKeyboardKey::Return || e.m_Key == EKeyboardKey::Numpad_Enter), void());
+	ReturnIf(e.m_Type != EEventType::KeyboardPress);
+	ReturnIf(!(e.m_Key == EKeyboardKey::Return || e.m_Key == EKeyboardKey::Numpad_Enter));
 
 	if (m_TextContent.size() > 0)
 	{

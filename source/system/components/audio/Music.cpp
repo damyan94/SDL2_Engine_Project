@@ -47,7 +47,7 @@ void Music::Deinit()
 // =============================================================================
 void Music::Play()
 {
-	ReturnIf(m_AudioParameters.m_Volume <= 0, void());
+	ReturnIf(m_AudioParameters.m_Volume <= 0);
 
 	g_AudioManager->PlayMusic(*m_Data, m_AudioParameters.m_Loops);
 }

@@ -37,7 +37,7 @@ void Button::Deinit()
 // =============================================================================
 void Button::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
 	HandleMouseHoverEvent(e);
 
@@ -54,7 +54,7 @@ void Button::HandleEvent(const InputEvent& e)
 // =============================================================================
 void Button::Update(int32_t dt)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 }
 
 // =============================================================================

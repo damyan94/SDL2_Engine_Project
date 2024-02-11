@@ -35,7 +35,7 @@ bool BinaryStruct::UpdateFromFile(const std::string& fileName)
 
 	in.close();
 
-	AssertReturnIf(!m_Data, false, "Failed to read data from file: %s", fileName.c_str());
+	AssertReturnIf(!m_Data && ("Failed to read data from file: " + fileName).c_str(), false);
 
 	return true;
 }

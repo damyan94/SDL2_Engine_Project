@@ -12,8 +12,7 @@ bool Audio::CreateSoundFromFile(Mix_Chunk*& outSound, const std::string& fileNam
 {
 	outSound = Mix_LoadWAV(fileName.c_str());
 
-	AssertReturnIf(!outSound, false,
-		"Mix_LoadWAV() failed: " + std::string(SDL_GetError()));
+	AssertReturnIf(!outSound && SDL_GetError(), false);
 
 	return true;
 }
@@ -23,8 +22,7 @@ bool Audio::CreateMusicFromFile(Mix_Music*& outMusic, const std::string& fileNam
 {
 	outMusic = Mix_LoadMUS(fileName.c_str());
 
-	AssertReturnIf(!outMusic, false,
-		"Mix_LoadMUS() failed: " + std::string(SDL_GetError()));
+	AssertReturnIf(!outMusic && SDL_GetError(), false);
 
 	return true;
 }

@@ -174,7 +174,7 @@ void Camera::HandleKeyboardScrolling(const InputEvent& e)
 // =============================================================================
 void Camera::HandleMouseScrolling(const InputEvent& e)
 {
-	ReturnIf(e.m_Type != EEventType::MouseMotion, void());
+	ReturnIf(e.m_Type != EEventType::MouseMotion);
 
 	if (e.m_Pos.x < m_MouseScrollData.m_ScrollFieldSize)
 	{
@@ -208,7 +208,7 @@ void Camera::HandleMouseScrolling(const InputEvent& e)
 // =============================================================================
 void Camera::HandleZooming(const InputEvent& e)
 {
-	ReturnIf(e.m_Type != EEventType::MouseWheel, void());
+	ReturnIf(e.m_Type != EEventType::MouseWheel);
 
 	if (e.m_Wheel > (float)EMouseWheel::UpDownTreshold)
 	{

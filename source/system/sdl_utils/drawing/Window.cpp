@@ -32,7 +32,7 @@ bool Window::Init(const WindowConfig& cfg)
 		cfg.m_Width,
 		cfg.m_Height,
 		cfg.m_Flags);
-	AssertReturnIf(!m_Window, false, "SDL_CreateWindow() failed: " + std::string(SDL_GetError()));
+	AssertReturnIf(!m_Window && SDL_GetError(), false);
 
 	m_PosRect.x			= cfg.m_PosX;
 	m_PosRect.y			= cfg.m_PosY;

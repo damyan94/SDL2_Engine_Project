@@ -1,7 +1,6 @@
 #ifndef _STADFX_H_
 #define _STADFX_H_
 
-// C/C++ system includes
 #include <cstdint>
 #include <cstdio>
 #include <cstdlib>
@@ -23,9 +22,6 @@
 #include <utility>
 #include <functional>
 
-// Third-party includes
-
-// Own includes
 #include "system/utils/Defines.h"
 #include "system/sdl_utils/Defines.h"
 #include "system/managers/Defines.h"
@@ -49,7 +45,5 @@
 #include "system/utils/input_output/Log.h"
 #include "system/utils/input_output/ReadWriteFile.h"
 #include "system/utils/input_output/ConfigReaderUtils.h"
-
-// Forward declarations
 
 #endif // !_STADFX_H_

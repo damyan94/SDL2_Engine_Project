@@ -8,7 +8,7 @@ namespace ReadWriteFile
 bool ReadFromFile(const std::string& fileName, std::string& readString)
 {
 	std::ifstream inStream(fileName, std::ios::in);
-	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
+	AssertReturnIf(!inStream.is_open() && ("Failed to open file: " + fileName).c_str(), false);
 
 	readString.clear();
 
@@ -30,7 +30,7 @@ bool ReadFromFile(const std::string& fileName, std::string& readString)
 bool ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
-	AssertReturnIf(!inStream.is_open(), false, "Failed to open file: " + fileName);
+	AssertReturnIf(!inStream.is_open() && ("Failed to open file: " + fileName).c_str(), false);
 
 	readStrings.clear();
 
@@ -68,7 +68,7 @@ bool WriteToFile(const std::string& fileName,
 		break;
 	}
 
-	AssertReturnIf(!outStream.is_open(), false, "Failed to open file: " + fileName);
+	AssertReturnIf(!outStream.is_open() && ("Failed to open file: " + fileName).c_str(), false);
 
 	outStream << writeString;
 

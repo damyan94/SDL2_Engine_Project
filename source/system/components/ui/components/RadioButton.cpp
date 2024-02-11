@@ -37,7 +37,7 @@ void RadioButton::Deinit()
 // =============================================================================
 void RadioButton::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
 	if ((m_Image.ContainsPoint(e.m_Pos) || m_Text.ContainsPoint(e.m_Pos))
 		&& e.m_Type == EEventType::MouseButtonDown && e.m_Mouse == EMouseKey::Left)
@@ -52,7 +52,7 @@ void RadioButton::HandleEvent(const InputEvent& e)
 // =============================================================================
 void RadioButton::Update(int32_t dt)
 {
-	ReturnIf(!m_IsEnabled, void());
+	ReturnIf(!m_IsEnabled);
 
 	m_WasClicked = false;
 	m_Image.SetCurrFrame(m_IsActive + (int32_t)ERadioButtonFrames::Normal);

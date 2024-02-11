@@ -20,12 +20,12 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 
 	}*/
 	auto posRect = Utils::ReadIntArray(readStrings[startLine], "position", 4);
-	AssertReturnIf(posRect.size() != 4, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(posRect.size() != 4 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_PosRect = Rectangle(posRect[0], posRect[1], posRect[2], posRect[3]);
 
 	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 3);
-	AssertReturnIf(componentsStringIds.size() != 3, false, _CONFIG_ERROR_INFO(startLine));
+	AssertReturnIf(componentsStringIds.size() != 3 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_ButtonNewGameConfig.Read(readStrings, componentsStringIds[0].m_Hash);
 	m_ButtonSettingsConfig.Read(readStrings, componentsStringIds[1].m_Hash);

@@ -30,7 +30,7 @@ InputEvent::~InputEvent()
 bool InputEvent::Init()
 {
 	m_Event = new SDL_Event{};
-	AssertReturnIf(!m_Event, false, "Failed to allocate memory.");
+	AssertReturnIf(!m_Event, false);
 
 	return true;
 }

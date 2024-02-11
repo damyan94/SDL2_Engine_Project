@@ -13,6 +13,8 @@
 #include "system/managers/ImGuiManager.h"
 #include "application/engine/settings/Settings.h"
 
+#include <thread>
+
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;
 
 // =============================================================================
@@ -129,10 +131,24 @@ void Engine::Draw() const
 	g_DrawManager->FinishFrame();
 }
 
+
 // =============================================================================
 void Engine::RunApplication()
 {
+	using namespace std::literals::chrono_literals;
+
 	Time clock;
+
+	auto draw = [this]()
+	{
+		while (true)
+		{
+			Draw();
+			std::this_thread::sleep_for(20ms);
+		}
+	};
+
+	//std::thread drawingThread(draw);
 
 	bool running = true;
 	while (running)

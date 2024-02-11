@@ -26,8 +26,7 @@ bool MusicContainer::DoesAssetExist(MusicId id) const
 const MusicData* MusicContainer::GetMusicData(MusicId id) const
 {
 	auto result = m_MusicContainer.find(id);
-	AssertReturnIf(result == m_MusicContainer.end(), nullptr,
-		"Received unexistant music id.");
+	AssertReturnIf(result == m_MusicContainer.end(), nullptr);
 
 	return &result->second;
 }
@@ -37,8 +36,7 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
 	for (const auto& [id, musicCfg] : cfg.m_MusicContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already existant music id.");
+		AssertReturnIf(DoesAssetExist(id), false);
 
 		MusicData newMusic;
 

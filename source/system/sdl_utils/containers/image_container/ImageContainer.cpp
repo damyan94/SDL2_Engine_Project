@@ -26,8 +26,7 @@ bool ImageContainer::DoesAssetExist(ImageId id) const
 const ImageData* ImageContainer::GetImageData(ImageId id) const
 {
 	auto result = m_ImagesContainer.find(id);
-	AssertReturnIf(result == m_ImagesContainer.end(), nullptr,
-		"Received unexistant image id.");
+	AssertReturnIf(result == m_ImagesContainer.end(), nullptr);
 
 	return &result->second;
 }
@@ -37,8 +36,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 {
 	for (const auto [id, imageCfg] : cfg.m_ImageContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(id), false,
-			"Received already existant image id.");
+		AssertReturnIf(DoesAssetExist(id), false);
 
 		ImageData newImageData;
 		newImageData.m_Texture = new Texture;

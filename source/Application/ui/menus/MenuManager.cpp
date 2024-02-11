@@ -67,10 +67,10 @@ void MenuManager::Update(int32_t dt)
 // =============================================================================
 void MenuManager::ActivateMenu(EMenuId id)
 {
-	AssertReturnIf(!IsEnumValueValid(id), void(), "Received invalid menu id.");
+	AssertReturnIf(!IsEnumValueValid(id));
 	auto& menu = m_Menus[size_t(id)];
 
-	ReturnIf(menu->GetIsActive(), void());
+	ReturnIf(menu->GetIsActive());
 
 	m_ActiveMenus.emplace_back(id);
 	menu->Activate();
@@ -79,10 +79,10 @@ void MenuManager::ActivateMenu(EMenuId id)
 // =============================================================================
 void MenuManager::DeactivateMenu(EMenuId id)
 {
-	AssertReturnIf(!IsEnumValueValid(id), void(), "Received invalid menu id.");
+	AssertReturnIf(!IsEnumValueValid(id));
 	auto& menu = m_Menus[size_t(id)];
 
-	ReturnIf(!menu->GetIsActive(), void());
+	ReturnIf(!menu->GetIsActive());
 
 	if (!m_ActiveMenus.empty())
 	{
@@ -103,14 +103,14 @@ void MenuManager::DeactivateAllMenus()
 // =============================================================================
 bool MenuManager::IsMenuActive(EMenuId id) const
 {
-	AssertReturnIf(!IsEnumValueValid(id), false, "Received invalid menu id.");
+	AssertReturnIf(!IsEnumValueValid(id), false);
 	return std::find(m_ActiveMenus.begin(), m_ActiveMenus.end(), id) != m_ActiveMenus.end();
 }
 
 // =============================================================================
 void MenuManager::FocusMenu(EMenuId id)
 {
-	AssertReturnIf(!IsEnumValueValid(id), void(), "Received invalid menu id.");
+	AssertReturnIf(!IsEnumValueValid(id));
 	m_FocusedMenu = id;
 	m_FocusedMenusHistory.emplace_back(id);
 
@@ -123,8 +123,8 @@ void MenuManager::FocusMenu(EMenuId id)
 // =============================================================================
 void MenuManager::UnfocusMenu(EMenuId id)
 {
-	AssertReturnIf(!IsEnumValueValid(id), void(), "Received invalid menu id.");
-	ReturnIf(!IsMenuFocused(id), void());
+	AssertReturnIf(!IsEnumValueValid(id));
+	ReturnIf(!IsMenuFocused(id));
 
 	if (!m_FocusedMenusHistory.empty())
 	{

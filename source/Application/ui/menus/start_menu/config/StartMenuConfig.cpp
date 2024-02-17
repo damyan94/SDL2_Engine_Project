@@ -2,7 +2,7 @@
 
 #include "application/ui/menus/start_menu/config/StartMenuConfig.h"
 
-static const std::string c_CategoryString = "MENU";
+static const std::string c_CategoryString = "Menu";
 
 // =============================================================================
 bool StartMenuConfig::Read(const ConfigStrings& readStrings)
@@ -19,17 +19,17 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 		BreakIf(Utils::ReadString(readStrings[i], "type") != c_CategoryTypeString);
 
 	}*/
-	auto posRect = Utils::ReadIntArray(readStrings[startLine], "position", 4);
+	auto posRect = Utils::ReadIntArray(readStrings[startLine], "Position", 4);
 	AssertReturnIf(posRect.size() != 4 && _CONFIG_ERROR_INFO(startLine), false);
 
 	m_PosRect = Rectangle(posRect[0], posRect[1], posRect[2], posRect[3]);
 
-	auto componentsStringIds = Utils::ReadStringArrayHashed(readStrings[startLine], "components_ids", 3);
+	auto componentsStringIds = Utils::ReadIntArray(readStrings[startLine], "ComponentIds", 3);
 	AssertReturnIf(componentsStringIds.size() != 3 && _CONFIG_ERROR_INFO(startLine), false);
 
-	m_ButtonNewGameConfig.Read(readStrings, componentsStringIds[0].m_Hash);
-	m_ButtonSettingsConfig.Read(readStrings, componentsStringIds[1].m_Hash);
-	m_ButtonQuitConfig.Read(readStrings, componentsStringIds[2].m_Hash);
+	m_ButtonNewGameConfig.Read(readStrings, componentsStringIds[0]);
+	m_ButtonSettingsConfig.Read(readStrings, componentsStringIds[1]);
+	m_ButtonQuitConfig.Read(readStrings, componentsStringIds[2]);
 
 	return true;
 }

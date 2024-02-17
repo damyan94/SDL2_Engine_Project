@@ -22,25 +22,23 @@ TextContainer::~TextContainer()
 // =============================================================================
 bool TextContainer::DoesAssetExist(TextId id) const
 {
-	return m_TextsContainer.find(id) != m_TextsContainer.end();
+	return id >= 0 && id < m_TextsContainer.size();
 }
 
 // =============================================================================
 const TextData* TextContainer::GetTextData(TextId id) const
 {
-	auto result = m_TextsContainer.find(id);
-	AssertReturnIf(result == m_TextsContainer.end(), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return &result->second;
+	return &m_TextsContainer[id];
 }
 
 // =============================================================================
 bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth)
 {
-	auto it = m_TextsContainer.find(id);
-	AssertReturnIf(it == m_TextsContainer.end(), false);
+	AssertReturnIf(!DoesAssetExist(id), false);
 
-	TextData& textData			= it->second;
+	TextData& textData			= m_TextsContainer[id];
 	textData.m_FontId			= fontId;
 	textData.m_TextColor		= color;
 	textData.m_WrapWidth		= wrapWidth;
@@ -49,7 +47,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 
 	TextTextureParameters inOutParams{
 		textData.m_LanguageStrings.find(m_CurrLanguage)->second,
-		g_AssetManager->GetFontData(textData.m_FontId).m_Font,
+		g_AssetManager->GetFontData(textData.m_FontId)->m_Font,
 		textData.m_TextColor,
 		textData.m_WrapWidth,
 		0,
@@ -69,9 +67,10 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 // =============================================================================
 bool TextContainer::UpdateAllTexts()
 {
-	for (auto& [id, text] : m_TextsContainer)
+	for (int i = 0; i < m_TextsContainer.size(); i++)
 	{
-		UpdateText(id, text.m_FontId, text.m_TextColor, text.m_WrapWidth);
+		const auto& text = m_TextsContainer[i];
+		UpdateText(i, text.m_FontId, text.m_TextColor, text.m_WrapWidth);
 	}
 
 	return true;
@@ -91,16 +90,17 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 	//TODO fix this
 	m_CurrLanguage = /*g_Settings->GetLanguage();*/ELanguage::EN;
 
-	for (const auto [id, textCfg] : cfg.m_TextContainerConfig)
+	for (int i = 0; i < cfg.m_TextContainerConfig.size(); i++)
 	{
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(i), false);
+		const auto& textCfg = cfg.m_TextContainerConfig[i];
 
 		TextData newTextData;
 		newTextData.m_Texture = new Texture;
 
 		TextTextureParameters inOutParams{
 			textCfg.m_LanguageStrings.find(m_CurrLanguage)->second,
-			g_AssetManager->GetFontData(textCfg.m_FontId).m_Font,
+			g_AssetManager->GetFontData(textCfg.m_FontId)->m_Font,
 			textCfg.m_TextColor,
 			textCfg.m_WrapWidth,
 			0,
@@ -121,7 +121,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 
 		newTextData.m_LanguageStrings = textCfg.m_LanguageStrings;
 
-		m_TextsContainer.emplace(id, newTextData);
+		m_TextsContainer.emplace_back(newTextData);
 	}
 
 	return true;
@@ -130,7 +130,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 // =============================================================================
 void TextContainer::Deinit()
 {
-	for (auto& [id, textData] : m_TextsContainer)
+	for (auto& textData : m_TextsContainer)
 	{
 		textData.m_Texture->DestroyTexture();
 	}

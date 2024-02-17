@@ -4,6 +4,7 @@
 #include "system/sdl_utils/input/InputEvent.h"
 #include "system/sdl_utils/drawing/Window.h"
 #include "system/sdl_utils/drawing/Renderer.h"
+#include "system/components/time/Timer.h"
 
 struct DrawManagerConfig;
 struct DrawParameters;
@@ -28,6 +29,7 @@ public:
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
+	void				Update(int32_t dt);
 	void				Draw() const;
 
 	void				ClearScreen() const;
@@ -40,26 +42,26 @@ public:
 	Renderer&			GetRenderer();
 
 	void				AddImage(Image* item);
-	void				RemoveImage(Image* item);
 	void				AddText(Text* item);
-	void				RemoveText(Text* item);
 	void				AddDynamicText(DynamicText* item);
-	void				RemoveDynamicText(DynamicText* item);
 
 	mutable int32_t		m_DrawCalls;
 
 private:
 	void				DrawTexture(Texture* texture, const DrawParameters& p) const;
 
+	void				RemoveEmptyItems();
+
 private:
 	Window				m_Window;
 	Renderer			m_Renderer;
 
 	//TODO maybe std::shared_ptr and maybe add priority/layer to DrawParameters
-	// or even better, make this ordered multimap and the key will be the drawing order
-	std::deque<Image*>			m_Images;
-	std::deque<Text*>			m_Texts;
-	std::deque<DynamicText*>	m_DynamicTexts;
+	std::vector<Image*>			m_Images;
+	std::vector<Text*>			m_Texts;
+	std::vector<DynamicText*>	m_DynamicTexts;
+
+	Timer						m_EraseTimer;
 };
 
 extern DrawManager* g_DrawManager;

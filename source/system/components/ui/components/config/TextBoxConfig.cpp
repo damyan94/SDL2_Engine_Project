@@ -4,7 +4,7 @@
 
 #include "system/defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "TEXTBOX";
+static const std::string c_TypeString = "Textbox";
 
 // =============================================================================
 bool TextBoxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
@@ -18,21 +18,21 @@ bool TextBoxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "type") != c_TypeString);
-		ContinueIf(Utils::ReadStringHashed(readStrings[i], "id").m_Hash != id);
+		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
+		ContinueIf(Utils::ReadInt(readStrings[i], "Id") != id);
 
-		const auto& pos = Utils::ReadIntArray(readStrings[i], "position", 2);
+		const auto& pos = Utils::ReadIntArray(readStrings[i], "Position", 2);
 		AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
 		m_Pos = Point(pos[0], pos[1]);
 
-		m_ImageId	= Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
+		m_ImageId	= Utils::ReadInt(readStrings[i], "ImageId");
 
-		m_MaxChars	= Utils::ReadInt(readStrings[i], "max_chars");
+		m_MaxChars	= Utils::ReadInt(readStrings[i], "MaximumChars");
 		AssertReturnIf(m_MaxChars <= 0 && _CONFIG_ERROR_INFO(i), false);
 
-		m_FontId	= FontId(Utils::ReadStringHashed(readStrings[i], "font_id").m_Hash);
+		m_FontId	= FontId(Utils::ReadInt(readStrings[i], "FontId"));
 
-		const auto& color = Utils::ReadIntArray(readStrings[i], "text_color", 4);
+		const auto& color = Utils::ReadIntArray(readStrings[i], "TextColor", 4);
 		AssertReturnIf(color.size() != 4 && _CONFIG_ERROR_INFO(i), false);
 		m_TextColor = Color(color[0], color[1], color[2], color[3]);
 

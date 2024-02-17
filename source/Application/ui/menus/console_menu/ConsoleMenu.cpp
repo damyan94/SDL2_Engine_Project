@@ -23,7 +23,7 @@ bool ConsoleMenu::Init(const ConsoleMenuConfig& cfg)
 	m_PosRect = Helpers::GetWindowRect();
 
 	m_TimerUpdate.Start(100, ETimerType::Pulse);
-	m_FontId = String("ARIAL_14").m_Hash;
+	m_FontId = 4; //TODO export to config
 	m_TextColor = Colors::Black;
 
 	m_TextDrawCalls.Init("Draw calls: " + std::to_string(Helpers::GetDrawCalls()),
@@ -85,8 +85,8 @@ void ConsoleMenu::Activate()
 {
 	m_IsActive = true;
 	m_TimerUpdate.SetPause(false);
-	m_TextDrawCalls.Show();
-	m_TextCameraPos.Show();
+	m_TextDrawCalls.SetIsVisible(true);
+	m_TextCameraPos.SetIsVisible(true);
 }
 
 // =============================================================================
@@ -94,6 +94,6 @@ void ConsoleMenu::Deactivate()
 {
 	m_IsActive = false;
 	m_TimerUpdate.SetPause(true);
-	m_TextDrawCalls.Hide();
-	m_TextCameraPos.Hide();
+	m_TextDrawCalls.SetIsVisible(false);
+	m_TextCameraPos.SetIsVisible(false);
 }

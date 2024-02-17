@@ -71,14 +71,7 @@ void UIComponentBase::SetPosition(const Point& newPos)
 void UIComponentBase::SetIsEnabled(bool enable)
 {
 	m_IsEnabled = enable;
-	if (enable)
-	{
-		m_Image.Show();
-	}
-	else
-	{
-		m_Image.Hide();
-	}
+	m_Image.SetIsVisible(enable);
 }
 
 // =============================================================================

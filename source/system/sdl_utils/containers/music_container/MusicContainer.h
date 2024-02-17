@@ -20,7 +20,7 @@ protected:
 	void				Deinit();
 
 private:
-	std::unordered_map<MusicId, MusicData> m_MusicContainer;
+	std::vector<MusicData> m_MusicContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICCONTAINER_H_

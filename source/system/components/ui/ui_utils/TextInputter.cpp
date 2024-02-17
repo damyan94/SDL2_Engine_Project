@@ -64,7 +64,7 @@ bool TextInputter::Init(const TextInputterConfig& cfg)
 	m_Text.Init(cfg.m_TextString, cfg.m_FontId, cfg.m_Color);
 
 	m_Cursor.Init(c_CursorSymbol, cfg.m_FontId, cfg.m_Color);
-	m_Cursor.Hide();
+	m_Cursor.SetIsVisible(false);
 
 	return true;
 }
@@ -102,14 +102,7 @@ void TextInputter::Update(int32_t dt)
 
 	if (!m_CursorTimer.IsPaused() && m_CursorTimer.IsTicked())
 	{
-		if (m_Cursor.GetIsVisible())
-		{
-			m_Cursor.Hide();
-		}
-		else
-		{
-			m_Cursor.Show();
-		}
+		m_Cursor.SetIsVisible(!m_Cursor.IsVisible());
 	}
 	m_Cursor.SetPos(m_Pos.x + m_WSCursorPos * m_Cursor.GetWidth() - 3, m_Pos.y + 1);
 
@@ -162,7 +155,7 @@ void TextInputter::Reset()
 	m_WSTextContent		= UTF8BytesToWideString(m_TextContent);
 	m_WSCursorPos		= m_WSTextContent.size();
 	m_CursorTimer.SetPause(true);
-	m_Cursor.Hide();
+	m_Cursor.SetIsVisible(false);
 	InputEvent::ToggleTextInput(false);
 }
 
@@ -170,16 +163,16 @@ void TextInputter::Reset()
 void TextInputter::Show()
 {
 	m_IsEnabled = true;
-	m_Text.Show();
-	m_Cursor.Show();
+	m_Text.SetIsVisible(true);
+	m_Cursor.SetIsVisible(true);
 }
 
 // =============================================================================
 void TextInputter::Hide()
 {
 	m_IsEnabled = false;
-	m_Text.Hide();
-	m_Cursor.Hide();
+	m_Text.SetIsVisible(false);
+	m_Cursor.SetIsVisible(false);
 }
 
 // =============================================================================

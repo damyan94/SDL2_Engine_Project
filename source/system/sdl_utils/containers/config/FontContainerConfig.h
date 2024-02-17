@@ -12,7 +12,7 @@ struct FontContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::unordered_map<FontId, FontConfig>	m_FontContainerConfig;
+	std::vector<FontConfig>	m_FontContainerConfig;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_

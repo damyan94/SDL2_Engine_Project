@@ -19,7 +19,7 @@ protected:
 	void				Deinit();
 
 private:
-	std::unordered_map<ImageId, ImageData> m_ImagesContainer;
+	std::vector<ImageData> m_ImagesContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGECONTAINER_H_

@@ -18,7 +18,6 @@ public:
 	const TextData*		GetData() const;
 
 private:
-	TextId				m_Id;
 	const TextData*		m_Data;
 };
 

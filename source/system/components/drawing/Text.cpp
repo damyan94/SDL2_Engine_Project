@@ -7,8 +7,7 @@
 
 // =============================================================================
 Text::Text()
-	: m_Id(0)
-	, m_Data(nullptr)
+	: m_Data(nullptr)
 {
 }
 
@@ -42,8 +41,6 @@ bool Text::Init(TextId id)
 
 	m_DrawParameters.m_IsVisible		= true;
 
-	m_Id								= id;
-
 	g_DrawManager->AddText(this);
 
 	return true;
@@ -53,7 +50,8 @@ bool Text::Init(TextId id)
 void Text::Deinit()
 {
 	DrawObject::Reset();
-	g_DrawManager->RemoveText(this);
+	SetIsVisible(false);
+
 	m_Data = nullptr;
 }
 

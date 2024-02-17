@@ -13,7 +13,7 @@ struct TextContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::unordered_map<TextId, TextConfig> m_TextContainerConfig;
+	std::vector<TextConfig> m_TextContainerConfig;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_CONFIG_TEXTCONTAINERCONFIG_H_

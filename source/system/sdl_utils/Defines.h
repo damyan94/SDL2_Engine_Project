@@ -122,8 +122,8 @@ namespace Utils
 // =============================================================================
 inline ELanguage GetLanguageIdFromString(const std::string& langString)
 {
-	if (langString == "bg") return ELanguage::BG;
-	if (langString == "en") return ELanguage::EN;
+	if (langString == "BG") return ELanguage::BG;
+	if (langString == "EN") return ELanguage::EN;
 
 	return ELanguage::Invalid;
 }
@@ -131,8 +131,8 @@ inline ELanguage GetLanguageIdFromString(const std::string& langString)
 // =============================================================================
 inline std::string GetLanguageStringFromId(ELanguage id)
 {
-	if (id == ELanguage::BG) return "bg";
-	if (id == ELanguage::EN) return "en";
+	if (id == ELanguage::BG) return "BG";
+	if (id == ELanguage::EN) return "EN";
 
 	return "";
 }

@@ -53,13 +53,13 @@ bool Engine::Init(const EngineConfig& cfg)
 
 #define ALLOCATE_AND_INIT(_Type)\
 g_##_Type = new _Type;\
-AssertReturnIf(!g_##_Type, false, "Failed to allocate memory.");\
+AssertReturnIf(!g_##_Type, false);\
 ReturnIf(!g_##_Type->Init(cfg.m_##_Type##Config), false)
 
+	ALLOCATE_AND_INIT(TimerManager);
 	ALLOCATE_AND_INIT(DrawManager);
 	ALLOCATE_AND_INIT(AssetManager);
 	ALLOCATE_AND_INIT(AudioManager);
-	ALLOCATE_AND_INIT(TimerManager);
 
 #ifdef USE_IMGUI
 	ALLOCATE_AND_INIT(ImGuiManager);
@@ -111,6 +111,7 @@ void Engine::HandleEvent()
 void Engine::Update()
 {
 	g_TimerManager->Update(m_ElapsedTimeMS);
+	g_DrawManager->Update(m_ElapsedTimeMS);
 
 	// Handle delays here so that we do not compromise our timers
 	g_App->Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames

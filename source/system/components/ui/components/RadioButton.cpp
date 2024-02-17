@@ -80,12 +80,5 @@ void RadioButton::Reset()
 void RadioButton::SetIsEnabled(bool enable)
 {
 	UIComponentBase::SetIsEnabled(enable);
-	if (enable)
-	{
-		m_Text.Show();
-	}
-	else
-	{
-		m_Text.Hide();
-	}
+	m_Text.SetIsVisible(enable);
 }

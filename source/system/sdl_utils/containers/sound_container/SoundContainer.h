@@ -20,7 +20,7 @@ protected:
 	void				Deinit();
 
 private:
-	std::unordered_map<SoundId, SoundData> m_SoundContainer;
+	std::vector<SoundData> m_SoundContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDCONTAINER_H_

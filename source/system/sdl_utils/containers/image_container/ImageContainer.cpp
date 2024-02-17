@@ -19,24 +19,24 @@ ImageContainer::~ImageContainer()
 // =============================================================================
 bool ImageContainer::DoesAssetExist(ImageId id) const
 {
-	return m_ImagesContainer.find(id) != m_ImagesContainer.end();
+	return id >= 0 && id < m_ImagesContainer.size();
 }
 
 // =============================================================================
 const ImageData* ImageContainer::GetImageData(ImageId id) const
 {
-	auto result = m_ImagesContainer.find(id);
-	AssertReturnIf(result == m_ImagesContainer.end(), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return &result->second;
+	return &m_ImagesContainer[id];
 }
 
 // =============================================================================
 bool ImageContainer::Init(const ImageContainerConfig& cfg)
 {
-	for (const auto [id, imageCfg] : cfg.m_ImageContainerConfig)
+	for (int i = 0; i < cfg.m_ImageContainerConfig.size(); i++)
 	{
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(i), false);
+		const auto& imageCfg = cfg.m_ImageContainerConfig[i];
 
 		ImageData newImageData;
 		newImageData.m_Texture = new Texture;
@@ -58,7 +58,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 
 		newImageData.m_Texture->SetTextureBlendMode(EBlendMode::Blend);
 
-		m_ImagesContainer.emplace(id, std::move(newImageData));
+		m_ImagesContainer.emplace_back(std::move(newImageData));
 	}
 
 	return true;
@@ -67,7 +67,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 // =============================================================================
 void ImageContainer::Deinit()
 {
-	for (auto& [id, imageData] : m_ImagesContainer)
+	for (auto& imageData : m_ImagesContainer)
 	{
 		imageData.m_Texture->DestroyTexture();
 	}

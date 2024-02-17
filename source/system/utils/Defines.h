@@ -21,26 +21,24 @@ bool IsEnumValueValid(EnumType value)
 #endif
 
 #if defined _DEBUG
-	#define __ASSERT_INFO(__Condition, ...)\
+	#define __ASSERT_INFO(__Condition)\
 		"Check: " #__Condition\
 		"\nFile: " __FILE__\
 		"\nFunction: " __FUNCTION__\
-		"\nLine: " _STRINGIZE(__LINE__)\
-		"\nReason: " __VA_ARGS__
+		"\nLine: " _STRINGIZE(__LINE__)
 #else
 	#define __ASSERT_INFO(__Condition, ...)\
 		"Check: " #__Condition\
 		"File: " __FILE__\
 		"\nFunction: " __FUNCTION__\
-		"\nLine: " _STRINGIZE(__LINE__)\
-		"\nReason: " __VA_ARGS__
+		"\nLine: " _STRINGIZE(__LINE__)
 #endif // !_DEBUG
 
 #ifdef _CONFIG_ERROR_INFO
 	#undef _CONFIG_ERROR_INFO
 #endif
 
-#define _CONFIG_ERROR_INFO(__Line) "Config file corrupted. Line: " + std::to_string(__Line + 1)
+#define _CONFIG_ERROR_INFO(__Line) ("Config file corrupted. Line: " + std::to_string(__Line + 1)).c_str()
 
 // =============================================================================
 // ================================= TYPEDEFS ==================================
@@ -50,6 +48,28 @@ bool IsEnumValueValid(EnumType value)
 typedef uint64_t		TimePoint;
 typedef uint32_t		TimerId;
 
+#define CREATE_STRONG_TYPE(_Name, _Type, _DefaultValue, _InvalidValue)\
+class _Name\
+{\
+public:\
+	_Name() = default;\
+	~_Name() = default;\
+	_Name(_Type initialValue) : value(initialValue) {};\
+\
+	bool operator==(const _Name& other) const { return value == other.value; }\
+	bool operator!=(const _Name& other) const { return value != other.value; }\
+\
+	bool IsValid() const { return value != _Name::Invalid; }\
+\
+	static _Type Default;\
+	static _Type Invalid;\
+\
+public:\
+	_Type value = _DefaultValue;\
+};\
+_Type _Name::Default = _DefaultValue;\
+_Type _Name::Invalid = _InvalidValue;
+
 typedef std::vector<std::string> ConfigStrings;
 typedef uint32_t		ImageId;
 typedef uint32_t		FontId;
@@ -58,6 +78,13 @@ typedef uint32_t		SoundId;
 typedef uint32_t		MusicId;
 
 typedef uint32_t		UIComponentId;
+
+//CREATE_STRONG_TYPE(ImageId, uint32_t, 0, -1)
+//CREATE_STRONG_TYPE(FontId, uint32_t, 0, -1)
+//CREATE_STRONG_TYPE(TextId, uint32_t, 0, -1)
+//CREATE_STRONG_TYPE(SoundId, uint32_t, 0, -1)
+//CREATE_STRONG_TYPE(MusicId, uint32_t, 0, -1)
+//CREATE_STRONG_TYPE(UIComponentId, uint32_t, 0, -1)
 
 // =============================================================================
 // =============================== ENUMERATIONS ================================

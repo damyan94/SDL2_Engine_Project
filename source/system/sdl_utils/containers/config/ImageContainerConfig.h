@@ -11,7 +11,7 @@ struct ImageContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::unordered_map<ImageId, ImageConfig> m_ImageContainerConfig;
+	std::vector<ImageConfig> m_ImageContainerConfig;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_CONFIG_IMAGECONTAINERCONFIG_H_

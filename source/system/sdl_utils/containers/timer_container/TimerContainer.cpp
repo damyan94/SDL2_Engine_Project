@@ -6,7 +6,7 @@
 // =============================================================================
 bool TimerContainer::DoesTimerExist(TimerId id) const
 {
-	return m_TimersContainer.find(id) != m_TimersContainer.end();
+	return id >= 0 && id < m_TimersContainer.size();
 }
 
 // =============================================================================
@@ -22,7 +22,7 @@ void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 
 	newTimer.m_Remaining = interval;
 
-	m_TimersContainer.emplace(id, std::move(newTimer));
+	m_TimersContainer.emplace_back(std::move(newTimer));
 }
 
 // =============================================================================
@@ -37,19 +37,24 @@ TimerId TimerContainer::StartTimer(int64_t interval, ETimerType type)
 // =============================================================================
 void TimerContainer::DestroyTimer(TimerId id)
 {
-	m_TimersContainer.erase(m_TimersContainer.find(id));
+	//TODO
+	//m_TimersContainer.erase(m_TimersContainer.find(id));
 }
 
 // =============================================================================
 void TimerContainer::SetPauseTimer(TimerId id, bool paused)
 {
-	m_TimersContainer.find(id)->second.m_Paused = paused;
+	AssertReturnIf(!DoesTimerExist(id));
+
+	m_TimersContainer[id].m_Paused = paused;
 }
 
 // =============================================================================
 bool TimerContainer::IsTimerTicked(TimerId id)
 {
-	auto& timer = m_TimersContainer.find(id)->second;
+	AssertReturnIf(!DoesTimerExist(id), false);
+
+	auto& timer = m_TimersContainer[id];
 
 	ReturnIf(timer.m_Paused, false);
 	ReturnIf(!timer.m_Ticked, false);
@@ -66,7 +71,9 @@ bool TimerContainer::IsTimerTicked(TimerId id)
 // =============================================================================
 bool TimerContainer::IsTimerPaused(TimerId id) const
 {
-	return m_TimersContainer.find(id)->second.m_Paused;
+	AssertReturnIf(!DoesTimerExist(id), false);
+
+	return m_TimersContainer[id].m_Paused;
 }
 
 // =============================================================================
@@ -95,7 +102,7 @@ void TimerContainer::Deinit()
 // =============================================================================
 void TimerContainer::Update(int32_t dt)
 {
-	for (auto& [id, timer] : m_TimersContainer)
+	for (auto& timer : m_TimersContainer)
 	{
 		ContinueIf(timer.m_Paused);
 

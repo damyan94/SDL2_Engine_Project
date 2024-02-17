@@ -7,8 +7,7 @@
 
 // =============================================================================
 Image::Image()
-	: m_Id(ImageId(0))
-	, m_CurrFrame(0)
+	: m_CurrFrame(0)
 	, m_Data(nullptr)
 {
 }
@@ -43,7 +42,6 @@ bool Image::Init(ImageId id)
 
 	m_DrawParameters.m_IsVisible		= true;
 
-	m_Id								= id;
 	m_CurrFrame							= 1;
 
 	g_DrawManager->AddImage(this);
@@ -54,8 +52,9 @@ bool Image::Init(ImageId id)
 // =============================================================================
 void Image::Deinit()
 {
-	DrawObject::Reset();
-	g_DrawManager->RemoveImage(this);
+	/*DrawObject::Reset();
+	SetIsVisible(false);*/
+	
 	m_Data = nullptr;
 }
 

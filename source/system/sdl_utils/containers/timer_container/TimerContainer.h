@@ -32,7 +32,7 @@ private:
 private:
 	uint64_t			m_NextUniqueId;
 
-	std::unordered_map<TimerId, TimerData> m_TimersContainer;
+	std::vector<TimerData> m_TimersContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_

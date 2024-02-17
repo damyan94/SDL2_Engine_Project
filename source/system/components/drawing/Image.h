@@ -23,7 +23,6 @@ public:
 	const ImageData*	GetData() const;
 
 private:
-	ImageId				m_Id;
 	int32_t				m_CurrFrame;
 
 	const ImageData*	m_Data;

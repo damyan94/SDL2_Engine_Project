@@ -4,7 +4,7 @@
 
 #include "system/defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "FONT";
+static const std::string c_TypeString = "Font";
 
 // =============================================================================
 bool FontContainerConfig::Read(const ConfigStrings& readStrings)
@@ -18,22 +18,22 @@ bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "type") != c_TypeString);
+		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
 
-		const int32_t id = Utils::ReadStringHashed(readStrings[i], "id").m_Hash;
+		const int32_t id = Utils::ReadInt(readStrings[i], "Id");
 
 		FontConfig newCfg;
 
-		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
+		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");
 		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_Size = Utils::ReadInt(readStrings[i], "size");
+		newCfg.m_Size = Utils::ReadInt(readStrings[i], "Size");
 		AssertReturnIf(newCfg.m_Size <= 0 && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "wrap_align"));
+		newCfg.m_WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "WrapAlign"));
 		AssertReturnIf(!IsEnumValueValid(newCfg.m_WrapAlign) && _CONFIG_ERROR_INFO(i), false);
 
-		m_FontContainerConfig.emplace(FontId(id), std::move(newCfg));
+		m_FontContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

@@ -19,24 +19,24 @@ SoundContainer::~SoundContainer()
 // =============================================================================
 bool SoundContainer::DoesAssetExist(SoundId id) const
 {
-	return m_SoundContainer.find(id) != m_SoundContainer.end();
+	return id >= 0 && id < m_SoundContainer.size();
 }
 
 // =============================================================================
 const SoundData* SoundContainer::GetSoundData(SoundId id) const
 {
-	auto result = m_SoundContainer.find(id);
-	AssertReturnIf(result == m_SoundContainer.end(), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return &result->second;
+	return &m_SoundContainer[id];
 }
 
 // =============================================================================
 bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
-	for (const auto& [id, soundCfg] : cfg.m_SoundContainerConfig)
+	for (int i = 0; i < cfg.m_SoundContainerConfig.size(); i++)
 	{
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(i), false);
+		const auto& soundCfg = cfg.m_SoundContainerConfig[i];
 
 		SoundData newSound;
 
@@ -45,7 +45,7 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 
 		newSound.m_Volume = soundCfg.m_Volume;
 
-		m_SoundContainer.emplace(id, std::move(newSound));
+		m_SoundContainer.emplace_back(std::move(newSound));
 	}
 
 	return true;
@@ -54,7 +54,7 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 // =============================================================================
 void SoundContainer::Deinit()
 {
-	for (auto& [id, sound] : m_SoundContainer)
+	for (auto& sound : m_SoundContainer)
 	{
 		Audio::DestroySound(sound.m_Sound);
 	}

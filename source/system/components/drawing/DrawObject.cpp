@@ -92,6 +92,12 @@ EFlipMode DrawObject::GetFlipMode()
 	return m_DrawParameters.m_FlipMode;
 }
 
+// =============================================================================
+bool DrawObject::IsVisible() const
+{
+	return m_DrawParameters.m_IsVisible;
+}
+
 // Setters
 
 // =============================================================================
@@ -160,6 +166,11 @@ void DrawObject::SetBlendMode(EBlendMode mode)
 void DrawObject::SetFlipMode(EFlipMode mode)
 {
 	m_DrawParameters.m_FlipMode = mode;
+}
+
+void DrawObject::SetIsVisible(bool visible)
+{
+	m_DrawParameters.m_IsVisible = visible;
 }
 
 // Others
@@ -244,24 +255,6 @@ void DrawObject::SetMaxOpacity()
 void DrawObject::Rotate(int32_t delta)
 {
 	m_DrawParameters.m_RotationAngle += delta;
-}
-
-// =============================================================================
-void DrawObject::Show()
-{
-	m_DrawParameters.m_IsVisible = true;
-}
-
-// =============================================================================
-void DrawObject::Hide()
-{
-	m_DrawParameters.m_IsVisible = false;
-}
-
-// =============================================================================
-bool DrawObject::GetIsVisible() const
-{
-	return m_DrawParameters.m_IsVisible;
 }
 
 // =============================================================================

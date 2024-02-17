@@ -19,24 +19,24 @@ MusicContainer::~MusicContainer()
 // =============================================================================
 bool MusicContainer::DoesAssetExist(MusicId id) const
 {
-	return m_MusicContainer.find(id) != m_MusicContainer.end();
+	return id >= 0 && id < m_MusicContainer.size();
 }
 
 // =============================================================================
 const MusicData* MusicContainer::GetMusicData(MusicId id) const
 {
-	auto result = m_MusicContainer.find(id);
-	AssertReturnIf(result == m_MusicContainer.end(), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return &result->second;
+	return &m_MusicContainer[id];
 }
 
 // =============================================================================
 bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
-	for (const auto& [id, musicCfg] : cfg.m_MusicContainerConfig)
+	for (int i = 0; i < cfg.m_MusicContainerConfig.size(); i++)
 	{
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(i), false);
+		const auto& musicCfg = cfg.m_MusicContainerConfig[i];
 
 		MusicData newMusic;
 
@@ -45,7 +45,7 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 
 		newMusic.m_Volume = musicCfg.m_Volume;
 
-		m_MusicContainer.emplace(id, std::move(newMusic));
+		m_MusicContainer.emplace_back(std::move(newMusic));
 	}
 
 	return true;
@@ -54,7 +54,7 @@ bool MusicContainer::Init(const MusicContainerConfig& cfg)
 // =============================================================================
 void MusicContainer::Deinit()
 {
-	for (auto& [id, music] : m_MusicContainer)
+	for (auto& music : m_MusicContainer)
 	{
 		Audio::DestroyMusic(music.m_Music);
 	}

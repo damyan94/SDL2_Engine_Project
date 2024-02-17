@@ -4,7 +4,7 @@
 
 #include "system/defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "BUTTON";
+static const std::string c_TypeString = "Button";
 
 // =============================================================================
 bool ButtonConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
@@ -18,16 +18,16 @@ bool ButtonConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "type") != c_TypeString);
-		ContinueIf(Utils::ReadStringHashed(readStrings[i], "id").m_Hash != id);
+		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
+		ContinueIf(Utils::ReadInt(readStrings[i], "Id") != id);
 
-		const auto& pos = Utils::ReadIntArray(readStrings[i], "position", 2);
+		const auto& pos = Utils::ReadIntArray(readStrings[i], "Position", 2);
 		AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
 		m_Pos = Point(pos[0], pos[1]);
 
-		m_ImageId	= Utils::ReadStringHashed(readStrings[i], "image_id").m_Hash;
-		m_TextId	= Utils::ReadStringHashed(readStrings[i], "text_id").m_Hash;
-		m_SoundId	= Utils::ReadStringHashed(readStrings[i], "sound_id").m_Hash;
+		m_ImageId	= Utils::ReadInt(readStrings[i], "ImageId");
+		m_TextId	= Utils::ReadInt(readStrings[i], "TextId");
+		m_SoundId	= Utils::ReadInt(readStrings[i], "SoundId");
 
 		break;
 	}

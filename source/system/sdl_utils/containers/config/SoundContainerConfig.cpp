@@ -4,7 +4,7 @@
 
 #include "system/defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "SOUND";
+static const std::string c_TypeString = "Sound";
 
 // =============================================================================
 bool SoundContainerConfig::Read(const ConfigStrings& readStrings)
@@ -18,19 +18,19 @@ bool SoundContainerConfig::Read(const ConfigStrings& readStrings)
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
 	{
-		BreakIf(Utils::ReadString(readStrings[i], "type") != c_TypeString);
+		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
 
-		const int32_t id = Utils::ReadStringHashed(readStrings[i], "id").m_Hash;
+		const int32_t id = Utils::ReadInt(readStrings[i], "Id");
 
 		SoundConfig newCfg;
 
-		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "file_name");
+		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");
 		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_Volume = Utils::ReadInt(readStrings[i], "volume");
+		newCfg.m_Volume = Utils::ReadInt(readStrings[i], "Volume");
 		AssertReturnIf(newCfg.m_Volume <= 0 && _CONFIG_ERROR_INFO(i), false);
 
-		m_SoundContainerConfig.emplace(SoundId(id), std::move(newCfg));
+		m_SoundContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

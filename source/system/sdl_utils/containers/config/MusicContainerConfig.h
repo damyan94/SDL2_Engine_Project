@@ -11,7 +11,7 @@ struct MusicContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::unordered_map<MusicId, MusicConfig> m_MusicContainerConfig;
+	std::vector<MusicConfig> m_MusicContainerConfig;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_CONFIG_MUSICCONTAINERCONFIG_H_

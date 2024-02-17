@@ -19,23 +19,24 @@ FontContainer::~FontContainer()
 // =============================================================================
 bool FontContainer::DoesAssetExist(FontId id) const
 {
-	return m_FontsContainer.find(id) != m_FontsContainer.end();
+	return id >= 0 && id < m_FontsContainer.size();
 }
 
 // =============================================================================
-FontData FontContainer::GetFontData(FontId id) const
+const FontData* FontContainer::GetFontData(FontId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), FontData());
+	AssertReturnIf(!DoesAssetExist(id), nullptr);
 
-	return m_FontsContainer.find(id)->second;
+	return &m_FontsContainer[id];
 }
 
 // =============================================================================
 bool FontContainer::Init(const FontContainerConfig& cfg)
 {
-	for (const auto& [id, fontCfg] : cfg.m_FontContainerConfig)
+	for (int i = 0; i < cfg.m_FontContainerConfig.size(); i++)
 	{
-		AssertReturnIf(DoesAssetExist(id), false);
+		AssertReturnIf(DoesAssetExist(i), false);
+		const auto& fontCfg = cfg.m_FontContainerConfig[i];
 
 		FontData newFont;
 
@@ -49,7 +50,7 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 		newFont.m_Size				= fontCfg.m_Size;
 		newFont.m_WrapAlign			= fontCfg.m_WrapAlign;
 
-		m_FontsContainer.emplace(id, std::move(newFont));
+		m_FontsContainer.emplace_back(std::move(newFont));
 	}
 
 	return true;
@@ -58,7 +59,7 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 // =============================================================================
 void FontContainer::Deinit()
 {
-	for (auto& [id, font] : m_FontsContainer)
+	for (auto& font : m_FontsContainer)
 	{
 		ContinueIf(!font.m_Font);
 

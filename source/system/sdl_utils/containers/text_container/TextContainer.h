@@ -26,7 +26,7 @@ protected:
 private:
 	ELanguage			m_CurrLanguage;
 
-	std::unordered_map<TextId, TextData> m_TextsContainer;
+	std::vector<TextData> m_TextsContainer;
 };
 
 #endif // !SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_

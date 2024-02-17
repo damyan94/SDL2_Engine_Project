@@ -24,6 +24,7 @@ public:
 	EObjectType			GetType();
 	EBlendMode			GetBlendMode();
 	EFlipMode			GetFlipMode();
+	bool				IsVisible() const;
 
 	// Setters
 	void				SetPos(int32_t x, int32_t y);
@@ -37,6 +38,7 @@ public:
 	void				SetType(EObjectType type);
 	void				SetBlendMode(EBlendMode mode);
 	void				SetFlipMode(EFlipMode mode);
+	void				SetIsVisible(bool visible);
 
 	// Others
 	void				MoveUp(int32_t delta);
@@ -54,10 +56,6 @@ public:
 	void				SetMaxOpacity();
 	void				Rotate(int32_t delta);
 
-	void				Show();
-	void				Hide();
-
-	bool				GetIsVisible() const;
 	bool				ContainsPoint(const Point& point) const;
 
 protected:

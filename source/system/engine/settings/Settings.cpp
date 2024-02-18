@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-#include "application/engine/settings/Settings.h"
-
+#include "system/engine/settings/Settings.h"
 #include "system//defines/ConfigFilePaths.h"
 
 static const std::string c_SettingsFileName = ConfigFilePaths::MainDir + "config/settings.cfg";

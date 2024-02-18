@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "application/engine/Engine.h"
-#include "application/engine/config/EngineConfig.h"
+#include "system/engine/Engine.h"
+#include "system/engine/config/EngineConfig.h"
 
 #include "system/sdl_utils/SDLLoader.h"
 
@@ -11,7 +11,8 @@
 #include "system/managers/AudioManager.h"
 #include "system/managers/TimerManager.h"
 #include "system/managers/ImGuiManager.h"
-#include "application/engine/settings/Settings.h"
+#include "system/engine/settings/Settings.h"
+#include "application/App.h"
 
 #include <thread>
 

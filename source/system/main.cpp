@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "application/engine/Engine.h"
-#include "application/engine/config/EngineConfig.h"
+#include "system/engine/Engine.h"
+#include "system/engine/config/EngineConfig.h"
 
 #define TRACE_MEMORY_ALLOCATIONS_DEALLOCATIONS 0
 

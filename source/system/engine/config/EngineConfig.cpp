@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
-#include "application/engine/config/EngineConfig.h"
-
+#include "system/engine/config/EngineConfig.h"
 #include "system/defines/ConfigFilePaths.h"
 
 // =============================================================================

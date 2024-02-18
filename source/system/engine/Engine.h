@@ -1,7 +1,7 @@
 #ifndef ENGINE_ENGINE_H_
 #define ENGINE_ENGINE_H_
 
-#include "application/App.h"
+#include "system/sdl_utils/input/InputEvent.h"
 
 struct EngineConfig;
 

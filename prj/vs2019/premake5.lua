@@ -1,6 +1,6 @@
 workspace "SDL2_Engine_Project"
 	architecture "x64"
-	startproject "Application"
+	startproject "System"
 
 	configurations
 	{

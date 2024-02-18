@@ -27,6 +27,7 @@ public:
 	void				DeactivateAllMenus();
 	bool				IsMenuActive(EMenuId id) const;
 
+	//TODO have something like a stack
 	void				FocusMenu(EMenuId id);
 	void				UnfocusMenu(EMenuId id);
 	bool				IsMenuFocused(EMenuId id) const;

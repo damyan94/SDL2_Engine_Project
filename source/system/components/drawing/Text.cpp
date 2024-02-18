@@ -49,7 +49,6 @@ bool Text::Init(TextId id)
 // =============================================================================
 void Text::Deinit()
 {
-	DrawObject::Reset();
 	SetIsVisible(false);
 
 	m_Data = nullptr;

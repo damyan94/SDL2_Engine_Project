@@ -44,6 +44,7 @@ public:
 	void				AddImage(Image* item);
 	void				AddText(Text* item);
 	void				AddDynamicText(DynamicText* item);
+	void				RequestRemoveDynamicText(DynamicText* item);
 
 	mutable int32_t		m_DrawCalls;
 

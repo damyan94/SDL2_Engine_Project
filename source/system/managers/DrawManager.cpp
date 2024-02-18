@@ -69,25 +69,25 @@ void DrawManager::Update(int32_t dt)
 // =============================================================================
 void DrawManager::Draw() const
 {
-	for (const auto& item : m_Images)
+	for (const auto item : m_Images)
 	{
-		if (item && item->IsVisible())
+		if (item && item->GetData() && item->IsVisible())
 		{
 			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
 		}
 	}
 
-	for (const auto& item : m_Texts)
+	for (const auto item : m_Texts)
 	{
-		if (item && item->IsVisible())
+		if (item && item->GetData() && item->IsVisible())
 		{
 			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
 		}
 	}
 
-	for (const auto& item : m_DynamicTexts)
+	for (const auto item : m_DynamicTexts)
 	{
-		if (item && item->IsVisible())
+		if (item && item->GetData() && item->IsVisible())
 		{
 			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
 		}
@@ -155,6 +155,20 @@ void DrawManager::AddDynamicText(DynamicText* item)
 }
 
 // =============================================================================
+void DrawManager::RequestRemoveDynamicText(DynamicText* item)
+{
+	ReturnIf(!item);
+	for (auto& dynamicText : m_DynamicTexts)
+	{
+		if (dynamicText == item)
+		{
+			dynamicText = nullptr;
+			break;
+		}
+	}
+}
+
+// =============================================================================
 void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
 {
 	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
@@ -166,7 +180,7 @@ void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
 // =============================================================================
 void DrawManager::RemoveEmptyItems()
 {
-	std::erase_if(m_Images, [](Image* item) {return !item; });
-	std::erase_if(m_Texts, [](Text* item) {return !item; });
-	std::erase_if(m_DynamicTexts, [](DynamicText* item) {return !item; });
+	std::erase_if(m_Images, [](Image* item) {return !item || !item->GetData(); });
+	std::erase_if(m_Texts, [](Text* item) {return !item || !item->GetData(); });
+	std::erase_if(m_DynamicTexts, [](DynamicText* item) {return !item || !item->GetData(); });
 }

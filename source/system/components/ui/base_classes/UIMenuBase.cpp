@@ -19,6 +19,8 @@ UIMenuBase::~UIMenuBase()
 	{
 		SafeDelete(uiComponent);
 	}
+
+	m_UIComponents.clear();
 }
 
 // =============================================================================

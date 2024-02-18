@@ -3,18 +3,6 @@
 #include "application/game/Game.h"
 #include "application/game/config/GameConfig.h"
 
-#include "system/utils/containers/BinaryStruct.h"
-
-#include <locale>
-#include <codecvt>
-
-DynamicText displayText;
-template<typename WString>
-std::string WideStringToUTF8Bytes(const WString& wideString)
-{
-	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wideString);
-}
-
 // =============================================================================
 Game::Game()
 {
@@ -28,6 +16,8 @@ Game::~Game()
 // =============================================================================
 bool Game::Init(const GameConfig& cfg)
 {
+	m_Camera.Init();
+
 	return true;
 }
 

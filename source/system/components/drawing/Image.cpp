@@ -52,8 +52,7 @@ bool Image::Init(ImageId id)
 // =============================================================================
 void Image::Deinit()
 {
-	/*DrawObject::Reset();
-	SetIsVisible(false);*/
+	SetIsVisible(false);
 	
 	m_Data = nullptr;
 }

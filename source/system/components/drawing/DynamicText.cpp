@@ -72,16 +72,14 @@ bool DynamicText::Init(const std::string& string, FontId id,
 // =============================================================================
 void DynamicText::Deinit()
 {
-	if (g_DrawManager)
-	{
-		DrawObject::Reset();
-		SetIsVisible(false);
-	}
-	if (m_Data)//TODO find why this is nullptr
+	SetIsVisible(false);
+
+	if (m_Data && m_Data->m_Texture)
 	{
 		m_Data->m_Texture->DestroyTexture();
-		SafeDelete(m_Data);
 	}
+	g_DrawManager->RequestRemoveDynamicText(this);
+	SafeDelete(m_Data);
 }
 
 // =============================================================================

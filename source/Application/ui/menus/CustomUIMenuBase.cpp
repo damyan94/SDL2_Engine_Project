@@ -15,6 +15,8 @@ CustomUIMenuBase::~CustomUIMenuBase()
 	{
 		SafeDelete(uiComponent);
 	}
+
+	m_UIComponents.clear();
 }
 
 // =============================================================================

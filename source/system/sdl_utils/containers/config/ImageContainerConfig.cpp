@@ -19,8 +19,6 @@ bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 	{
 		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
 
-		const int32_t id = Utils::ReadInt(readStrings[i], "Id");
-
 		ImageConfig newCfg;
 
 		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");

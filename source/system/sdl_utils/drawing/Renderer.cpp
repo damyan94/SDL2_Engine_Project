@@ -65,7 +65,7 @@ void Renderer::FinishFrame() const
 // =============================================================================
 void Renderer::RenderTexture(Texture* texture, const DrawParameters& p) const
 {
-	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible, void());
+	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible);
 
 	const SDL_Rect src{ p.m_FrameRect.x, p.m_FrameRect.y, p.m_FrameRect.w, p.m_FrameRect.h };
 	const SDL_Rect dst{ p.m_PosRect.x, p.m_PosRect.y, p.m_PosRect.w, p.m_PosRect.h };

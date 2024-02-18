@@ -135,7 +135,7 @@ void Texture::CreateTextureFromSurface(SDL_Surface* surface)
 // =============================================================================
 void Texture::DestroySurface(SDL_Surface*& outSurface)
 {
-	ReturnIf(!outSurface, void());
+	ReturnIf(!outSurface);
 
 	SDL_FreeSurface(outSurface);
 	outSurface = nullptr;

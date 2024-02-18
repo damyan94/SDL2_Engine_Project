@@ -58,7 +58,7 @@ void Window::Deinit()
 // =============================================================================
 void Window::HandleEvent(const InputEvent& e)
 {
-	ReturnIf(e.m_Type != EEventType::WindowEvent, void());
+	ReturnIf(e.m_Type != EEventType::WindowEvent);
 
 	SDL_GetWindowPosition(m_Window, &m_PosRect.x, &m_PosRect.y);
 	SDL_GetWindowSize(m_Window, &m_PosRect.w, &m_PosRect.h);

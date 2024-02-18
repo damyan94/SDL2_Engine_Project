@@ -81,7 +81,7 @@ void Camera::Update(int32_t dt)
 
 	bool hasScrollX = m_KeyboardScrollData.m_Vx != 0 || m_MouseScrollData.m_Vx != 0;
 	bool hasScrollY = m_KeyboardScrollData.m_Vy != 0 || m_MouseScrollData.m_Vy != 0;
-	ReturnIf(!(hasScrollX || hasScrollY), void());
+	ReturnIf(!(hasScrollX || hasScrollY));
 
 	m_CameraChanged = true;
 

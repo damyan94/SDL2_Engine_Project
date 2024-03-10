@@ -12,6 +12,38 @@ bool IsEnumValueValid(EnumType value)
 		&& value < EnumType::Count;
 }
 
+//TODO move to a separate file maybe
+class INonCopyable
+{
+public:
+	INonCopyable() = default;
+	~INonCopyable() = default;
+
+private:
+	INonCopyable(const INonCopyable&) = delete;
+	INonCopyable& operator=(const INonCopyable&) = delete;
+};
+
+class INonMoveable
+{
+public:
+	INonMoveable() = default;
+	~INonMoveable() = default;
+
+private:
+	INonMoveable(INonMoveable&&) = delete;
+	INonMoveable& operator=(INonMoveable&&) = delete;
+};
+
+class INonCopyMoveable
+	: public INonCopyable
+	, public INonMoveable
+{
+public:
+	INonCopyMoveable() = default;
+	~INonCopyMoveable() = default;
+};
+
 // =============================================================================
 // ================================= DEFINES ===================================
 // =============================================================================

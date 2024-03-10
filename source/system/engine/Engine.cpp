@@ -30,16 +30,6 @@ Engine::Engine()
 Engine::~Engine()
 {
 	Deinit();
-
-#ifdef USE_IMGUI
-	SafeDelete(g_ImGuiManager);
-#endif
-
-	SafeDelete(g_App);
-	SafeDelete(g_TimerManager);
-	SafeDelete(g_AudioManager);
-	SafeDelete(g_AssetManager);
-	SafeDelete(g_DrawManager);
 }
 
 // =============================================================================
@@ -52,19 +42,13 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!SDLLoader::Init(), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-#define ALLOCATE_AND_INIT(_Type)\
-g_##_Type = new _Type;\
-AssertReturnIf(!g_##_Type, false);\
-ReturnIf(!g_##_Type->Init(cfg.m_##_Type##Config), false)
+#define ALLOCATE_AND_INIT(_Type) ReturnIf(!_Type::Instance().Init(cfg.m_##_Type##Config), false)
 
 	ALLOCATE_AND_INIT(TimerManager);
 	ALLOCATE_AND_INIT(DrawManager);
 	ALLOCATE_AND_INIT(AssetManager);
 	ALLOCATE_AND_INIT(AudioManager);
-
-#ifdef USE_IMGUI
 	ALLOCATE_AND_INIT(ImGuiManager);
-#endif
 
 	ALLOCATE_AND_INIT(App);
 
@@ -85,25 +69,25 @@ void Engine::Deinit()
 // =============================================================================
 void Engine::HandleEvent()
 {
-	g_DrawManager->HandleEvent(m_InputEvent);
+	DrawManager::Instance().HandleEvent(m_InputEvent);
 
 #ifdef USE_IMGUI
 	g_ImGuiManager->HandleEvent(m_InputEvent);
 #endif
 
-	g_App->HandleEvent(m_InputEvent);
+	App::Instance().HandleEvent(m_InputEvent);
 
 	//TODO Move this to the settings menu or other appropriate place
 	if (m_InputEvent.m_Key == EKeyboardKey::E &&
 		m_InputEvent.m_Type == EEventType::KeyboardPress)
 	{
-		g_AssetManager->ChangeLanguage(ELanguage::EN);
+		AssetManager::Instance().ChangeLanguage(ELanguage::EN);
 		g_Settings->SetLanguage(ELanguage::EN);
 	}
 	else if (m_InputEvent.m_Key == EKeyboardKey::R &&
 		m_InputEvent.m_Type == EEventType::KeyboardPress)
 	{
-		g_AssetManager->ChangeLanguage(ELanguage::BG);
+		AssetManager::Instance().ChangeLanguage(ELanguage::BG);
 		g_Settings->SetLanguage(ELanguage::BG);
 	}
 }
@@ -111,11 +95,11 @@ void Engine::HandleEvent()
 // =============================================================================
 void Engine::Update()
 {
-	g_TimerManager->Update(m_ElapsedTimeMS);
-	g_DrawManager->Update(m_ElapsedTimeMS);
+	TimerManager::Instance().Update(m_ElapsedTimeMS);
+	DrawManager::Instance().Update(m_ElapsedTimeMS);
 
 	// Handle delays here so that we do not compromise our timers
-	g_App->Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
+	App::Instance().Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
 		? m_ElapsedTimeMS
 		: m_ElapsedTimeMS = m_TargetTimePerFrame);
 }
@@ -123,34 +107,21 @@ void Engine::Update()
 // =============================================================================
 void Engine::Draw() const
 {
-	g_DrawManager->ClearScreen();
-	g_DrawManager->Draw();
+	DrawManager::Instance().ClearScreen();
+	DrawManager::Instance().Draw();
 
 #ifdef USE_IMGUI
 	g_ImGuiManager->Draw();
 #endif
 
-	g_DrawManager->FinishFrame();
+	DrawManager::Instance().FinishFrame();
 }
 
 
 // =============================================================================
 void Engine::RunApplication()
 {
-	using namespace std::literals::chrono_literals;
-
 	Time clock;
-
-	auto draw = [this]()
-	{
-		while (true)
-		{
-			Draw();
-			std::this_thread::sleep_for(20ms);
-		}
-	};
-
-	//std::thread drawingThread(draw);
 
 	bool running = true;
 	while (running)

@@ -15,16 +15,14 @@ class Text;
 class DynamicText;
 
 class DrawManager
+	: public INonCopyMoveable
 {
-public:
+private:
 	DrawManager();
 	~DrawManager();
 
-	DrawManager(const DrawManager& other) = delete;
-	DrawManager(DrawManager&& other) = delete;
-
-	DrawManager& operator=(const DrawManager& other) = delete;
-	DrawManager& operator=(DrawManager&& other) = delete;
+public:
+	static DrawManager&	Instance();
 
 	bool				Init(const DrawManagerConfig& cfg);
 	void				Deinit();
@@ -64,7 +62,5 @@ private:
 
 	Timer						m_EraseTimer;
 };
-
-extern DrawManager* g_DrawManager;
 
 #endif // !MANAGERS_DRAWMANAGER_H_

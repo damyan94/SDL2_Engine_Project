@@ -21,6 +21,8 @@ struct DrawParameters
 	EBlendMode			m_BlendMode;
 	EFlipMode			m_FlipMode;
 
+	EDrawLayer			m_DrawLayer;
+
 	bool				m_IsVisible;
 };
 

@@ -9,6 +9,6 @@ namespace Helpers
 // =============================================================================
 Point GetCameraPosition()
 {
-	return g_App->GetCamera().GetPos();
+	return App::Instance().GetCamera().GetPos();
 }
 } // !namespace Helpers

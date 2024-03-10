@@ -30,7 +30,7 @@ bool DynamicText::Init(const std::string& string, FontId id,
 
 	TextTextureParameters inOutParams{
 		string.empty() ? " " : string,
-		g_AssetManager->GetFontData(id)->m_Font,
+		AssetManager::Instance().GetFontData(id)->m_Font,
 		textColor,
 		wrapWidth,
 		0,
@@ -64,7 +64,7 @@ bool DynamicText::Init(const std::string& string, FontId id,
 	m_Data->m_TextColor					= textColor;
 	m_Data->m_WrapWidth					= wrapWidth;
 
-	g_DrawManager->AddDynamicText(this);
+	DrawManager::Instance().AddDynamicText(this);
 
 	return true;
 }
@@ -78,7 +78,7 @@ void DynamicText::Deinit()
 	{
 		m_Data->m_Texture->DestroyTexture();
 	}
-	g_DrawManager->RequestRemoveDynamicText(this);
+	DrawManager::Instance().RequestRemoveDynamicText(this);
 	SafeDelete(m_Data);
 }
 
@@ -89,7 +89,7 @@ void DynamicText::SetText(const std::string& newText)
 
 	TextTextureParameters inOutParams{
 		newText.empty() ? " " : newText,
-		g_AssetManager->GetFontData(m_Data->m_FontId)->m_Font,
+		AssetManager::Instance().GetFontData(m_Data->m_FontId)->m_Font,
 		m_Data->m_TextColor,
 		m_Data->m_WrapWidth,
 		0,
@@ -114,7 +114,7 @@ void DynamicText::SetColor(const Color& newColor)
 
 	TextTextureParameters inOutParams{
 		m_String,
-		g_AssetManager->GetFontData(m_Data->m_FontId)->m_Font,
+		AssetManager::Instance().GetFontData(m_Data->m_FontId)->m_Font,
 		newColor,
 		m_Data->m_WrapWidth,
 		0,

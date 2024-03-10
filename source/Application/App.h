@@ -8,16 +8,14 @@ struct AppConfig;
 class Camera;
 
 class App
+	: public INonCopyMoveable
 {
-public:
+private:
 	App();
 	~App();
 
-	App(const App& other) = delete;
-	App(App&& other) = delete;
-
-	App& operator=(const App& other) = delete;
-	App& operator=(App&& other) = delete;
+public:
+	static App& Instance();
 
 	bool				Init(const AppConfig& cfg);
 	void				Deinit();
@@ -31,7 +29,5 @@ private:
 	MenuManager			m_MenuManager;
 	Game				m_Game;
 };
-
-extern App* g_App;
 
 #endif // !APP_APP_H_

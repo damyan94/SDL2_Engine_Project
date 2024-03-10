@@ -6,17 +6,15 @@
 struct TimerManagerConfig;
 
 class TimerManager
-	: public TimerContainer
+	: public INonCopyMoveable
+	, public TimerContainer
 {
-public:
+private:
 	TimerManager();
 	~TimerManager();
 
-	TimerManager(const TimerManager& other) = delete;
-	TimerManager(TimerManager&& other) = delete;
-
-	TimerManager& operator=(const TimerManager& other) = delete;
-	TimerManager& operator=(TimerManager&& other) = delete;
+public:
+	static TimerManager& Instance();
 
 	bool				Init(const TimerManagerConfig& cfg);
 	void				Deinit();
@@ -29,7 +27,5 @@ public:
 private:
 	Time				m_GlobalTime;
 };
-
-extern TimerManager* g_TimerManager;
 
 #endif // !MANAGERS_TIMERMANAGER_H_

@@ -6,16 +6,14 @@ struct SoundData;
 struct MusicData;
 
 class AudioManager
+	: public INonCopyMoveable
 {
-public:
+private:
 	AudioManager();
 	~AudioManager();
 
-	AudioManager(const AudioManager& other) = delete;
-	AudioManager(AudioManager&& other) = delete;
-
-	AudioManager& operator=(const AudioManager& other) = delete;
-	AudioManager& operator=(AudioManager&& other) = delete;
+public:
+	static AudioManager& Instance();
 
 	bool				Init(const AudioManagerConfig& cfg);
 	void				Deinit();

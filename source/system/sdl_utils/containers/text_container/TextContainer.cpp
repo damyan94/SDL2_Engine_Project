@@ -47,7 +47,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 
 	TextTextureParameters inOutParams{
 		textData.m_LanguageStrings.find(m_CurrLanguage)->second,
-		g_AssetManager->GetFontData(textData.m_FontId)->m_Font,
+		AssetManager::Instance().GetFontData(textData.m_FontId)->m_Font,
 		textData.m_TextColor,
 		textData.m_WrapWidth,
 		0,
@@ -100,7 +100,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 
 		TextTextureParameters inOutParams{
 			textCfg.m_LanguageStrings.find(m_CurrLanguage)->second,
-			g_AssetManager->GetFontData(textCfg.m_FontId)->m_Font,
+			AssetManager::Instance().GetFontData(textCfg.m_FontId)->m_Font,
 			textCfg.m_TextColor,
 			textCfg.m_WrapWidth,
 			0,

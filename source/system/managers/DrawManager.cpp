@@ -13,8 +13,6 @@
 #include "system/components/drawing/Text.h"
 #include "system/components/drawing/DynamicText.h"
 
-DrawManager* g_DrawManager = nullptr;
-
 static constexpr int32_t ERASE_TIME = 10000;
 
 // =============================================================================
@@ -27,6 +25,13 @@ DrawManager::DrawManager()
 DrawManager::~DrawManager()
 {
 	Deinit();
+}
+
+// =============================================================================
+DrawManager& DrawManager::Instance()
+{
+	static DrawManager m_Instance;
+	return m_Instance;
 }
 
 // =============================================================================
@@ -138,6 +143,10 @@ void DrawManager::AddImage(Image* item)
 {
 	ReturnIf(!item);
 	m_Images.emplace_back(item);
+	std::sort(m_Images.begin(), m_Images.end(), [](Image* lhs, Image* rhs)
+		{
+			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
+		});
 }
 
 // =============================================================================
@@ -145,6 +154,10 @@ void DrawManager::AddText(Text* item)
 {
 	ReturnIf(!item);
 	m_Texts.emplace_back(item);
+	std::sort(m_Texts.begin(), m_Texts.end(), [](Text* lhs, Text* rhs)
+		{
+			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
+		});
 }
 
 // =============================================================================
@@ -152,6 +165,10 @@ void DrawManager::AddDynamicText(DynamicText* item)
 {
 	ReturnIf(!item);
 	m_DynamicTexts.emplace_back(item);
+	std::sort(m_DynamicTexts.begin(), m_DynamicTexts.end(), [](DynamicText* lhs, DynamicText* rhs)
+		{
+			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
+		});
 }
 
 // =============================================================================

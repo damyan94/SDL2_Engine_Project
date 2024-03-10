@@ -19,31 +19,31 @@ Timer::~Timer()
 // The default unit of time for the timers is a millisecond
 void Timer::Start(int64_t interval, ETimerType type)
 {
-	m_Id = g_TimerManager->StartTimer(interval, type);
+	m_Id = TimerManager::Instance().StartTimer(interval, type);
 }
 
 // =============================================================================
 void Timer::Destroy()
 {
-	g_TimerManager->DestroyTimer(m_Id);
+	TimerManager::Instance().DestroyTimer(m_Id);
 }
 
 // =============================================================================
 void Timer::SetPause(bool paused)
 {
-	g_TimerManager->SetPauseTimer(m_Id, paused);
+	TimerManager::Instance().SetPauseTimer(m_Id, paused);
 }
 
 // =============================================================================
 bool Timer::IsTicked()
 {
-	return g_TimerManager->IsTimerTicked(m_Id);
+	return TimerManager::Instance().IsTimerTicked(m_Id);
 }
 
 // =============================================================================
 bool Timer::IsPaused()
 {
-	return g_TimerManager->IsTimerPaused(m_Id);
+	return TimerManager::Instance().IsTimerPaused(m_Id);
 }
 
 // =============================================================================

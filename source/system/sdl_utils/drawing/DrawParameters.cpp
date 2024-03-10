@@ -14,6 +14,7 @@ DrawParameters::DrawParameters()
 	, m_ObjectType(EObjectType::Invalid)
 	, m_BlendMode(EBlendMode::Blend)
 	, m_FlipMode(EFlipMode::None)
+	, m_DrawLayer(EDrawLayer::Invalid)
 	, m_IsVisible(true)
 {
 }

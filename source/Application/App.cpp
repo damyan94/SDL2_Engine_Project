@@ -3,8 +3,6 @@
 #include "application/App.h"
 #include "application/config/AppConfig.h"
 
-App* g_App = nullptr;
-
 // =============================================================================
 App::App()
 {
@@ -14,6 +12,13 @@ App::App()
 App::~App()
 {
 	Deinit();
+}
+
+// =============================================================================
+App& App::Instance()
+{
+	static App m_Instance;
+	return m_Instance;
 }
 
 // =============================================================================

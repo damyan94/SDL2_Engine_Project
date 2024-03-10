@@ -3,8 +3,6 @@
 #include "system/managers/TimerManager.h"
 #include "system/managers/config/TimerManagerConfig.h"
 
-TimerManager* g_TimerManager = nullptr;
-
 // =============================================================================
 TimerManager::TimerManager()
 	: m_GlobalTime()
@@ -15,6 +13,12 @@ TimerManager::TimerManager()
 TimerManager::~TimerManager()
 {
 	Deinit();
+}
+
+TimerManager& TimerManager::Instance()
+{
+	static TimerManager m_Instance;
+	return m_Instance;
 }
 
 // =============================================================================

@@ -6,16 +6,14 @@
 struct ImGuiManagerConfig;
 
 class ImGuiManager
+	: public INonCopyMoveable
 {
-public:
+private:
 	ImGuiManager();
 	~ImGuiManager();
 
-	ImGuiManager(const ImGuiManager& other) = delete;
-	ImGuiManager(ImGuiManager&& other) = delete;
-
-	ImGuiManager& operator=(const ImGuiManager& other) = delete;
-	ImGuiManager& operator=(ImGuiManager&& other) = delete;
+public:
+	static ImGuiManager& Instance();
 
 	bool				Init(const ImGuiManagerConfig& cfg);
 	void				Deinit();
@@ -26,7 +24,5 @@ public:
 private:
 	void				DrawInternal() const;
 };
-
-extern ImGuiManager* g_ImGuiManager;
 
 #endif // !MANAGERS_IMGUIMANAGER_H_

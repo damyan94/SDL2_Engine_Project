@@ -20,7 +20,7 @@ Text::~Text()
 // =============================================================================
 bool Text::Init(TextId id)
 {
-	m_Data = g_AssetManager->GetTextData(id);
+	m_Data = AssetManager::Instance().GetTextData(id);
 	ReturnIf(!m_Data, false);
 
 	m_DrawParameters.m_PosRect			= Rectangle::Zero;
@@ -41,7 +41,7 @@ bool Text::Init(TextId id)
 
 	m_DrawParameters.m_IsVisible		= true;
 
-	g_DrawManager->AddText(this);
+	DrawManager::Instance().AddText(this);
 
 	return true;
 }

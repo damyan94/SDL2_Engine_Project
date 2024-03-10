@@ -21,7 +21,7 @@ Image::~Image()
 // =============================================================================
 bool Image::Init(ImageId id)
 {
-	m_Data = g_AssetManager->GetImageData(id);
+	m_Data = AssetManager::Instance().GetImageData(id);
 	ReturnIf(!m_Data, false);
 	
 	m_DrawParameters.m_PosRect			= Rectangle::Zero;
@@ -44,7 +44,7 @@ bool Image::Init(ImageId id)
 
 	m_CurrFrame							= 1;
 
-	g_DrawManager->AddImage(this);
+	DrawManager::Instance().AddImage(this);
 
 	return true;
 }

@@ -21,6 +21,13 @@ AudioManager::~AudioManager()
 }
 
 // =============================================================================
+AudioManager& AudioManager::Instance()
+{
+	static AudioManager m_Instance;
+	return m_Instance;
+}
+
+// =============================================================================
 bool AudioManager::Init(const AudioManagerConfig& cfg)
 {
 

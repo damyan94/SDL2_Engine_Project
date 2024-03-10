@@ -9,12 +9,12 @@ namespace Helpers
 // =============================================================================
 const Rectangle& GetWindowRect()
 {
-	return g_DrawManager->GetWindow().GetWindowRect();
+	return DrawManager::Instance().GetWindow().GetWindowRect();
 }
 
 // =============================================================================
 int32_t GetDrawCalls()
 {
-	return g_DrawManager->m_DrawCalls;
+	return DrawManager::Instance().m_DrawCalls;
 }
 } // !namespace Helpers

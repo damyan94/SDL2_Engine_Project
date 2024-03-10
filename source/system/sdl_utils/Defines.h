@@ -84,6 +84,17 @@ enum class EFontWrapAlign
 	, Count
 };
 
+enum class EDrawLayer
+{
+	Invalid = -1
+	, First
+	, Second
+	, Third
+	, Fourth
+	, Fifth
+	, Count
+};
+
 enum class ELanguage
 	:int8_t
 {

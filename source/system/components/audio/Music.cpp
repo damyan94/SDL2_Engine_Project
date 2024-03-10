@@ -21,7 +21,7 @@ Music::~Music()
 // =============================================================================
 bool Music::Init(MusicId id)
 {
-	m_Data = g_AssetManager->GetMusicData(id);
+	m_Data = AssetManager::Instance().GetMusicData(id);
 	ReturnIf(!m_Data, false);
 
 	m_AudioParameters.m_Loops			= 0;

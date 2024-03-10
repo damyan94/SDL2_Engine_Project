@@ -3,8 +3,6 @@
 #include "system/managers/AssetManager.h"
 #include "system/managers/config/AssetManagerConfig.h"
 
-AssetManager* g_AssetManager = nullptr;
-
 // =============================================================================
 AssetManager::AssetManager()
 {
@@ -14,6 +12,13 @@ AssetManager::AssetManager()
 AssetManager::~AssetManager()
 {
 	Deinit();
+}
+
+// =============================================================================
+AssetManager& AssetManager::Instance()
+{
+	static AssetManager m_Instance;
+	return m_Instance;
 }
 
 // =============================================================================

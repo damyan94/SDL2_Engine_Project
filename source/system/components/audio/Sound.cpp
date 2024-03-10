@@ -22,7 +22,7 @@ Sound::~Sound()
 // =============================================================================
 bool Sound::Init(SoundId id)
 {
-	m_Data = g_AssetManager->GetSoundData(id);
+	m_Data = AssetManager::Instance().GetSoundData(id);
 	ReturnIf(!m_Data, false);
 
 	m_AudioParameters.m_Loops			= 0;

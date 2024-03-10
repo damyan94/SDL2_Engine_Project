@@ -12,8 +12,6 @@
 
 #include "system/managers/DrawManager.h"
 
-ImGuiManager* g_ImGuiManager = nullptr;
-
 // Our state
 //bool show_demo_window = true;
 //bool show_another_window = false;
@@ -30,6 +28,13 @@ ImGuiManager::~ImGuiManager()
 	/*ImGui_ImplSDLRenderer_Shutdown();
 	ImGui_ImplSDL2_Shutdown();
 	ImGui::DestroyContext();*/
+}
+
+// =============================================================================
+ImGuiManager& ImGuiManager::Instance()
+{
+	static ImGuiManager m_Instance;
+	return m_Instance;
 }
 
 // =============================================================================
@@ -63,8 +68,8 @@ bool ImGuiManager::Init(const ImGuiManagerConfig& cfg)
 	//}
 
 	//// Setup Platform/Renderer backends
-	//auto sdlWindow = g_DrawManager->GetWindow().GetSDLWindow();
-	//auto sdlRenderer = g_DrawManager->GetRenderer().GetSDLRenderer();
+	//auto sdlWindow = DrawManager::Instance().GetWindow().GetSDLWindow();
+	//auto sdlRenderer = DrawManager::Instance().GetRenderer().GetSDLRenderer();
 	//ImGui_ImplSDL2_InitForSDLRenderer(sdlWindow, sdlRenderer);
 	//ImGui_ImplSDLRenderer_Init(sdlRenderer);
 

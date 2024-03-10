@@ -10,26 +10,22 @@
 struct AssetManagerConfig;
 
 class AssetManager
-	: public ImageContainer
+	: public INonCopyMoveable
+	, public ImageContainer
 	, public FontContainer
 	, public TextContainer
 	, public SoundContainer
 	, public MusicContainer
 {
-public:
+private:
 	AssetManager();
 	~AssetManager();
 
-	AssetManager(const AssetManager& other) = delete;
-	AssetManager(AssetManager&& other) = delete;
-
-	AssetManager& operator=(const AssetManager& other) = delete;
-	AssetManager& operator=(AssetManager&& other) = delete;
+public:
+	static AssetManager& Instance();
 
 	bool				Init(const AssetManagerConfig& cfg);
 	void				Deinit();
 };
-
-extern AssetManager* g_AssetManager;
 
 #endif // !MANAGERS_ASSETMANAGER_H_

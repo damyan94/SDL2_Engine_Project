@@ -14,12 +14,6 @@ public:
 	Renderer();
 	~Renderer();
 
-	Renderer(const Renderer& other) = delete;
-	Renderer(Renderer&& other) = delete;
-
-	Renderer& operator=(const Renderer& other) = delete;
-	Renderer& operator=(Renderer&& other) = delete;
-
 	bool				Init(SDL_Window* window, const RendererConfig& cfg);
 	void				Deinit();
 

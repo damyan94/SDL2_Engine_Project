@@ -7,8 +7,10 @@
 
 #include "system/sdl_utils/SDLLoader.h"
 
+namespace SDLLoader
+{
 // =============================================================================
-bool SDLLoader::Init()
+bool Init()
 {
 	AssertReturnIf(EXIT_SUCCESS != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO)
 		&& SDL_GetError(), false);
@@ -26,10 +28,11 @@ bool SDLLoader::Init()
 }
 
 // =============================================================================
-void SDLLoader::Deinit()
+void Deinit()
 {
 	Mix_Quit();
 	TTF_Quit();
 	IMG_Quit();
 	SDL_Quit();
 }
+} // !namespace SDLLoader

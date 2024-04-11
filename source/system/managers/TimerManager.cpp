@@ -15,6 +15,7 @@ TimerManager::~TimerManager()
 	Deinit();
 }
 
+// =============================================================================
 TimerManager& TimerManager::Instance()
 {
 	static TimerManager m_Instance;

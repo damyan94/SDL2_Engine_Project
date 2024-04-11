@@ -42,15 +42,13 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!SDLLoader::Init(), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-#define ALLOCATE_AND_INIT(_Type) ReturnIf(!_Type::Instance().Init(cfg.m_##_Type##Config), false)
+	ReturnIf(!TimerManager::Instance().Init(cfg.m_TimerManagerConfig), false);
+	ReturnIf(!DrawManager::Instance().Init(cfg.m_DrawManagerConfig), false);
+	ReturnIf(!AssetManager::Instance().Init(cfg.m_AssetManagerConfig), false);
+	ReturnIf(!AudioManager::Instance().Init(cfg.m_AudioManagerConfig), false);
+	ReturnIf(!ImGuiManager::Instance().Init(cfg.m_ImGuiManagerConfig), false);
 
-	ALLOCATE_AND_INIT(TimerManager);
-	ALLOCATE_AND_INIT(DrawManager);
-	ALLOCATE_AND_INIT(AssetManager);
-	ALLOCATE_AND_INIT(AudioManager);
-	ALLOCATE_AND_INIT(ImGuiManager);
-
-	ALLOCATE_AND_INIT(App);
+	ReturnIf(!App::Instance().Init(cfg.m_AppConfig), false);
 
 	m_TargetFPS = g_Settings->GetTargetFPS();
 	m_TargetTimePerFrame = 1000 / m_TargetFPS;

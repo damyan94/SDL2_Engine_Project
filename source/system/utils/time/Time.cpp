@@ -98,6 +98,7 @@ std::string Time::GetString(ETimeStringFormat format) const
 	constexpr uint8_t resultLength = 40;
 	char result[resultLength]{'\0'};
 	tm* timeinfo = nullptr;
+#if defined WIN32 || _WIN32
 	localtime_s(timeinfo, &timeSeconds);
 
 	switch (format)
@@ -121,6 +122,9 @@ std::string Time::GetString(ETimeStringFormat format) const
 	default:
 		break;
 	}
+#else //if defined OS_LINUX || LINUX || UNIX
+
+#endif // !WIN32 || _WIN32
 
 	return std::string(result);
 }

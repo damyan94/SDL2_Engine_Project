@@ -15,7 +15,7 @@ namespace Log
 void ConsoleSetTextColor(const EConsoleTextColor color)
 {
 	auto colorText = "\033[" + std::to_string((int16_t)color) + "m";
-	printf(colorText.c_str());
+	printf("%s", colorText.c_str());
 }
 
 // =============================================================================

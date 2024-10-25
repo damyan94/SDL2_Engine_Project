@@ -28,7 +28,7 @@ static void _DebugBreak()
 		DebugBreak();
 	}
 #else //if defined OS_LINUX || LINUX || UNIX
-	_asm int 3;
+	asm("int $3");
 #endif // !WIN32 || _WIN32
 }
 

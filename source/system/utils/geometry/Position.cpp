@@ -45,7 +45,7 @@ Point MiddleLeft(const Rectangle& object, const Rectangle& container)
 }
 
 // =============================================================================
-Point Position::MiddleCenter(const Rectangle& object, const Rectangle& container)
+Point MiddleCenter(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
 	pos.x = container.x + (container.w - object.w) / 2;

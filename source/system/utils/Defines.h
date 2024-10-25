@@ -55,15 +55,15 @@ public:
 #if defined _DEBUG
 	#define __ASSERT_INFO(__Condition)\
 		"Check: " #__Condition\
-		"\nFile: " __FILE__\
-		"\nFunction: " __FUNCTION__\
-		"\nLine: " _STRINGIZE(__LINE__)
+		"\nFile: " __FILE__//\
+		//"\nFunction: " __func__\
+		"\nLine: " __LINE__
 #else
 	#define __ASSERT_INFO(__Condition, ...)\
 		"Check: " #__Condition\
-		"File: " __FILE__\
-		"\nFunction: " __FUNCTION__\
-		"\nLine: " _STRINGIZE(__LINE__)
+		"File: " __FILE__//\
+		//"\nFunction: " __func__\
+		"\nLine: " __LINE__
 #endif // !_DEBUG
 
 #ifdef _CONFIG_ERROR_INFO

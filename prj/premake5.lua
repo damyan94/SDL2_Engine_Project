@@ -149,7 +149,7 @@ end
 workspace "SDL2_Engine_Project"
 	location (projectDir .. targetSystem .. "/")
 	architecture "x64"
-	startproject "System"
+	startproject "application"
 
 	configurations
 	{
@@ -158,12 +158,12 @@ workspace "SDL2_Engine_Project"
 		"Distribution"
 	}
 	
-project "System"
+project "system"
 	setupCommonProjectSettings("%{prj.name}", "StaticLib")
 	setupConfigurationSpecificSettings()
 	setupPlatformSpecificSettings()
 		
-project "Application"
+project "application"
 	setupCommonProjectSettings("%{prj.name}", "ConsoleApp")
 	setupConfigurationSpecificSettings()
 	setupPlatformSpecificSettings()

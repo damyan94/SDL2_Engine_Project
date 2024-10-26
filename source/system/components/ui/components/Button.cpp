@@ -14,7 +14,6 @@ Button::Button()
 Button::~Button()
 {
 	Deinit();
-	UIComponentBase::~UIComponentBase();
 }
 
 // =============================================================================

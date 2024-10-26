@@ -14,7 +14,6 @@ Checkbox::Checkbox()
 Checkbox::~Checkbox()
 {
 	Deinit();
-	UIComponentBase::~UIComponentBase();
 }
 
 // =============================================================================

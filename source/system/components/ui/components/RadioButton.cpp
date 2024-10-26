@@ -14,7 +14,6 @@ RadioButton::RadioButton()
 RadioButton::~RadioButton()
 {
 	Deinit();
-	UIComponentBase::~UIComponentBase();
 }
 
 // =============================================================================

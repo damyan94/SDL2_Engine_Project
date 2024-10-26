@@ -16,7 +16,6 @@ TextBox::TextBox()
 TextBox::~TextBox()
 {
 	Deinit();
-	UIComponentBase::~UIComponentBase();
 }
 
 // =============================================================================

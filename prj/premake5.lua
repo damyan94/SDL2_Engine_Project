@@ -168,6 +168,11 @@ project "application"
 	setupConfigurationSpecificSettings()
 	setupPlatformSpecificSettings()
 	
+	filter "configurations:Distribution"
+		kind "WindowedApp"
+		
+	filter {}
+	
 	links
 	{
 		"System"

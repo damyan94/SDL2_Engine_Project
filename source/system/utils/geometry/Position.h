@@ -1,5 +1,4 @@
-#ifndef UTILS_GEOMETRY_POSITION_H_
-#define UTILS_GEOMETRY_POSITION_H_
+#pragma once
 
 namespace Position
 {
@@ -15,5 +14,3 @@ Point BottomLeft(const Rectangle& object, const Rectangle& container);
 Point BottomCenter(const Rectangle& object, const Rectangle& container);
 Point BottomRight(const Rectangle& object, const Rectangle& container);
 } // !namespace Position
-
-#endif // !UTILS_GEOMETRY_POSITION_H_

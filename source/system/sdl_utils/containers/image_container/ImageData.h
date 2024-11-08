@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGEDATA_H_
-#define SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGEDATA_H_
+#pragma once
 
 class Texture;
 
@@ -13,5 +12,3 @@ struct ImageData
 	Rectangle			m_FrameRect				= Rectangle::Undefined;
 	int32_t				m_FramesCount			= 0;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGEDATA_H_

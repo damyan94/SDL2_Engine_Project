@@ -1,5 +1,4 @@
-#ifndef APP_UI_MENUS_CONFIG_MENUMANAGERCONFIG_H_
-#define APP_UI_MENUS_CONFIG_MENUMANAGERCONFIG_H_
+#pragma once
 
 #include "application/ui/menus/start_menu/config/StartMenuConfig.h"
 
@@ -12,5 +11,3 @@ struct MenuManagerConfig
 	ConsoleMenuConfig	m_ConsoleMenuConfig;
 	StartMenuConfig		m_StartMenuConfig;
 };
-
-#endif // !APP_UI_MENUS_CONFIG_MENUMANAGERCONFIG_H_

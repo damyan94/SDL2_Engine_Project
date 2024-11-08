@@ -1,5 +1,4 @@
-#ifndef _STADFX_H_
-#define _STADFX_H_
+#pragma once
 
 #include <cstdint>
 #include <cstdio>
@@ -47,5 +46,3 @@
 #include "system/utils/input_output/Log.h"
 #include "system/utils/input_output/ReadWriteFile.h"
 #include "system/utils/input_output/ConfigReaderUtils.h"
-
-#endif // !_STADFX_H_

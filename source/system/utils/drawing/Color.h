@@ -1,5 +1,4 @@
-#ifndef UTILS_DRAWING_COLOR_H_
-#define UTILS_DRAWING_COLOR_H_
+#pragma once
 
 struct Color
 {
@@ -106,5 +105,3 @@ namespace Colors
 	extern const Color VeryDarkPurple;
 	extern const Color VeryDarkSkyBlue;
 } // !namespace Colors
-
-#endif // !UTILS_DRAWING_COLOR_H_

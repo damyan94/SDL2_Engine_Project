@@ -1,5 +1,4 @@
-#ifndef APPLICATION_GAME_GAME_H_
-#define APPLICATION_GAME_GAME_H_
+#pragma once
 
 #include "application/ui/menus/MenuManager.h"
 #include "application/game/GameManager.h"
@@ -29,5 +28,3 @@ private:
 	MenuManager			m_MenuManager;
 	GameManager			m_Game;
 };
-
-#endif // !APPLICATION_GAME_GAME_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_CONFIG_TIMERCONTAINERCONFIG_H_
-#define SDL_UTILS_CONTAINERS_CONFIG_TIMERCONTAINERCONFIG_H_
+#pragma once
 
 struct TimerConfig
 {
@@ -11,5 +10,3 @@ struct TimerContainerConfig
 
 	std::vector<TimerConfig> m_TimerContainerConfig;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_CONFIG_TIMERCONTAINERCONFIG_H_

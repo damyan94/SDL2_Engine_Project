@@ -1,5 +1,4 @@
-#ifndef MANAGERS_IMGUIMANAGER_H_
-#define MANAGERS_IMGUIMANAGER_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -24,5 +23,3 @@ public:
 private:
 	void				DrawInternal() const;
 };
-
-#endif // !MANAGERS_IMGUIMANAGER_H_

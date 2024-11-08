@@ -1,5 +1,4 @@
-#ifndef APPLICATION_GAME_CONFIG_GAMECONFIG_H_
-#define APPLICATION_GAME_CONFIG_GAMECONFIG_H_
+#pragma once
 
 #include "application/defines/Defines.h"
 #include "application/ui/menus/config/MenuManagerConfig.h"
@@ -12,5 +11,3 @@ struct GameConfig
 	MenuManagerConfig			m_MenuManagerConfig;
 	GameManagerConfig			m_GameConfig;
 };
-
-#endif // !APPLICATION_GAME_CONFIG_GAMECONFIG_H_

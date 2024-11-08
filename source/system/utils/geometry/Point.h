@@ -1,5 +1,4 @@
-#ifndef UTILS_GEOMETRY_POINT_H_
-#define UTILS_GEOMETRY_POINT_H_
+#pragma once
 
 struct Point
 {
@@ -17,5 +16,3 @@ struct Point
 	int32_t x;
 	int32_t y;
 };
-
-#endif // !UTILS_GEOMETRY_POINT_H_

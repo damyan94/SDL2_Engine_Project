@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_COMPONENTS_RADIOBUTTON_H_
-#define COMPONENTS_UI_COMPONENTS_RADIOBUTTON_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -37,5 +36,3 @@ private:
 	Text				m_Text;
 	Sound				m_Sound;
 };
-
-#endif // !COMPONENTS_UI_COMPONENTS_RADIOBUTTON_H_

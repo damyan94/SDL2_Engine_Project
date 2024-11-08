@@ -1,5 +1,4 @@
-#ifndef APPLICATION_APPLICATION_APPLICATION_H_
-#define APPLICATION_APPLICATION_APPLICATION_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -30,5 +29,3 @@ private:
 	int32_t				m_TargetFPS;
 	int32_t				m_TargetTimePerFrame;
 };
-
-#endif // !APPLICATION_APPLICATION_APPLICATION_H_

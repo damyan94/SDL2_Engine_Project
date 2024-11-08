@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DEFINES_H_
-#define SDL_UTILS_DEFINES_H_
+#pragma once
 
 #include <cstdint>
 #include <unordered_map>
@@ -148,5 +147,3 @@ inline std::string GetLanguageStringFromId(ELanguage id)
 	return "";
 }
 } // !namespace Utils
-
-#endif // !SDL_UTILS_DEFINES_H_

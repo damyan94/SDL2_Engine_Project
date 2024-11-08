@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_RENDERER_H_
-#define SDL_UTILS_DRAWING_RENDERER_H_
+#pragma once
 
 struct SDL_Renderer;
 struct SDL_Window;
@@ -32,5 +31,3 @@ private:
 
 	SDL_Renderer*		m_Renderer;
 };
-
-#endif // !SDL_UTILS_DRAWING_RENDERER_H_

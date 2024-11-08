@@ -1,5 +1,4 @@
-#ifndef MANAGERS_CONFIG_DRAWMANAGERCONFIG_H_
-#define MANAGERS_CONFIG_DRAWMANAGERCONFIG_H_
+#pragma once
 
 #include "system/sdl_utils/drawing/config/WindowConfig.h"
 #include "system/sdl_utils/drawing/config/RendererConfig.h"
@@ -11,5 +10,3 @@ struct DrawManagerConfig
 	WindowConfig				m_WindowConfig;
 	RendererConfig				m_RendererConfig;
 };
-
-#endif // !MANAGERS_CONFIG_DRAWMANAGERCONFIG_H_

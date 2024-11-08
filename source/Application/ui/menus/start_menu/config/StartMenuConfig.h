@@ -1,5 +1,4 @@
-#ifndef APP_UI_MENUS_START_MENU_CONFIG_STARTMENUCONFIG_H_
-#define APP_UI_MENUS_START_MENU_CONFIG_STARTMENUCONFIG_H_
+#pragma once
 
 #include "system/components/ui/components/config/ButtonConfig.h"
 #include "system/components/ui/components/config/CheckboxConfig.h"
@@ -16,5 +15,3 @@ struct StartMenuConfig
 	ButtonConfig	    m_ButtonSettingsConfig;
 	ButtonConfig	    m_ButtonQuitConfig;
 };
-
-#endif // !APP_UI_MENUS_START_MENU_CONFIG_STARTMENUCONFIG_H_

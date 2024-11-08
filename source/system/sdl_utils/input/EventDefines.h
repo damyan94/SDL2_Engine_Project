@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_INPUT_EVENTDEFINES_H_
-#define SDL_UTILS_INPUT_EVENTDEFINES_H_
+#pragma once
 
 enum class EEventType
 {
@@ -429,5 +428,3 @@ enum class EMouseWheel
 {
 	UpDownTreshold		= 0
 };
-
-#endif // !SDL_UTILS_INPUT_EVENTDEFINES_H_

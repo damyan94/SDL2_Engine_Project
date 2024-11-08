@@ -1,5 +1,4 @@
-#ifndef UTILS_OTHERS_CODEREADABILITY_H_
-#define UTILS_OTHERS_CODEREADABILITY_H_
+#pragma once
 
 #include "system/utils/Defines.h"
 #include "system/utils/input_output/Assert.h"
@@ -54,5 +53,3 @@
 
 #define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
 #define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)
-
-#endif // !UTILS_OTHERS_CODEREADABILITY_H_

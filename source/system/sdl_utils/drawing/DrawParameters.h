@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_DRAWPARAMETERS_H_
-#define SDL_UTILS_DRAWING_DRAWPARAMETERS_H_
+#pragma once
 
 struct DrawParameters
 {
@@ -25,5 +24,3 @@ struct DrawParameters
 
 	bool				m_IsVisible;
 };
-
-#endif // !SDL_UTILS_DRAWING_DRAWPARAMETERS_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_CONFIG_RENDERERCONFIG_H_
-#define SDL_UTILS_DRAWING_CONFIG_RENDERERCONFIG_H_
+#pragma once
 
 struct RendererConfig
 {
@@ -8,5 +7,3 @@ struct RendererConfig
 	Color				m_DrawColor;
 	int32_t				m_Flags;
 };
-
-#endif // !SDL_UTILS_DRAWING_CONFIG_RENDERERCONFIG_H_

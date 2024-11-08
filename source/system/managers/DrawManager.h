@@ -1,5 +1,4 @@
-#ifndef MANAGERS_DRAWMANAGER_H_
-#define MANAGERS_DRAWMANAGER_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 #include "system/sdl_utils/drawing/Window.h"
@@ -62,5 +61,3 @@ private:
 
 	Timer						m_EraseTimer;
 };
-
-#endif // !MANAGERS_DRAWMANAGER_H_

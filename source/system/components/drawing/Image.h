@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_DRAWING_IMAGE_H_
-#define COMPONENTS_DRAWING_IMAGE_H_
+#pragma once
 
 #include "system/components/drawing/DrawObject.h"
 #include "system/sdl_utils/containers/image_container/ImageData.h"
@@ -27,5 +26,3 @@ private:
 
 	const ImageData*	m_Data;
 };
-
-#endif // !COMPONENTS_DRAWING_IMAGE_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGECONTAINER_H_
-#define SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGECONTAINER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/image_container/ImageData.h"
 
@@ -21,5 +20,3 @@ protected:
 private:
 	std::vector<ImageData> m_ImagesContainer;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_IMAGE_CONTAINER_IMAGECONTAINER_H_

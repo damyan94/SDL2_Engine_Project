@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_
-#define COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_
+#pragma once
 
 class InputEvent;
 class UIComponentBase;
@@ -28,5 +27,3 @@ protected:
 
 	std::vector<UIComponentBase*> m_UIComponents;
 };
-
-#endif // !COMPONENTS_UI_BASE_CLASSES_UIMENUBASE_H_

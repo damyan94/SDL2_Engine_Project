@@ -1,5 +1,4 @@
-#ifndef MANAGERS_CONFIG_TIMERMANAGERCONFIG_H_
-#define MANAGERS_CONFIG_TIMERMANAGERCONFIG_H_
+#pragma once
 
 #include "system/sdl_utils/containers/config/TimerContainerConfig.h"
 
@@ -9,5 +8,3 @@ struct TimerManagerConfig
 
 	TimerContainerConfig		m_TimerContainerConfig;
 };
-
-#endif // !MANAGERS_CONFIG_TIMERMANAGERCONFIG_H_

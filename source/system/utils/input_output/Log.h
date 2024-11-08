@@ -1,5 +1,4 @@
-#ifndef UTILS_INPUT_OUTPUT_LOG_H_
-#define UTILS_INPUT_OUTPUT_LOG_H_
+#pragma once
 
 namespace Log
 {
@@ -12,5 +11,3 @@ void ConsoleError(const char* fmt...);
 
 void File(const char* fileName, const char* text, const EWriteMode mode = EWriteMode::App);
 } // !namespace Log
-
-#endif // !UTILS_INPUT_OUTPUT_LOG_H_

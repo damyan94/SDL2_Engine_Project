@@ -1,5 +1,4 @@
-#ifndef MANAGERS_CONFIG_ASSETMANAGERCONFIG_H_
-#define MANAGERS_CONFIG_ASSETMANAGERCONFIG_H_
+#pragma once
 
 #include "system/sdl_utils/containers/config/ImageContainerConfig.h"
 #include "system/sdl_utils/containers/config/FontContainerConfig.h"
@@ -17,5 +16,3 @@ struct AssetManagerConfig
 	SoundContainerConfig		m_SoundContainerConfig;
 	MusicContainerConfig		m_MusicContainerConfig;
 };
-
-#endif // !MANAGERS_CONFIG_ASSETMANAGERCONFIG_H_

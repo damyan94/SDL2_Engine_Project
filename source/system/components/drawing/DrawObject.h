@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_DRAWING_DRAWOBJECT_H_
-#define COMPONENTS_DRAWING_DRAWOBJECT_H_
+#pragma once
 
 #include "system/sdl_utils/drawing/DrawParameters.h"
 
@@ -61,5 +60,3 @@ public:
 protected:
 	DrawParameters		m_DrawParameters;
 };
-
-#endif // !COMPONENTS_DRAWING_DRAWOBJECT_H_

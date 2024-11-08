@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_COMPONENTS_CONFIG_BUTTON_H_
-#define COMPONENTS_UI_COMPONENTS_CONFIG_BUTTON_H_
+#pragma once
 
 struct ButtonConfig
 {
@@ -10,5 +9,3 @@ struct ButtonConfig
 	TextId				m_TextId				= 0;
 	SoundId				m_SoundId				= 0;
 };
-
-#endif // !COMPONENTS_UI_COMPONENTS_CONFIG_BUTTON_H_

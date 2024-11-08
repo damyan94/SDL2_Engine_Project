@@ -1,5 +1,4 @@
-#ifndef _APPLICATION_STDAFX_H_
-#define _APPLICATION_STDAFX_H_
+#pragma once
 
 #include "system/stdafx.h"
 
@@ -20,5 +19,3 @@
 #include "system/components/ui/components/Checkbox.h"
 #include "system/components/ui/components/RadioButton.h"
 #include "system/components/ui/components/TextBox.h"
-
-#endif // !_APPLICATION_STDAFX_H_

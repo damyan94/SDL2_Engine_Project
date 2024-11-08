@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_
-#define SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_
+#pragma once
 
 typedef struct _TTF_Font TTF_Font;
 
@@ -14,5 +13,3 @@ struct FontData
 	uint8_t				m_Size					= 0;
 	EFontWrapAlign		m_WrapAlign				= EFontWrapAlign::Invalid;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTDATA_H_

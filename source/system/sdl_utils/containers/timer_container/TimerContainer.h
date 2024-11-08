@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_
-#define SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/timer_container/TimerData.h"
 
@@ -34,5 +33,3 @@ private:
 
 	std::vector<TimerData> m_TimersContainer;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERCONTAINER_H_

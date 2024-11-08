@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTCONTAINER_H_
-#define SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTCONTAINER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/font_container/FontData.h"
 
@@ -22,5 +21,3 @@ protected:
 private:
 	std::vector<FontData> m_FontsContainer;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_FONT_CONTAINER_FONTCONTAINER_H_

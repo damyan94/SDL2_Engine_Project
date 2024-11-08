@@ -1,5 +1,4 @@
-#ifndef UTILS_GEOMETRY_RECTANGLE_H_
-#define UTILS_GEOMETRY_RECTANGLE_H_
+#pragma once
 
 struct Rectangle
 {
@@ -21,5 +20,3 @@ struct Rectangle
 	int32_t w;
 	int32_t h;
 };
-
-#endif // !UTILS_GEOMETRY_RECTANGLE_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDDATA_H_
-#define SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDDATA_H_
+#pragma once
 
 struct Mix_Chunk;
 
@@ -13,5 +12,3 @@ struct SoundData
 	Mix_Chunk*			m_Sound					= nullptr;
 	uint8_t				m_Volume				= 0;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_SOUND_CONTAINER_SOUNDDATA_H_

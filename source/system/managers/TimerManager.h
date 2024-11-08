@@ -1,5 +1,4 @@
-#ifndef MANAGERS_TIMERMANAGER_H_
-#define MANAGERS_TIMERMANAGER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/timer_container/TimerContainer.h"
 
@@ -27,5 +26,3 @@ public:
 private:
 	Time				m_GlobalTime;
 };
-
-#endif // !MANAGERS_TIMERMANAGER_H_

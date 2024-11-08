@@ -1,5 +1,4 @@
-#ifndef UTILS_TIME_TIME_H_
-#define UTILS_TIME_TIME_H_
+#pragma once
 
 class Time
 {
@@ -30,5 +29,3 @@ public:
 private:
 	TimePoint			m_Microseconds;
 };
-
-#endif // !UTILS_TIME_TIME_H_

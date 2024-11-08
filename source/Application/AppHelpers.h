@@ -1,9 +1,6 @@
-#ifndef APP_APPHELPERS_H_
-#define APP_APPHELPERS_H_
+#pragma once
 
 namespace Helpers
 {
 Point GetCameraPosition();
 } // !namespace Helpers
-
-#endif // !APP_APPHELPERS_H_

@@ -1,5 +1,4 @@
-#ifndef APPLICATION_GAME_GAMEMANAGER_H_
-#define APPLICATION_GAME_GAMEMANAGER_H_
+#pragma once
 
 #include "application/game/Camera.h"
 
@@ -27,5 +26,3 @@ public:
 private:
 	Camera				m_Camera;
 };
-
-#endif // !APPLICATION_GAME_GAMEMANAGER_H_

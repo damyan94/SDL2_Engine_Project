@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_AUDIO_MUSIC_H_
-#define COMPONENTS_AUDIO_MUSIC_H_
+#pragma once
 
 #include "system/components/audio/AudioObject.h"
 
@@ -29,5 +28,3 @@ private:
 
 	const MusicData*	m_Data;
 };
-
-#endif // !COMPONENTS_AUDIO_MUSIC_H_

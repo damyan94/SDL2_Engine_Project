@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERDATA_H_
-#define SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERDATA_H_
+#pragma once
 
 struct TimerData
 {
@@ -12,5 +11,3 @@ struct TimerData
 	bool				m_Ticked;
 	bool				m_Paused;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_TIMER_CONTAINER_TIMERDATA_H_

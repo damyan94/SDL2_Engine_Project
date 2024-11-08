@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_
-#define SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_
+#pragma once
 
 struct FontConfig
 {
@@ -14,5 +13,3 @@ struct FontContainerConfig
 
 	std::vector<FontConfig>	m_FontContainerConfig;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_CONFIG_FONTCONTAINERCONFIG_H_

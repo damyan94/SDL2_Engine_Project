@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_SDLDRAWING_H_
-#define SDL_UTILS_DRAWING_SDLDRAWING_H_
+#pragma once
 
 class Renderer;
 
@@ -32,5 +31,3 @@ void DrawCircle(const Circle& c, const Color& color);
 void DrawFilledCircle(const Circle& c);
 void DrawFilledCircle(const Circle& c, const Color& color);
 }
-
-#endif // !SDL_UTILS_DRAWING_SDLDRAWING_H_

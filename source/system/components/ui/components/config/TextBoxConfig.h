@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_COMPONENTS_COMPONENTS_TEXTBOX_H_
-#define COMPONENTS_UI_COMPONENTS_COMPONENTS_TEXTBOX_H_
+#pragma once
 
 struct TextBoxConfig
 {
@@ -11,5 +10,3 @@ struct TextBoxConfig
 	FontId				m_FontId				= 0;
 	Color				m_TextColor				= Colors::Black;
 };
-
-#endif // !COMPONENTS_UI_COMPONENTS_COMPONENTS_TEXTBOX_H_

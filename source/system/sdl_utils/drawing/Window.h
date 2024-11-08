@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_WINDOW_H_
-#define SDL_UTILS_DRAWING_WINDOW_H_
+#pragma once
 
 struct SDL_Window;
 struct WindowConfig;
@@ -28,5 +27,3 @@ private:
 
 	SDL_Window*			m_Window;
 };
-
-#endif // !SDL_UTILS_DRAWING_WINDOW_H_

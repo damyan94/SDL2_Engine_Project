@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_BASE_CLASSES_CUSTOMUIMENUBASE_H_
-#define COMPONENTS_UI_BASE_CLASSES_CUSTOMUIMENUBASE_H_
+#pragma once
 
 #include "system/components/ui/base_classes/UIMenuBase.h"
 
@@ -18,5 +17,3 @@ public:
 protected:
 	EMenuId				m_Id;
 };
-
-#endif // !COMPONENTS_UI_BASE_CLASSES_CustomUIMENUBASE_H_

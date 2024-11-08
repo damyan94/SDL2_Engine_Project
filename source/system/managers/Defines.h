@@ -1,5 +1,4 @@
-#ifndef MANAGERS_DEFINES_H_
-#define MANAGERS_DEFINES_H_
+#pragma once
 
 ////////////////////////////////////////////////////////////////////////////////
 // ================================= DEFINES ===================================
@@ -42,5 +41,3 @@ enum class EImGuiStyle
 namespace Constants
 {
 } // !namespace Constants
-
-#endif // !MANAGERS_DEFINES_H_

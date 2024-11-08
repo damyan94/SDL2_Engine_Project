@@ -1,5 +1,4 @@
-#ifndef UTILS_GEOMETRY_CIRCLE_H_
-#define UTILS_GEOMETRY_CIRCLE_H_
+#pragma once
 
 struct Circle
 {
@@ -20,5 +19,3 @@ struct Circle
 	int32_t y;
 	int32_t r;
 };
-
-#endif // !UTILS_GEOMETRY_CIRCLE_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_CONFIG_SOUNDCONTAINERCONFIG_H_
-#define SDL_UTILS_CONTAINERS_CONFIG_SOUNDCONTAINERCONFIG_H_
+#pragma once
 
 struct SoundConfig
 {
@@ -13,5 +12,3 @@ struct SoundContainerConfig
 
 	std::vector<SoundConfig> m_SoundContainerConfig;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_CONFIG_SOUNDCONTAINERCONFIG_H_

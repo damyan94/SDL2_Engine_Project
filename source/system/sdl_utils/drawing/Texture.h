@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_TEXTURE_H_
-#define SDL_UTILS_DRAWING_TEXTURE_H_
+#pragma once
 
 struct SDL_Surface;
 struct SDL_Texture;
@@ -52,5 +51,3 @@ private:
 private:
 	SDL_Texture* m_Texture;
 };
-
-#endif // !SDL_UTILS_DRAWING_TEXTURE_H_

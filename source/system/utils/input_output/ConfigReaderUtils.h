@@ -1,5 +1,4 @@
-#ifndef UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
-#define UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_
+#pragma once
 
 namespace Utils
 {
@@ -15,5 +14,3 @@ std::vector<std::string>	ReadStringArray(const std::string& source, const std::s
 String						ReadStringHashed(const std::string& source, const std::string& str);
 std::vector<String>			ReadStringArrayHashed(const std::string& source, const std::string& str, size_t size);
 } // !Utils
-
-#endif // !UTILS_INPUT_OUTPUT_CONFIGREADERUTILS_H_

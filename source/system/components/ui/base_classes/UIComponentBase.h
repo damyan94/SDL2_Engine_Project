@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_BASE_CLASSES_UICOMPONENTSBASE_H
-#define COMPONENTS_UI_BASE_CLASSES_UICOMPONENTSBASE_H
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -47,5 +46,3 @@ protected:
 	bool				m_WasClicked;
 	bool				m_IsActive;
 };
-
-#endif // !COMPONENTS_UI_BASE_CLASSES_UICOMPONENTSBASE_H

@@ -1,5 +1,4 @@
-#ifndef ENGINE_SETTINGS_SETTINGS_H_
-#define ENGINE_SETTINGS_SETTINGS_H_
+#pragma once
 
 class Settings
 {
@@ -28,5 +27,3 @@ private:
 };
 
 extern Settings* const g_Settings;
-
-#endif // !ENGINE_SETTINGS_SETTINGS_H_

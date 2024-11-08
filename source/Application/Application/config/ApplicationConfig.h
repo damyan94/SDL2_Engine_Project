@@ -1,5 +1,4 @@
-#ifndef APPLICATION_APPLICATION_CONFIG_APPLICATIONCONFIG_H_
-#define APPLICATION_APPLICATION_CONFIG_APPLICATIONCONFIG_H_
+#pragma once
 
 #include "system/managers/config/DrawManagerConfig.h"
 #include "system/managers/config/AssetManagerConfig.h"
@@ -21,5 +20,3 @@ struct ApplicationConfig
 
 	GameConfig					m_AppConfig;
 };
-
-#endif // !APPLICATION_APPLICATION_CONFIG_APPLICATIONCONFIG_H_

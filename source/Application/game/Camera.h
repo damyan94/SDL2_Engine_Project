@@ -1,5 +1,4 @@
-#ifndef Camera_GAME_CAMERA_H_
-#define Camera_GAME_CAMERA_H_
+#pragma once
 
 class Camera
 {
@@ -81,5 +80,3 @@ private:
 
 	bool				m_CameraChanged;
 };
-
-#endif // !Camera_GAME_CAMERA_H_

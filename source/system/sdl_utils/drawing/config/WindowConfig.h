@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_DRAWING_CONFIG_WINDOWCONFIG_H_
-#define SDL_UTILS_DRAWING_CONFIG_WINDOWCONFIG_H_
+#pragma once
 
 struct WindowConfig
 {
@@ -12,5 +11,3 @@ struct WindowConfig
 	int32_t				m_Height;
 	int32_t				m_Flags;
 };
-
-#endif // !SDL_UTILS_DRAWING_CONFIG_WINDOWCONFIG_H_

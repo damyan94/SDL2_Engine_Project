@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_INPUT_INPUT_EVENT_H_
-#define SDL_UTILS_INPUT_INPUT_EVENT_H_
+#pragma once
 
 #include "system/sdl_utils/input/EventDefines.h"
 
@@ -37,5 +36,3 @@ public:
 private:
 	SDL_Event*			m_Event;
 };
-
-#endif // !SDL_UTILS_INPUT_INPUT_EVENT_H_

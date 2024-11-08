@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_AUDIO_AUDIO_H_
-#define SDL_UTILS_AUDIO_AUDIO_H_
+#pragma once
 
 struct Mix_Chunk;
 typedef struct _Mix_Music Mix_Music;
@@ -34,5 +33,3 @@ bool				IsSoundPaused(int32_t channel);
 bool				IsMusicPlaying();
 bool				IsMusicPaused();
 };
-
-#endif // !SDL_UTILS_AUDIO_AUDIO_H_

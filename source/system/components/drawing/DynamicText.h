@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_DRAWING_DYNAMICTEXT_H_
-#define COMPONENTS_DRAWING_DYNAMICTEXT_H_
+#pragma once
 
 #include "system/components/drawing/DrawObject.h"
 
@@ -26,5 +25,3 @@ private:
 	std::string			m_String;
 	TextData*			m_Data;
 };
-
-#endif // !COMPONENTS_DRAWING_DYNAMICTEXT_H_

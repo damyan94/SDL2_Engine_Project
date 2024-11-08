@@ -1,5 +1,4 @@
-#ifndef APP_UI_MENUS_MENUMANAGER_H_
-#define APP_UI_MENUS_MENUMANAGER_H_
+#pragma once
 
 #include "system/components/ui/base_classes/UIMenuBase.h"
 
@@ -42,5 +41,3 @@ private:
 	//TODO maybe use unordered_map
 	std::vector<UIMenuBase*> m_Menus;
 };
-
-#endif // !APP_UI_MENUS_MENUMANAGER_H_

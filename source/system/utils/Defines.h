@@ -1,5 +1,4 @@
-#ifndef UTILS_DEFINES_H_
-#define UTILS_DEFINES_H_
+#pragma once
 
 #include <cstdint>
 #include <string>
@@ -237,5 +236,3 @@ inline constexpr int32_t FullRotation			= 360;
 inline constexpr int32_t ZeroVolume				= 0;
 inline constexpr int32_t MaxVolume				= 127;
 } // !namespace Constants
-
-#endif // !UTILS_DEFINES_H_

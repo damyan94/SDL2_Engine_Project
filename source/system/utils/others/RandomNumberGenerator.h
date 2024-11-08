@@ -1,5 +1,4 @@
-#ifndef UTILS_OTHERS_RANDOMNUMBERGENERATOR_H_
-#define UTILS_OTHERS_RANDOMNUMBERGENERATOR_H_
+#pragma once
 
 class RandomNumberGenerator
 {
@@ -29,5 +28,3 @@ private:
 	uint64_t			m_Min;
 	uint64_t			m_Max;
 };
-
-#endif // !UTILS_OTHERS_RANDOMNUMBERGENERATOR_H_

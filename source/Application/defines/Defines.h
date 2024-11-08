@@ -1,5 +1,4 @@
-#ifndef APP_DEFINES_H_
-#define APP_DEFINES_H_
+#pragma once
 
 ////////////////////////////////////////////////////////////////////////////////
 // ================================= DEFINES ===================================
@@ -31,5 +30,3 @@ enum class EMenuId
 namespace Constants
 {
 } // !namespace Constants
-
-#endif // !APP_DEFINES_H_

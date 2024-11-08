@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_DRAWING_TEXT_H_
-#define COMPONENTS_DRAWING_TEXT_H_
+#pragma once
 
 #include "system/components/drawing/DrawObject.h"
 
@@ -20,5 +19,3 @@ public:
 private:
 	const TextData*		m_Data;
 };
-
-#endif // !COMPONENTS_DRAWING_TEXT_H_

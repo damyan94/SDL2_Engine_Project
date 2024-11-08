@@ -1,5 +1,4 @@
-#ifndef MANAGERS_AUDIOMANAGER_H_
-#define MANAGERS_AUDIOMANAGER_H_
+#pragma once
 
 struct AudioManagerConfig;
 struct SoundData;
@@ -42,5 +41,3 @@ public:
 };
 
 extern AudioManager* g_AudioManager;
-
-#endif // !MANAGERS_AUDIOMANAGER_H_

@@ -1,5 +1,4 @@
-#ifndef MANAGERS_ASSETMANAGER_H_
-#define MANAGERS_ASSETMANAGER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/image_container/ImageContainer.h"
 #include "system/sdl_utils/containers/text_container/TextContainer.h"
@@ -27,5 +26,3 @@ public:
 	bool				Init(const AssetManagerConfig& cfg);
 	void				Deinit();
 };
-
-#endif // !MANAGERS_ASSETMANAGER_H_

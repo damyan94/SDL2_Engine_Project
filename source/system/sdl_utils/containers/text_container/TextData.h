@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTDATA_H_
-#define SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTDATA_H_
+#pragma once
 
 class Texture;
 
@@ -16,5 +15,3 @@ struct TextData
 	int32_t				m_WrapWidth				= 0;
 	LanguageStringMap	m_LanguageStrings;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTDATA_H_

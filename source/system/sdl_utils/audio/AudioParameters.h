@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_AUDIO_AUDIOPARAMETERS_H_
-#define SDL_UTILS_AUDIO_AUDIOPARAMETERS_H_
+#pragma once
 
 struct AudioParameters
 {
@@ -16,5 +15,3 @@ struct AudioParameters
 
 	EObjectType			m_ObjectType;
 };
-
-#endif // !SDL_UTILS_AUDIO_AUDIOPARAMETERS_H_

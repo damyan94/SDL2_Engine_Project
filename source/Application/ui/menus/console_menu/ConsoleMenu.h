@@ -1,5 +1,4 @@
-#ifndef APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
-#define APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_
+#pragma once
 
 #include "application/ui/menus/CustomUIMenuBase.h"
 
@@ -31,5 +30,3 @@ private:
 	DynamicText			m_TextDrawCalls;
 	DynamicText			m_TextCameraPos;
 };
-
-#endif // !APP_UI_MENUS_CONSOLE_MENU_CONSOLEMENU_H_

@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_TIME_TIMER_H_
-#define COMPONENTS_TIME_TIMER_H_
+#pragma once
 
 class Timer
 {
@@ -20,5 +19,3 @@ public:
 private:
 	TimerId				m_Id;
 };
-
-#endif // !COMPONENTS_TIME_TIMER_H_

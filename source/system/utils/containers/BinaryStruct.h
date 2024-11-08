@@ -1,5 +1,4 @@
-#ifndef UTILS_CONTAINERS_BINARYSTRUCT_H_
-#define UTILS_CONTAINERS_BINARYSTRUCT_H_
+#pragma once
 
 class BinaryStruct
 {
@@ -102,5 +101,3 @@ T* BinaryStruct::GetImplementation(const String& string)
 
 	return nullptr;
 }
-
-#endif // !UTILS_CONTAINERS_BINARYSTRUCT_H_

@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_COMPONENTS_TEXTBOX_H_
-#define COMPONENTS_UI_COMPONENTS_TEXTBOX_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -36,5 +35,3 @@ public:
 private:
 	TextInputter		m_TextInputter;
 };
-
-#endif // !COMPONENTS_UI_COMPONENTS_TEXTBOX_H_

@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_CONFIG_TEXTCONTAINERCONFIG_H_
-#define SDL_UTILS_CONTAINERS_CONFIG_TEXTCONTAINERCONFIG_H_
+#pragma once
 
 struct TextConfig
 {
@@ -15,5 +14,3 @@ struct TextContainerConfig
 
 	std::vector<TextConfig> m_TextContainerConfig;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_CONFIG_TEXTCONTAINERCONFIG_H_

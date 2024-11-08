@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_AUDIO_AUDIOOBJECT_H_
-#define COMPONENTS_AUDIO_AUDIOOBJECT_H_
+#pragma once
 
 #include "system/sdl_utils/audio/AudioParameters.h"
 
@@ -30,5 +29,3 @@ public:
 protected:
 	AudioParameters		m_AudioParameters;
 };
-
-#endif // !COMPONENTS_AUDIO_AUDIOOBJECT_H_

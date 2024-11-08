@@ -1,10 +1,7 @@
-#ifndef UTILS_INPUT_OUTPUT_ASSERT_H_
-#define UTILS_INPUT_OUTPUT_ASSERT_H_
+#pragma once
 
 namespace Assert
 {
 void Assert(const std::string& text);
 void Assert(bool condition, const std::string& text);
 } // !namespace Assert
-
-#endif // !UTILS_INPUT_OUTPUT_ASSERT_H_

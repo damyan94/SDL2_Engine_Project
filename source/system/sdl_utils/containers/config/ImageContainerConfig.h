@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_CONFIG_IMAGECONTAINERCONFIG_H_
-#define SDL_UTILS_CONTAINERS_CONFIG_IMAGECONTAINERCONFIG_H_
+#pragma once
 
 struct ImageConfig
 {
@@ -13,5 +12,3 @@ struct ImageContainerConfig
 
 	std::vector<ImageConfig> m_ImageContainerConfig;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_CONFIG_IMAGECONTAINERCONFIG_H_

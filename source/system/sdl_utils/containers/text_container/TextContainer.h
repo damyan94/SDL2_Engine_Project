@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_
-#define SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/text_container/TextData.h"
 
@@ -28,5 +27,3 @@ private:
 
 	std::vector<TextData> m_TextsContainer;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_TEXT_CONTAINER_TEXTCONTAINER_H_

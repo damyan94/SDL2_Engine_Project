@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICDATA_H_
-#define SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICDATA_H_
+#pragma once
 
 typedef struct _Mix_Music Mix_Music;
 
@@ -13,5 +12,3 @@ struct MusicData
 	Mix_Music*			m_Music					= 0;
 	uint8_t				m_Volume				= 0;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICDATA_H_

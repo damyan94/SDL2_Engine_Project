@@ -1,5 +1,4 @@
-#ifndef SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICCONTAINER_H_
-#define SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICCONTAINER_H_
+#pragma once
 
 #include "system/sdl_utils/containers/music_container/MusicData.h"
 
@@ -22,5 +21,3 @@ protected:
 private:
 	std::vector<MusicData> m_MusicContainer;
 };
-
-#endif // !SDL_UTILS_CONTAINERS_MUSIC_CONTAINER_MUSICCONTAINER_H_

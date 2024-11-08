@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_AUDIO_SOUND_H_
-#define COMPONENTS_AUDIO_SOUND_H_
+#pragma once
 
 #include "system/components/audio/AudioObject.h"
 
@@ -30,5 +29,3 @@ private:
 
 	const SoundData*	m_Data;
 };
-
-#endif // !COMPONENTS_AUDIO_SOUND_H_

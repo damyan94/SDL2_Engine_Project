@@ -1,5 +1,4 @@
-#ifndef COMPONENTS_UI_UI_UTILS_TEXTINPUTTER_H_
-#define COMPONENTS_UI_UI_UTILS_TEXTINPUTTER_H_
+#pragma once
 
 #include "system/sdl_utils/input/InputEvent.h"
 
@@ -71,5 +70,3 @@ private:
 	DynamicText			m_Text;
 	DynamicText			m_Cursor;
 };
-
-#endif // !COMPONENTS_UI_UI_UTILS_TEXTINPUTTER_H_

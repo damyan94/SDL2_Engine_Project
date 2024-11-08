@@ -1,5 +1,4 @@
-#ifndef UTILS_INPUT_OUTPUT_INIPARSER_H_
-#define UTILS_INPUT_OUTPUT_INIPARSER_H_
+#pragma once
 
 class IniStruct
 {
@@ -30,5 +29,3 @@ public:
 private:
 
 };
-
-#endif //!UTILS_INPUT_OUTPUT_INIPARSER_H_

@@ -1,5 +1,4 @@
-#ifndef APP_UI_MENUS_START_MENU_STARTMENU_H_
-#define APP_UI_MENUS_START_MENU_STARTMENU_H_
+#pragma once
 
 #include "application/ui/menus/CustomUIMenuBase.h"
 
@@ -37,5 +36,3 @@ private:
 	void				OnButtonSettingsClick();
 	void				OnButtonQuitClick();
 };
-
-#endif // !APP_UI_MENUS_START_MENU_STARTMENU_H_

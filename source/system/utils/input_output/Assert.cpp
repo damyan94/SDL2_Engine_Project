@@ -9,7 +9,7 @@
 #endif // !WIN32 || _WIN32
 
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 static void _ShowMessageBox(const std::string& text)
 {
 #if defined WIN32 || _WIN32
@@ -19,7 +19,7 @@ static void _ShowMessageBox(const std::string& text)
 #endif // !WIN32 || _WIN32
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 static void _DebugBreak()
 {
 #if defined WIN32 || _WIN32
@@ -32,14 +32,14 @@ static void _DebugBreak()
 #endif // !WIN32 || _WIN32
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 static void _DebugLog(const std::string& text)
 {
 	Log::Console(EConsoleTextColor::Red, "--- ASSERT TRIGGERED ---\n");
 	Log::Console(EConsoleTextColor::Red, text.c_str());
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 static void _ReleaseLog(const std::string& text)
 {
 	Time now;
@@ -51,7 +51,7 @@ static void _ReleaseLog(const std::string& text)
 
 namespace Assert
 {
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Assert(const std::string& text)
 {
 	_ShowMessageBox(text);
@@ -64,7 +64,7 @@ void Assert(const std::string& text)
 #endif // !_DEBUG
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Assert(bool condition, const std::string& text)
 {
 	if (condition)

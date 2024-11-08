@@ -12,21 +12,21 @@ static const int32_t	c_CursorTickTime		= 1000;
 static const char*		c_CursorSymbol			= "|";
 
 //TODO move to some utils namespace
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<typename String>
 std::wstring UTF8BytesToWideString(const String& utf8_Bytes)
 {
 	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().from_bytes(utf8_Bytes);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<typename WString>
 std::string WideStringToUTF8Bytes(const WString& wideString)
 {
 	return std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(wideString);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextInputter::TextInputter()
 	: m_Pos(Point::Undefined)
 	, m_IsEnabled(false)
@@ -40,12 +40,12 @@ TextInputter::TextInputter()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextInputter::~TextInputter()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextInputter::Init(const TextInputterConfig& cfg)
 {
 	SetPosition(cfg.m_Pos);
@@ -69,12 +69,12 @@ bool TextInputter::Init(const TextInputterConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Deinit()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleEvent(const InputEvent& e)
 {
 	ReturnIf(!m_IsEnabled);
@@ -95,7 +95,7 @@ void TextInputter::HandleEvent(const InputEvent& e)
 	HandleEnterKey(e);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Update(int32_t dt)
 {
 	ReturnIf(!m_IsEnabled);
@@ -113,7 +113,7 @@ void TextInputter::Update(int32_t dt)
 	m_IsDirty = false;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::SetPosition(const Point& newPos)
 {
 	m_Pos = newPos;
@@ -121,7 +121,7 @@ void TextInputter::SetPosition(const Point& newPos)
 	m_Cursor.SetPos(m_Pos.x + m_WSCursorPos * m_Cursor.GetWidth() - 3, m_Pos.y + 1);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::ToggleActive(bool activate)
 {
 	m_CursorTimer.SetPause(!activate);
@@ -129,25 +129,25 @@ void TextInputter::ToggleActive(bool activate)
 	InputEvent::ToggleTextInput(activate);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 int32_t TextInputter::GetHeight() const
 {
 	return m_Cursor.GetHeight();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const std::string& TextInputter::GetTextContent() const
 {
 	return m_TextContent;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::ToggleShouldHandleEnterKey(bool enterKey)
 {
 	m_ShouldHandleEnterKey = enterKey;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Reset()
 {
 	m_CurrHistory		= m_History.size();
@@ -159,7 +159,7 @@ void TextInputter::Reset()
 	InputEvent::ToggleTextInput(false);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Show()
 {
 	m_IsEnabled = true;
@@ -167,7 +167,7 @@ void TextInputter::Show()
 	m_Cursor.SetIsVisible(true);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Hide()
 {
 	m_IsEnabled = false;
@@ -175,7 +175,7 @@ void TextInputter::Hide()
 	m_Cursor.SetIsVisible(false);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 {
 	// Handle history navigation
@@ -228,7 +228,7 @@ void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 	m_IsDirty = true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 {
 	// Handle arrow keys navigation
@@ -255,7 +255,7 @@ void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 	m_IsDirty = true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleTextInput(const InputEvent& e)
 {
 	// Handle keyboard input
@@ -277,7 +277,7 @@ void TextInputter::HandleTextInput(const InputEvent& e)
 	m_IsDirty = true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleDeletion(const InputEvent& e)
 {
 	// Handle backspace and delete
@@ -309,7 +309,7 @@ void TextInputter::HandleDeletion(const InputEvent& e)
 	m_IsDirty = true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextInputter::HandleEnterKey(const InputEvent& e)
 {
 	// Handle enter key

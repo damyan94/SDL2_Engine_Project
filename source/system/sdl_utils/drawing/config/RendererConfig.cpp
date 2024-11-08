@@ -4,7 +4,7 @@
 
 static const std::string c_CategoryTypeString = "Renderer";
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool RendererConfig::Read(const ConfigStrings& readStrings)
 {
 	size_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);

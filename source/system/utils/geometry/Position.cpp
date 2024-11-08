@@ -4,7 +4,7 @@
 
 namespace Position
 {
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point TopLeft(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -14,7 +14,7 @@ Point TopLeft(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point TopCenter(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -24,7 +24,7 @@ Point TopCenter(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point TopRight(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -34,7 +34,7 @@ Point TopRight(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point MiddleLeft(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -44,7 +44,7 @@ Point MiddleLeft(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point MiddleCenter(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -54,7 +54,7 @@ Point MiddleCenter(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point MiddleRight(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -64,7 +64,7 @@ Point MiddleRight(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point BottomLeft(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -74,7 +74,7 @@ Point BottomLeft(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point BottomCenter(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;
@@ -84,7 +84,7 @@ Point BottomCenter(const Rectangle& object, const Rectangle& container)
 	return pos;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point BottomRight(const Rectangle& object, const Rectangle& container)
 {
 	Point pos = Point::Undefined;

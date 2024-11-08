@@ -11,20 +11,20 @@ va_end(args)
 
 namespace Log
 {
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void ConsoleSetTextColor(const EConsoleTextColor color)
 {
 	auto colorText = "\033[" + std::to_string((int16_t)color) + "m";
 	printf("%s", colorText.c_str());
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Console(const char* fmt ...)
 {
 	_PRINTF_VARIADIC_ARGS;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Console(const EConsoleTextColor color, const char* fmt ...)
 {
 	ConsoleSetTextColor(color);
@@ -32,7 +32,7 @@ void Console(const EConsoleTextColor color, const char* fmt ...)
 	ConsoleSetTextColor(EConsoleTextColor::Default);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void ConsoleWarning(const char* fmt ...)
 {
 	ConsoleSetTextColor(EConsoleTextColor::Yellow);
@@ -41,7 +41,7 @@ void ConsoleWarning(const char* fmt ...)
 	ConsoleSetTextColor(EConsoleTextColor::Default);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void ConsoleError(const char* fmt ...)
 {
 	ConsoleSetTextColor(EConsoleTextColor::Red);
@@ -50,7 +50,7 @@ void ConsoleError(const char* fmt ...)
 	ConsoleSetTextColor(EConsoleTextColor::Default);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void File(const char* fileName, const char* text, const EWriteMode mode)
 {
 	std::ofstream datFile;

@@ -10,31 +10,31 @@
 
 static Renderer* s_Renderer = nullptr;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Texture::Texture()
 	: m_Texture(nullptr)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Texture::~Texture()
 {
 	DestroyTexture();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::SetRenderer(Renderer* renderer)
 {
 	s_Renderer = renderer;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 SDL_Texture* Texture::Get()
 {
 	return m_Texture;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::CreateTextureFromFile(ImageTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
@@ -47,7 +47,7 @@ void Texture::CreateTextureFromFile(ImageTextureParameters& inOutParams)
 	DestroySurface(surface);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::CreateTextureFromText(TextTextureParameters& inOutParams)
 {
 	SDL_Surface* surface = nullptr;
@@ -60,14 +60,14 @@ void Texture::CreateTextureFromText(TextTextureParameters& inOutParams)
 	DestroySurface(surface);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::SetTextureBlendMode(const EBlendMode& blendMode)
 {
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureBlendMode(m_Texture, SDL_BlendMode(blendMode))
 		&& SDL_GetError());
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::DestroyTexture()
 {
 	ReturnIf(!m_Texture);
@@ -76,7 +76,7 @@ void Texture::DestroyTexture()
 	m_Texture = nullptr;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::SetTextureAlphaMod(int32_t alpha)
 {
 	if (alpha < Constants::ZeroOpacity)
@@ -93,7 +93,7 @@ void Texture::SetTextureAlphaMod(int32_t alpha)
 		&& SDL_GetError());
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::CreateSurfaceFromFile(SDL_Surface*& outSurface,
 	ImageTextureParameters& inOutParams)
 {
@@ -105,7 +105,7 @@ void Texture::CreateSurfaceFromFile(SDL_Surface*& outSurface,
 	inOutParams.m_Height = outSurface->h;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
 	TextTextureParameters& inOutParams)
 {
@@ -124,7 +124,7 @@ void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
 	inOutParams.m_Height = outSurface->h;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::CreateTextureFromSurface(SDL_Surface* surface)
 {
 	m_Texture = SDL_CreateTextureFromSurface(s_Renderer->GetSDLRenderer(), surface);
@@ -132,7 +132,7 @@ void Texture::CreateTextureFromSurface(SDL_Surface* surface)
 	AssertReturnIf(!m_Texture && SDL_GetError());
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Texture::DestroySurface(SDL_Surface*& outSurface)
 {
 	ReturnIf(!outSurface);

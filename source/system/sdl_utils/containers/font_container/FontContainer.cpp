@@ -5,24 +5,24 @@
 #include "system/sdl_utils/containers/font_container/FontContainer.h"
 #include "system/sdl_utils/containers/config/FontContainerConfig.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 FontContainer::FontContainer()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 FontContainer::~FontContainer()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool FontContainer::DoesAssetExist(FontId id) const
 {
 	return id >= 0 && id < m_FontsContainer.size();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const FontData* FontContainer::GetFontData(FontId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr);
@@ -30,7 +30,7 @@ const FontData* FontContainer::GetFontData(FontId id) const
 	return &m_FontsContainer[id];
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool FontContainer::Init(const FontContainerConfig& cfg)
 {
 	for (int i = 0; i < cfg.m_FontContainerConfig.size(); i++)
@@ -56,7 +56,7 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void FontContainer::Deinit()
 {
 	for (auto& font : m_FontsContainer)

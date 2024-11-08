@@ -9,43 +9,43 @@
 
 AudioManager* g_AudioManager = nullptr;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 AudioManager::AudioManager()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 AudioManager::~AudioManager()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 AudioManager& AudioManager::Instance()
 {
 	static AudioManager m_Instance;
 	return m_Instance;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AudioManager::Init(const AudioManagerConfig& cfg)
 {
 
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::Deinit()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 int32_t AudioManager::PlaySound(const SoundData& data, int32_t loops)
 {
 	return Audio::PlaySound(data.m_Sound, loops);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::PauseSound(int32_t channel, bool paused)
 {
 	if (paused)
@@ -64,7 +64,7 @@ void AudioManager::PauseSound(int32_t channel, bool paused)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::PauseSounds(bool paused)
 {
 	if (paused)
@@ -83,25 +83,25 @@ void AudioManager::PauseSounds(bool paused)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::StopSound(int32_t channel)
 {
 	Audio::StopSound(channel);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::StopSounds()
 {
 	Audio::StopSounds();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::PlayMusic(const MusicData& data, int32_t loops)
 {
 	Audio::PlayMusic(data.m_Music, loops);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::PauseMusic(bool paused)
 {
 	if (paused)
@@ -120,13 +120,13 @@ void AudioManager::PauseMusic(bool paused)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::StopMusic()
 {
 	Audio::StopMusic();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::SetSoundVolume(int32_t channel, uint8_t volume)
 {
 	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
@@ -134,7 +134,7 @@ void AudioManager::SetSoundVolume(int32_t channel, uint8_t volume)
 	Audio::SetSoundVolume(channel, volume);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::SetSoundsVolume(uint8_t volume)
 {
 	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
@@ -142,7 +142,7 @@ void AudioManager::SetSoundsVolume(uint8_t volume)
 	Audio::SetSoundsVolume(volume);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void AudioManager::SetMusicVolume(uint8_t volume)
 {
 	AssertReturnIf(volume < Constants::ZeroVolume || volume > Constants::MaxVolume);
@@ -150,37 +150,37 @@ void AudioManager::SetMusicVolume(uint8_t volume)
 	Audio::SetMusicVolume(volume);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 uint8_t AudioManager::GetSoundVolume(int32_t channel)
 {
 	return Audio::GetSoundVolume(channel);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 uint8_t AudioManager::GetMusicVolume()
 {
 	return Audio::GetMusicVolume();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AudioManager::IsSoundPlaying(int32_t channel)
 {
 	return Audio::IsSoundPlaying(channel);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AudioManager::IsSoundPaused(int32_t channel)
 {
 	return Audio::IsSoundPaused(channel);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AudioManager::IsMusicPlaying()
 {
 	return Audio::IsMusicPlaying();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AudioManager::IsMusicPaused()
 {
 	return Audio::IsMusicPaused();

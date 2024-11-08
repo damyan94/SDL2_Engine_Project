@@ -1,14 +1,14 @@
 #include "stdafx.h"
 
-#include "application/AppHelpers.h"
+#include "Application/AppHelpers.h"
 
-#include "application/App.h"
+#include "Application/game/Game.h"
 
 namespace Helpers
 {
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Point GetCameraPosition()
 {
-	return App::Instance().GetCamera().GetPos();
+	return Game::Instance().GetCamera().GetPos();
 }
 } // !namespace Helpers

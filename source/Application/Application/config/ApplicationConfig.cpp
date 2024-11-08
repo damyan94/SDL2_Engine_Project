@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
-#include "system/engine/config/EngineConfig.h"
+#include "Application/Application/config/ApplicationConfig.h"
 #include "system/defines/ConfigFilePaths.h"
 
-// =============================================================================
-bool EngineConfig::Read()
+////////////////////////////////////////////////////////////////////////////////
+bool ApplicationConfig::Read()
 {
 	ConfigStrings readStrings;
 

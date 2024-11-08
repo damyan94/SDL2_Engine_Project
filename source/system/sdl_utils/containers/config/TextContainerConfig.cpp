@@ -4,7 +4,7 @@
 
 static const std::string c_TypeString = "Text";
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 {
 	size_t startLine = Utils::ReadInt(readStrings[0], c_TypeString);

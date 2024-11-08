@@ -2,7 +2,7 @@
 
 #include "system/utils/others/Crypto.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Crypto::CaesarEncrypt(std::string& text, int32_t offset)
 {
 	for (auto& letter : text)
@@ -11,7 +11,7 @@ void Crypto::CaesarEncrypt(std::string& text, int32_t offset)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Crypto::CaesarDecrypt(std::string& text, int32_t offset)
 {
 	for (auto& letter : text)
@@ -20,7 +20,7 @@ void Crypto::CaesarDecrypt(std::string& text, int32_t offset)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Crypto::CaesarMovingEncrypt(std::string& text, int32_t offset, int32_t limit)
 {
 	int32_t d = 0;
@@ -36,7 +36,7 @@ void Crypto::CaesarMovingEncrypt(std::string& text, int32_t offset, int32_t limi
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Crypto::CaesarMovingDecrypt(std::string& text, int32_t offset, int32_t limit)
 {
 	int32_t d = 0;
@@ -52,7 +52,7 @@ void Crypto::CaesarMovingDecrypt(std::string& text, int32_t offset, int32_t limi
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::string& text,
 	int32_t magicValue)
 {
@@ -82,7 +82,7 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::string& text,
 	return offsets;
 }
 
-//// =============================================================================
+//////////////////////////////////////////////////////////////////////////////////
 //bool Crypto::CaesarRandomEncryptHardcodedOffsets(std::wstring& text,
 //	const std::vector<int32_t>& offsets, int32_t magicValue)
 //{
@@ -108,7 +108,7 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptStoredOffsets(std::string& text,
 //	return true;
 //}
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool Crypto::CaesarRandomDecrypt(std::string& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue)
 {
@@ -130,7 +130,7 @@ bool Crypto::CaesarRandomDecrypt(std::string& text,
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::string& text,
 	int32_t magicValue, int32_t fillingCount)
 {
@@ -168,7 +168,7 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::st
 	return offsets;
 }
 
-//// =============================================================================
+//////////////////////////////////////////////////////////////////////////////////
 //bool Crypto::CaesarRandomEncryptWithFillingHardcodedOffsets(std::wstring& text,
 //	const std::vector<int32_t>& offsets, int32_t magicValue, int32_t fillingCount)
 //{
@@ -203,7 +203,7 @@ std::vector<int32_t> Crypto::CaesarRandomEncryptWithFillingStoredOffsets(std::st
 //	return true;
 //}
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool Crypto::CaesarRandomDecryptWithFilling(std::string& text,
 	const std::vector<int32_t>& offsets, int32_t magicValue, int32_t fillingCount)
 {
@@ -228,7 +228,7 @@ bool Crypto::CaesarRandomDecryptWithFilling(std::string& text,
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Crypto::InvertBits(std::string& text)
 {
 	for (auto& letter : text)

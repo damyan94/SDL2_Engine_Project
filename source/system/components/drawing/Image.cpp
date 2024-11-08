@@ -5,20 +5,20 @@
 #include "system/managers/AssetManager.h"
 #include "system/managers/DrawManager.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Image::Image()
 	: m_CurrFrame(0)
 	, m_Data(nullptr)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Image::~Image()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool Image::Init(ImageId id)
 {
 	m_Data = AssetManager::Instance().GetImageData(id);
@@ -49,7 +49,7 @@ bool Image::Init(ImageId id)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Image::Deinit()
 {
 	SetIsVisible(false);
@@ -57,7 +57,7 @@ void Image::Deinit()
 	m_Data = nullptr;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Image::SetCurrFrame(int32_t frame)
 {
 	AssertReturnIf(frame <= 0 || frame > m_Data->m_FramesCount);
@@ -66,7 +66,7 @@ void Image::SetCurrFrame(int32_t frame)
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Image::SetPrevFrame()
 {
 	if (m_CurrFrame > 1)
@@ -77,7 +77,7 @@ void Image::SetPrevFrame()
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Image::SetNextFrame()
 {
 	if (m_CurrFrame < m_Data->m_FramesCount)
@@ -88,13 +88,13 @@ void Image::SetNextFrame()
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 int32_t Image::GetCurrFrame() const
 {
 	return m_CurrFrame;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const ImageData* Image::GetData() const
 {
 	return m_Data;

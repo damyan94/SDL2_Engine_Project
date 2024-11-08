@@ -8,7 +8,7 @@
 
 static Renderer* s_Renderer = nullptr;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::SetRenderer(Renderer* renderer)
 {
 	s_Renderer = renderer;
@@ -16,13 +16,13 @@ void SDLDrawing::SetRenderer(Renderer* renderer)
 
 // Point
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawPoint(const Point& p)
 {
 	SDL_RenderDrawPoint(s_Renderer->GetSDLRenderer(), p.x, p.y);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawPoint(const Point& p, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);
@@ -34,14 +34,14 @@ void SDLDrawing::DrawPoint(const Point& p, const Color& color)
 
 // Line
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawLine(const Point& p1, const Point& p2)
 {
 	SDL_RenderDrawLine(s_Renderer->GetSDLRenderer(), p1.x, p1.y,
 		p2.x, p2.y);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawLine(const Point& p1, const Point& p2, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);
@@ -53,14 +53,14 @@ void SDLDrawing::DrawLine(const Point& p1, const Point& p2, const Color& color)
 
 // Rectangle
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawRectangle(const Rectangle& rect)
 {
 	SDL_Rect sdlRect{ rect.x, rect.y, rect.w, rect.h };
 	SDL_RenderDrawRect(s_Renderer->GetSDLRenderer(), &sdlRect);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawRectangle(const Rectangle& rect, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);
@@ -72,14 +72,14 @@ void SDLDrawing::DrawRectangle(const Rectangle& rect, const Color& color)
 
 // Filled rectangle
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawFilledRectangle(const Rectangle& rect)
 {
 	SDL_Rect sdlRect{ rect.x, rect.y, rect.w, rect.h };
 	SDL_RenderFillRect(s_Renderer->GetSDLRenderer(), &sdlRect);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawFilledRectangle(const Rectangle& rect, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);
@@ -91,7 +91,7 @@ void SDLDrawing::DrawFilledRectangle(const Rectangle& rect, const Color& color)
 
 // Circle
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawCircle(const Circle& c)
 {
 	const int32_t diameter = (c.r * 2);
@@ -131,7 +131,7 @@ void SDLDrawing::DrawCircle(const Circle& c)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawCircle(const Circle& c, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);
@@ -143,7 +143,7 @@ void SDLDrawing::DrawCircle(const Circle& c, const Color& color)
 
 // Filled Circle
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawFilledCircle(const Circle& c)
 {
 	for (int32_t i = 0; i < c.r * 2; i++)
@@ -161,7 +161,7 @@ void SDLDrawing::DrawFilledCircle(const Circle& c)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SDLDrawing::DrawFilledCircle(const Circle& c, const Color& color)
 {
 	s_Renderer->SetDrawColor(color);

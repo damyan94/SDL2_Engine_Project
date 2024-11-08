@@ -37,7 +37,7 @@ enum class DataType : uint8_t
 	, Int = 2
 };
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<typename T>
 bool BinaryStruct::Get(const String& string, T& outValue)
 {
@@ -48,7 +48,7 @@ bool BinaryStruct::Get(const String& string, T& outValue)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<>
 inline bool BinaryStruct::Get<String>(const String& string, String& outValue)
 {
@@ -59,7 +59,7 @@ inline bool BinaryStruct::Get<String>(const String& string, String& outValue)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<>
 inline bool BinaryStruct::Get<std::string>(const String& string, std::string& outValue)
 {
@@ -70,7 +70,7 @@ inline bool BinaryStruct::Get<std::string>(const String& string, std::string& ou
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 template<typename T>
 T* BinaryStruct::GetImplementation(const String& string)
 {

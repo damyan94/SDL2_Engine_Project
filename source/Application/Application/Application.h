@@ -1,17 +1,17 @@
-#ifndef ENGINE_ENGINE_H_
-#define ENGINE_ENGINE_H_
+#ifndef APPLICATION_APPLICATION_APPLICATION_H_
+#define APPLICATION_APPLICATION_APPLICATION_H_
 
 #include "system/sdl_utils/input/InputEvent.h"
 
-struct EngineConfig;
+struct ApplicationConfig;
 
-class Engine
+class Application
 {
 public:
-	Engine();
-	~Engine();
+	Application();
+	~Application();
 
-	bool				Init(const EngineConfig& cfg);
+	bool				Init(const ApplicationConfig& cfg);
 	void				Deinit();
 
 	void				RunApplication();
@@ -31,4 +31,4 @@ private:
 	int32_t				m_TargetTimePerFrame;
 };
 
-#endif // !ENGINE_ENGINE_H_
+#endif // !APPLICATION_APPLICATION_APPLICATION_H_

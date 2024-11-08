@@ -4,7 +4,7 @@
 
 #include "system/defines/ConfigFilePaths.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ImGuiManagerConfig::Read()
 {
 	//TODO Read data from file and populate the config

@@ -4,7 +4,7 @@
 
 static const std::string c_CategoryString = "Menu";
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 {
 	int32_t startLine = Utils::ReadInt(readStrings[0], c_CategoryString);

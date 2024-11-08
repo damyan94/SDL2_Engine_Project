@@ -5,18 +5,18 @@
 
 const int32_t STANDARD_SPACING = 4;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 RadioButton::RadioButton()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 RadioButton::~RadioButton()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool RadioButton::Init(const RadioButtonConfig& cfg)
 {
 	UIComponentBase::Init({ cfg.m_Pos, cfg.m_ImageId });
@@ -28,12 +28,12 @@ bool RadioButton::Init(const RadioButtonConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::Deinit()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::HandleEvent(const InputEvent& e)
 {
 	ReturnIf(!m_IsEnabled);
@@ -48,7 +48,7 @@ void RadioButton::HandleEvent(const InputEvent& e)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::Update(int32_t dt)
 {
 	ReturnIf(!m_IsEnabled);
@@ -57,7 +57,7 @@ void RadioButton::Update(int32_t dt)
 	m_Image.SetCurrFrame(m_IsActive + (int32_t)ERadioButtonFrames::Normal);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);
@@ -66,7 +66,7 @@ void RadioButton::SetPosition(const Point& newPos)
 		m_Pos.y + (m_Image.GetHeight() - m_Text.GetHeight()) / 2);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::Reset()
 {
 	m_WasClicked = false;
@@ -75,7 +75,7 @@ void RadioButton::Reset()
 	SetPosition(m_Pos);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::SetIsEnabled(bool enable)
 {
 	UIComponentBase::SetIsEnabled(enable);

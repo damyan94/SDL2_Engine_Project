@@ -2,7 +2,7 @@
 
 #include "system/managers/config/AssetManagerConfig.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool AssetManagerConfig::Read(const ConfigStrings& readStrings)
 {
 	ReturnIf(!m_ImageContainerConfig.Read(readStrings), false);

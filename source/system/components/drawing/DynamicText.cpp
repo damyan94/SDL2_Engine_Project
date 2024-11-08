@@ -8,20 +8,20 @@
 #include "system/managers/AssetManager.h"
 #include "system/managers/DrawManager.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 DynamicText::DynamicText()
 	: m_String()
 	, m_Data(nullptr)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 DynamicText::~DynamicText()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool DynamicText::Init(const std::string& string, FontId id,
 	const Color& textColor, int32_t wrapWidth)
 {
@@ -69,7 +69,7 @@ bool DynamicText::Init(const std::string& string, FontId id,
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DynamicText::Deinit()
 {
 	SetIsVisible(false);
@@ -82,7 +82,7 @@ void DynamicText::Deinit()
 	SafeDelete(m_Data);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DynamicText::SetText(const std::string& newText)
 {
 	m_Data->m_Texture->DestroyTexture();
@@ -107,7 +107,7 @@ void DynamicText::SetText(const std::string& newText)
 	m_String							= newText;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DynamicText::SetColor(const Color& newColor)
 {
 	m_Data->m_Texture->DestroyTexture();
@@ -132,13 +132,13 @@ void DynamicText::SetColor(const Color& newColor)
 	m_Data->m_TextColor					= newColor;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const std::string& DynamicText::GetText() const
 {
 	return m_String;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextData* DynamicText::GetData() const
 {
 	return m_Data;

@@ -31,7 +31,7 @@ static constexpr char Backslash					= '\\';
 static constexpr char NewLine					= 'n';
 static constexpr char Tab						= 't';
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 int32_t ReadInt(const std::string& source, const std::string& str)
 {
 	int32_t result = -1;
@@ -60,7 +60,7 @@ int32_t ReadInt(const std::string& source, const std::string& str)
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<int32_t> ReadIntArray(const std::string& source, const std::string& str, size_t size)
 {
 	std::vector<int32_t> result;
@@ -100,7 +100,7 @@ std::vector<int32_t> ReadIntArray(const std::string& source, const std::string& 
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 double ReadDouble(const std::string& source, const std::string& str)
 {
 	double result = -1;
@@ -129,7 +129,7 @@ double ReadDouble(const std::string& source, const std::string& str)
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<double> ReadDoubleArray(const std::string& source, const std::string& str, size_t size)
 {
 	std::vector<double> result;
@@ -169,7 +169,7 @@ std::vector<double> ReadDoubleArray(const std::string& source, const std::string
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::string ReadString(const std::string& source, const std::string& str)
 {
 	std::string result;
@@ -224,7 +224,7 @@ std::string ReadString(const std::string& source, const std::string& str)
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<std::string> ReadStringArray(const std::string& source, const std::string& str, size_t size)
 {
 	std::vector<std::string> result;
@@ -286,13 +286,13 @@ std::vector<std::string> ReadStringArray(const std::string& source, const std::s
 	return result;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 String ReadStringHashed(const std::string& source, const std::string& str)
 {
 	return String(ReadString(source, str));
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 std::vector<String> ReadStringArrayHashed(const std::string& source, const std::string& str, size_t size)
 {
 	std::vector<String> result;

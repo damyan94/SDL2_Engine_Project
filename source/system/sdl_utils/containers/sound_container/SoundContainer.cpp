@@ -5,24 +5,24 @@
 
 #include "system/sdl_utils/audio/Audio.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 SoundContainer::SoundContainer()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 SoundContainer::~SoundContainer()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool SoundContainer::DoesAssetExist(SoundId id) const
 {
 	return id >= 0 && id < m_SoundContainer.size();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const SoundData* SoundContainer::GetSoundData(SoundId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr);
@@ -30,7 +30,7 @@ const SoundData* SoundContainer::GetSoundData(SoundId id) const
 	return &m_SoundContainer[id];
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
 	for (int i = 0; i < cfg.m_SoundContainerConfig.size(); i++)
@@ -51,7 +51,7 @@ bool SoundContainer::Init(const SoundContainerConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void SoundContainer::Deinit()
 {
 	for (auto& sound : m_SoundContainer)

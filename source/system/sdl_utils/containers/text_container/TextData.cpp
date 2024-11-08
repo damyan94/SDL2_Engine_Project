@@ -2,7 +2,7 @@
 
 #include "system/sdl_utils/containers/text_container/TextData.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextData::TextData()
 	: m_Texture(nullptr)
 	, m_FrameRect(Rectangle::Undefined)
@@ -11,7 +11,7 @@ TextData::TextData()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextData::TextData(Texture* texture, Rectangle frameRect, FontId fontId, int32_t wrapWidth)
 	: m_Texture(texture)
 	, m_FrameRect(frameRect)
@@ -20,7 +20,7 @@ TextData::TextData(Texture* texture, Rectangle frameRect, FontId fontId, int32_t
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextData::~TextData()
 {
 }

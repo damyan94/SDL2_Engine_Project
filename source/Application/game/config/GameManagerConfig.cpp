@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "system/sdl_utils/containers/config/TimerContainerConfig.h"
+#include "application/game/config/GameManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool TimerContainerConfig::Read()
+bool GameManagerConfig::Read(const ConfigStrings& readStrings)
 {
 	return true;
 }

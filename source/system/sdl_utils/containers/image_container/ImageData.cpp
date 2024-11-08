@@ -2,7 +2,7 @@
 
 #include "system/sdl_utils/containers/image_container/ImageData.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ImageData::ImageData()
 	: m_Texture(nullptr)
 	, m_FrameRect(Rectangle::Undefined)
@@ -10,7 +10,7 @@ ImageData::ImageData()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ImageData::ImageData(Texture* texture, Rectangle frameRect, int32_t framesCount)
 	: m_Texture(texture)
 	, m_FrameRect(frameRect)
@@ -18,7 +18,7 @@ ImageData::ImageData(Texture* texture, Rectangle frameRect, int32_t framesCount)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ImageData::~ImageData()
 {
 }

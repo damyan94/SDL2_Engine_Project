@@ -1,25 +1,25 @@
 #include "stdafx.h"
 
-#include "system/engine/settings/Settings.h"
+#include "Application/Application/settings/Settings.h"
 #include "system//defines/ConfigFilePaths.h"
 
 static const std::string c_SettingsFileName = ConfigFilePaths::MainDir + "config/settings.cfg";
 
 Settings* const g_Settings = new Settings;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Settings::Settings()
 	: m_TargetFPS(0)
 	, m_Language(ELanguage::Invalid)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Settings::~Settings()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool Settings::Read()
 {
 	std::string readString;
@@ -37,7 +37,7 @@ bool Settings::Read()
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool Settings::Write()
 {
 	std::string writeString;
@@ -51,25 +51,25 @@ bool Settings::Write()
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 int32_t Settings::GetTargetFPS() const
 {
 	return m_TargetFPS;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ELanguage Settings::GetLanguage() const
 {
 	return m_Language;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Settings::SetTargetFPS(int32_t targetFPS)
 {
 	m_TargetFPS = targetFPS;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void Settings::SetLanguage(ELanguage language)
 {
 	m_Language = language;

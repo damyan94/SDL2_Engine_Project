@@ -5,24 +5,24 @@
 
 #include "system/sdl_utils/drawing/Texture.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ImageContainer::ImageContainer()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 ImageContainer::~ImageContainer()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ImageContainer::DoesAssetExist(ImageId id) const
 {
 	return id >= 0 && id < m_ImagesContainer.size();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const ImageData* ImageContainer::GetImageData(ImageId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr);
@@ -30,7 +30,7 @@ const ImageData* ImageContainer::GetImageData(ImageId id) const
 	return &m_ImagesContainer[id];
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ImageContainer::Init(const ImageContainerConfig& cfg)
 {
 	for (int i = 0; i < cfg.m_ImageContainerConfig.size(); i++)
@@ -64,7 +64,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void ImageContainer::Deinit()
 {
 	for (auto& imageData : m_ImagesContainer)

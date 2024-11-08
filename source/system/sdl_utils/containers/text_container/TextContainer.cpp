@@ -7,25 +7,25 @@
 //TODO this must not be here
 #include "system/managers/AssetManager.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextContainer::TextContainer()
 	: m_CurrLanguage(ELanguage::Invalid)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TextContainer::~TextContainer()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainer::DoesAssetExist(TextId id) const
 {
 	return id >= 0 && id < m_TextsContainer.size();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 const TextData* TextContainer::GetTextData(TextId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), nullptr);
@@ -33,7 +33,7 @@ const TextData* TextContainer::GetTextData(TextId id) const
 	return &m_TextsContainer[id];
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth)
 {
 	AssertReturnIf(!DoesAssetExist(id), false);
@@ -64,7 +64,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainer::UpdateAllTexts()
 {
 	for (int i = 0; i < m_TextsContainer.size(); i++)
@@ -76,7 +76,7 @@ bool TextContainer::UpdateAllTexts()
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextContainer::ChangeLanguage(ELanguage newLanguage)
 {
 	m_CurrLanguage = newLanguage;
@@ -84,7 +84,7 @@ void TextContainer::ChangeLanguage(ELanguage newLanguage)
 	UpdateAllTexts();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainer::Init(const TextContainerConfig& cfg)
 {
 	//TODO fix this
@@ -127,7 +127,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TextContainer::Deinit()
 {
 	for (auto& textData : m_TextsContainer)

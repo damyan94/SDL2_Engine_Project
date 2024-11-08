@@ -15,26 +15,26 @@
 
 static constexpr int32_t ERASE_TIME = 10000;
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 DrawManager::DrawManager()
 	: m_DrawCalls(0)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 DrawManager::~DrawManager()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 DrawManager& DrawManager::Instance()
 {
 	static DrawManager m_Instance;
 	return m_Instance;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool DrawManager::Init(const DrawManagerConfig& cfg)
 {
 	ReturnIf(!m_Window.Init(cfg.m_WindowConfig), false);
@@ -48,12 +48,12 @@ bool DrawManager::Init(const DrawManagerConfig& cfg)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::Deinit()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::HandleEvent(const InputEvent& e)
 {
 	m_Window.HandleEvent(e);
@@ -62,7 +62,7 @@ void DrawManager::HandleEvent(const InputEvent& e)
 	// enum class EHowToPosition { Center, Left, Right, Top, Bottom, TopLeft, ... etc. };
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::Update(int32_t dt)
 {
 	ReturnIf(m_EraseTimer.IsPaused());
@@ -71,7 +71,7 @@ void DrawManager::Update(int32_t dt)
 	RemoveEmptyItems();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::Draw() const
 {
 	for (const auto item : m_Images)
@@ -99,7 +99,7 @@ void DrawManager::Draw() const
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::ClearScreen() const
 {
 	ReturnIf(m_Window.IsMinimized());
@@ -108,7 +108,7 @@ void DrawManager::ClearScreen() const
 	m_DrawCalls = 0;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::FinishFrame() const
 {
 	ReturnIf(m_Window.IsMinimized());
@@ -116,7 +116,7 @@ void DrawManager::FinishFrame() const
 	m_Renderer.FinishFrame();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool DrawManager::IsInsideWindow(const DrawParameters& p) const
 {
 	const Rectangle& dstRect		= p.m_PosRect;
@@ -126,19 +126,19 @@ bool DrawManager::IsInsideWindow(const DrawParameters& p) const
 		&& (dstRect.x < windowRect.w && dstRect.y < windowRect.h);
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Window& DrawManager::GetWindow()
 {
 	return m_Window;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 Renderer& DrawManager::GetRenderer()
 {
 	return m_Renderer;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::AddImage(Image* item)
 {
 	ReturnIf(!item);
@@ -149,7 +149,7 @@ void DrawManager::AddImage(Image* item)
 		});
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::AddText(Text* item)
 {
 	ReturnIf(!item);
@@ -160,7 +160,7 @@ void DrawManager::AddText(Text* item)
 		});
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::AddDynamicText(DynamicText* item)
 {
 	ReturnIf(!item);
@@ -171,7 +171,7 @@ void DrawManager::AddDynamicText(DynamicText* item)
 		});
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::RequestRemoveDynamicText(DynamicText* item)
 {
 	ReturnIf(!item);
@@ -185,7 +185,7 @@ void DrawManager::RequestRemoveDynamicText(DynamicText* item)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
 {
 	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
@@ -194,7 +194,7 @@ void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
 	m_DrawCalls++;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void DrawManager::RemoveEmptyItems()
 {
 	std::erase_if(m_Images, [](Image* item) {return !item || !item->GetData(); });

@@ -3,13 +3,13 @@
 #include "system/sdl_utils/containers/timer_container/TimerContainer.h"
 #include "system/sdl_utils/containers/config/TimerContainerConfig.h"
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TimerContainer::DoesTimerExist(TimerId id) const
 {
 	return id >= 0 && id < m_TimersContainer.size();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 // The default unit of time for the timers is a millisecond
 void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 {
@@ -25,7 +25,7 @@ void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 	m_TimersContainer.emplace_back(std::move(newTimer));
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TimerId TimerContainer::StartTimer(int64_t interval, ETimerType type)
 {
 	TimerId id = GetNextFreeId();
@@ -34,14 +34,14 @@ TimerId TimerContainer::StartTimer(int64_t interval, ETimerType type)
 	return id;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TimerContainer::DestroyTimer(TimerId id)
 {
 	//TODO
 	//m_TimersContainer.erase(m_TimersContainer.find(id));
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TimerContainer::SetPauseTimer(TimerId id, bool paused)
 {
 	AssertReturnIf(!DoesTimerExist(id));
@@ -49,7 +49,7 @@ void TimerContainer::SetPauseTimer(TimerId id, bool paused)
 	m_TimersContainer[id].m_Paused = paused;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TimerContainer::IsTimerTicked(TimerId id)
 {
 	AssertReturnIf(!DoesTimerExist(id), false);
@@ -68,7 +68,7 @@ bool TimerContainer::IsTimerTicked(TimerId id)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TimerContainer::IsTimerPaused(TimerId id) const
 {
 	AssertReturnIf(!DoesTimerExist(id), false);
@@ -76,30 +76,30 @@ bool TimerContainer::IsTimerPaused(TimerId id) const
 	return m_TimersContainer[id].m_Paused;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TimerContainer::TimerContainer()
 	: m_NextUniqueId(0)
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TimerContainer::~TimerContainer()
 {
 	Deinit();
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool TimerContainer::Init(const TimerContainerConfig& cfg)
 {
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TimerContainer::Deinit()
 {
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 void TimerContainer::Update(int32_t dt)
 {
 	for (auto& timer : m_TimersContainer)
@@ -116,7 +116,7 @@ void TimerContainer::Update(int32_t dt)
 	}
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 TimerId TimerContainer::GetNextFreeId()
 {
 	return TimerId(m_NextUniqueId++);

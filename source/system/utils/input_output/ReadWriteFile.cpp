@@ -4,7 +4,7 @@
 
 namespace ReadWriteFile
 {
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ReadFromFile(const std::string& fileName, std::string& readString)
 {
 	std::ifstream inStream(fileName, std::ios::in);
@@ -26,7 +26,7 @@ bool ReadFromFile(const std::string& fileName, std::string& readString)
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ReadFromFile(const std::string& fileName, std::vector<std::string>& readStrings)
 {
 	std::ifstream inStream(fileName, std::ios::in);
@@ -48,7 +48,7 @@ bool ReadFromFile(const std::string& fileName, std::vector<std::string>& readStr
 	return true;
 }
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool WriteToFile(const std::string& fileName,
 	const std::string& writeString, EWriteMode writeMode)
 {

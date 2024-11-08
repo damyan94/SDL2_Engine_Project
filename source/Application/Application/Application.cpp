@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "system/engine/Engine.h"
-#include "system/engine/config/EngineConfig.h"
+#include "Application/Application/Application.h"
+#include "Application/Application/config/ApplicationConfig.h"
 
 #include "system/sdl_utils/SDLLoader.h"
 
@@ -11,29 +11,29 @@
 #include "system/managers/AudioManager.h"
 #include "system/managers/TimerManager.h"
 #include "system/managers/ImGuiManager.h"
-#include "system/engine/settings/Settings.h"
-#include "application/App.h"
+#include "Application/Application/settings/Settings.h"
+#include "Application/Game/Game.h"
 
 #include <thread>
 
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;
 
-// =============================================================================
-Engine::Engine()
+////////////////////////////////////////////////////////////////////////////////
+Application::Application()
 	: m_ElapsedTimeMS(0)
 	, m_TargetFPS(0)
 	, m_TargetTimePerFrame(0)
 {
 }
 
-// =============================================================================
-Engine::~Engine()
+////////////////////////////////////////////////////////////////////////////////
+Application::~Application()
 {
 	Deinit();
 }
 
-// =============================================================================
-bool Engine::Init(const EngineConfig& cfg)
+////////////////////////////////////////////////////////////////////////////////
+bool Application::Init(const ApplicationConfig& cfg)
 {
 	srand((uint32_t)time(nullptr));
 
@@ -48,7 +48,7 @@ bool Engine::Init(const EngineConfig& cfg)
 	ReturnIf(!AudioManager::Instance().Init(cfg.m_AudioManagerConfig), false);
 	ReturnIf(!ImGuiManager::Instance().Init(cfg.m_ImGuiManagerConfig), false);
 
-	ReturnIf(!App::Instance().Init(cfg.m_AppConfig), false);
+	ReturnIf(!Game::Instance().Init(cfg.m_AppConfig), false);
 
 	m_TargetFPS = g_Settings->GetTargetFPS();
 	m_TargetTimePerFrame = 1000 / m_TargetFPS;
@@ -56,16 +56,16 @@ bool Engine::Init(const EngineConfig& cfg)
 	return true;
 }
 
-// =============================================================================
-void Engine::Deinit()
+////////////////////////////////////////////////////////////////////////////////
+void Application::Deinit()
 {
 	SDLLoader::Deinit();
 
 	g_Settings->Write();
 }
 
-// =============================================================================
-void Engine::HandleEvent()
+////////////////////////////////////////////////////////////////////////////////
+void Application::HandleEvent()
 {
 	DrawManager::Instance().HandleEvent(m_InputEvent);
 
@@ -73,7 +73,7 @@ void Engine::HandleEvent()
 	g_ImGuiManager->HandleEvent(m_InputEvent);
 #endif
 
-	App::Instance().HandleEvent(m_InputEvent);
+	Game::Instance().HandleEvent(m_InputEvent);
 
 	//TODO Move this to the settings menu or other appropriate place
 	if (m_InputEvent.m_Key == EKeyboardKey::E &&
@@ -90,20 +90,20 @@ void Engine::HandleEvent()
 	}
 }
 
-// =============================================================================
-void Engine::Update()
+////////////////////////////////////////////////////////////////////////////////
+void Application::Update()
 {
 	TimerManager::Instance().Update(m_ElapsedTimeMS);
 	DrawManager::Instance().Update(m_ElapsedTimeMS);
 
 	// Handle delays here so that we do not compromise our timers
-	App::Instance().Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
+	Game::Instance().Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
 		? m_ElapsedTimeMS
 		: m_ElapsedTimeMS = m_TargetTimePerFrame);
 }
 
-// =============================================================================
-void Engine::Draw() const
+////////////////////////////////////////////////////////////////////////////////
+void Application::Draw() const
 {
 	DrawManager::Instance().ClearScreen();
 	DrawManager::Instance().Draw();
@@ -116,8 +116,8 @@ void Engine::Draw() const
 }
 
 
-// =============================================================================
-void Engine::RunApplication()
+////////////////////////////////////////////////////////////////////////////////
+void Application::RunApplication()
 {
 	Time clock;
 
@@ -142,8 +142,8 @@ void Engine::RunApplication()
 	}
 }
 
-// =============================================================================
-void Engine::Sleep()
+////////////////////////////////////////////////////////////////////////////////
+void Application::Sleep()
 {
 	const int32_t sleepTime = m_TargetTimePerFrame - m_ElapsedTimeMS;
 

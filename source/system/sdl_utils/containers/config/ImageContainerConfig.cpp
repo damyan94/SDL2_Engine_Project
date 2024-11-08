@@ -5,7 +5,7 @@
 
 static const std::string c_TypeString = "Image";
 
-// =============================================================================
+////////////////////////////////////////////////////////////////////////////////
 bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 {
 	size_t startLine = Utils::ReadInt(readStrings[0], c_TypeString);

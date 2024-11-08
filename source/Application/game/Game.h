@@ -1,31 +1,33 @@
-#ifndef APP_GAME_GAME_H_
-#define APP_GAME_GAME_H_
+#ifndef APPLICATION_GAME_GAME_H_
+#define APPLICATION_GAME_GAME_H_
 
-#include "application/game/Camera.h"
+#include "application/ui/menus/MenuManager.h"
+#include "application/game/GameManager.h"
 
 struct GameConfig;
+class Camera;
 
 class Game
+	: public INonCopyMoveable
 {
-public:
+private:
 	Game();
 	~Game();
 
-	Game(const Game& other) = delete;
-	Game(Game&& other) = delete;
-
-	Game& operator=(const Game& other) = delete;
-	Game& operator=(Game&& other) = delete;
+public:
+	static Game& Instance();
 
 	bool				Init(const GameConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
 
+public:
 	const Camera&		GetCamera();
 
 private:
-	Camera				m_Camera;
+	MenuManager			m_MenuManager;
+	GameManager			m_Game;
 };
 
-#endif // !APP_GAME_GAME_H_
+#endif // !APPLICATION_GAME_GAME_H_

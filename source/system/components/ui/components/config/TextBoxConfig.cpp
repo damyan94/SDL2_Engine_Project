@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "system/components/ui/components/config/TextBoxConfig.h"
+#include "System/Components/UI/Components/Config/TextBoxConfig.h"
 
-#include "system/defines/ConfigFilePaths.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "Textbox";
 

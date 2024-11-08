@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "system/components/drawing/Text.h"
+#include "System/Components/Drawing/Text.h"
 
-#include "system/managers/AssetManager.h"
-#include "system/managers/DrawManager.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/DrawManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Text::Text()

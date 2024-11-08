@@ -4,13 +4,13 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_sdlrenderer.h"
 
-#include "system/managers/ImGuiManager.h"
-#include "system/managers/config/ImGuiManagerConfig.h"
+#include "System/Managers/ImGuiManager.h"
+#include "System/Managers/Config/ImGuiManagerConfig.h"
 
-#include "system/sdl_utils/drawing/Window.h"
-#include "system/sdl_utils/drawing/Renderer.h"
+#include "System/SDLUtils/Drawing/Window.h"
+#include "System/SDLUtils/Drawing/Renderer.h"
 
-#include "system/managers/DrawManager.h"
+#include "System/Managers/DrawManager.h"
 
 // Our state
 //bool show_demo_window = true;

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/managers/config/DrawManagerConfig.h"
+#include "System/Managers/Config/DrawManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool DrawManagerConfig::Read(const ConfigStrings& readStrings)

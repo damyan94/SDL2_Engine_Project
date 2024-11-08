@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "application/game/Camera.h"
+#include "Application/Game/Camera.h"
 
-#include "system/managers/ManagersHelpers.h"
+#include "System/Managers/ManagersHelpers.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Camera::Camera()

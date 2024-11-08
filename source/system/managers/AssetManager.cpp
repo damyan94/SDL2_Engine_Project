@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "system/managers/AssetManager.h"
-#include "system/managers/config/AssetManagerConfig.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/Config/AssetManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 AssetManager::AssetManager()

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "application/game/Camera.h"
+#include "Application/Game/Camera.h"
 
 struct GameManagerConfig;
 

@@ -1,17 +1,17 @@
 #include "stdafx.h"
 
 #include "Application/Application/Application.h"
-#include "Application/Application/config/ApplicationConfig.h"
+#include "Application/Application/Config/ApplicationConfig.h"
 
-#include "system/sdl_utils/SDLLoader.h"
+#include "System/SDLUtils/SDLLoader.h"
 
 //TODO maybe wrap all this in a System.h and have a similar API to the engine
-#include "system/managers/DrawManager.h"
-#include "system/managers/AssetManager.h"
-#include "system/managers/AudioManager.h"
-#include "system/managers/TimerManager.h"
-#include "system/managers/ImGuiManager.h"
-#include "Application/Application/settings/Settings.h"
+#include "System/Managers/DrawManager.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/AudioManager.h"
+#include "System/Managers/TimerManager.h"
+#include "System/Managers/ImGuiManager.h"
+#include "Application/Application/Settings/Settings.h"
 #include "Application/Game/Game.h"
 
 #include <thread>

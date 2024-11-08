@@ -1,12 +1,12 @@
 #pragma once
 
-#include "system/managers/config/DrawManagerConfig.h"
-#include "system/managers/config/AssetManagerConfig.h"
-#include "system/managers/config/AudioManagerConfig.h"
-#include "system/managers/config/TimerManagerConfig.h"
-#include "system/managers/config/ImGuiManagerConfig.h"
+#include "System/Managers/Config/DrawManagerConfig.h"
+#include "System/Managers/Config/AssetManagerConfig.h"
+#include "System/Managers/Config/AudioManagerConfig.h"
+#include "System/Managers/Config/TimerManagerConfig.h"
+#include "System/Managers/Config/ImGuiManagerConfig.h"
 
-#include "application/game/config/GameConfig.h"
+#include "Application/Game/Config/GameConfig.h"
 
 struct ApplicationConfig
 {

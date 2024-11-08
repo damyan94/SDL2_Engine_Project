@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "application/Game/config/GameConfig.h"
+#include "Application/Game/Config/GameConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool GameConfig::Read(const ConfigStrings& readStrings)

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/geometry/Circle.h"
+#include "System/Utils/Geometry/Circle.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 const Circle Circle::Zero		= Circle(0, 0, 0);

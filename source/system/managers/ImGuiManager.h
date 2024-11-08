@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/sdl_utils/input/InputEvent.h"
+#include "System/SDLUtils/Input/InputEvent.h"
 
 struct ImGuiManagerConfig;
 

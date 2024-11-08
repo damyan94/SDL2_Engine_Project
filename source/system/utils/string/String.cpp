@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/string/String.h"
+#include "System/Utils/String/String.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 String::String()

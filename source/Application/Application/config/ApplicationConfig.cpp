@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "Application/Application/config/ApplicationConfig.h"
-#include "system/defines/ConfigFilePaths.h"
+#include "Application/Application/Config/ApplicationConfig.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool ApplicationConfig::Read()

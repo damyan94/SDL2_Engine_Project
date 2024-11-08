@@ -23,26 +23,26 @@
 #include <utility>
 #include <functional>
 
-#include "system/utils/Defines.h"
-#include "system/sdl_utils/Defines.h"
-#include "system/managers/Defines.h"
+#include "System/Utils/Defines.h"
+#include "System/SDLUtils/Defines.h"
+#include "System/Managers/Defines.h"
 
-#include "system/utils/drawing/Color.h"
+#include "System/Utils/Drawing/Color.h"
 
-#include "system/utils/geometry/Point.h"
-#include "system/utils/geometry/Rectangle.h"
-#include "system/utils/geometry/Circle.h"
-#include "system/utils/geometry/Position.h"
+#include "System/Utils/Geometry/Point.h"
+#include "System/Utils/Geometry/Rectangle.h"
+#include "System/Utils/Geometry/Circle.h"
+#include "System/Utils/Geometry/Position.h"
 
-#include "system/utils/others/CodeReadability.h"
-#include "system/utils/others/Crypto.h"
-#include "system/utils/others/Hash.h"
-#include "system/utils/others/RandomNumberGenerator.h"
+#include "System/Utils/Others/CodeReadability.h"
+#include "System/Utils/Others/Crypto.h"
+#include "System/Utils/Others/Hash.h"
+#include "System/Utils/Others/RandomNumberGenerator.h"
 
-#include "system/utils/time/Time.h"
+#include "System/Utils/Time/Time.h"
 
-#include "system/utils/string/String.h"
+#include "System/Utils/String/String.h"
 
-#include "system/utils/input_output/Log.h"
-#include "system/utils/input_output/ReadWriteFile.h"
-#include "system/utils/input_output/ConfigReaderUtils.h"
+#include "System/Utils/InputOutput/Log.h"
+#include "System/Utils/InputOutput/ReadWriteFile.h"
+#include "System/Utils/InputOutput/ConfigReaderUtils.h"

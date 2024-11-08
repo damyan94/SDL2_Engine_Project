@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "system/managers/config/AudioManagerConfig.h"
+#include "System/Managers/Config/AudioManagerConfig.h"
 
-#include "system/defines/ConfigFilePaths.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool AudioManagerConfig::Read()

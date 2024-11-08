@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "system/managers/config/ImGuiManagerConfig.h"
+#include "System/Managers/Config/ImGuiManagerConfig.h"
 
-#include "system/defines/ConfigFilePaths.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool ImGuiManagerConfig::Read()

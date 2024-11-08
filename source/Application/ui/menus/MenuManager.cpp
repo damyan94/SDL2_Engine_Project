@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
-#include "application/ui/menus/MenuManager.h"
-#include "application/ui/menus/config/MenuManagerConfig.h"
+#include "Application/UI/Menus/MenuManager.h"
+#include "Application/UI/Menus/Config/MenuManagerConfig.h"
 
-#include "application/ui/menus/console_menu/ConsoleMenu.h"
-#include "application/ui/menus/start_menu/StartMenu.h"
+#include "Application/UI/Menus/ConsoleMenu/ConsoleMenu.h"
+#include "Application/UI/Menus/StartMenu/StartMenu.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 MenuManager::MenuManager()

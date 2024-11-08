@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "system/components/time/Timer.h"
+#include "System/Components/Time/Timer.h"
 
-#include "system/managers/TimerManager.h"
+#include "System/Managers/TimerManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Timer::Timer()

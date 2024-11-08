@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/managers/config/TimerManagerConfig.h"
+#include "System/Managers/Config/TimerManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool TimerManagerConfig::Read()

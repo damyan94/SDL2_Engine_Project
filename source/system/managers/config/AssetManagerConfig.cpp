@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/managers/config/AssetManagerConfig.h"
+#include "System/Managers/Config/AssetManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool AssetManagerConfig::Read(const ConfigStrings& readStrings)

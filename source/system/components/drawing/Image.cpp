@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "system/components/drawing/Image.h"
+#include "System/Components/Drawing/Image.h"
 
-#include "system/managers/AssetManager.h"
-#include "system/managers/DrawManager.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/DrawManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Image::Image()

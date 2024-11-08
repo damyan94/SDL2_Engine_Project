@@ -1,17 +1,17 @@
 #include "stdafx.h"
 
-#include "system/managers/DrawManager.h"
-#include "system/managers/config/DrawManagerConfig.h"
+#include "System/Managers/DrawManager.h"
+#include "System/Managers/Config/DrawManagerConfig.h"
 
-#include "system/sdl_utils/drawing/DrawParameters.h"
-#include "system/sdl_utils/drawing/Texture.h"
-#include "system/sdl_utils/drawing/SDLDrawing.h"
-#include "system/sdl_utils/containers/image_container/ImageData.h"
-#include "system/sdl_utils/containers/text_container/TextData.h"
+#include "System/SDLUtils/Drawing/DrawParameters.h"
+#include "System/SDLUtils/Drawing/Texture.h"
+#include "System/SDLUtils/Drawing/SDLDrawing.h"
+#include "System/SDLUtils/Containers/Data/ImageData.h"
+#include "System/SDLUtils/Containers/Data/TextData.h"
 
-#include "system/components/drawing/Image.h"
-#include "system/components/drawing/Text.h"
-#include "system/components/drawing/DynamicText.h"
+#include "System/Components/Drawing/Image.h"
+#include "System/Components/Drawing/Text.h"
+#include "System/Components/Drawing/DynamicText.h"
 
 static constexpr int32_t ERASE_TIME = 10000;
 

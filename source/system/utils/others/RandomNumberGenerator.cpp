@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/others/RandomNumberGenerator.h"
+#include "System/Utils/Others/RandomNumberGenerator.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 RandomNumberGenerator::RandomNumberGenerator()

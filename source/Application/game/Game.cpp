@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "application/Game/Game.h"
-#include "application/Game/config/GameConfig.h"
+#include "Application/Game/Game.h"
+#include "Application/Game/Config/GameConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Game::Game()

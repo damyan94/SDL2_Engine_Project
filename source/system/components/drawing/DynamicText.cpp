@@ -1,12 +1,12 @@
 #include "stdafx.h"
 
-#include "system/components/drawing/DynamicText.h"
+#include "System/Components/Drawing/DynamicText.h"
 
 //TODO major refactoring needed
-#include "system/sdl_utils/drawing/Texture.h"
+#include "System/SDLUtils/Drawing/Texture.h"
 
-#include "system/managers/AssetManager.h"
-#include "system/managers/DrawManager.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/DrawManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 DynamicText::DynamicText()

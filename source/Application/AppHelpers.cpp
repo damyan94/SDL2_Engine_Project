@@ -2,7 +2,7 @@
 
 #include "Application/AppHelpers.h"
 
-#include "Application/game/Game.h"
+#include "Application/Game/Game.h"
 
 namespace Helpers
 {

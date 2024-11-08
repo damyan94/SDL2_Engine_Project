@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/geometry/Point.h"
+#include "System/Utils/Geometry/Point.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 const Point Point::Zero			= Point(0, 0);

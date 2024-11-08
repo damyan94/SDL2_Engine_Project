@@ -1,8 +1,8 @@
 #pragma once
 
-#include "application/defines/Defines.h"
-#include "application/ui/menus/config/MenuManagerConfig.h"
-#include "application/game/config/GameManagerConfig.h"
+#include "Application/Defines/Defines.h"
+#include "Application/UI/Menus/Config/MenuManagerConfig.h"
+#include "Application/Game/Config/GameManagerConfig.h"
 
 struct GameConfig
 {

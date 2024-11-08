@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/sdl_utils/audio/AudioParameters.h"
+#include "System/SDLUtils/Audio/AudioParameters.h"
 
 class AudioObject
 {

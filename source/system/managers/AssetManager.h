@@ -1,10 +1,10 @@
 #pragma once
 
-#include "system/sdl_utils/containers/image_container/ImageContainer.h"
-#include "system/sdl_utils/containers/text_container/TextContainer.h"
-#include "system/sdl_utils/containers/font_container/FontContainer.h"
-#include "system/sdl_utils/containers/sound_container/SoundContainer.h"
-#include "system/sdl_utils/containers/music_container/MusicContainer.h"
+#include "System/SDLUtils/Containers/ImageContainer.h"
+#include "System/SDLUtils/Containers/TextContainer.h"
+#include "System/SDLUtils/Containers/FontContainer.h"
+#include "System/SDLUtils/Containers/SoundContainer.h"
+#include "System/SDLUtils/Containers/MusicContainer.h"
 
 struct AssetManagerConfig;
 

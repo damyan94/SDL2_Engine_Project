@@ -1,7 +1,7 @@
 #pragma once
 
-#include "system/components/drawing/DrawObject.h"
-#include "system/sdl_utils/containers/image_container/ImageData.h"
+#include "System/Components/Drawing/DrawObject.h"
+#include "System/SDLUtils/Containers/Data/ImageData.h"
 
 class Image
 	: public DrawObject

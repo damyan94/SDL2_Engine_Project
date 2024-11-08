@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/sdl_utils/drawing/DrawParameters.h"
+#include "System/SDLUtils/Drawing/DrawParameters.h"
 
 class DrawObject
 {

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/containers/BinaryStruct.h"
+#include "System/Utils/Containers/BinaryStruct.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 BinaryStruct::BinaryStruct()

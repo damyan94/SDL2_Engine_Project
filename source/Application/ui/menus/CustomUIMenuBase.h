@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/components/ui/base_classes/UIMenuBase.h"
+#include "System/Components/UI/BaseClasses/UIMenuBase.h"
 
 class InputEvent;
 class UIComponentBase;

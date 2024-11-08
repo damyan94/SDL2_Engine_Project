@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/components/drawing/DrawObject.h"
+#include "System/Components/Drawing/DrawObject.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 DrawObject::DrawObject()

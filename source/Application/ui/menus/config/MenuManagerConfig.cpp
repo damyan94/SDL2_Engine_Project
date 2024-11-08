@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "application/ui/menus/config/MenuManagerConfig.h"
+#include "Application/UI/Menus/Config/MenuManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool MenuManagerConfig::Read(const ConfigStrings& readStrings)

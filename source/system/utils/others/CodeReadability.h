@@ -1,7 +1,7 @@
 #pragma once
 
-#include "system/utils/Defines.h"
-#include "system/utils/input_output/Assert.h"
+#include "System/Utils/Defines.h"
+#include "System/Utils/InputOutput/Assert.h"
 
 #ifdef ReturnIf
 	#undef ReturnIf

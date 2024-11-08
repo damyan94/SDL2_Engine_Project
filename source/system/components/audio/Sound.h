@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/components/audio/AudioObject.h"
+#include "System/Components/Audio/AudioObject.h"
 
 struct SoundData;
 

@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "system/components/ui/components/Button.h"
-#include "system/components/ui/components/config/ButtonConfig.h"
+#include "System/Components/UI/Components/Button.h"
+#include "System/Components/UI/Components/Config/ButtonConfig.h"
 
-#include "system/sdl_utils/containers/text_container/TextData.h"
+#include "System/SDLUtils/Containers/Data/TextData.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Button::Button()

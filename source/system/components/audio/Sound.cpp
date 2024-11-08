@@ -1,9 +1,9 @@
 #include "stdafx.h"
 
-#include "system/components/audio/Sound.h"
+#include "System/Components/Audio/Sound.h"
 
-#include "system/managers/AssetManager.h"
-#include "system/managers/AudioManager.h"
+#include "System/Managers/AssetManager.h"
+#include "System/Managers/AudioManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Sound::Sound()

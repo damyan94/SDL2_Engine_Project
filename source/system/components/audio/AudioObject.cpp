@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/components/audio/AudioObject.h"
+#include "System/Components/Audio/AudioObject.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 AudioObject::AudioObject()

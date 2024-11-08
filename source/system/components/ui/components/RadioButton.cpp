@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "system/components/ui/components/RadioButton.h"
-#include "system/components/ui/components/config/RadioButtonConfig.h"
+#include "System/Components/UI/Components/RadioButton.h"
+#include "System/Components/UI/Components/Config/RadioButtonConfig.h"
 
 const int32_t STANDARD_SPACING = 4;
 

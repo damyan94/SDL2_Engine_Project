@@ -1,6 +1,6 @@
 #pragma once
 
-#include "application/ui/menus/start_menu/config/StartMenuConfig.h"
+#include "Application/UI/Menus/StartMenu/Config/StartMenuConfig.h"
 
 struct ConsoleMenuConfig {};
 

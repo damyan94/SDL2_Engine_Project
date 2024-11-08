@@ -1,11 +1,11 @@
 #pragma once
 
-#include "system/sdl_utils/input/InputEvent.h"
+#include "System/SDLUtils/Input/InputEvent.h"
 
-#include "system/components/ui/base_classes/UIComponentBase.h"
-#include "system/components/drawing/Image.h"
-#include "system/components/drawing/Text.h"
-#include "system/components/audio/Sound.h"
+#include "System/Components/UI/BaseClasses/UIComponentBase.h"
+#include "System/Components/Drawing/Image.h"
+#include "System/Components/Drawing/Text.h"
+#include "System/Components/Audio/Sound.h"
 
 struct CheckboxConfig;
 

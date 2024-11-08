@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "application/game/GameManager.h"
-#include "application/game/config/GameConfig.h"
+#include "Application/Game/GameManager.h"
+#include "Application/Game/Config/GameConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 GameManager::GameManager()

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "system/sdl_utils/input/InputEvent.h"
-#include "system/sdl_utils/drawing/Window.h"
-#include "system/sdl_utils/drawing/Renderer.h"
-#include "system/components/time/Timer.h"
+#include "System/SDLUtils/Input/InputEvent.h"
+#include "System/SDLUtils/Drawing/Window.h"
+#include "System/SDLUtils/Drawing/Renderer.h"
+#include "System/Components/Time/Timer.h"
 
 struct DrawManagerConfig;
 struct DrawParameters;

@@ -1,6 +1,7 @@
 /.git/
-/_distribution
-/build
-/prj/Windows
-/prj/Linux
-!/prj/premake5.exe
+/.vs/
+/_Distribution
+/Build
+/Project/Windows
+/Project/Linux
+!/Project/premake5.exe

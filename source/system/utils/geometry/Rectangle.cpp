@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/geometry/Rectangle.h"
+#include "System/Utils/Geometry/Rectangle.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 const Rectangle Rectangle::Zero			= Rectangle(0, 0, 0, 0);

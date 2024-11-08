@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/components/drawing/DrawObject.h"
+#include "System/Components/Drawing/DrawObject.h"
 
 struct TextData;
 

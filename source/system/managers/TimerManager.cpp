@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "system/managers/TimerManager.h"
-#include "system/managers/config/TimerManagerConfig.h"
+#include "System/Managers/TimerManager.h"
+#include "System/Managers/Config/TimerManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 TimerManager::TimerManager()

@@ -1,11 +1,11 @@
 #include "stdafx.h"
 
-#include "system/managers/AudioManager.h"
-#include "system/managers/config/AudioManagerConfig.h"
+#include "System/Managers/AudioManager.h"
+#include "System/Managers/Config/AudioManagerConfig.h"
 
-#include "system/sdl_utils/audio/Audio.h"
-#include "system/sdl_utils/containers/sound_container/SoundData.h"
-#include "system/sdl_utils/containers/music_container/MusicData.h"
+#include "System/SDLUtils/Audio/Audio.h"
+#include "System/SDLUtils/Containers/Data/SoundData.h"
+#include "System/SDLUtils/Containers/Data/MusicData.h"
 
 AudioManager* g_AudioManager = nullptr;
 

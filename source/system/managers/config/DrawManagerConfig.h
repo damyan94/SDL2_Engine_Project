@@ -1,7 +1,7 @@
 #pragma once
 
-#include "system/sdl_utils/drawing/config/WindowConfig.h"
-#include "system/sdl_utils/drawing/config/RendererConfig.h"
+#include "System/SDLUtils/Drawing/config/WindowConfig.h"
+#include "System/SDLUtils/Drawing/config/RendererConfig.h"
 
 struct DrawManagerConfig
 {

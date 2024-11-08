@@ -1,7 +1,7 @@
 #pragma once
 
-#include "application/ui/menus/MenuManager.h"
-#include "application/game/GameManager.h"
+#include "Application/UI/Menus/MenuManager.h"
+#include "Application/Game/GameManager.h"
 
 struct GameConfig;
 class Camera;

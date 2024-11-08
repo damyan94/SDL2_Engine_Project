@@ -1,10 +1,10 @@
 #include "stdafx.h"
 
-#include "system/components/ui/components/TextBox.h"
-#include "system/components/ui/components/config/TextBoxConfig.h"
+#include "System/Components/UI/Components/TextBox.h"
+#include "System/Components/UI/Components/Config/TextBoxConfig.h"
 
-#include "system/sdl_utils/containers/text_container/TextData.h"
-#include "system/sdl_utils/drawing/SDLDrawing.h"
+#include "System/SDLUtils/Containers/Data/TextData.h"
+#include "System/SDLUtils/Drawing/SDLDrawing.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 TextBox::TextBox()

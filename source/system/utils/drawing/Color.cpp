@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "system/utils/drawing/Color.h"
+#include "System/Utils/Drawing/Color.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Color::Color()

@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "system/managers/ManagersHelpers.h"
+#include "System/Managers/ManagersHelpers.h"
 
-#include "system/managers/DrawManager.h"
+#include "System/Managers/DrawManager.h"
 
 namespace Helpers
 {

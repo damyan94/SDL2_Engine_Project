@@ -4,7 +4,7 @@
 #include <SDL_hints.h>
 
 #include "System/SDLUtils/Drawing/Renderer.h"
-#include "System/SDLUtils/Drawing/config/RendererConfig.h"
+#include "System/SDLUtils/Drawing/Config/RendererConfig.h"
 
 #include "System/SDLUtils/Drawing/DrawParameters.h"
 #include "System/SDLUtils/Drawing/Texture.h"

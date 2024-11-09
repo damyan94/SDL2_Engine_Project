@@ -10,7 +10,7 @@ static const std::string MainDir = "../../../";
 static const std::string MainDir = "";
 #endif // !_DEBUG || _RELEASE
 
-static const std::string SystemConfig			= MainDir + "config/system.cfg";
-static const std::string AssetsConfig			= MainDir + "config/config.cfg";
-static const std::string ObjectsConfig			= MainDir + "config/config.cfg";
+static const std::string SystemConfig			= MainDir + "Config/System.cfg";
+static const std::string AssetsConfig			= MainDir + "Config/Config.cfg";
+static const std::string ObjectsConfig			= MainDir + "Config/Config.cfg";
 } // !ConfigFilePaths

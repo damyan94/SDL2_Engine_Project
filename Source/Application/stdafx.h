@@ -1,6 +1,6 @@
 #pragma once
 
-#include "system/stdafx.h"
+#include "System/stdafx.h"
 
 #include "Application/Defines/Defines.h"
 

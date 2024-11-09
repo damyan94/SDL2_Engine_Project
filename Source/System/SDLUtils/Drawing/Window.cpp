@@ -3,7 +3,7 @@
 #include <SDL_video.h>
 
 #include "System/SDLUtils/Drawing/Window.h"
-#include "System/SDLUtils/Drawing/config/WindowConfig.h"
+#include "System/SDLUtils/Drawing/Config/WindowConfig.h"
 
 #include "System/SDLUtils/Input/InputEvent.h"
 

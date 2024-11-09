@@ -3,7 +3,7 @@
 #include "Application/Application/Settings/Settings.h"
 #include "System/Defines/ConfigFilePaths.h"
 
-static const std::string c_SettingsFileName = ConfigFilePaths::MainDir + "config/settings.cfg";
+static const std::string c_SettingsFileName = ConfigFilePaths::MainDir + "Config/Settings.cfg";
 
 Settings* const g_Settings = new Settings;
 

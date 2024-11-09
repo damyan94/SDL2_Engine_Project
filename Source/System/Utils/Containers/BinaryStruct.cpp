@@ -27,7 +27,7 @@ bool BinaryStruct::UpdateFromFile(const std::string& fileName)
 	SafeDelete(m_Data);
 
 	std::ifstream in("binary_test.bin", std::ios::in | std::ios::binary | std::ios::ate);
-	const int32_t dataSize = in.tellg();
+	const auto dataSize = in.tellg();
 
 	m_Data = new uint8_t[dataSize]{ '\0' };
 	in.seekg(0);

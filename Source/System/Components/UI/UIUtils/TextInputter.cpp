@@ -53,8 +53,8 @@ bool TextInputter::Init(const TextInputterConfig& cfg)
 	m_MaxChars			= cfg.m_MaxChars;
 	m_TextContent		= cfg.m_TextString;
 	m_WSTextContent		= UTF8BytesToWideString(m_TextContent);
-	m_CursorPos			= m_TextContent.size();
-	m_WSCursorPos		= m_WSTextContent.size();
+	m_CursorPos			= (int32_t)m_TextContent.size();
+	m_WSCursorPos		= (int32_t)m_WSTextContent.size();
 
 	m_History.reserve(c_MaxHistoryRecords * 32);
 
@@ -150,10 +150,10 @@ void TextInputter::ToggleShouldHandleEnterKey(bool enterKey)
 ////////////////////////////////////////////////////////////////////////////////
 void TextInputter::Reset()
 {
-	m_CurrHistory		= m_History.size();
-	m_CursorPos			= m_TextContent.size();
+	m_CurrHistory		= (int32_t)m_History.size();
+	m_CursorPos			= (int32_t)m_TextContent.size();
 	m_WSTextContent		= UTF8BytesToWideString(m_TextContent);
-	m_WSCursorPos		= m_WSTextContent.size();
+	m_WSCursorPos		= (int32_t)m_WSTextContent.size();
 	m_CursorTimer.SetPause(true);
 	m_Cursor.SetIsVisible(false);
 	InputEvent::ToggleTextInput(false);
@@ -200,7 +200,7 @@ void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 	}
 	else if (m_CurrHistory >= (int32_t)m_History.size() + 1)
 	{
-		m_CurrHistory = m_History.size();
+		m_CurrHistory = (int32_t)m_History.size();
 	}
 
 	// Handle valid history record
@@ -216,13 +216,13 @@ void TextInputter::HandleHistoryNavigation(const InputEvent& e)
 	}
 
 	// Handle history string shorter than current input
-	if (m_CursorPos > m_TextContent.size())
+	if (m_CursorPos > (int32_t)m_TextContent.size())
 	{
-		m_CursorPos = m_TextContent.size();
+		m_CursorPos = (int32_t)m_TextContent.size();
 	}
-	if (m_WSCursorPos > m_WSTextContent.size())
+	if (m_WSCursorPos > (int32_t)m_WSTextContent.size())
 	{
-		m_WSCursorPos = m_WSTextContent.size();
+		m_WSCursorPos = (int32_t)m_WSTextContent.size();
 	}
 
 	m_IsDirty = true;
@@ -240,14 +240,14 @@ void TextInputter::HandleHorizontalNavigation(const InputEvent& e)
 		ReturnIf(m_WSCursorPos <= 0);
 
 		m_WSCursorPos--;
-		size_t movedBytes = WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
+		int32_t movedBytes = (int32_t)WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
 		m_CursorPos -= movedBytes;
 	}
 	else if (e.m_Key == EKeyboardKey::Right)
 	{
 		ReturnIf(m_WSCursorPos >= m_WSTextContent.size());
 
-		size_t movedBytes = WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
+		int32_t movedBytes = (int32_t)WideStringToUTF8Bytes(m_WSTextContent[m_WSCursorPos]).size();
 		m_WSCursorPos++;
 		m_CursorPos += movedBytes;
 	}
@@ -271,9 +271,9 @@ void TextInputter::HandleTextInput(const InputEvent& e)
 	}
 	const auto& wSCharsToInsert = UTF8BytesToWideString(e.m_TextInput);
 	m_WSTextContent += wSCharsToInsert;
-	m_WSCursorPos += wSCharsToInsert.size();
+	m_WSCursorPos += (int32_t)wSCharsToInsert.size();
 
-	m_CurrHistory = m_History.size();
+	m_CurrHistory = (int32_t)m_History.size();
 	m_IsDirty = true;
 }
 
@@ -290,7 +290,7 @@ void TextInputter::HandleDeletion(const InputEvent& e)
 
 		m_WSCursorPos--;
 		auto& wSCharToDelete = m_WSTextContent[m_WSCursorPos];
-		size_t bytesToDelete = WideStringToUTF8Bytes(wSCharToDelete).size();
+		int32_t bytesToDelete = (int32_t)WideStringToUTF8Bytes(wSCharToDelete).size();
 		m_WSTextContent.erase(m_WSCursorPos, 1);
 
 		m_CursorPos -= bytesToDelete;
@@ -327,7 +327,7 @@ void TextInputter::HandleEnterKey(const InputEvent& e)
 	m_CursorPos = 0;
 	m_TextContent.clear();
 	m_WSTextContent = UTF8BytesToWideString(m_TextContent);
-	m_WSCursorPos = m_WSTextContent.size();
+	m_WSCursorPos = (int32_t)m_WSTextContent.size();
 	m_Text.SetText("");
 
 	m_IsDirty = true;

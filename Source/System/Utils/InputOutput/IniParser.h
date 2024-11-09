@@ -29,3 +29,10 @@ public:
 private:
 
 };
+
+////////////////////////////////////////////////////////////////////////////////
+template<typename T>
+inline bool IniStruct::Get(const String& nameToSearch, T& outValue)
+{
+	return true;
+}

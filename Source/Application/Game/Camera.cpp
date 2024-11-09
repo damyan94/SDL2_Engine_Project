@@ -210,7 +210,7 @@ void Camera::HandleZooming(const InputEvent& e)
 {
 	ReturnIf(e.m_Type != EEventType::MouseWheel);
 
-	if (e.m_Wheel > (float)EMouseWheel::UpDownTreshold)
+	if (e.m_Wheel > (int32_t)EMouseWheel::UpDownTreshold)
 	{
 		m_ZoomData.m_Zoom += m_ZoomData.m_ZoomSpeed;
 		if (m_ZoomData.m_Zoom > m_CameraData.m_MaxZoom)

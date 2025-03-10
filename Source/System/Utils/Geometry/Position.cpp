@@ -1,95 +1,30 @@
 #include "stdafx.h"
 
 #include "System/Utils/Geometry/Position.h"
+#include "System/Utils/Geometry/GeometryShapeBase.h"
+//#include "System/Utils/Geometry/Rectangle.h"
+//#include "System/Utils/Geometry/Circle.h"
 
 namespace Position
 {
 ////////////////////////////////////////////////////////////////////////////////
-Point TopLeft(const Rectangle& object, const Rectangle& container)
+Point PositonRelativeToParent(const GeometryShapeBase& object, const GeometryShapeBase& parent,
+	EHorizontalAlignment ha, EVerticalAlignment va)
 {
-	Point pos = Point::Undefined;
-	pos.x = container.x;
-	pos.y = container.y;
+	Point pos = { parent.x, parent.y };
 
-	return pos;
-}
+	int32_t offsetX
+		= ha == EHorizontalAlignment::Center ? (parent.GetWidth() - object.GetWidth()) / 2
+		: ha == EHorizontalAlignment::Right ? parent.GetWidth() - object.GetWidth()
+		: 0;
 
-////////////////////////////////////////////////////////////////////////////////
-Point TopCenter(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + (container.w - object.w) / 2;
-	pos.y = container.y;
+	int32_t offsetY
+		= va == EVerticalAlignment::Middle ? (parent.GetHeight() - object.GetHeight()) / 2
+		: va == EVerticalAlignment::Bottom ? parent.GetHeight() - object.GetHeight()
+		: 0;
 
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point TopRight(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + container.w - object.w;
-	pos.y = container.y;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point MiddleLeft(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x;
-	pos.y = container.y + (container.h - object.h) / 2;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point MiddleCenter(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + (container.w - object.w) / 2;
-	pos.y = container.y + (container.h - object.h) / 2;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point MiddleRight(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + container.w - object.w;
-	pos.y = container.y + (container.h - object.h) / 2;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point BottomLeft(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x;
-	pos.y = container.y + container.h - object.h;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point BottomCenter(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + (container.w - object.w) / 2;
-	pos.y = container.y + container.h - object.h;
-
-	return pos;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Point BottomRight(const Rectangle& object, const Rectangle& container)
-{
-	Point pos = Point::Undefined;
-	pos.x = container.x + container.w - object.w;
-	pos.y = container.y + container.h - object.h;
+	pos.x += offsetX;
+	pos.y += offsetY;
 
 	return pos;
 }

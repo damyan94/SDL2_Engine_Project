@@ -1,16 +1,25 @@
 #pragma once
 
+struct GeometryShapeBase;
+
 namespace Position
 {
-Point TopLeft(const Rectangle& object, const Rectangle& container);
-Point TopCenter(const Rectangle& object, const Rectangle& container);
-Point TopRight(const Rectangle& object, const Rectangle& container);
+enum class EHorizontalAlignment
+	: uint8_t
+{
+	Left,
+	Center,
+	Right,
+};
 
-Point MiddleLeft(const Rectangle& object, const Rectangle& container);
-Point MiddleCenter(const Rectangle& object, const Rectangle& container);
-Point MiddleRight(const Rectangle& object, const Rectangle& container);
+enum class EVerticalAlignment
+	: uint8_t
+{
+	Top,
+	Middle,
+	Bottom
+};
 
-Point BottomLeft(const Rectangle& object, const Rectangle& container);
-Point BottomCenter(const Rectangle& object, const Rectangle& container);
-Point BottomRight(const Rectangle& object, const Rectangle& container);
+Point PositonRelativeToParent(const GeometryShapeBase& object, const GeometryShapeBase& parent,
+	EHorizontalAlignment ha = EHorizontalAlignment::Center, EVerticalAlignment va = EVerticalAlignment::Middle);
 } // !namespace Position

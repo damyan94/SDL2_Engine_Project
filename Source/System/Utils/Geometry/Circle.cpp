@@ -8,22 +8,15 @@ const Circle Circle::Undefined	= Circle(0xFFFFFFFF, 0xFFFFFFFF, 0);
 
 ////////////////////////////////////////////////////////////////////////////////
 Circle::Circle()
-	: x(0)
-	, y(0)
+	: GeometryShapeBase(0, 0)
 	, r(0)
 {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 Circle::Circle(int32_t posX, int32_t posY, int32_t radius)
-	: x(posX)
-	, y(posY)
+	: GeometryShapeBase(posX, posY)
 	, r(radius)
-{
-}
-
-////////////////////////////////////////////////////////////////////////////////
-Circle::~Circle()
 {
 }
 
@@ -47,4 +40,16 @@ bool Circle::IsPointInside(const Point& point) const
 		+ pow(double(point.y) - double(this->y), 2));
 
 	return distanceToCenter <= this->r;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+int32_t Circle::GetWidth() const
+{
+	return r * 2;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+int32_t Circle::GetHeight() const
+{
+	return r * 2;
 }

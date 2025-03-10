@@ -67,7 +67,7 @@ void Button::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);
 
-	const auto& textPos = Position::MiddleCenter(m_Text.GetData()->m_FrameRect, m_Image.GetPosRect());
+	const auto& textPos = Position::PositonRelativeToParent(m_Text.GetData()->m_FrameRect, m_Image.GetPosRect());
 	m_Text.SetPos(textPos);
 }
 

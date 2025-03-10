@@ -41,6 +41,11 @@ bool Text::Init(TextId id)
 
 	m_DrawParameters.m_IsVisible		= true;
 
+	//TODO remove this complexity and bring back the Draw method and handle drawing explicitly
+	//Will not be implementing the ECS idea - too complex and benefits questionable at this stage
+	//Turns out SDL_RenderPresent takes the bulk of processor time, even for 50000 objects, which
+	//is way too much more than would realistically be drawn or updated, the ECS does not show
+	//any improvement (perhaps a skill issue on my side and I cannot create a good ECS, but still).
 	DrawManager::Instance().AddText(this);
 
 	return true;

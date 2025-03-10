@@ -4,6 +4,8 @@
 
 struct TimerManagerConfig;
 
+//TODO in all managers store a reference/pointer to the configuration
+//That would mean that I will have to change them to not be singletons
 class TimerManager
 	: public INonCopyMoveable
 	, public TimerContainer

@@ -14,6 +14,7 @@
 #include "Application/Application/Settings/Settings.h"
 #include "Application/Game/Game.h"
 
+//TODO create thread wrapper
 #include <thread>
 
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;

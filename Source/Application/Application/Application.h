@@ -4,6 +4,7 @@
 
 struct ApplicationConfig;
 
+//TODO make singleton?
 class Application
 {
 public:

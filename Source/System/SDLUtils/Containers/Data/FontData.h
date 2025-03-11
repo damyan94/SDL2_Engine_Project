@@ -1,5 +1,6 @@
 #pragma once
 
+//TODO create a wrapper for TTF_Font as I did for SDL_Texture
 typedef struct _TTF_Font TTF_Font;
 
 struct FontData

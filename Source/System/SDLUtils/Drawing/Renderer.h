@@ -19,7 +19,7 @@ public:
 	void				ClearScreen() const;
 	void				FinishFrame() const;
 
-	void				RenderTexture(Texture* texture, const DrawParameters& p) const;
+	void				RenderTexture(Texture& texture, const DrawParameters& p) const;
 
 	void				SetDrawColor(const Color& color);
 	const Color&		GetDefaultDrawColor();

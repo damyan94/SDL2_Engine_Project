@@ -39,5 +39,3 @@ public:
 	bool				IsMusicPlaying();
 	bool				IsMusicPaused();
 };
-
-extern AudioManager* g_AudioManager;

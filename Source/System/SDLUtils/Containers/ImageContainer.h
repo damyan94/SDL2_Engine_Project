@@ -8,7 +8,7 @@ class ImageContainer
 {
 public:
 	bool				DoesAssetExist(ImageId id) const;
-	const ImageData*	GetImageData(ImageId id) const;
+	const ImageData&	GetImageData(ImageId id) const;
 
 protected:
 	ImageContainer();

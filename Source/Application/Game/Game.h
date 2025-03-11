@@ -20,11 +20,12 @@ public:
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
+	void				Draw() const;
 
 public:
 	const Camera&		GetCamera();
 
 private:
 	MenuManager			m_MenuManager;
-	GameManager			m_Game;
+	GameManager			m_GameManager;
 };

@@ -8,7 +8,7 @@ class TextContainer
 {
 public:
 	bool				DoesAssetExist(TextId id) const;
-	const TextData*		GetTextData(TextId id) const;
+	const TextData&		GetTextData(TextId id) const;
 
 	bool				UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth);
 	bool				UpdateAllTexts();

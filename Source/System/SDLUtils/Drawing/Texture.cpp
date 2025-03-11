@@ -68,15 +68,6 @@ void Texture::SetTextureBlendMode(const EBlendMode& blendMode)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Texture::DestroyTexture()
-{
-	ReturnIf(!m_Texture);
-
-	SDL_DestroyTexture(m_Texture);
-	m_Texture = nullptr;
-}
-
-////////////////////////////////////////////////////////////////////////////////
 void Texture::SetTextureAlphaMod(int32_t alpha)
 {
 	if (alpha < Constants::ZeroOpacity)
@@ -91,6 +82,15 @@ void Texture::SetTextureAlphaMod(int32_t alpha)
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetTextureAlphaMod(m_Texture, (uint8_t)alpha)
 		&& SDL_GetError());
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Texture::DestroyTexture()
+{
+	ReturnIf(!m_Texture);
+
+	SDL_DestroyTexture(m_Texture);
+	m_Texture = nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

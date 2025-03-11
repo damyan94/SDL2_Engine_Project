@@ -107,7 +107,7 @@ void Application::Update()
 void Application::Draw() const
 {
 	DrawManager::Instance().ClearScreen();
-	DrawManager::Instance().Draw();
+	Game::Instance().Draw();
 
 #ifdef USE_IMGUI
 	g_ImGuiManager->Draw();

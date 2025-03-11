@@ -13,9 +13,8 @@ public:
 
 	bool				Init(TextId id);
 	void				Deinit();
-
-	const TextData*		GetData() const;
+	void				Draw() const;
 
 private:
-	const TextData*		m_Data;
+	TextId				m_TextId;
 };

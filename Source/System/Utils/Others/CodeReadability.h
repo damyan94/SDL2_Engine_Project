@@ -35,6 +35,7 @@
 	#undef SafeDeleteArray
 #endif
 
+//TODO REWORK THIS AND THE LOGGING!!!
 #define ReturnIf(__Condition, ...)					if(__Condition) return __VA_ARGS__
 #define ContinueIf(__Condition)						if(__Condition) continue
 #define BreakIf(__Condition)						if(__Condition) break

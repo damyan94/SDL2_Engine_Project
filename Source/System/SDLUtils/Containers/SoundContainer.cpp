@@ -23,11 +23,11 @@ bool SoundContainer::DoesAssetExist(SoundId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const SoundData* SoundContainer::GetSoundData(SoundId id) const
+const SoundData& SoundContainer::GetSoundData(SoundId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), SoundData());
 
-	return &m_SoundContainer[id];
+	return m_SoundContainer[id];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

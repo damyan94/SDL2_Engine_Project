@@ -7,8 +7,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 Image::Image()
-	: m_CurrFrame(0)
-	, m_Data(nullptr)
+	: m_ImageId(ImageId(0))
+	, m_CurrFrame(0)
+	, m_FramesCount(0)
 {
 }
 
@@ -21,30 +22,24 @@ Image::~Image()
 ////////////////////////////////////////////////////////////////////////////////
 bool Image::Init(ImageId id)
 {
-	m_Data = AssetManager::Instance().GetImageData(id);
-	ReturnIf(!m_Data, false);
+	const auto& data = AssetManager::Instance().GetImageData(id);
+	//ReturnIf(!data, false);
 	
 	m_DrawParameters.m_PosRect			= Rectangle::Zero;
-	m_DrawParameters.m_FrameRect		= m_Data->m_FrameRect;
+	m_DrawParameters.m_FrameRect		= data.m_FrameRect;
 	m_DrawParameters.m_PosRect.w		= m_DrawParameters.m_FrameRect.w;
 	m_DrawParameters.m_PosRect.h		= m_DrawParameters.m_FrameRect.h;
 	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
 	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
 	
-	m_DrawParameters.m_Opacity			= Constants::FullOpacity;
-	m_DrawParameters.m_RotationAngle	= Constants::ZeroRotation;
 	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_PosRect.w / 2,
 												m_DrawParameters.m_PosRect.h / 2);
 
 	m_DrawParameters.m_ObjectType		= EObjectType::Image;
-	m_DrawParameters.m_BlendMode		= EBlendMode::Blend;
-	m_DrawParameters.m_FlipMode			= EFlipMode::None;
-
-	m_DrawParameters.m_IsVisible		= true;
 
 	m_CurrFrame							= 1;
-
-	DrawManager::Instance().AddImage(this);
+	m_FramesCount						= data.m_FramesCount;
+	m_ImageId							= id;
 
 	return true;
 }
@@ -53,14 +48,18 @@ bool Image::Init(ImageId id)
 void Image::Deinit()
 {
 	SetIsVisible(false);
-	
-	m_Data = nullptr;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Image::Draw() const
+{
+	DrawManager::Instance().DrawTexture(*AssetManager::Instance().GetImageData(m_ImageId).m_Texture, m_DrawParameters);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Image::SetCurrFrame(int32_t frame)
 {
-	AssertReturnIf(frame <= 0 || frame > m_Data->m_FramesCount);
+	AssertReturnIf(frame <= 0 || frame > m_FramesCount);
 
 	m_CurrFrame = frame;
 	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
@@ -80,7 +79,7 @@ void Image::SetPrevFrame()
 ////////////////////////////////////////////////////////////////////////////////
 void Image::SetNextFrame()
 {
-	if (m_CurrFrame < m_Data->m_FramesCount)
+	if (m_CurrFrame < m_FramesCount)
 	{
 		m_CurrFrame++;
 	}
@@ -95,7 +94,7 @@ int32_t Image::GetCurrFrame() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const ImageData* Image::GetData() const
+int32_t Image::GetFramesCount() const
 {
-	return m_Data;
+	return m_FramesCount;
 }

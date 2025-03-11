@@ -9,7 +9,7 @@ class MusicContainer
 {
 public:
 	bool				DoesAssetExist(MusicId id) const;
-	const MusicData*	GetMusicData(MusicId id) const;
+	const MusicData&	GetMusicData(MusicId id) const;
 
 protected:
 	MusicContainer();

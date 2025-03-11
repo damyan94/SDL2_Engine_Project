@@ -58,6 +58,13 @@ void RadioButton::Update(int32_t dt)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+void RadioButton::Draw() const
+{
+	UIComponentBase::Draw();
+	m_Text.Draw();
+}
+
+////////////////////////////////////////////////////////////////////////////////
 void RadioButton::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);

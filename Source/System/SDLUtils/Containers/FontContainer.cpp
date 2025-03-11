@@ -23,11 +23,11 @@ bool FontContainer::DoesAssetExist(FontId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const FontData* FontContainer::GetFontData(FontId id) const
+const FontData& FontContainer::GetFontData(FontId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	AssertReturnIf(!DoesAssetExist(id), FontData());
 
-	return &m_FontsContainer[id];
+	return m_FontsContainer[id];
 }
 
 ////////////////////////////////////////////////////////////////////////////////

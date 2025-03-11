@@ -13,6 +13,7 @@ public:
 	virtual void		Deinit();
 	virtual void		HandleEvent(const InputEvent& e);
 	virtual void		Update(int32_t dt);
+	virtual void		Draw() const;
 
 	virtual void		Activate();
 	virtual void		Deactivate();

@@ -20,6 +20,7 @@ public:
 	virtual void		Deinit() = 0;
 	virtual void		HandleEvent(const InputEvent& e) = 0;
 	virtual void		Update(int32_t dt) = 0;
+	virtual void		Draw() const;
 
 	virtual void		SetPosition(const Point& newPos);
 	virtual void		Reset();

@@ -20,6 +20,7 @@ public:
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
+	void				Draw() const;
 
 	const Camera&		GetCamera();
 

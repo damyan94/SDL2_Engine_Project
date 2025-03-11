@@ -7,8 +7,6 @@
 #include "System/SDLUtils/Containers/Data/SoundData.h"
 #include "System/SDLUtils/Containers/Data/MusicData.h"
 
-AudioManager* g_AudioManager = nullptr;
-
 ////////////////////////////////////////////////////////////////////////////////
 AudioManager::AudioManager()
 {

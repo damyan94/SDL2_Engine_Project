@@ -25,7 +25,7 @@ Game& Game::Instance()
 bool Game::Init(const GameConfig& cfg)
 {
 	m_MenuManager.Init(cfg.m_MenuManagerConfig);
-	m_Game.Init(cfg.m_GameConfig);
+	m_GameManager.Init(cfg.m_GameConfig);
 
 	m_MenuManager.FocusMenu(EMenuId::StartMenu);
 
@@ -35,7 +35,7 @@ bool Game::Init(const GameConfig& cfg)
 ////////////////////////////////////////////////////////////////////////////////
 void Game::Deinit()
 {
-	m_Game.Deinit();
+	m_GameManager.Deinit();
 	m_MenuManager.Deinit();
 }
 
@@ -50,18 +50,25 @@ void Game::HandleEvent(const InputEvent& e)
 	}
 
 	m_MenuManager.HandleEvent(e);
-	m_Game.HandleEvent(e);
+	m_GameManager.HandleEvent(e);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Game::Update(int32_t dt)
 {
 	m_MenuManager.Update(dt);
-	m_Game.Update(dt);
+	m_GameManager.Update(dt);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Game::Draw() const
+{
+	m_MenuManager.Draw();
+	m_GameManager.Draw();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 const Camera& Game::GetCamera()
 {
-	return m_Game.GetCamera();
+	return m_GameManager.GetCamera();
 }

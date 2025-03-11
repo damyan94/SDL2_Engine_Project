@@ -15,6 +15,7 @@ public:
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);
+	void				Draw() const;
 
 	bool				IsActive() const;
 	void				ToggleActive(bool activate);

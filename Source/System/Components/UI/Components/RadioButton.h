@@ -26,6 +26,7 @@ public:
 	void				Deinit() final;
 	void				HandleEvent(const InputEvent& e) final;
 	void				Update(int32_t dt) final;
+	void				Draw() const final;
 
 	void				SetPosition(const Point& newPos) final;
 	void				Reset() final;

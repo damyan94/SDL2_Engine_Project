@@ -12,17 +12,17 @@ public:
 
 	bool				Init(ImageId id);
 	void				Deinit();
+	void				Draw() const;
 
 	void				SetCurrFrame(int32_t frame);
 	void				SetPrevFrame();
 	void				SetNextFrame();
 
 	int32_t				GetCurrFrame() const;
-	
-	const ImageData*	GetData() const;
+	int32_t				GetFramesCount() const;
 
 private:
+	ImageId				m_ImageId;
 	int32_t				m_CurrFrame;
-
-	const ImageData*	m_Data;
+	int32_t				m_FramesCount = 0;
 };

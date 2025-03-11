@@ -57,6 +57,13 @@ void Button::Update(int32_t dt)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+void Button::Draw() const
+{
+	UIComponentBase::Draw();
+	m_Text.Draw();
+}
+
+////////////////////////////////////////////////////////////////////////////////
 void Button::OnClickHandled()
 {
 	m_WasClicked = false;
@@ -67,7 +74,7 @@ void Button::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);
 
-	const auto& textPos = Position::PositonRelativeToParent(m_Text.GetData()->m_FrameRect, m_Image.GetPosRect());
+	const auto& textPos = Position::PositonRelativeToParent(m_Text.GetFrameRect(), m_Image.GetPosRect());
 	m_Text.SetPos(textPos);
 }
 
@@ -89,7 +96,7 @@ void Button::SetIsEnabled(bool enable)
 ////////////////////////////////////////////////////////////////////////////////
 void Button::HandleMouseHoverEvent(const InputEvent& e)
 {
-	if (m_Image.GetData()->m_FramesCount == 3)
+	if (m_Image.GetFramesCount() == 3)
 	{
 		if (m_Image.ContainsPoint(e.m_Pos) && !m_IsPressed)
 		{
@@ -120,7 +127,7 @@ void Button::HandleMouseClickReleaseEvent(const InputEvent& e)
 	{
 		m_WasClicked = true;
 
-		if (m_Image.GetData()->m_FramesCount == 3)
+		if (m_Image.GetFramesCount() == 3)
 		{
 			m_Image.SetCurrFrame((int32_t)EButtonFrame::Selected);
 		}

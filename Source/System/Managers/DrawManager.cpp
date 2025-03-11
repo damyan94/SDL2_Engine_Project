@@ -43,8 +43,6 @@ bool DrawManager::Init(const DrawManagerConfig& cfg)
 	Texture::SetRenderer(&m_Renderer);
 	SDLDrawing::SetRenderer(&m_Renderer);
 
-	m_EraseTimer.Start(ERASE_TIME, ETimerType::Pulse);
-
 	return true;
 }
 
@@ -65,38 +63,6 @@ void DrawManager::HandleEvent(const InputEvent& e)
 ////////////////////////////////////////////////////////////////////////////////
 void DrawManager::Update(int32_t dt)
 {
-	ReturnIf(m_EraseTimer.IsPaused());
-	ReturnIf(!m_EraseTimer.IsTicked());
-
-	RemoveEmptyItems();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::Draw() const
-{
-	for (const auto item : m_Images)
-	{
-		if (item && item->GetData() && item->IsVisible())
-		{
-			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
-		}
-	}
-
-	for (const auto item : m_Texts)
-	{
-		if (item && item->GetData() && item->IsVisible())
-		{
-			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
-		}
-	}
-
-	for (const auto item : m_DynamicTexts)
-	{
-		if (item && item->GetData() && item->IsVisible())
-		{
-			DrawTexture(item->GetData()->m_Texture, item->GetDrawParameters());
-		}
-	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -139,65 +105,10 @@ Renderer& DrawManager::GetRenderer()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void DrawManager::AddImage(Image* item)
-{
-	ReturnIf(!item);
-	m_Images.emplace_back(item);
-	std::sort(m_Images.begin(), m_Images.end(), [](Image* lhs, Image* rhs)
-		{
-			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
-		});
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::AddText(Text* item)
-{
-	ReturnIf(!item);
-	m_Texts.emplace_back(item);
-	std::sort(m_Texts.begin(), m_Texts.end(), [](Text* lhs, Text* rhs)
-		{
-			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
-		});
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::AddDynamicText(DynamicText* item)
-{
-	ReturnIf(!item);
-	m_DynamicTexts.emplace_back(item);
-	std::sort(m_DynamicTexts.begin(), m_DynamicTexts.end(), [](DynamicText* lhs, DynamicText* rhs)
-		{
-			return lhs->GetDrawParameters().m_DrawLayer > rhs->GetDrawParameters().m_DrawLayer;
-		});
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::RequestRemoveDynamicText(DynamicText* item)
-{
-	ReturnIf(!item);
-	for (auto& dynamicText : m_DynamicTexts)
-	{
-		if (dynamicText == item)
-		{
-			dynamicText = nullptr;
-			break;
-		}
-	}
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::DrawTexture(Texture* texture, const DrawParameters& p) const
+void DrawManager::DrawTexture(Texture& texture, const DrawParameters& p) const
 {
 	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
 
 	m_Renderer.RenderTexture(texture, p);
 	m_DrawCalls++;
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void DrawManager::RemoveEmptyItems()
-{
-	std::erase_if(m_Images, [](Image* item) {return !item || !item->GetData(); });
-	std::erase_if(m_Texts, [](Text* item) {return !item || !item->GetData(); });
-	std::erase_if(m_DynamicTexts, [](DynamicText* item) {return !item || !item->GetData(); });
 }

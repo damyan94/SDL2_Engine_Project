@@ -9,7 +9,7 @@ class FontContainer
 {
 public:
 	bool				DoesAssetExist(FontId id) const;
-	const FontData*		GetFontData(FontId id) const;
+	const FontData&		GetFontData(FontId id) const;
 
 protected:
 	FontContainer();

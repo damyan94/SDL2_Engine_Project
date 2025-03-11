@@ -63,7 +63,7 @@ void Renderer::FinishFrame() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Renderer::RenderTexture(Texture* texture, const DrawParameters& p) const
+void Renderer::RenderTexture(Texture& texture, const DrawParameters& p) const
 {
 	ReturnIf(p.m_Opacity <= 0 || !p.m_IsVisible);
 
@@ -71,18 +71,18 @@ void Renderer::RenderTexture(Texture* texture, const DrawParameters& p) const
 	const SDL_Rect dst{ p.m_PosRect.x, p.m_PosRect.y, p.m_PosRect.w, p.m_PosRect.h };
 	const SDL_Point cntr{ p.m_RotationCenter.x, p.m_RotationCenter.y };
 
-	texture->SetTextureAlphaMod(p.m_Opacity);
+	texture.SetTextureAlphaMod(p.m_Opacity);
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_RenderCopyEx(
 		m_Renderer,
-		texture->Get(),
+		texture.Get(),
 		&src,
 		&dst,
 		p.m_RotationAngle,
 		&cntr,
 		(SDL_RendererFlip)p.m_FlipMode) && SDL_GetError());
 
-	texture->SetTextureAlphaMod(Constants::FullOpacity);
+	texture.SetTextureAlphaMod(Constants::FullOpacity);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

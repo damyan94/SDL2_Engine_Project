@@ -26,6 +26,4 @@ public:
 private:
 	SoundId				m_SoundId;
 	int32_t				m_Channel;
-
-	const SoundData*	m_Data;
 };

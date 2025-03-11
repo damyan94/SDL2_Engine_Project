@@ -65,6 +65,15 @@ void MenuManager::Update(int32_t dt)
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+void MenuManager::Draw() const
+{
+	for (const auto id : m_ActiveMenus)
+	{
+		m_Menus[size_t(id)]->Draw();
+	}
+}
+
+////////////////////////////////////////////////////////////////////////////////
 void MenuManager::ActivateMenu(EMenuId id)
 {
 	AssertReturnIf(!IsEnumValueValid(id));

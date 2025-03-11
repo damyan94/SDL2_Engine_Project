@@ -23,11 +23,12 @@ bool ImageContainer::DoesAssetExist(ImageId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const ImageData* ImageContainer::GetImageData(ImageId id) const
+const ImageData& ImageContainer::GetImageData(ImageId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), nullptr);
+	//TODO add static EmptyData and a bool method to check if valid
+	AssertReturnIf(!DoesAssetExist(id), ImageData());
 
-	return &m_ImagesContainer[id];
+	return m_ImagesContainer[id];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -47,7 +48,7 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 			newImageData.m_FrameRect.h
 		};
 		newImageData.m_Texture->CreateTextureFromFile(inOutParams);
-		ReturnIf(!newImageData.m_Texture->Get(), false);
+		AssertReturnIf(!newImageData.m_Texture->Get(), false);
 
 		newImageData.m_FramesCount = imageCfg.m_Frames;
 		newImageData.m_FrameRect.w = inOutParams.m_Width;
@@ -67,10 +68,4 @@ bool ImageContainer::Init(const ImageContainerConfig& cfg)
 ////////////////////////////////////////////////////////////////////////////////
 void ImageContainer::Deinit()
 {
-	for (auto& imageData : m_ImagesContainer)
-	{
-		imageData.m_Texture->DestroyTexture();
-	}
-
-	m_ImagesContainer.clear();
 }

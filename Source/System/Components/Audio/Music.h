@@ -25,6 +25,4 @@ public:
 
 private:
 	MusicId				m_MusicId;
-
-	const MusicData*	m_Data;
 };

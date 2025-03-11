@@ -8,7 +8,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 Music::Music()
 	: m_MusicId(MusicId(0))
-	, m_Data(nullptr)
 {
 }
 
@@ -21,17 +20,11 @@ Music::~Music()
 ////////////////////////////////////////////////////////////////////////////////
 bool Music::Init(MusicId id)
 {
-	m_Data = AssetManager::Instance().GetMusicData(id);
-	ReturnIf(!m_Data, false);
+	const auto& data = AssetManager::Instance().GetMusicData(id);
+	//ReturnIf(!data, false);
 
-	m_AudioParameters.m_Loops			= 0;
-	m_AudioParameters.m_LoopInfinitely	= false;
-
-	m_AudioParameters.m_Volume			= m_Data->m_Volume;
-	m_AudioParameters.m_MaxVolume		= Constants::MaxVolume;
-
-	m_AudioParameters.m_ObjectType		= EObjectType::Sound;
-
+	m_AudioParameters.m_Volume			= data.m_Volume;
+	m_AudioParameters.m_ObjectType		= EObjectType::Music;
 	m_MusicId							= id;
 
 	return true;
@@ -41,7 +34,6 @@ bool Music::Init(MusicId id)
 void Music::Deinit()
 {
 	AudioObject::Reset();
-	m_Data = nullptr;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -49,35 +41,35 @@ void Music::Play()
 {
 	ReturnIf(m_AudioParameters.m_Volume <= 0);
 
-	g_AudioManager->PlayMusic(*m_Data, m_AudioParameters.m_Loops);
+	AudioManager::Instance().PlayMusic(AssetManager::Instance().GetMusicData(m_MusicId), m_AudioParameters.m_Loops);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Music::Pause(bool paused)
 {
-	g_AudioManager->PauseMusic(paused);
+	AudioManager::Instance().PauseMusic(paused);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Music::Stop()
 {
-	g_AudioManager->StopMusic();
+	AudioManager::Instance().StopMusic();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 bool Music::IsPlaying() const
 {
-	return g_AudioManager->IsMusicPlaying();
+	return AudioManager::Instance().IsMusicPlaying();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Music::SetVolume(uint8_t volume)
 {
-	g_AudioManager->SetMusicVolume(volume);
+	AudioManager::Instance().SetMusicVolume(volume);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 uint8_t Music::GetVolume()
 {
-	return g_AudioManager->GetMusicVolume();
+	return AudioManager::Instance().GetMusicVolume();
 }

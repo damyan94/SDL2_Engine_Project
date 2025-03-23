@@ -23,7 +23,7 @@ bool MusicContainer::DoesAssetExist(MusicId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const MusicData& MusicContainer::GetMusicData(MusicId id) const
+const MusicData& MusicContainer::GetData(MusicId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), MusicData());
 

@@ -21,13 +21,13 @@ bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 
 		ImageConfig newCfg;
 
-		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");
-		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
+		newCfg.FileName = ConfigFilePaths::ConfigFilePath(Utils::ReadString(readStrings[i], "FileName"));
+		AssertReturnIf(newCfg.FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_Frames = Utils::ReadInt(readStrings[i], "Frames");
-		AssertReturnIf(newCfg.m_Frames < 0 && _CONFIG_ERROR_INFO(i), false);
+		newCfg.Frames = Utils::ReadInt(readStrings[i], "Frames");
+		AssertReturnIf(newCfg.Frames < 0 && _CONFIG_ERROR_INFO(i), false);
 	
-		m_ImageContainerConfig.emplace_back(std::move(newCfg));
+		ImageContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

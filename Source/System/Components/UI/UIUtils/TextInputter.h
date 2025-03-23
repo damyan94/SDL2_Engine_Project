@@ -4,6 +4,7 @@
 
 #include "System/Components/UI/BaseClasses/UIComponentBase.h"
 #include "System/Components/Drawing/Image.h"
+#include "System/Components/Drawing/Text.h"
 #include "System/Components/Drawing/DynamicText.h"
 #include "System/Components/Audio/Sound.h"
 #include "System/Components/Time/Timer.h"

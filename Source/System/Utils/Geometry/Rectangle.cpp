@@ -8,7 +8,8 @@ const Rectangle Rectangle::Undefined	= Rectangle(0xFFFFFFFF, 0xFFFFFFFF, 0, 0);
 
 ////////////////////////////////////////////////////////////////////////////////
 Rectangle::Rectangle()
-	: GeometryShapeBase(0, 0)
+	: x(0)
+	, y(0)
 	, w(0)
 	, h(0)
 {
@@ -16,7 +17,8 @@ Rectangle::Rectangle()
 
 ////////////////////////////////////////////////////////////////////////////////
 Rectangle::Rectangle(int32_t posX, int32_t posY, int32_t width, int32_t height)
-	: GeometryShapeBase(posX, posY)
+	: x(posX)
+	, y(posY)
 	, w(width)
 	, h(height)
 {

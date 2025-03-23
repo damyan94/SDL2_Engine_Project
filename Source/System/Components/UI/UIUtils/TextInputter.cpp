@@ -56,14 +56,14 @@ bool TextInputter::Init(const TextInputterConfig& cfg)
 	m_CursorPos			= (int32_t)m_TextContent.size();
 	m_WSCursorPos		= (int32_t)m_WSTextContent.size();
 
-	m_History.reserve(c_MaxHistoryRecords * 32);
+	m_History.reserve(c_MaxHistoryRecords);
 
 	m_CursorTimer.Start(c_CursorTickTime, ETimerType::Pulse);
 	m_CursorTimer.SetPause(true);
 
-	m_Text.Init(cfg.m_TextString, cfg.m_FontId, cfg.m_Color);
+	m_Text.Init(cfg.m_TextString, cfg.m_FontId, cfg.m_Color, 0);
 
-	m_Cursor.Init(c_CursorSymbol, cfg.m_FontId, cfg.m_Color);
+	m_Cursor.Init(c_CursorSymbol, cfg.m_FontId, cfg.m_Color, 0);
 	m_Cursor.SetIsVisible(false);
 
 	return true;

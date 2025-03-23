@@ -20,6 +20,8 @@ UIComponentBase::~UIComponentBase()
 bool UIComponentBase::Init(const UIComponentBaseCfg& cfg)
 {
 	m_Image.Init(cfg.m_ImageId);
+	m_Image.SetPos(cfg.m_Pos);
+	m_Pos = cfg.m_Pos;
 
 	return true;
 }

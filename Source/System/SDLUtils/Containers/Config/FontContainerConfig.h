@@ -2,9 +2,9 @@
 
 struct FontConfig
 {
-	std::string			m_FileName;
-	uint32_t			m_Size					= 0;
-	EFontWrapAlign		m_WrapAlign				= EFontWrapAlign::Invalid;
+	std::string			FileName;
+	uint32_t			Size					= 0;
+	EFontWrapAlign		WrapAlign				= EFontWrapAlign::Invalid;
 };
 
 struct FontContainerConfig

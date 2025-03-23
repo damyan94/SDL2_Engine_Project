@@ -4,11 +4,12 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 AudioParameters::AudioParameters()
-	: m_Loops(0)
-	, m_LoopInfinitely(false)
-	, m_Volume(Constants::MaxVolume)
-	, m_MaxVolume(Constants::MaxVolume)
-	, m_ObjectType(EObjectType::Invalid)
+	: Loops(0)
+	, LoopInfinitely(false)
+	, Volume(Constants::MaxVolume)
+	, MaxVolume(Constants::MaxVolume)
+	, ObjectType(EObjectType::Invalid)
+	, ResourceId(-1)
 {
 }
 
@@ -20,11 +21,12 @@ AudioParameters::~AudioParameters()
 ////////////////////////////////////////////////////////////////////////////////
 void AudioParameters::Reset()
 {
-	m_Loops					= 0;
-	m_LoopInfinitely		= false;
+	Loops				= 0;
+	LoopInfinitely		= false;
 
-	m_Volume				= Constants::MaxVolume;
-	m_MaxVolume				= Constants::MaxVolume;
+	Volume				= Constants::MaxVolume;
+	MaxVolume			= Constants::MaxVolume;
 
-	m_ObjectType			= EObjectType::Invalid;
+	ObjectType			= EObjectType::Invalid;
+	ResourceId			= -1;
 }

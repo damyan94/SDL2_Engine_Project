@@ -97,12 +97,12 @@ void Texture::DestroyTexture()
 void Texture::CreateSurfaceFromFile(SDL_Surface*& outSurface,
 	ImageTextureParameters& inOutParams)
 {
-	outSurface = IMG_Load(inOutParams.m_FileName.c_str());
+	outSurface = IMG_Load(inOutParams.FileName.c_str());
 
 	AssertReturnIf(!outSurface && SDL_GetError());
 
-	inOutParams.m_Width = outSurface->w;
-	inOutParams.m_Height = outSurface->h;
+	inOutParams.Width = outSurface->w;
+	inOutParams.Height = outSurface->h;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,18 +110,18 @@ void Texture::CreateSurfaceFromText(SDL_Surface*& outSurface,
 	TextTextureParameters& inOutParams)
 {
 	SDL_Color color{
-		inOutParams.m_TextColor.r,
-		inOutParams.m_TextColor.g,
-		inOutParams.m_TextColor.b,
-		inOutParams.m_TextColor.a };
+		inOutParams.TextColor.r,
+		inOutParams.TextColor.g,
+		inOutParams.TextColor.b,
+		inOutParams.TextColor.a };
 
-	outSurface = TTF_RenderUTF8_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.m_Font),
-		inOutParams.m_String.c_str(), color, inOutParams.m_WrapWidth);
+	outSurface = TTF_RenderUTF8_Blended_Wrapped(const_cast<TTF_Font*>(inOutParams.Font),
+		inOutParams.String.c_str(), color, inOutParams.WrapWidth);
 
 	AssertReturnIf(!outSurface && SDL_GetError());
 
-	inOutParams.m_Width = outSurface->w;
-	inOutParams.m_Height = outSurface->h;
+	inOutParams.Width = outSurface->w;
+	inOutParams.Height = outSurface->h;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

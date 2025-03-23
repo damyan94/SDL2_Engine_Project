@@ -15,6 +15,6 @@ const Rectangle& GetWindowRect()
 ////////////////////////////////////////////////////////////////////////////////
 int32_t GetDrawCalls()
 {
-	return DrawManager::Instance().m_DrawCalls;
+	return DrawManager::Instance().GetDrawCalls();
 }
 } // !namespace Helpers

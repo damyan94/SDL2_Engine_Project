@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
 #include "System/SDLUtils/Containers/Config/TextContainerConfig.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 static const std::string c_TypeString = "Text";
 
@@ -23,23 +24,15 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 		auto color = Utils::ReadIntArray(readStrings[i], "Color", 4);
 		AssertReturnIf(color.size() != 4 && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_TextColor = Color(color[0], color[1], color[2], color[3]);
+		newCfg.TextColor = Color(color[0], color[1], color[2], color[3]);
 
-		newCfg.m_FontId = FontId(Utils::ReadInt(readStrings[i], "FontId"));
+		newCfg.StringId = StringId(Utils::ReadInt(readStrings[i], "StringId"));
+		newCfg.FontId = FontId(Utils::ReadInt(readStrings[i], "FontId"));
 
-		newCfg.m_WrapWidth = Utils::ReadInt(readStrings[i], "WrapWidth");
-		AssertReturnIf(newCfg.m_WrapWidth < 0 && _CONFIG_ERROR_INFO(i), false);
+		newCfg.WrapWidth = Utils::ReadInt(readStrings[i], "WrapWidth");
+		AssertReturnIf(newCfg.WrapWidth < 0 && _CONFIG_ERROR_INFO(i), false);
 
-		for (int32_t j = (int32_t)ELanguage::Invalid + 1; j < (int32_t)ELanguage::Count; j++)
-		{
-			const auto currLanguage = ELanguage(j);
-			std::string languageString = Utils::ReadString(readStrings[i], Utils::GetLanguageStringFromId(currLanguage));
-			AssertReturnIf(languageString.empty() && _CONFIG_ERROR_INFO(i), false);
-
-			newCfg.m_LanguageStrings.emplace(currLanguage, std::move(languageString));
-		}
-
-		m_TextContainerConfig.emplace_back(std::move(newCfg));
+		m_TextsConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

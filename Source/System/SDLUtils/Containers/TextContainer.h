@@ -1,14 +1,32 @@
 #pragma once
 
-#include "System/SDLUtils/Containers/Data/TextData.h"
+class Texture;
+
+class FontContainer;
+class StringContainer;
 
 struct TextContainerConfig;
 
+struct TextData
+{
+	Texture*			Texture		= nullptr;
+	Rectangle			FrameRect	= Rectangle::Undefined;
+	StringId			StringId	= 0;
+	FontId				FontId		= 0;
+	Color				TextColor	= Colors::Black;
+	int32_t				WrapWidth	= 0;
+};
+
 class TextContainer
 {
+	friend class AssetManager;
+
 public:
+	TextContainer();
+	~TextContainer();
+
 	bool				DoesAssetExist(TextId id) const;
-	const TextData&		GetTextData(TextId id) const;
+	const TextData&		GetData(TextId id) const;
 
 	bool				UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth);
 	bool				UpdateAllTexts();
@@ -16,14 +34,15 @@ public:
 	void				ChangeLanguage(ELanguage newLanguage);
 
 protected:
-	TextContainer();
-	~TextContainer();
-
-	bool				Init(const TextContainerConfig& cfg);
+	bool				Init(const TextContainerConfig& cfg, const StringContainer& tringContainer, const FontContainer& fontContainer);
 	void				Deinit();
 
 private:
-	ELanguage			m_CurrLanguage;
+	const StringContainer*		p_StringContainer;
+	const FontContainer*		p_FontContainer;
 
-	std::vector<TextData> m_TextsContainer;
+	const TextContainerConfig*	m_TextContainerConfig;
+	ELanguage					m_CurrLanguage;
+
+	std::vector<TextData>		m_TextsContainer;
 };

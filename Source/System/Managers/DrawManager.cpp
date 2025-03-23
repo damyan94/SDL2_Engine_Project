@@ -6,14 +6,8 @@
 #include "System/SDLUtils/Drawing/DrawParameters.h"
 #include "System/SDLUtils/Drawing/Texture.h"
 #include "System/SDLUtils/Drawing/SDLDrawing.h"
-#include "System/SDLUtils/Containers/Data/ImageData.h"
-#include "System/SDLUtils/Containers/Data/TextData.h"
 
-#include "System/Components/Drawing/Image.h"
-#include "System/Components/Drawing/Text.h"
-#include "System/Components/Drawing/DynamicText.h"
-
-static constexpr int32_t ERASE_TIME = 10000;
+#include "System/Managers/AssetManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 DrawManager::DrawManager()
@@ -83,13 +77,49 @@ void DrawManager::FinishFrame() const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+void DrawManager::DrawTexture(const DrawParameters& p) const
+{
+	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
+
+	Texture* texture = GetTextureInternal(p);
+	ReturnIf(!texture);
+
+	m_Renderer.RenderTexture(*texture, p);
+	m_DrawCalls++;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 bool DrawManager::IsInsideWindow(const DrawParameters& p) const
 {
-	const Rectangle& dstRect		= p.m_PosRect;
+	const Rectangle& dstRect		= p.PosRect;
 	const Rectangle& windowRect		= m_Window.GetWindowRect();
 
 	return (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
 		&& (dstRect.x < windowRect.w && dstRect.y < windowRect.h);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void DrawManager::SetTextureOpacity(const DrawParameters& p) const
+{
+	Texture* texture = GetTextureInternal(p);
+	ReturnIf(!texture);
+
+	texture->SetTextureAlphaMod(p.Opacity);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void DrawManager::SetTextureBlendMode(const DrawParameters& p) const
+{
+	Texture* texture = GetTextureInternal(p);
+	ReturnIf(!texture);
+
+	texture->SetTextureBlendMode(p.BlendMode);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+int32_t DrawManager::GetDrawCalls() const
+{
+	return m_DrawCalls;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -105,10 +135,21 @@ Renderer& DrawManager::GetRenderer()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void DrawManager::DrawTexture(Texture& texture, const DrawParameters& p) const
+Texture* DrawManager::GetTextureInternal(const DrawParameters& p) const
 {
-	ReturnIf(m_Window.IsMinimized() || !IsInsideWindow(p));
+	switch (p.ObjectType)
+	{
+	case EObjectType::Image:
+		return AssetManager::Instance().m_ImageContainer.GetData(p.ResourceId).Texture;
 
-	m_Renderer.RenderTexture(texture, p);
-	m_DrawCalls++;
+	case EObjectType::Text:
+		return AssetManager::Instance().m_TextContainer.GetData(p.ResourceId).Texture;
+
+	case EObjectType::DynamicText:
+		return AssetManager::Instance().m_DynamicTextContainer.GetData(p.ResourceId).Texture;
+
+	default:
+		Assert::Assert("TODO");
+		return nullptr;
+	}
 }

@@ -1,19 +1,27 @@
 #pragma once
 
-#include "System/SDLUtils/Containers/Data/ImageData.h"
-
+class Texture;
 struct ImageContainerConfig;
+
+struct ImageData
+{
+	Texture*			Texture		= nullptr;
+	Rectangle			FrameRect	= Rectangle::Undefined;
+	int32_t				FramesCount	= 0;
+};
 
 class ImageContainer
 {
-public:
-	bool				DoesAssetExist(ImageId id) const;
-	const ImageData&	GetImageData(ImageId id) const;
+	friend class AssetManager;
 
-protected:
+public:
 	ImageContainer();
 	~ImageContainer();
 
+	bool				DoesAssetExist(ImageId id) const;
+	const ImageData&	GetData(ImageId id) const;
+
+protected:
 	bool				Init(const ImageContainerConfig& cfg);
 	void				Deinit();
 

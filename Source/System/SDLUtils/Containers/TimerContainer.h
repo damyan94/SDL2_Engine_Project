@@ -1,8 +1,15 @@
 #pragma once
 
-#include "System/SDLUtils/Containers/Data/TimerData.h"
-
 struct TimerContainerConfig;
+
+struct TimerData
+{
+	ETimerType			TimerType;
+	int64_t				Interval;
+	int64_t				Remaining;
+	bool				Ticked;
+	bool				Paused;
+};
 
 class TimerContainer
 {

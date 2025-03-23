@@ -27,11 +27,11 @@ bool ConsoleMenu::Init(const ConsoleMenuConfig& cfg)
 	m_TextColor = Colors::Black;
 
 	m_TextDrawCalls.Init("Draw calls: " + std::to_string(Helpers::GetDrawCalls()),
-		m_FontId, m_TextColor);
+		m_FontId, m_TextColor, 0);
 	m_TextDrawCalls.SetPos(20, 20);
 
 	m_TextCameraPos.Init("Camera position: " + std::to_string(Helpers::GetCameraPosition().x) + ", " +
-		std::to_string(Helpers::GetCameraPosition().y), m_FontId, m_TextColor);
+		std::to_string(Helpers::GetCameraPosition().y), m_FontId, m_TextColor, 0);
 	m_TextCameraPos.SetPos(20, 36);
 
 	Deactivate();

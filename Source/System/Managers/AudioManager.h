@@ -1,8 +1,7 @@
 #pragma once
 
 struct AudioManagerConfig;
-struct SoundData;
-struct MusicData;
+struct AudioParameters;
 
 class AudioManager
 	: public INonCopyMoveable
@@ -17,13 +16,13 @@ public:
 	bool				Init(const AudioManagerConfig& cfg);
 	void				Deinit();
 
-	int32_t				PlaySound(const SoundData& data, int32_t loops = 0);
+	int32_t				PlaySound(const AudioParameters& data);
 	void				PauseSound(int32_t channel, bool paused);
 	void				PauseSounds(bool paused);
 	void				StopSound(int32_t channel);
 	void				StopSounds();
 
-	void				PlayMusic(const MusicData& data, int32_t loops);
+	void				PlayMusic(const AudioParameters& data);
 	void				PauseMusic(bool paused);
 	void				StopMusic();
 

@@ -1,20 +1,26 @@
 #pragma once
 
-#include "System/SDLUtils/Containers/Data/MusicData.h"
-
 typedef struct _Mix_Music Mix_Music;
 struct MusicContainerConfig;
 
+struct MusicData
+{
+	Mix_Music*			m_Music		= nullptr;
+	uint8_t				m_Volume	= 0;
+};
+
 class MusicContainer
 {
-public:
-	bool				DoesAssetExist(MusicId id) const;
-	const MusicData&	GetMusicData(MusicId id) const;
+	friend class AssetManager;
 
-protected:
+public:
 	MusicContainer();
 	~MusicContainer();
 
+	bool				DoesAssetExist(MusicId id) const;
+	const MusicData&	GetData(MusicId id) const;
+
+protected:
 	bool				Init(const MusicContainerConfig& cfg);
 	void				Deinit();
 

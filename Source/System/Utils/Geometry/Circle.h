@@ -1,9 +1,6 @@
 #pragma once
 
-#include "System/Utils/Geometry/GeometryShapeBase.h"
-
 struct Circle
-	: public GeometryShapeBase
 {
 	Circle();
 	Circle(int32_t posX, int32_t posY, int32_t radius);
@@ -20,5 +17,7 @@ struct Circle
 	static const Circle Zero;
 	static const Circle Undefined;
 
+	int32_t x;
+	int32_t y;
 	int32_t r;
 };

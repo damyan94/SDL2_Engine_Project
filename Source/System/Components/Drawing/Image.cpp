@@ -3,12 +3,10 @@
 #include "System/Components/Drawing/Image.h"
 
 #include "System/Managers/AssetManager.h"
-#include "System/Managers/DrawManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Image::Image()
-	: m_ImageId(ImageId(0))
-	, m_CurrFrame(0)
+	: m_CurrFrame(0)
 	, m_FramesCount(0)
 {
 }
@@ -22,24 +20,24 @@ Image::~Image()
 ////////////////////////////////////////////////////////////////////////////////
 bool Image::Init(ImageId id)
 {
-	const auto& data = AssetManager::Instance().GetImageData(id);
+	const auto& data = AssetManager::Instance().m_ImageContainer.GetData(id);
 	//ReturnIf(!data, false);
 	
-	m_DrawParameters.m_PosRect			= Rectangle::Zero;
-	m_DrawParameters.m_FrameRect		= data.m_FrameRect;
-	m_DrawParameters.m_PosRect.w		= m_DrawParameters.m_FrameRect.w;
-	m_DrawParameters.m_PosRect.h		= m_DrawParameters.m_FrameRect.h;
-	m_DrawParameters.m_StandardWidth	= m_DrawParameters.m_PosRect.w;
-	m_DrawParameters.m_StandardHeight	= m_DrawParameters.m_PosRect.h;
+	m_DrawParameters.PosRect		= Rectangle::Zero;
+	m_DrawParameters.FrameRect		= data.FrameRect;
+	m_DrawParameters.PosRect.w		= m_DrawParameters.FrameRect.w;
+	m_DrawParameters.PosRect.h		= m_DrawParameters.FrameRect.h;
+	m_DrawParameters.StandardWidth	= m_DrawParameters.PosRect.w;
+	m_DrawParameters.StandardHeight	= m_DrawParameters.PosRect.h;
 	
-	m_DrawParameters.m_RotationCenter	= Point(m_DrawParameters.m_PosRect.w / 2,
-												m_DrawParameters.m_PosRect.h / 2);
+	m_DrawParameters.RotationCenter	= Point(m_DrawParameters.PosRect.w / 2,
+											m_DrawParameters.PosRect.h / 2);
 
-	m_DrawParameters.m_ObjectType		= EObjectType::Image;
+	m_DrawParameters.ObjectType		= EObjectType::Image;
+	m_DrawParameters.ResourceId		= id;
 
-	m_CurrFrame							= 1;
-	m_FramesCount						= data.m_FramesCount;
-	m_ImageId							= id;
+	m_CurrFrame						= 1;
+	m_FramesCount					= data.FramesCount;
 
 	return true;
 }
@@ -51,18 +49,12 @@ void Image::Deinit()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void Image::Draw() const
-{
-	DrawManager::Instance().DrawTexture(*AssetManager::Instance().GetImageData(m_ImageId).m_Texture, m_DrawParameters);
-}
-
-////////////////////////////////////////////////////////////////////////////////
 void Image::SetCurrFrame(int32_t frame)
 {
 	AssertReturnIf(frame <= 0 || frame > m_FramesCount);
 
 	m_CurrFrame = frame;
-	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
+	m_DrawParameters.FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.StandardWidth;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -73,7 +65,7 @@ void Image::SetPrevFrame()
 		m_CurrFrame--;
 	}
 
-	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
+	m_DrawParameters.FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.StandardWidth;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -84,7 +76,7 @@ void Image::SetNextFrame()
 		m_CurrFrame++;
 	}
 
-	m_DrawParameters.m_FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.m_StandardWidth;
+	m_DrawParameters.FrameRect.x = (m_CurrFrame - 1) * m_DrawParameters.StandardWidth;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

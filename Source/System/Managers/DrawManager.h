@@ -3,15 +3,10 @@
 #include "System/SDLUtils/Input/InputEvent.h"
 #include "System/SDLUtils/Drawing/Window.h"
 #include "System/SDLUtils/Drawing/Renderer.h"
-#include "System/Components/Time/Timer.h"
 
 struct DrawManagerConfig;
 struct DrawParameters;
-
 class Texture;
-class Image;
-class Text;
-class DynamicText;
 
 class DrawManager
 	: public INonCopyMoveable
@@ -31,15 +26,21 @@ public:
 	void				ClearScreen() const;
 	void				FinishFrame() const;
 
-	void				DrawTexture(Texture& texture, const DrawParameters& p) const;
+	void				DrawTexture(const DrawParameters& p) const;
 	bool				IsInsideWindow(const DrawParameters& p) const;
 
+	void				SetTextureOpacity(const DrawParameters& p) const;
+	void				SetTextureBlendMode(const DrawParameters& p) const;
+
+	int32_t				GetDrawCalls() const;
 	Window&				GetWindow();
 	Renderer&			GetRenderer();
 
-	mutable int32_t		m_DrawCalls;
+private:
+	Texture*			GetTextureInternal(const DrawParameters& p) const;
 
 private:
+	mutable int32_t		m_DrawCalls;
 	Window				m_Window;
 	Renderer			m_Renderer;
 };

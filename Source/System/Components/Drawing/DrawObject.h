@@ -10,6 +10,7 @@ public:
 
 	const DrawParameters& GetDrawParameters() const;
 	void				Reset();
+	void				Draw() const;
 
 	// Getters
 	Point				GetPos() const;

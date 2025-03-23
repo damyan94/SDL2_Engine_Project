@@ -7,11 +7,12 @@ struct AudioParameters
 
 	void				Reset();
 
-	int32_t				m_Loops;
-	bool				m_LoopInfinitely;
+	int32_t				Loops;
+	bool				LoopInfinitely;
 
-	uint8_t				m_Volume;
-	uint8_t				m_MaxVolume;
+	uint8_t				Volume;
+	uint8_t				MaxVolume;
 
-	EObjectType			m_ObjectType;
+	EObjectType			ObjectType;
+	uint32_t			ResourceId;
 };

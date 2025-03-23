@@ -7,20 +7,21 @@ struct DrawParameters
 
 	void				Reset();
 
-	Rectangle			m_PosRect;
-	Rectangle			m_FrameRect;
-	int32_t				m_StandardWidth;
-	int32_t				m_StandardHeight;
+	Rectangle			PosRect;
+	Rectangle			FrameRect;
+	int32_t				StandardWidth;
+	int32_t				StandardHeight;
 
-	int32_t				m_Opacity;
-	int32_t				m_RotationAngle;
-	Point				m_RotationCenter;
+	int32_t				Opacity;
+	int32_t				RotationAngle;
+	Point				RotationCenter;
 
-	EObjectType			m_ObjectType;
-	EBlendMode			m_BlendMode;
-	EFlipMode			m_FlipMode;
+	EObjectType			ObjectType;
+	EBlendMode			BlendMode;
+	EFlipMode			FlipMode;
 
-	EDrawLayer			m_DrawLayer;
+	EDrawLayer			DrawLayer;
 
-	bool				m_IsVisible;
+	bool				IsVisible;
+	uint32_t			ResourceId;
 };

@@ -22,14 +22,14 @@ bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 
 		FontConfig newCfg;
 
-		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");
-		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
+		newCfg.FileName = ConfigFilePaths::ConfigFilePath(Utils::ReadString(readStrings[i], "FileName"));
+		AssertReturnIf(newCfg.FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_Size = Utils::ReadInt(readStrings[i], "Size");
-		AssertReturnIf(newCfg.m_Size <= 0 && _CONFIG_ERROR_INFO(i), false);
+		newCfg.Size = Utils::ReadInt(readStrings[i], "Size");
+		AssertReturnIf(newCfg.Size <= 0 && _CONFIG_ERROR_INFO(i), false);
 
-		newCfg.m_WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "WrapAlign"));
-		AssertReturnIf(!IsEnumValueValid(newCfg.m_WrapAlign) && _CONFIG_ERROR_INFO(i), false);
+		newCfg.WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "WrapAlign"));
+		AssertReturnIf(!IsEnumValueValid(newCfg.WrapAlign) && _CONFIG_ERROR_INFO(i), false);
 
 		m_FontContainerConfig.emplace_back(std::move(newCfg));
 	}

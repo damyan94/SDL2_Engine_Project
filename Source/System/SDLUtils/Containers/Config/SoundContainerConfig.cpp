@@ -22,7 +22,7 @@ bool SoundContainerConfig::Read(const ConfigStrings& readStrings)
 
 		SoundConfig newCfg;
 
-		newCfg.m_FileName = ConfigFilePaths::MainDir + Utils::ReadString(readStrings[i], "FileName");
+		newCfg.m_FileName = ConfigFilePaths::ConfigFilePath(Utils::ReadString(readStrings[i], "FileName"));
 		AssertReturnIf(newCfg.m_FileName.empty() && _CONFIG_ERROR_INFO(i), false);
 
 		newCfg.m_Volume = Utils::ReadInt(readStrings[i], "Volume");

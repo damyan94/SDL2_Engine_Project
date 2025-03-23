@@ -3,11 +3,9 @@
 #include "System/Components/Audio/Music.h"
 
 #include "System/Managers/AssetManager.h"
-#include "System/Managers/AudioManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Music::Music()
-	: m_MusicId(MusicId(0))
 {
 }
 
@@ -20,12 +18,12 @@ Music::~Music()
 ////////////////////////////////////////////////////////////////////////////////
 bool Music::Init(MusicId id)
 {
-	const auto& data = AssetManager::Instance().GetMusicData(id);
+	const auto& data = AssetManager::Instance().m_MusicContainer.GetData(id);
 	//ReturnIf(!data, false);
 
-	m_AudioParameters.m_Volume			= data.m_Volume;
-	m_AudioParameters.m_ObjectType		= EObjectType::Music;
-	m_MusicId							= id;
+	m_AudioParameters.Volume			= data.m_Volume;
+	m_AudioParameters.ObjectType		= EObjectType::Music;
+	m_AudioParameters.ResourceId		= id;
 
 	return true;
 }
@@ -34,42 +32,4 @@ bool Music::Init(MusicId id)
 void Music::Deinit()
 {
 	AudioObject::Reset();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void Music::Play()
-{
-	ReturnIf(m_AudioParameters.m_Volume <= 0);
-
-	AudioManager::Instance().PlayMusic(AssetManager::Instance().GetMusicData(m_MusicId), m_AudioParameters.m_Loops);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void Music::Pause(bool paused)
-{
-	AudioManager::Instance().PauseMusic(paused);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void Music::Stop()
-{
-	AudioManager::Instance().StopMusic();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-bool Music::IsPlaying() const
-{
-	return AudioManager::Instance().IsMusicPlaying();
-}
-
-////////////////////////////////////////////////////////////////////////////////
-void Music::SetVolume(uint8_t volume)
-{
-	AudioManager::Instance().SetMusicVolume(volume);
-}
-
-////////////////////////////////////////////////////////////////////////////////
-uint8_t Music::GetVolume()
-{
-	return AudioManager::Instance().GetMusicVolume();
 }

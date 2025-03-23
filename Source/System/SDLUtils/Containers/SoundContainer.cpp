@@ -23,7 +23,7 @@ bool SoundContainer::DoesAssetExist(SoundId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const SoundData& SoundContainer::GetSoundData(SoundId id) const
+const SoundData& SoundContainer::GetData(SoundId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), SoundData());
 

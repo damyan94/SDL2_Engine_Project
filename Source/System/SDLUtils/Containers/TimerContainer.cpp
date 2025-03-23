@@ -16,11 +16,11 @@ void TimerContainer::StartTimer(TimerId id, int64_t interval, ETimerType type)
 	AssertReturnIf(DoesTimerExist(id));
 
 	TimerData newTimer;
-	newTimer.m_TimerType = type;
-	newTimer.m_Interval = interval;
+	newTimer.TimerType = type;
+	newTimer.Interval = interval;
 	AssertReturnIf(interval < Constants::TimerMinInterval);
 
-	newTimer.m_Remaining = interval;
+	newTimer.Remaining = interval;
 
 	m_TimersContainer.emplace_back(std::move(newTimer));
 }
@@ -46,7 +46,7 @@ void TimerContainer::SetPauseTimer(TimerId id, bool paused)
 {
 	AssertReturnIf(!DoesTimerExist(id));
 
-	m_TimersContainer[id].m_Paused = paused;
+	m_TimersContainer[id].Paused = paused;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -56,11 +56,11 @@ bool TimerContainer::IsTimerTicked(TimerId id)
 
 	auto& timer = m_TimersContainer[id];
 
-	ReturnIf(timer.m_Paused, false);
-	ReturnIf(!timer.m_Ticked, false);
+	ReturnIf(timer.Paused, false);
+	ReturnIf(!timer.Ticked, false);
 
-	timer.m_Ticked = false;
-	if (timer.m_TimerType == ETimerType::OneShot)
+	timer.Ticked = false;
+	if (timer.TimerType == ETimerType::OneShot)
 	{
 		DestroyTimer(id);
 	}
@@ -73,7 +73,7 @@ bool TimerContainer::IsTimerPaused(TimerId id) const
 {
 	AssertReturnIf(!DoesTimerExist(id), false);
 
-	return m_TimersContainer[id].m_Paused;
+	return m_TimersContainer[id].Paused;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -104,14 +104,14 @@ void TimerContainer::Update(int32_t dt)
 {
 	for (auto& timer : m_TimersContainer)
 	{
-		ContinueIf(timer.m_Paused);
+		ContinueIf(timer.Paused);
 
-		timer.m_Remaining -= dt;
+		timer.Remaining -= dt;
 
-		while (timer.m_Remaining < 0)
+		while (timer.Remaining < 0)
 		{
-			timer.m_Remaining += timer.m_Interval;
-			timer.m_Ticked = true;
+			timer.Remaining += timer.Interval;
+			timer.Ticked = true;
 		}
 	}
 }

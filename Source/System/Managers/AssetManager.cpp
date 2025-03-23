@@ -24,11 +24,13 @@ AssetManager& AssetManager::Instance()
 ////////////////////////////////////////////////////////////////////////////////
 bool AssetManager::Init(const AssetManagerConfig& cfg)
 {
-	ReturnIf(!ImageContainer::Init(cfg.m_ImageContainerConfig), false);
-	ReturnIf(!FontContainer::Init(cfg.m_FontContainerConfig), false);
-	ReturnIf(!TextContainer::Init(cfg.m_TextContainerConfig), false);
-	ReturnIf(!SoundContainer::Init(cfg.m_SoundContainerConfig), false);
-	ReturnIf(!MusicContainer::Init(cfg.m_MusicContainerConfig), false);
+	ReturnIf(!m_ImageContainer.Init(cfg.ImageContainerConfig), false);
+	ReturnIf(!m_StringContainer.Init(cfg.StringContainerConfig), false);
+	ReturnIf(!m_FontContainer.Init(cfg.FontContainerConfig), false);
+	ReturnIf(!m_TextContainer.Init(cfg.TextContainerConfig, m_StringContainer, m_FontContainer), false);
+	ReturnIf(!m_DynamicTextContainer.Init(m_FontContainer), false);
+	ReturnIf(!m_SoundContainer.Init(cfg.SoundContainerConfig), false);
+	ReturnIf(!m_MusicContainer.Init(cfg.MusicContainerConfig), false);
 
 	return true;
 }

@@ -1,20 +1,26 @@
 #pragma once
 
-#include "System/SDLUtils/Containers/Data/SoundData.h"
-
 struct Mix_Chunk;
 struct SoundContainerConfig;
 
+struct SoundData
+{
+	Mix_Chunk*			m_Sound		= nullptr;
+	uint8_t				m_Volume	= 0;
+};
+
 class SoundContainer
 {
-public:
-	bool				DoesAssetExist(SoundId id) const;
-	const SoundData&	GetSoundData(SoundId id) const;
+	friend class AssetManager;
 
-protected:
+public:
 	SoundContainer();
 	~SoundContainer();
 
+	bool				DoesAssetExist(SoundId id) const;
+	const SoundData&	GetData(SoundId id) const;
+
+protected:
 	bool				Init(const SoundContainerConfig& cfg);
 	void				Deinit();
 

@@ -23,7 +23,7 @@ bool FontContainer::DoesAssetExist(FontId id) const
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const FontData& FontContainer::GetFontData(FontId id) const
+const FontData& FontContainer::GetData(FontId id) const
 {
 	AssertReturnIf(!DoesAssetExist(id), FontData());
 
@@ -40,15 +40,15 @@ bool FontContainer::Init(const FontContainerConfig& cfg)
 
 		FontData newFont;
 
-		newFont.m_Font = TTF_OpenFont(
-			fontCfg.m_FileName.c_str(),
-			fontCfg.m_Size);
-		AssertReturnIf(!newFont.m_Font && SDL_GetError(), false);
+		newFont.Font = TTF_OpenFont(
+			fontCfg.FileName.c_str(),
+			fontCfg.Size);
+		AssertReturnIf(!newFont.Font && SDL_GetError(), false);
 
-		TTF_SetFontWrappedAlign(newFont.m_Font, (int32_t)fontCfg.m_WrapAlign);
+		TTF_SetFontWrappedAlign(newFont.Font, (int32_t)fontCfg.WrapAlign);
 
-		newFont.m_Size				= fontCfg.m_Size;
-		newFont.m_WrapAlign			= fontCfg.m_WrapAlign;
+		newFont.Size				= fontCfg.Size;
+		newFont.WrapAlign			= fontCfg.WrapAlign;
 
 		m_FontsContainer.emplace_back(std::move(newFont));
 	}
@@ -61,10 +61,10 @@ void FontContainer::Deinit()
 {
 	for (auto& font : m_FontsContainer)
 	{
-		ContinueIf(!font.m_Font);
+		ContinueIf(!font.Font);
 
-		TTF_CloseFont(font.m_Font);
-		font.m_Font = nullptr;
+		TTF_CloseFont(font.Font);
+		font.Font = nullptr;
 	}
 
 	m_FontsContainer.clear();

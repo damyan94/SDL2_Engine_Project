@@ -4,8 +4,9 @@
 #include "System/Managers/Config/AudioManagerConfig.h"
 
 #include "System/SDLUtils/Audio/Audio.h"
-#include "System/SDLUtils/Containers/Data/SoundData.h"
-#include "System/SDLUtils/Containers/Data/MusicData.h"
+#include "System/SDLUtils/Audio/AudioParameters.h"
+
+#include "Managers/AssetManager.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 AudioManager::AudioManager()
@@ -38,9 +39,12 @@ void AudioManager::Deinit()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-int32_t AudioManager::PlaySound(const SoundData& data, int32_t loops)
+int32_t AudioManager::PlaySound(const AudioParameters& p)
 {
-	return Audio::PlaySound(data.m_Sound, loops);
+	auto sound = AssetManager::Instance().m_SoundContainer.GetData(p.ResourceId).m_Sound;
+	ReturnIf(!sound, -1);
+
+	return Audio::PlaySound(sound, p.Loops);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -94,9 +98,12 @@ void AudioManager::StopSounds()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void AudioManager::PlayMusic(const MusicData& data, int32_t loops)
+void AudioManager::PlayMusic(const AudioParameters& p)
 {
-	Audio::PlayMusic(data.m_Music, loops);
+	auto music = AssetManager::Instance().m_MusicContainer.GetData(p.ResourceId).m_Music;
+	ReturnIf(!music);
+
+	Audio::PlayMusic(music, p.Loops);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

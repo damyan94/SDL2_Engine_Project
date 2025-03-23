@@ -8,14 +8,16 @@ const Circle Circle::Undefined	= Circle(0xFFFFFFFF, 0xFFFFFFFF, 0);
 
 ////////////////////////////////////////////////////////////////////////////////
 Circle::Circle()
-	: GeometryShapeBase(0, 0)
+	: x(0)
+	, y(0)
 	, r(0)
 {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 Circle::Circle(int32_t posX, int32_t posY, int32_t radius)
-	: GeometryShapeBase(posX, posY)
+	: x(posX)
+	, y(posY)
 	, r(radius)
 {
 }

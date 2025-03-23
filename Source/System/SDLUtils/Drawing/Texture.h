@@ -7,19 +7,19 @@ class Renderer;
 
 struct ImageTextureParameters
 {
-	const std::string	m_FileName;
-	int32_t				m_Width			= 0;
-	int32_t				m_Height		= 0;
+	const std::string	FileName;
+	int32_t				Width			= 0;
+	int32_t				Height			= 0;
 };
 
 struct TextTextureParameters
 {
-	const std::string	m_String;
-	const TTF_Font*		m_Font			= nullptr;
-	const Color			m_TextColor		= Colors::Black;
-	const int32_t		m_WrapWidth		= 0;
-	int32_t				m_Width			= 0;
-	int32_t				m_Height		= 0;
+	const std::string	String;
+	const TTF_Font*		Font			= nullptr;
+	const Color			TextColor		= Colors::Black;
+	const int32_t		WrapWidth		= 0;
+	int32_t				Width			= 0;
+	int32_t				Height			= 0;
 };
 
 //TODO maybe have this as base class and have ImageTexture and TextTexture that extend it

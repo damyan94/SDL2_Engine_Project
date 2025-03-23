@@ -4,18 +4,19 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 DrawParameters::DrawParameters()
-	: m_PosRect(Rectangle::Undefined)
-	, m_StandardWidth(0)
-	, m_StandardHeight(0)
-	, m_FrameRect(Rectangle::Zero)
-	, m_Opacity(Constants::FullOpacity)
-	, m_RotationAngle(Constants::ZeroRotation)
-	, m_RotationCenter(Point::Undefined)
-	, m_ObjectType(EObjectType::Invalid)
-	, m_BlendMode(EBlendMode::Blend)
-	, m_FlipMode(EFlipMode::None)
-	, m_DrawLayer(EDrawLayer::Invalid)
-	, m_IsVisible(true)
+	: PosRect(Rectangle::Undefined)
+	, StandardWidth(0)
+	, StandardHeight(0)
+	, FrameRect(Rectangle::Zero)
+	, Opacity(Constants::FullOpacity)
+	, RotationAngle(Constants::ZeroRotation)
+	, RotationCenter(Point::Undefined)
+	, ObjectType(EObjectType::Invalid)
+	, BlendMode(EBlendMode::Blend)
+	, FlipMode(EFlipMode::None)
+	, DrawLayer(EDrawLayer::Invalid)
+	, IsVisible(true)
+	, ResourceId(-1)
 {
 }
 
@@ -43,5 +44,6 @@ void DrawParameters::Reset()
 	m_BlendMode				= EBlendMode::Blend;
 	m_FlipMode				= EFlipMode::None;
 
-	m_IsVisible				= true;*/
+	m_IsVisible				= true;
+	m_ResourceId			= -1;*/
 }

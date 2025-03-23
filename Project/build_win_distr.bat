@@ -2,8 +2,8 @@ cd ..
 set copyLocation=_Distribution\Windows
 
 mkdir .\%copyLocation%
-mkdir .\%copyLocation%\assets
-mkdir .\%copyLocation%\config
+mkdir .\%copyLocation%\Assets
+mkdir .\%copyLocation%\Config
 
 xcopy .\Build\Windows_x86_64_Distribution\**.exe .\%copyLocation% /s /y
 xcopy .\Build\Windows_x86_64_Distribution\**.dll .\%copyLocation% /s .y

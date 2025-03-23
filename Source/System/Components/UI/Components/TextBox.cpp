@@ -3,7 +3,6 @@
 #include "System/Components/UI/Components/TextBox.h"
 #include "System/Components/UI/Components/Config/TextBoxConfig.h"
 
-#include "System/SDLUtils/Containers/Data/TextData.h"
 #include "System/SDLUtils/Drawing/SDLDrawing.h"
 
 ////////////////////////////////////////////////////////////////////////////////

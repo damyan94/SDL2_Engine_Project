@@ -3,8 +3,6 @@
 #include "System/Components/UI/Components/Button.h"
 #include "System/Components/UI/Components/Config/ButtonConfig.h"
 
-#include "System/SDLUtils/Containers/Data/TextData.h"
-
 ////////////////////////////////////////////////////////////////////////////////
 Button::Button()
 {

@@ -103,8 +103,10 @@ _Type _Name::Invalid = _InvalidValue;
 
 typedef std::vector<std::string> ConfigStrings;
 typedef uint32_t		ImageId;
+typedef uint32_t		StringId;
 typedef uint32_t		FontId;
 typedef uint32_t		TextId;
+typedef uint32_t		DynamicTextId;
 typedef uint32_t		SoundId;
 typedef uint32_t		MusicId;
 

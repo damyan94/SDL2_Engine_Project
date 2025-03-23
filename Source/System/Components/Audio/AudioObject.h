@@ -8,7 +8,13 @@ public:
 	AudioObject();
 	~AudioObject();
 
+	const AudioParameters& GetAudioParameters() const;
 	void				Reset();
+
+	void				Play();
+	void				Pause(bool paused);
+	void				Stop();
+	bool				IsPlaying() const;
 
 	// Getters
 	int32_t				GetLoops() const;

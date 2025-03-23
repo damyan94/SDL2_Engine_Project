@@ -76,17 +76,17 @@ void Application::HandleEvent()
 
 	Game::Instance().HandleEvent(m_InputEvent);
 
+	ReturnIf(m_InputEvent.m_Type != EEventType::KeyboardPress);
+
 	//TODO Move this to the settings menu or other appropriate place
-	if (m_InputEvent.m_Key == EKeyboardKey::E &&
-		m_InputEvent.m_Type == EEventType::KeyboardPress)
+	if (m_InputEvent.m_Key == EKeyboardKey::E)
 	{
-		AssetManager::Instance().ChangeLanguage(ELanguage::EN);
+		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::EN);
 		g_Settings->SetLanguage(ELanguage::EN);
 	}
-	else if (m_InputEvent.m_Key == EKeyboardKey::R &&
-		m_InputEvent.m_Type == EEventType::KeyboardPress)
+	else if (m_InputEvent.m_Key == EKeyboardKey::R)
 	{
-		AssetManager::Instance().ChangeLanguage(ELanguage::BG);
+		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::BG);
 		g_Settings->SetLanguage(ELanguage::BG);
 	}
 }

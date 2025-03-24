@@ -6,5 +6,5 @@ struct TimerManagerConfig
 {
 	bool						Read();
 
-	TimerContainerConfig		m_TimerContainerConfig;
+	TimerContainerConfig		TimerContainerConfig;
 };

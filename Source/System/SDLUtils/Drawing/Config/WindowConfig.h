@@ -4,10 +4,10 @@ struct WindowConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::string			m_Name;
-	int32_t				m_PosX;
-	int32_t				m_PosY;
-	int32_t				m_Width;
-	int32_t				m_Height;
-	int32_t				m_Flags;
+	std::string			Name;
+	int32_t				PosX;
+	int32_t				PosY;
+	int32_t				Width;
+	int32_t				Height;
+	int32_t				Flags;
 };

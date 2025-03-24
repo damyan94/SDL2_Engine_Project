@@ -24,15 +24,15 @@ DrawManager::~DrawManager()
 ////////////////////////////////////////////////////////////////////////////////
 DrawManager& DrawManager::Instance()
 {
-	static DrawManager m_Instance;
-	return m_Instance;
+	static DrawManager instance;
+	return instance;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 bool DrawManager::Init(const DrawManagerConfig& cfg)
 {
-	ReturnIf(!m_Window.Init(cfg.m_WindowConfig), false);
-	ReturnIf(!m_Renderer.Init(m_Window.GetSDLWindow(), cfg.m_RendererConfig), false);
+	ReturnIf(!m_Window.Init(cfg.WindowConfig), false);
+	ReturnIf(!m_Renderer.Init(m_Window.GetSDLWindow(), cfg.RendererConfig), false);
 
 	Texture::SetRenderer(&m_Renderer);
 	SDLDrawing::SetRenderer(&m_Renderer);

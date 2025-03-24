@@ -11,6 +11,8 @@ int32_t main([[maybe_unused]]int32_t argC, [[maybe_unused]] char* argV[])
 
 	Application* app = new Application;
 	ReturnIf(!app->Init(*cfg), EXIT_FAILURE);
+
+	//TODO maybe keep this alive, so it can be accessed at runtime during dynamic scene load?
 	SafeDelete(cfg);
 
 	app->RunApplication();

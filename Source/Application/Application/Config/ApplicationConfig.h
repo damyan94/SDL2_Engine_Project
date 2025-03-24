@@ -13,11 +13,11 @@ struct ApplicationConfig
 {
 	bool						Read();
 
-	DrawManagerConfig			m_DrawManagerConfig;
-	AssetManagerConfig			m_AssetManagerConfig;
-	AudioManagerConfig			m_AudioManagerConfig;
-	TimerManagerConfig			m_TimerManagerConfig;
-	ImGuiManagerConfig			m_ImGuiManagerConfig;
+	DrawManagerConfig			DrawManagerConfig;
+	AssetManagerConfig			AssetManagerConfig;
+	AudioManagerConfig			AudioManagerConfig;
+	TimerManagerConfig			TimerManagerConfig;
+	ImGuiManagerConfig			ImGuiManagerConfig;
 
-	GameConfig					m_AppConfig;
+	GameConfig					AppConfig;
 };

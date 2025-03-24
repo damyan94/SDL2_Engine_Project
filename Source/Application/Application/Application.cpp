@@ -5,7 +5,6 @@
 
 #include "System/SDLUtils/SDLLoader.h"
 
-//TODO maybe wrap all this in a System.h and have a similar API to the engine
 #include "System/Managers/DrawManager.h"
 #include "System/Managers/AssetManager.h"
 #include "System/Managers/AudioManager.h"
@@ -38,20 +37,20 @@ bool Application::Init(const ApplicationConfig& cfg)
 {
 	srand((uint32_t)time(nullptr));
 
-	ReturnIf(!g_Settings->Read(), false);
+	ReturnIf(!Settings::Instance().Read(), false);
 
 	ReturnIf(!SDLLoader::Init(), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-	ReturnIf(!TimerManager::Instance().Init(cfg.m_TimerManagerConfig), false);
-	ReturnIf(!DrawManager::Instance().Init(cfg.m_DrawManagerConfig), false);
-	ReturnIf(!AssetManager::Instance().Init(cfg.m_AssetManagerConfig), false);
-	ReturnIf(!AudioManager::Instance().Init(cfg.m_AudioManagerConfig), false);
-	ReturnIf(!ImGuiManager::Instance().Init(cfg.m_ImGuiManagerConfig), false);
+	ReturnIf(!TimerManager::Instance().Init(cfg.TimerManagerConfig), false);
+	ReturnIf(!DrawManager::Instance().Init(cfg.DrawManagerConfig), false);
+	ReturnIf(!AssetManager::Instance().Init(cfg.AssetManagerConfig), false);
+	ReturnIf(!AudioManager::Instance().Init(cfg.AudioManagerConfig), false);
+	ReturnIf(!ImGuiManager::Instance().Init(cfg.ImGuiManagerConfig), false);
 
-	ReturnIf(!Game::Instance().Init(cfg.m_AppConfig), false);
+	ReturnIf(!Game::Instance().Init(cfg.AppConfig), false);
 
-	m_TargetFPS = g_Settings->GetTargetFPS();
+	m_TargetFPS = Settings::Instance().GetTargetFPS();
 	m_TargetTimePerFrame = 1000 / m_TargetFPS;
 
 	return true;
@@ -62,7 +61,7 @@ void Application::Deinit()
 {
 	SDLLoader::Deinit();
 
-	g_Settings->Write();
+	Settings::Instance().Write();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -82,12 +81,12 @@ void Application::HandleEvent()
 	if (m_InputEvent.m_Key == EKeyboardKey::E)
 	{
 		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::EN);
-		g_Settings->SetLanguage(ELanguage::EN);
+		Settings::Instance().SetLanguage(ELanguage::EN);
 	}
 	else if (m_InputEvent.m_Key == EKeyboardKey::R)
 	{
 		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::BG);
-		g_Settings->SetLanguage(ELanguage::BG);
+		Settings::Instance().SetLanguage(ELanguage::BG);
 	}
 }
 

@@ -33,17 +33,17 @@ const SoundData& SoundContainer::GetData(SoundId id) const
 ////////////////////////////////////////////////////////////////////////////////
 bool SoundContainer::Init(const SoundContainerConfig& cfg)
 {
-	for (int i = 0; i < cfg.m_SoundContainerConfig.size(); i++)
+	for (int i = 0; i < cfg.SoundContainerConfig.size(); i++)
 	{
 		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& soundCfg = cfg.m_SoundContainerConfig[i];
+		const auto& soundCfg = cfg.SoundContainerConfig[i];
 
 		SoundData newSound;
 
-		Audio::CreateSoundFromFile(newSound.m_Sound, soundCfg.m_FileName.c_str());
+		Audio::CreateSoundFromFile(newSound.m_Sound, soundCfg.FileName.c_str());
 		ReturnIf(!newSound.m_Sound, false);
 
-		newSound.m_Volume = soundCfg.m_Volume;
+		newSound.m_Volume = soundCfg.Volume;
 
 		m_SoundContainer.emplace_back(std::move(newSound));
 	}

@@ -11,7 +11,7 @@ bool StartMenuConfig::Read(const ConfigStrings& readStrings)
 	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_CategoryString.c_str());
-		return true;
+		return false;
 	}
 
 	/*for (size_t i = startLine; i < readStrings.size(); i++)

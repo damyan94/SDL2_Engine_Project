@@ -13,7 +13,7 @@ bool StringContainerConfig::Read(const ConfigStrings& readStrings)
 	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_TypeString.c_str());
-		return true;
+		return false;
 	}
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
@@ -31,7 +31,7 @@ bool StringContainerConfig::Read(const ConfigStrings& readStrings)
 			newCfg.LanguageStrings.emplace(currLanguage, std::move(languageString));
 		}
 
-		m_StringsContainerConfig.emplace_back(std::move(newCfg));
+		StringContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

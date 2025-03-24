@@ -4,6 +4,6 @@ struct RendererConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	Color				m_DrawColor;
-	int32_t				m_Flags;
+	Color				DrawColor;
+	int32_t				Flags;
 };

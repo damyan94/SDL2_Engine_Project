@@ -5,8 +5,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 bool GameConfig::Read(const ConfigStrings& readStrings)
 {
-	ReturnIf(!m_MenuManagerConfig.Read(readStrings), false);
-	ReturnIf(!m_GameConfig.Read(readStrings), false);
+	ReturnIf(!MenuManagerConfig.Read(readStrings), false);
+	ReturnIf(!GameManagerConfig.Read(readStrings), false);
 
 	return true;
 }

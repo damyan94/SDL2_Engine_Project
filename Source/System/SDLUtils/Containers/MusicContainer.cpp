@@ -33,17 +33,17 @@ const MusicData& MusicContainer::GetData(MusicId id) const
 ////////////////////////////////////////////////////////////////////////////////
 bool MusicContainer::Init(const MusicContainerConfig& cfg)
 {
-	for (int i = 0; i < cfg.m_MusicContainerConfig.size(); i++)
+	for (int i = 0; i < cfg.MusicContainerConfig.size(); i++)
 	{
 		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& musicCfg = cfg.m_MusicContainerConfig[i];
+		const auto& musicCfg = cfg.MusicContainerConfig[i];
 
 		MusicData newMusic;
 
-		Audio::CreateMusicFromFile(newMusic.m_Music, musicCfg.m_FileName.c_str());
+		Audio::CreateMusicFromFile(newMusic.m_Music, musicCfg.FileName.c_str());
 		ReturnIf(!newMusic.m_Music, false);
 
-		newMusic.m_Volume = musicCfg.m_Volume;
+		newMusic.m_Volume = musicCfg.Volume;
 
 		m_MusicContainer.emplace_back(std::move(newMusic));
 	}

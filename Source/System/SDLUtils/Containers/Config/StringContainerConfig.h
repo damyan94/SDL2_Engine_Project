@@ -9,5 +9,5 @@ struct StringContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::vector<StringConfig>	m_StringsContainerConfig;
+	std::vector<StringConfig>	StringContainerConfig;
 };

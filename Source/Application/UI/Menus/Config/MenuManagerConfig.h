@@ -8,6 +8,6 @@ struct MenuManagerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	ConsoleMenuConfig	m_ConsoleMenuConfig;
-	StartMenuConfig		m_StartMenuConfig;
+	ConsoleMenuConfig	ConsoleMenuConfig;
+	StartMenuConfig		StartMenuConfig;
 };

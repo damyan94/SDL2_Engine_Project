@@ -24,8 +24,8 @@ Game& Game::Instance()
 ////////////////////////////////////////////////////////////////////////////////
 bool Game::Init(const GameConfig& cfg)
 {
-	m_MenuManager.Init(cfg.m_MenuManagerConfig);
-	m_GameManager.Init(cfg.m_GameConfig);
+	m_MenuManager.Init(cfg.MenuManagerConfig);
+	m_GameManager.Init(cfg.GameManagerConfig);
 
 	m_MenuManager.FocusMenu(EMenuId::StartMenu);
 

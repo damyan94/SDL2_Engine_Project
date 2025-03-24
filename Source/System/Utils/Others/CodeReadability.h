@@ -52,5 +52,5 @@
 #define AssertContinueUnless(__Condition)			AssertContinueIf(!__Condition)
 #define AssertBreakUnless(__Condition)				AssertBreakIf(!__Condition)
 
-#define SafeDelete(__Ptr)							do { if(__Ptr) { delete __Ptr; __Ptr = nullptr; }} while(false)
-#define SafeDeleteArray(__Ptr)						do { if(__Ptr) { delete[] __Ptr; __Ptr = nullptr; }} while(false)
+#define SafeDelete(__Ptr)							delete __Ptr; __Ptr = nullptr
+#define SafeDeleteArray(__Ptr)						delete[] __Ptr; __Ptr = nullptr

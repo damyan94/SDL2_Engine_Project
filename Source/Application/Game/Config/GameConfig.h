@@ -8,6 +8,6 @@ struct GameConfig
 {
 	bool						Read(const ConfigStrings& readStrings);
 
-	MenuManagerConfig			m_MenuManagerConfig;
-	GameManagerConfig			m_GameConfig;
+	MenuManagerConfig			MenuManagerConfig;
+	GameManagerConfig			GameManagerConfig;
 };

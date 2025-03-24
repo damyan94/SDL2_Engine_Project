@@ -5,7 +5,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 bool MenuManagerConfig::Read(const ConfigStrings& readStrings)
 {
-	ReturnIf(!m_StartMenuConfig.Read(readStrings), false);
+	ReturnIf(!StartMenuConfig.Read(readStrings), false);
 
 	return true;
 }

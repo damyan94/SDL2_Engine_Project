@@ -8,7 +8,7 @@
 bool ImGuiManagerConfig::Read()
 {
 	//TODO Read data from file and populate the config
-	m_ImGuiStyle = EImGuiStyle::Dark;
+	ImGuiStyle = EImGuiStyle::Dark;
 
 	return true;
 }

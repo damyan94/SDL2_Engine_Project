@@ -40,10 +40,10 @@ const StringData& StringContainer::GetStringData(StringId id) const
 ////////////////////////////////////////////////////////////////////////////////
 bool StringContainer::Init(const StringContainerConfig& cfg)
 {
-	for (int i = 0; i < cfg.m_StringsContainerConfig.size(); i++)
+	for (int i = 0; i < cfg.StringContainerConfig.size(); i++)
 	{
 		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& stringCfg = cfg.m_StringsContainerConfig[i];
+		const auto& stringCfg = cfg.StringContainerConfig[i];
 
 		StringData newString;
 

@@ -33,10 +33,10 @@ const FontData& FontContainer::GetData(FontId id) const
 ////////////////////////////////////////////////////////////////////////////////
 bool FontContainer::Init(const FontContainerConfig& cfg)
 {
-	for (int i = 0; i < cfg.m_FontContainerConfig.size(); i++)
+	for (int i = 0; i < cfg.FontContainerConfig.size(); i++)
 	{
 		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& fontCfg = cfg.m_FontContainerConfig[i];
+		const auto& fontCfg = cfg.FontContainerConfig[i];
 
 		FontData newFont;
 

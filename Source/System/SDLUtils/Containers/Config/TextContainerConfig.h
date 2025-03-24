@@ -12,5 +12,5 @@ struct TextContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::vector<TextConfig>		m_TextsConfig;
+	std::vector<TextConfig>		TextContainerConfig;
 };

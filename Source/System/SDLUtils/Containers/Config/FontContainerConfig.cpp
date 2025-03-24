@@ -13,7 +13,7 @@ bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_TypeString.c_str());
-		return true;
+		return false;
 	}
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
@@ -31,7 +31,7 @@ bool FontContainerConfig::Read(const ConfigStrings& readStrings)
 		newCfg.WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "WrapAlign"));
 		AssertReturnIf(!IsEnumValueValid(newCfg.WrapAlign) && _CONFIG_ERROR_INFO(i), false);
 
-		m_FontContainerConfig.emplace_back(std::move(newCfg));
+		FontContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

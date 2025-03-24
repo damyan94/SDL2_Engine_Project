@@ -29,7 +29,7 @@ bool MenuManager::Init(const MenuManagerConfig& cfg)
 
 #define ALLOCATE_AND_INIT(_Id, _Type)\
 m_Menus[(int32_t)_Id] = new _Type;\
-ReturnIf(!static_cast<_Type*>(m_Menus[(int32_t)_Id])->Init(cfg.m_##_Type##Config), false)
+ReturnIf(!static_cast<_Type*>(m_Menus[(int32_t)_Id])->Init(cfg._Type##Config), false)
 
 	ALLOCATE_AND_INIT(EMenuId::ConsoleMenu, ConsoleMenu);
 	ALLOCATE_AND_INIT(EMenuId::StartMenu, StartMenu);

@@ -11,7 +11,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 TextContainer::TextContainer()
-	: m_TextContainerConfig(nullptr)
+	: p_StringContainer(nullptr)
+	, p_FontContainer(nullptr)
+	, m_TextContainerConfig(nullptr)
 	, m_CurrLanguage(ELanguage::Invalid)
 {
 }
@@ -41,7 +43,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 {
 	AssertReturnIf(!DoesAssetExist(id), false);
 
-	TextData& textData			= m_TextsContainer[id];
+	TextData& textData		= m_TextsContainer[id];
 	ReturnIf(textData.StringId == -1, false);
 
 	textData.FontId			= fontId;
@@ -98,10 +100,10 @@ bool TextContainer::Init(const TextContainerConfig& cfg, const StringContainer& 
 	//TODO fix this
 	m_CurrLanguage = /*g_Settings->GetLanguage();*/ELanguage::EN;
 
-	for (int i = 0; i < cfg.m_TextsConfig.size(); i++)
+	for (int i = 0; i < cfg.TextContainerConfig.size(); i++)
 	{
 		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& textCfg = cfg.m_TextsConfig[i];
+		const auto& textCfg = cfg.TextContainerConfig[i];
 
 		TextData newTextData;
 		newTextData.Texture = new Texture;

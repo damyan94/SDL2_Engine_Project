@@ -1,16 +1,14 @@
 #pragma once
 
 class Settings
+	: public INonCopyMoveable
 {
-public:
+private:
 	Settings();
 	~Settings();
 
-	Settings(const Settings& other) = delete;
-	Settings(Settings&& other) = delete;
-
-	Settings& operator=(const Settings& other) = delete;
-	Settings& operator=(Settings&& other) = delete;
+public:
+	static Settings&	Instance();
 
 	bool				Read();
 	bool				Write();
@@ -25,5 +23,3 @@ private:
 	int32_t				m_TargetFPS;
 	ELanguage			m_Language;
 };
-
-extern Settings* const g_Settings;

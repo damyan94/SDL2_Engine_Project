@@ -8,6 +8,7 @@
 #include "System/SDLUtils/Containers/SoundContainer.h"
 #include "System/SDLUtils/Containers/MusicContainer.h"
 
+//TODO maybe store a pointer/reference to these configs in the corresponding class?
 struct AssetManagerConfig;
 
 class AssetManager

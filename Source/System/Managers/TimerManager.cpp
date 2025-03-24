@@ -18,15 +18,15 @@ TimerManager::~TimerManager()
 ////////////////////////////////////////////////////////////////////////////////
 TimerManager& TimerManager::Instance()
 {
-	static TimerManager m_Instance;
-	return m_Instance;
+	static TimerManager instance;
+	return instance;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 bool TimerManager::Init(const TimerManagerConfig& cfg)
 {
 	TimerManager::StartGlobalTimer();
-	ReturnIf(!TimerContainer::Init(cfg.m_TimerContainerConfig), false);
+	ReturnIf(!TimerContainer::Init(cfg.TimerContainerConfig), false);
 
 	return true;
 }

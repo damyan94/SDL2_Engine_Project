@@ -11,5 +11,5 @@ struct FontContainerConfig
 {
 	bool				Read(const ConfigStrings& readStrings);
 
-	std::vector<FontConfig>	m_FontContainerConfig;
+	std::vector<FontConfig>	FontContainerConfig;
 };

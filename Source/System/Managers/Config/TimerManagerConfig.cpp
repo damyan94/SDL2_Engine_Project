@@ -5,7 +5,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 bool TimerManagerConfig::Read()
 {
-	ReturnIf(!m_TimerContainerConfig.Read(), false);
+	ReturnIf(!TimerContainerConfig.Read(), false);
 
 	return true;
 }

@@ -6,5 +6,5 @@ struct ImGuiManagerConfig
 {
 	bool				Read();
 
-	EImGuiStyle			m_ImGuiStyle;
+	EImGuiStyle			ImGuiStyle;
 };

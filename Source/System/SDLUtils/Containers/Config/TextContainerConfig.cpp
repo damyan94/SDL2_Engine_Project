@@ -12,7 +12,7 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 	if (startLine >= readStrings.size())
 	{
 		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_TypeString.c_str());
-		return true;
+		return false;
 	}
 
 	for (size_t i = startLine; i < readStrings.size(); i++)
@@ -32,7 +32,7 @@ bool TextContainerConfig::Read(const ConfigStrings& readStrings)
 		newCfg.WrapWidth = Utils::ReadInt(readStrings[i], "WrapWidth");
 		AssertReturnIf(newCfg.WrapWidth < 0 && _CONFIG_ERROR_INFO(i), false);
 
-		m_TextsConfig.emplace_back(std::move(newCfg));
+		TextContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

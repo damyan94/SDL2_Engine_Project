@@ -28,14 +28,14 @@ bool Renderer::Init(SDL_Window* window, const RendererConfig& cfg)
 	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "0") && SDL_GetError(), false);
 	AssertReturnIf(!SDL_SetHint(SDL_HINT_RENDER_BATCHING, "1") && SDL_GetError(), false);
 
-	m_Renderer = SDL_CreateRenderer(window, -1, cfg.m_Flags);
+	m_Renderer = SDL_CreateRenderer(window, -1, cfg.Flags);
 	AssertReturnIf(!m_Renderer && SDL_GetError(), false);
 
 	AssertReturnIf(EXIT_SUCCESS != SDL_SetRenderDrawBlendMode(m_Renderer, SDL_BlendMode::SDL_BLENDMODE_BLEND)
 		&& SDL_GetError(), false);
 
-	SetDrawColor(cfg.m_DrawColor);
-	m_DefaultDrawColor = cfg.m_DrawColor;
+	SetDrawColor(cfg.DrawColor);
+	m_DefaultDrawColor = cfg.DrawColor;
 
 	return true;
 }

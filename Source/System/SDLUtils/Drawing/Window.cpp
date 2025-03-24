@@ -26,18 +26,18 @@ Window::~Window()
 bool Window::Init(const WindowConfig& cfg)
 {
 	m_Window = SDL_CreateWindow(
-		cfg.m_Name.c_str(),
-		cfg.m_PosX,
-		cfg.m_PosY,
-		cfg.m_Width,
-		cfg.m_Height,
-		cfg.m_Flags);
+		cfg.Name.c_str(),
+		cfg.PosX,
+		cfg.PosY,
+		cfg.Width,
+		cfg.Height,
+		cfg.Flags);
 	AssertReturnIf(!m_Window && SDL_GetError(), false);
 
-	m_PosRect.x			= cfg.m_PosX;
-	m_PosRect.y			= cfg.m_PosY;
-	m_PosRect.w			= cfg.m_Width;
-	m_PosRect.h			= cfg.m_Height;
+	m_PosRect.x			= cfg.PosX;
+	m_PosRect.y			= cfg.PosY;
+	m_PosRect.w			= cfg.Width;
+	m_PosRect.h			= cfg.Height;
 	m_IsMinimized		= false;
 
 	SDL_ShowWindow(m_Window);

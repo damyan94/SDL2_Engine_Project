@@ -12,5 +12,7 @@ public:
 	bool				Init(TextId id);
 	void				Deinit();
 
+	void				SetPlaceholders(const std::vector<std::string>& values);
+
 private:
 };

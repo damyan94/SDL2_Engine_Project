@@ -3,7 +3,7 @@
 #include "Application/Game/Config/GameManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool GameManagerConfig::Read(const ConfigStrings& readStrings)
+bool GameManagerConfig::Read()
 {
 	return true;
 }

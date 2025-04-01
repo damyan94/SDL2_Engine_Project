@@ -1,17 +1,14 @@
 #pragma once
 
-#include "System/Components/UI/Components/Config/ButtonConfig.h"
-#include "System/Components/UI/Components/Config/CheckboxConfig.h"
-#include "System/Components/UI/Components/Config/RadioButtonConfig.h"
-#include "System/Components/UI/Components/Config/TextBoxConfig.h"
+#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
 
 struct StartMenuConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool				Read(const std::string& line, const UIComponentsConfig& uiComponentsConfig);
 
 	Rectangle			m_PosRect;
 
-	ButtonConfig	    m_ButtonNewGameConfig;
-	ButtonConfig	    m_ButtonSettingsConfig;
-	ButtonConfig	    m_ButtonQuitConfig;
+	const IUIComponentConfig* m_ButtonNewGameConfig;
+	const IUIComponentConfig* m_ButtonSettingsConfig;
+	const IUIComponentConfig* m_ButtonQuitConfig;
 };

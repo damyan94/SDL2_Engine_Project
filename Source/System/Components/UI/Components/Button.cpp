@@ -15,13 +15,16 @@ Button::~Button()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool Button::Init(const ButtonConfig& cfg)
+bool Button::Init(const IUIComponentConfig* cfg)
 {
-	UIComponentBase::Init({ cfg.m_Pos, cfg.m_ImageId });
+	AssertReturnIf(!cfg, false);
+	const auto& buttonCfg = *(ButtonConfig*)(cfg);
 
-	m_Text.Init(cfg.m_TextId);
-	m_Sound.Init(cfg.m_SoundId);
-	SetPosition(cfg.m_Pos);
+	UIComponentBase::Init({ buttonCfg.m_Pos, buttonCfg.m_ImageId });
+
+	m_Text.Init(buttonCfg.m_TextId);
+	m_Sound.Init(buttonCfg.m_SoundId);
+	SetPosition(buttonCfg.m_Pos);
 
 	return true;
 }
@@ -72,7 +75,8 @@ void Button::SetPosition(const Point& newPos)
 {
 	UIComponentBase::SetPosition(newPos);
 
-	const auto& textPos = Position::PositonRelativeToParent(m_Text.GetFrameRect(), m_Image.GetPosRect());
+	auto imageRect = m_Image.GetPosRect();
+	const auto& textPos = Position::GetPositonRelativeToParent(m_Text.GetFrameRect(), &imageRect);
 	m_Text.SetPos(textPos);
 }
 

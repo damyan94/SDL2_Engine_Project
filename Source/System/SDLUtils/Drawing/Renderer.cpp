@@ -68,7 +68,7 @@ void Renderer::RenderTexture(Texture& texture, const DrawParameters& p) const
 	ReturnIf(p.Opacity <= 0 || !p.IsVisible);
 
 	const SDL_Rect src{ p.FrameRect.x, p.FrameRect.y, p.FrameRect.w, p.FrameRect.h };
-	const SDL_Rect dst{ p.PosRect.x, p.PosRect.y, p.PosRect.w, p.PosRect.h };
+	const SDL_Rect dst{ p.Position.x, p.Position.y, p.Width, p.Height };
 	const SDL_Point cntr{ p.RotationCenter.x, p.RotationCenter.y };
 
 	//TODO move to drawmanager

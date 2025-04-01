@@ -72,6 +72,49 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth, const std::vector<std::string>& values)
+{
+	AssertReturnIf(!DoesAssetExist(id), false);
+
+	TextData& textData = m_TextsContainer[id];
+	ReturnIf(textData.StringId == -1, false);
+
+	textData.FontId = fontId;
+	textData.TextColor = color;
+	textData.WrapWidth = wrapWidth;
+
+	textData.Texture->DestroyTexture();
+
+	auto newText = p_StringContainer->GetStringData(textData.StringId).GetLocalizedString(m_CurrLanguage);
+	for (size_t i = 0; i < values.size(); i++)
+	{
+		const auto placeholder = "{" + std::to_string(i + 1) + "}";
+		const auto pos = newText.find(placeholder);
+		ContinueIf(pos == std::string::npos);
+
+		newText = newText.replace(pos, placeholder.size(), values[i]);
+	}
+
+	TextTextureParameters inOutParams{
+		newText,
+		p_FontContainer->GetData(textData.FontId).Font,
+		textData.TextColor,
+		textData.WrapWidth,
+		0,
+		0
+	};
+	textData.Texture->CreateTextureFromText(inOutParams);
+	ReturnIf(!textData.Texture->Get(), false);
+
+	textData.FrameRect.w = inOutParams.Width;
+	textData.FrameRect.h = inOutParams.Height;
+
+	textData.Texture->SetTextureBlendMode(EBlendMode::Blend);
+
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 bool TextContainer::UpdateAllTexts()
 {
 	for (int i = 0; i < m_TextsContainer.size(); i++)

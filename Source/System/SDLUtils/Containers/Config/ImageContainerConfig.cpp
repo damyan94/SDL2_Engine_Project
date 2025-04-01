@@ -1,23 +1,18 @@
 #include "stdafx.h"
 
 #include "System/SDLUtils/Containers/Config/ImageContainerConfig.h"
-#include "System/Defines/ConfigFilePaths.h"
 
-static const std::string c_TypeString = "Image";
+#include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool ImageContainerConfig::Read(const ConfigStrings& readStrings)
 {
-	size_t startLine = Utils::ReadInt(readStrings[0], c_TypeString);
-	if (startLine >= readStrings.size())
+	const auto count = readStrings.size();
+	for (size_t i = 0; i < count; i++)
 	{
-		Log::ConsoleWarning("Cannot find section \"%s\" in config file.", c_TypeString.c_str());
-		return false;
-	}
-	
-	for (size_t i = startLine; i < readStrings.size(); i++)
-	{
-		BreakIf(Utils::ReadString(readStrings[i], "Type") != c_TypeString);
+		const auto& line = readStrings[i];
+		const auto id = Utils::ReadInt(line, "Id");
+		AssertReturnIf(id != i, false);
 
 		ImageConfig newCfg;
 

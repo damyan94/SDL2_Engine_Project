@@ -29,6 +29,7 @@ public:
 	const TextData&		GetData(TextId id) const;
 
 	bool				UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth);
+	bool				UpdateText(TextId id, FontId fontId, const Color& color, int32_t wrapWidth, const std::vector<std::string>& values);
 	bool				UpdateAllTexts();
 
 	void				ChangeLanguage(ELanguage newLanguage);

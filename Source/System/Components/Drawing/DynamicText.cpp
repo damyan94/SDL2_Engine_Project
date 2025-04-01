@@ -21,17 +21,17 @@ bool DynamicText::Init(const std::string& text, FontId fontId, const Color& text
 	m_DrawParameters.ResourceId = AssetManager::Instance().m_DynamicTextContainer.CreateDynamicText(text, fontId, textColor, wrapWidth);
 	const auto& data = AssetManager::Instance().m_DynamicTextContainer.GetData(m_DrawParameters.ResourceId);
 	
-	m_DrawParameters.PosRect.x			= 0;
-	m_DrawParameters.PosRect.y			= 0;
-	m_DrawParameters.PosRect.w			= data.FrameRect.w;
-	m_DrawParameters.PosRect.h			= data.FrameRect.h;
-	m_DrawParameters.FrameRect.w		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.FrameRect.h		= m_DrawParameters.PosRect.h;
-	m_DrawParameters.StandardWidth		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.StandardHeight		= m_DrawParameters.PosRect.h;
+	m_DrawParameters.Position.x			= 0;
+	m_DrawParameters.Position.y			= 0;
+	m_DrawParameters.Width				= data.FrameRect.w;
+	m_DrawParameters.Height				= data.FrameRect.h;
+	m_DrawParameters.FrameRect.w		= data.FrameRect.w;
+	m_DrawParameters.FrameRect.h		= data.FrameRect.h;
+	m_DrawParameters.StandardWidth		= data.FrameRect.w;
+	m_DrawParameters.StandardHeight		= data.FrameRect.h;
 	
-	m_DrawParameters.RotationCenter		= Point(m_DrawParameters.PosRect.w / 2,
-												m_DrawParameters.PosRect.h / 2);
+	m_DrawParameters.RotationCenter		= Point(m_DrawParameters.Width / 2,
+												m_DrawParameters.Height / 2);
 
 	m_DrawParameters.ObjectType			= EObjectType::DynamicText;
 
@@ -50,12 +50,12 @@ void DynamicText::SetText(const std::string& newText)
 	AssetManager::Instance().m_DynamicTextContainer.SetDynamicText(m_DrawParameters.ResourceId, newText);
 	const auto& data = AssetManager::Instance().m_DynamicTextContainer.GetData(m_DrawParameters.ResourceId);
 
-	m_DrawParameters.PosRect.w			= data.FrameRect.w;
-	m_DrawParameters.PosRect.h			= data.FrameRect.h;
-	m_DrawParameters.FrameRect.w		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.FrameRect.h		= m_DrawParameters.PosRect.h;
-	m_DrawParameters.StandardWidth		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.StandardHeight		= m_DrawParameters.PosRect.h;
+	m_DrawParameters.Width				= data.FrameRect.w;
+	m_DrawParameters.Height				= data.FrameRect.h;
+	m_DrawParameters.FrameRect.w		= data.FrameRect.w;
+	m_DrawParameters.FrameRect.h		= data.FrameRect.h;
+	m_DrawParameters.StandardWidth		= data.FrameRect.w;
+	m_DrawParameters.StandardHeight		= data.FrameRect.h;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -64,12 +64,12 @@ void DynamicText::SetColor(const Color& newColor)
 	AssetManager::Instance().m_DynamicTextContainer.SetDynamicTextColor(m_DrawParameters.ResourceId, newColor);
 	const auto& data = AssetManager::Instance().m_DynamicTextContainer.GetData(m_DrawParameters.ResourceId);
 
-	m_DrawParameters.PosRect.w			= data.FrameRect.w;
-	m_DrawParameters.PosRect.h			= data.FrameRect.h;
-	m_DrawParameters.FrameRect.w		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.FrameRect.h		= m_DrawParameters.PosRect.h;
-	m_DrawParameters.StandardWidth		= m_DrawParameters.PosRect.w;
-	m_DrawParameters.StandardHeight		= m_DrawParameters.PosRect.h;
+	m_DrawParameters.Width				= data.FrameRect.w;
+	m_DrawParameters.Height				= data.FrameRect.h;
+	m_DrawParameters.FrameRect.w		= data.FrameRect.w;
+	m_DrawParameters.FrameRect.h		= data.FrameRect.h;
+	m_DrawParameters.StandardWidth		= data.FrameRect.w;
+	m_DrawParameters.StandardHeight		= data.FrameRect.h;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

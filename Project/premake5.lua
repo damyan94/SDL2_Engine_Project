@@ -1,19 +1,20 @@
 newoption
 {
-    trigger = "os",
-    value = "system",
-    description = "Choose the target system",
-    allowed =
+	trigger = "os",
+	value = "system",
+	description = "Choose the target system",
+	allowed =
 	{
 		{ "windows", "Windows" },
-		{ "linux", "Linux" }
-    }
+		{ "linux", "Linux" },
+		{ "emscripten", "Emscripten" }
+	}
 }
 local targetSystem = _OPTIONS["os"]
 targetSystem = targetSystem:gsub("^%l", string.upper)
 
 if not targetSystem then
-    error("Error: You must provide the '--os' option to specify the target system (e.g., --os=windows or --os=linux).")
+	error("Error: You must provide the '--os' option to specify the target system (e.g., --os=windows or --os=linux).")
 end
 
 local baseDir 			= "../"
@@ -23,7 +24,7 @@ local projectDir 		= baseDir .. "Project/"
 local sourceDir 		= baseDir .. "Source/"
 
 local outputDir = buildDir .. targetSystem .. "_%{cfg.architecture}_%{cfg.buildcfg}/"
-	
+
 function setupCommonProjectSettings(_projectName, _kind)
 
 	location (projectDir .. targetSystem .. "/" .. _projectName)
@@ -32,7 +33,7 @@ function setupCommonProjectSettings(_projectName, _kind)
 	cppdialect "C++20"
 	warnings "Default"
 	staticruntime "On"
-		
+	
 	targetdir (outputDir)
 	objdir (outputDir .. "/Temp/" .. _projectName)
 	
@@ -78,7 +79,7 @@ function setupCommonProjectSettings(_projectName, _kind)
 	
 	pchheader "stdafx.h"
 	pchsource (sourceDir .. _projectName .. "/stdafx.cpp")
-	
+
 end
 
 function setupConfigurationSpecificSettings()
@@ -91,7 +92,7 @@ function setupConfigurationSpecificSettings()
 			"_DEBUG",
 			"DEBUG"
 		}
-		
+	
 	filter "configurations:Release"
 		symbols "On"
 		optimize "On"
@@ -101,7 +102,7 @@ function setupConfigurationSpecificSettings()
 			"_RELEASE",
 			"RELEASE"
 		}
-		
+	
 	filter "configurations:Distribution"
 		optimize "On"
 		
@@ -110,9 +111,9 @@ function setupConfigurationSpecificSettings()
 			"_DISTRIBUTION",
 			"DISTRIBUTION"
 		}
-		
-	filter {}
 	
+	filter {}
+
 end
 
 function setupPlatformSpecificSettings()
@@ -131,7 +132,7 @@ function setupPlatformSpecificSettings()
 			"_WINDOWS",
 			"WINDOWS"
 		}
-		
+	
 	elseif targetSystem == "Linux" then
 		defines
 		{
@@ -139,7 +140,47 @@ function setupPlatformSpecificSettings()
 			"_LINUX",
 			"LINUX"
 		}
+	
+	elseif targetSystem == "Emscripten" then
+		toolset "clang"
+		architecture "x86"
+		staticruntime "Off"
+		symbols "On"
+		optimize "Off"
+		
+		defines
+		{
+			"_EMSCRIPTEN",
+			"EMSCRIPTEN"
+		}
+		
+		buildoptions
+		{
+			--"-gsource-map",
+			--"-s USE_SDL=2",
+			--"-s USE_SDL_IMAGE=2",
+			--"-s USE_SDL_TTF=2",
+			--"-s USE_SDL_MIXER=2"
+			"-g4"
+		}
+		
+		linkoptions
+		{
+			--"--bind",
+			--"-s USE_SDL=2",
+			--"-s USE_SDL_IMAGE=2",
+			--"-s USE_SDL_TTF=2",
+			--"-s USE_SDL_MIXER=2",
+			--"--preload-file ../../../Assets",
+			--"--preload-file ../../../Config",
 			
+			"-g4", 
+			"--source-map-base http://localhost:8000/web/",
+			"-s STACK_OVERFLOW_CHECK=1", 
+			"-s SAFE_HEAP=1", 
+			"-s DETERMINISTIC=1" 
+		}
+	
 	end
 
 end
@@ -157,12 +198,12 @@ workspace "SDL2_Engine_Project"
 		"Release",
 		"Distribution"
 	}
-	
+
 project "System"
 	setupCommonProjectSettings("%{prj.name}", "StaticLib")
 	setupConfigurationSpecificSettings()
 	setupPlatformSpecificSettings()
-		
+
 project "Application"
 	setupCommonProjectSettings("%{prj.name}", "ConsoleApp")
 	setupConfigurationSpecificSettings()
@@ -170,8 +211,13 @@ project "Application"
 	
 	filter "configurations:Distribution"
 		kind "WindowedApp"
-		
+	
 	filter {}
+	
+	if targetSystem == "Emscripten" then
+		targetextension ".html"
+	
+	end
 	
 	links
 	{

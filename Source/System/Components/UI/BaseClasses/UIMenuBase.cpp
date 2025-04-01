@@ -80,7 +80,7 @@ void UIMenuBase::Deactivate()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-Rectangle UIMenuBase::GetPosRect() const
+const Rectangle& UIMenuBase::GetPosRect() const
 {
 	return m_PosRect;
 }

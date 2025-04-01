@@ -18,7 +18,7 @@ public:
 	virtual void		Activate();
 	virtual void		Deactivate();
 
-	Rectangle			GetPosRect() const;
+	const Rectangle&	GetPosRect() const;
 	bool				GetIsActive() const;
 
 protected:

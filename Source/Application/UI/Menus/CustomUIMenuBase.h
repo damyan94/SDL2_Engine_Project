@@ -13,6 +13,7 @@ public:
 	virtual ~CustomUIMenuBase();
 
 	EMenuId				GetId() const;
+	virtual void		UpdateLayout() = 0;
 
 protected:
 	EMenuId				m_Id;

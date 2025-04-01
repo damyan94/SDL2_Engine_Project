@@ -2,5 +2,5 @@
 
 struct GameManagerConfig
 {
-	bool						Read(const ConfigStrings& readStrings);
+	bool						Read();
 };

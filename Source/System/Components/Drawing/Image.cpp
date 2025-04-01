@@ -23,15 +23,15 @@ bool Image::Init(ImageId id)
 	const auto& data = AssetManager::Instance().m_ImageContainer.GetData(id);
 	//ReturnIf(!data, false);
 	
-	m_DrawParameters.PosRect		= Rectangle::Zero;
+	m_DrawParameters.Position		= Point::Zero;
 	m_DrawParameters.FrameRect		= data.FrameRect;
-	m_DrawParameters.PosRect.w		= m_DrawParameters.FrameRect.w;
-	m_DrawParameters.PosRect.h		= m_DrawParameters.FrameRect.h;
-	m_DrawParameters.StandardWidth	= m_DrawParameters.PosRect.w;
-	m_DrawParameters.StandardHeight	= m_DrawParameters.PosRect.h;
+	m_DrawParameters.Width			= m_DrawParameters.FrameRect.w;
+	m_DrawParameters.Height			= m_DrawParameters.FrameRect.h;
+	m_DrawParameters.StandardWidth	= m_DrawParameters.FrameRect.w;
+	m_DrawParameters.StandardHeight	= m_DrawParameters.FrameRect.h;
 	
-	m_DrawParameters.RotationCenter	= Point(m_DrawParameters.PosRect.w / 2,
-											m_DrawParameters.PosRect.h / 2);
+	m_DrawParameters.RotationCenter	= Point(m_DrawParameters.Width / 2,
+											m_DrawParameters.Height / 2);
 
 	m_DrawParameters.ObjectType		= EObjectType::Image;
 	m_DrawParameters.ResourceId		= id;

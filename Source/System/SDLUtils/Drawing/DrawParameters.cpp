@@ -4,7 +4,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 DrawParameters::DrawParameters()
-	: PosRect(Rectangle::Undefined)
+	: Position(Point::Undefined)
+	, Width(0)
+	, Height(0)
 	, StandardWidth(0)
 	, StandardHeight(0)
 	, FrameRect(Rectangle::Zero)

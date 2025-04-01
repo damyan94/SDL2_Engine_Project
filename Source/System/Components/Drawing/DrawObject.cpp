@@ -37,25 +37,31 @@ void DrawObject::Draw() const
 ////////////////////////////////////////////////////////////////////////////////
 Point DrawObject::GetPos() const
 {
-	return { m_DrawParameters.PosRect.x, m_DrawParameters.PosRect.y };
+	return m_DrawParameters.Position;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 int32_t DrawObject::GetWidth() const
 {
-	return m_DrawParameters.PosRect.w;
+	return m_DrawParameters.Width;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 int32_t DrawObject::GetHeight() const
 {
-	return m_DrawParameters.PosRect.h;
+	return m_DrawParameters.Height;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 Rectangle DrawObject::GetPosRect() const
 {
-	return m_DrawParameters.PosRect;
+	return
+	{
+		m_DrawParameters.Position.x,
+		m_DrawParameters.Position.y,
+		m_DrawParameters.Width,
+		m_DrawParameters.Height
+	};
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,27 +117,27 @@ bool DrawObject::IsVisible() const
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::SetPos(int32_t x, int32_t y)
 {
-	m_DrawParameters.PosRect.x = x;
-	m_DrawParameters.PosRect.y = y;
+	m_DrawParameters.Position.x = x;
+	m_DrawParameters.Position.y = y;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::SetPos(const Point& pos)
 {
-	m_DrawParameters.PosRect.x = pos.x;
-	m_DrawParameters.PosRect.y = pos.y;
+	m_DrawParameters.Position.x = pos.x;
+	m_DrawParameters.Position.y = pos.y;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::SetWidth(int32_t width)
 {
-	m_DrawParameters.PosRect.w = width;
+	m_DrawParameters.Width = width;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::SetHeight(int32_t height)
 {
-	m_DrawParameters.PosRect.h = height;
+	m_DrawParameters.Height = height;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -186,51 +192,51 @@ void DrawObject::SetIsVisible(bool visible)
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::MoveUp(int32_t delta)
 {
-	m_DrawParameters.PosRect.y -= delta;
+	m_DrawParameters.Position.y -= delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::MoveDown(int32_t delta)
 {
-	m_DrawParameters.PosRect.y += delta;
+	m_DrawParameters.Position.y += delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::MoveLeft(int32_t delta)
 {
-	m_DrawParameters.PosRect.x -= delta;
+	m_DrawParameters.Position.x -= delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::MoveRight(int32_t delta)
 {
-	m_DrawParameters.PosRect.x += delta;
+	m_DrawParameters.Position.x += delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::ChangeWidthBy(int32_t delta)
 {
-	m_DrawParameters.PosRect.w += delta;
+	m_DrawParameters.Width += delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::ChangeHeightBy(int32_t delta)
 {
-	m_DrawParameters.PosRect.h += delta;
+	m_DrawParameters.Height += delta;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::Resize(int32_t width, int32_t height)
 {
-	m_DrawParameters.PosRect.w = width;
-	m_DrawParameters.PosRect.h = height;
+	m_DrawParameters.Width = width;
+	m_DrawParameters.Height = height;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void DrawObject::Resize(int32_t percentage)
 {
-	m_DrawParameters.PosRect.w = m_DrawParameters.PosRect.w * percentage / 100;
-	m_DrawParameters.PosRect.h = m_DrawParameters.PosRect.h * percentage / 100;
+	m_DrawParameters.Width = m_DrawParameters.Width * percentage / 100;
+	m_DrawParameters.Height = m_DrawParameters.Height * percentage / 100;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -268,6 +274,5 @@ void DrawObject::Rotate(int32_t delta)
 ////////////////////////////////////////////////////////////////////////////////
 bool DrawObject::ContainsPoint(const Point& point) const
 {
-	const Rectangle& posRect = m_DrawParameters.PosRect;
-	return Rectangle(posRect.x, posRect.y, posRect.w, posRect.h).IsPointInside(point);
+	return GetPosRect().IsPointInside(point);
 }

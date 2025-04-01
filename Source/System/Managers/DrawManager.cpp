@@ -91,8 +91,8 @@ void DrawManager::DrawTexture(const DrawParameters& p) const
 ////////////////////////////////////////////////////////////////////////////////
 bool DrawManager::IsInsideWindow(const DrawParameters& p) const
 {
-	const Rectangle& dstRect		= p.PosRect;
-	const Rectangle& windowRect		= m_Window.GetWindowRect();
+	Rectangle dstRect = { p.Position.x, p.Position.y, p.Width, p.Height };
+	const Rectangle& windowRect = m_Window.GetWindowRect();
 
 	return (dstRect.x + dstRect.w > 0 && dstRect.y + dstRect.h > 0)
 		&& (dstRect.x < windowRect.w && dstRect.y < windowRect.h);

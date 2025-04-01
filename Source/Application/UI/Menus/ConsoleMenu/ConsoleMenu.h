@@ -22,12 +22,11 @@ public:
 	void				Activate();
 	void				Deactivate();
 
+	void				UpdateLayout() final;
+
 private:
 	Timer				m_TimerUpdate;
 
-	FontId				m_FontId;
-	Color				m_TextColor;
-
-	DynamicText			m_TextDrawCalls;
-	DynamicText			m_TextCameraPos;
+	Text				m_TextDrawCalls;
+	Text				m_TextCameraPos;
 };

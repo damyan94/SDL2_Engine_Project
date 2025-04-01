@@ -7,7 +7,8 @@ static const std::string c_SettingsFileName = ConfigFilePaths::ConfigFilePath("C
 
 ////////////////////////////////////////////////////////////////////////////////
 Settings::Settings()
-	: m_TargetFPS(0)
+	: m_SettingsFile(c_SettingsFileName, EWriteMode::Out)
+	, m_TargetFPS(0)
 	, m_Language(ELanguage::Invalid)
 {
 }
@@ -27,14 +28,26 @@ Settings& Settings::Instance()
 ////////////////////////////////////////////////////////////////////////////////
 bool Settings::Read()
 {
-	std::string readString;
+	ReturnIf(!m_SettingsFile.IsOpen(), false);
 
-	ReturnIf(!ReadWriteFile::ReadFromFile(c_SettingsFileName, readString), false);
+	const auto& readStrings = m_SettingsFile.GetFileContents();
 
-	m_TargetFPS = Utils::ReadInt(readString, "fps");
+	auto findString = [&](const std::string& lookup) -> const std::string&
+		{
+			const auto it = std::find_if(readStrings.begin(), readStrings.end(),
+				[&](const std::string& text)
+				{
+					return text.find(lookup) != std::string::npos;
+				});
+			AssertReturnIf(it == readStrings.end(), "");
+
+			return *it;
+		};
+
+	m_TargetFPS = Utils::ReadInt(findString("fps"), "fps");
 	AssertReturnIf(m_TargetFPS <= 0 || m_TargetFPS > 100, false);
 
-	const std::string langString = Utils::ReadString(readString, "language");
+	const std::string langString = Utils::ReadString(findString("language"), "language");
 	m_Language = Utils::GetLanguageIdFromString(langString);
 	AssertReturnIf(!IsEnumValueValid(m_Language) &&
 		("Invalid language received from settings file: " + c_SettingsFileName).c_str(), false);
@@ -51,7 +64,7 @@ bool Settings::Write()
 	writeString +="fps=" + std::to_string(m_TargetFPS) + ";\n";
 	writeString +="language=" + Utils::GetLanguageStringFromId(m_Language) + ";\n";
 
-	ReadWriteFile::WriteToFile(c_SettingsFileName, writeString, EWriteMode::Out);
+	m_SettingsFile.Write(writeString);
 
 	return true;
 }

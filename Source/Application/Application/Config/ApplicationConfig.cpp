@@ -6,19 +6,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 bool ApplicationConfig::Read()
 {
-	ConfigStrings readStrings;
+	//TODO move every config to a separate file, so i will have one file for strings,
+	//another for fonts, other for images config and so on. I could even have them as csv files
+	//to speed up reading (remove the call to configreaderutils::getInt() and so on).
+	
+	//TODO maybe this has to be fixed?
+	ReturnIf(!DrawManagerConfig.Read(File(ConfigFilePaths::SystemConfig).GetFileContents()), false);
 
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::SystemConfig, readStrings), false);
-	ReturnIf(!DrawManagerConfig.Read(readStrings), false);
-
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::AssetsConfig, readStrings), false);
-	ReturnIf(!AssetManagerConfig.Read(readStrings), false);
+	ReturnIf(!AssetManagerConfig.Read(), false);
 	ReturnIf(!AudioManagerConfig.Read(), false);
 	ReturnIf(!TimerManagerConfig.Read(), false);
 	ReturnIf(!ImGuiManagerConfig.Read(), false);
 
-	ReturnIf(!ReadWriteFile::ReadFromFile(ConfigFilePaths::ObjectsConfig, readStrings), false);
-	ReturnIf(!AppConfig.Read(readStrings), false);
+	ReturnIf(!AppConfig.Read(), false);
 
 	return true;
 }

@@ -32,8 +32,12 @@ public:
 	void				Activate() final;
 	void				Deactivate() final;
 
+	void				UpdateLayout() final;
+
 private:
 	void				OnButtonNewGameClick();
 	void				OnButtonSettingsClick();
 	void				OnButtonQuitClick();
+
+	Image				m_ImageLogo;
 };

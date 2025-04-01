@@ -25,6 +25,8 @@ public:
 	virtual void		SetPosition(const Point& newPos);
 	virtual void		Reset();
 
+	Rectangle			GetPosRect() const;
+	Point				GetPos() const;
 	int32_t				GetWidth() const;
 	int32_t				GetHeight() const;
 

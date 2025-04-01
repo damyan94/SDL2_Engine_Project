@@ -9,7 +9,7 @@
 
 struct AssetManagerConfig
 {
-	bool						Read(const ConfigStrings& readStrings);
+	bool						Read();
 
 	ImageContainerConfig		ImageContainerConfig;
 	StringContainerConfig		StringContainerConfig;

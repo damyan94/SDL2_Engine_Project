@@ -6,6 +6,7 @@
 #include "System/Components/Drawing/Image.h"
 #include "System/Components/Drawing/Text.h"
 #include "System/Components/Audio/Sound.h"
+#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
 
 struct ButtonConfig;
 
@@ -23,7 +24,7 @@ public:
 	Button();
 	~Button();
 
-	bool				Init(const ButtonConfig& cfg);
+	bool				Init(const IUIComponentConfig* cfg);
 	void				Deinit() final;
 	void				HandleEvent(const InputEvent& e) final;
 	void				Update(int32_t dt) final;

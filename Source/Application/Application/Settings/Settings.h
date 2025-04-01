@@ -20,6 +20,8 @@ public:
 	void				SetLanguage(ELanguage language);
 
 private:
+	File				m_SettingsFile;
+
 	int32_t				m_TargetFPS;
 	ELanguage			m_Language;
 };

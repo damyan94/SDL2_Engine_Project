@@ -2,10 +2,8 @@
 
 #include "System/SDLUtils/Containers/Config/StringContainerConfig.h"
 
-#include "System/Defines/ConfigFilePaths.h"
-
 ////////////////////////////////////////////////////////////////////////////////
-bool StringContainerConfig::Read(const ConfigStrings& readStrings)
+bool StringContainerConfig::Parse(const LinesOfText& readStrings)
 {
 	const auto count = readStrings.size();
 	for (size_t i = 0; i < count; i++)

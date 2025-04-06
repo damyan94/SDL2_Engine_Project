@@ -8,8 +8,9 @@ struct FontConfig
 };
 
 struct FontContainerConfig
+	: public IConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool Parse(const LinesOfText& readStrings) final;
 
 	std::vector<FontConfig>	FontContainerConfig;
 };

@@ -1,7 +1,9 @@
 #include "stdafx.h"
 
-#include "System/Managers/AssetManager.h"
 #include "Application/Application/ConfigManager.h"
+
+#include "System/Defines/ConfigFilePaths.h"
+
 #include "System/SDLUtils/Containers/Config/ImageContainerConfig.h"
 #include "System/SDLUtils/Containers/Config/StringContainerConfig.h"
 #include "System/SDLUtils/Containers/Config/FontContainerConfig.h"
@@ -10,38 +12,42 @@
 #include "System/SDLUtils/Containers/Config/MusicContainerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-AssetManager::AssetManager()
+ConfigManager::ConfigManager()
 {
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-AssetManager::~AssetManager()
+ConfigManager::~ConfigManager()
 {
-	Deinit();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-AssetManager& AssetManager::Instance()
+ConfigManager& ConfigManager::Instance()
 {
-	static AssetManager instance;
+	static ConfigManager instance;
 	return instance;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool AssetManager::Init()
+bool ConfigManager::ReadConfigs()
 {
-	ReturnIf(!m_ImageContainer.Init(ConfigManager::Instance().Get<ImageContainerConfig>()), false);
-	ReturnIf(!m_StringContainer.Init(ConfigManager::Instance().Get<StringContainerConfig>()), false);
-	ReturnIf(!m_FontContainer.Init(ConfigManager::Instance().Get<FontContainerConfig>()), false);
-	ReturnIf(!m_TextContainer.Init(ConfigManager::Instance().Get<TextContainerConfig>(), m_StringContainer, m_FontContainer), false);
-	ReturnIf(!m_DynamicTextContainer.Init(m_FontContainer), false);
-	ReturnIf(!m_SoundContainer.Init(ConfigManager::Instance().Get<SoundContainerConfig>()), false);
-	ReturnIf(!m_MusicContainer.Init(ConfigManager::Instance().Get<MusicContainerConfig>()), false);
+	m_Data.clear();
+
+	ReturnIf(!ReadConfig<ImageContainerConfig>(ConfigFilePaths::ImageConfig), false);
+	ReturnIf(!ReadConfig<StringContainerConfig>(ConfigFilePaths::StringConfig), false);
+	ReturnIf(!ReadConfig<FontContainerConfig>(ConfigFilePaths::FontConfig), false);
+	ReturnIf(!ReadConfig<TextContainerConfig>(ConfigFilePaths::TextConfig), false);
+	ReturnIf(!ReadConfig<SoundContainerConfig>(ConfigFilePaths::SoundConfig), false);
+	ReturnIf(!ReadConfig<MusicContainerConfig>(ConfigFilePaths::MusicConfig), false);
 
 	return true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-void AssetManager::Deinit()
+IConfig* ConfigManager::Get(std::type_index typeId) const
 {
+	const auto it = m_Data.find(typeId);
+	AssertReturnIf(it == m_Data.end(), nullptr);
+
+	return it->second.get();
 }

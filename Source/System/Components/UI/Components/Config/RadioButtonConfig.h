@@ -2,7 +2,7 @@
 
 struct RadioButtonConfig
 {
-	bool				Read(const ConfigStrings& readStrings, UIComponentId id);
+	bool				Read(const LinesOfText& readStrings, UIComponentId id);
 	
 	Point				m_Pos					= Point::Undefined;
 	ImageId				m_ImageId				= 0;

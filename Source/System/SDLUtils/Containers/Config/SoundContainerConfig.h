@@ -7,8 +7,9 @@ struct SoundConfig
 };
 
 struct SoundContainerConfig
+	: public IConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool Parse(const LinesOfText& readStrings) final;
 
 	std::vector<SoundConfig> SoundContainerConfig;
 };

@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "System/SDLUtils/Containers/TimerContainer.h"
-#include "System/SDLUtils/Containers/Config/TimerContainerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 bool TimerContainer::DoesTimerExist(TimerId id) const
@@ -89,7 +88,7 @@ TimerContainer::~TimerContainer()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool TimerContainer::Init(const TimerContainerConfig& cfg)
+bool TimerContainer::Init()
 {
 	return true;
 }

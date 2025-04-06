@@ -6,6 +6,11 @@ public:
 	File(const std::string& fileName, EWriteMode writeMode = EWriteMode::App, bool readEmptyLines = true, char commentIndicator = '\0');
 	~File();
 
+	File(const File& other);
+	File(File&& other);
+	File& operator=(const File& other);
+	File& operator=(File&& other);
+
 	bool Open();
 	bool Close();
 	bool IsOpen() const;
@@ -25,7 +30,7 @@ private:
 	std::string			TrimCarriageReturn(const std::string& str);
 
 private:
-	const std::string	m_FileName;
+	std::string			m_FileName;
 	EWriteMode			m_WriteMode;
 	bool				m_ReadEmptyLines;
 	char				m_CommentIndicator;

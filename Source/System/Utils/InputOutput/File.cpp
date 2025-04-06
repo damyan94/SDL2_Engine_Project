@@ -19,6 +19,50 @@ File::~File()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
+File::File(const File& other)
+	: m_FileName(other.m_FileName)
+	, m_WriteMode(other.m_WriteMode)
+	, m_ReadEmptyLines(other.m_ReadEmptyLines)
+	, m_CommentIndicator(other.m_CommentIndicator)
+{
+	Open();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+File::File(File&& other)
+	: m_FileName(other.m_FileName)
+	, m_WriteMode(other.m_WriteMode)
+	, m_ReadEmptyLines(other.m_ReadEmptyLines)
+	, m_CommentIndicator(other.m_CommentIndicator)
+{
+	Open();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+File& File::operator=(const File& other)
+{
+	m_FileName = other.m_FileName;
+	m_WriteMode = other.m_WriteMode;
+	m_ReadEmptyLines = other.m_ReadEmptyLines;
+	m_CommentIndicator = other.m_CommentIndicator;
+	Open();
+
+	return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+File& File::operator=(File&& other)
+{
+	m_FileName = other.m_FileName;
+	m_WriteMode = other.m_WriteMode;
+	m_ReadEmptyLines = other.m_ReadEmptyLines;
+	m_CommentIndicator = other.m_CommentIndicator;
+	Open();
+
+	return *this;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 bool File::Open()
 {
 	AssertReturnIf(IsOpen() && "The file is already open.", false);

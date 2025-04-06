@@ -1,7 +1,6 @@
 #include "stdafx.h"
 
 #include "System/Managers/TimerManager.h"
-#include "System/Managers/Config/TimerManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 TimerManager::TimerManager()
@@ -23,10 +22,10 @@ TimerManager& TimerManager::Instance()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool TimerManager::Init(const TimerManagerConfig& cfg)
+bool TimerManager::Init()
 {
 	TimerManager::StartGlobalTimer();
-	ReturnIf(!TimerContainer::Init(cfg.TimerContainerConfig), false);
+	ReturnIf(!TimerContainer::Init(), false);
 
 	return true;
 }

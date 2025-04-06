@@ -2,8 +2,6 @@
 
 #include "System/SDLUtils/Containers/TimerContainer.h"
 
-struct TimerManagerConfig;
-
 //TODO in all managers store a reference/pointer to the configuration
 //That would mean that I will have to change them to not be singletons
 class TimerManager
@@ -17,7 +15,7 @@ private:
 public:
 	static TimerManager& Instance();
 
-	bool				Init(const TimerManagerConfig& cfg);
+	bool				Init();
 	void				Deinit();
 	void				Update(int32_t dt);
 

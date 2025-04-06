@@ -9,8 +9,9 @@ struct TextConfig
 };
 
 struct TextContainerConfig
+	: public IConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool Parse(const LinesOfText& readStrings) final;
 
 	std::vector<TextConfig>		TextContainerConfig;
 };

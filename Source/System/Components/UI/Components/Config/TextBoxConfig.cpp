@@ -7,7 +7,7 @@
 static const std::string c_TypeString = "Textbox";
 
 ////////////////////////////////////////////////////////////////////////////////
-bool TextBoxConfig::Read(const ConfigStrings& readStrings, UIComponentId id)
+bool TextBoxConfig::Read(const LinesOfText& readStrings, UIComponentId id)
 {
 	int32_t startLine = Utils::ReadInt(readStrings[0], c_TypeString);
 	if (startLine >= readStrings.size())

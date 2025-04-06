@@ -9,8 +9,6 @@
 #include "System/SDLUtils/Containers/MusicContainer.h"
 
 //TODO maybe store a pointer/reference to these configs in the corresponding class?
-struct AssetManagerConfig;
-
 class AssetManager
 	: public INonCopyMoveable
 {
@@ -21,7 +19,7 @@ private:
 public:
 	static AssetManager&	Instance();
 
-	bool					Init(const AssetManagerConfig& cfg);
+	bool					Init();
 	void					Deinit();
 
 	ImageContainer			m_ImageContainer;

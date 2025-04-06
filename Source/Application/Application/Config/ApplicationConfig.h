@@ -14,9 +14,7 @@ struct ApplicationConfig
 	bool						Read();
 
 	DrawManagerConfig			DrawManagerConfig;
-	AssetManagerConfig			AssetManagerConfig;
 	AudioManagerConfig			AudioManagerConfig;
-	TimerManagerConfig			TimerManagerConfig;
 	ImGuiManagerConfig			ImGuiManagerConfig;
 
 	GameConfig					AppConfig;

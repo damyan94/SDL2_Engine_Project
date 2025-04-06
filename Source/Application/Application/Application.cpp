@@ -42,9 +42,9 @@ bool Application::Init(const ApplicationConfig& cfg)
 	ReturnIf(!SDLLoader::Init(), false);
 	ReturnIf(!m_InputEvent.Init(), false);
 
-	ReturnIf(!TimerManager::Instance().Init(cfg.TimerManagerConfig), false);
+	ReturnIf(!TimerManager::Instance().Init(), false);
 	ReturnIf(!DrawManager::Instance().Init(cfg.DrawManagerConfig), false);
-	ReturnIf(!AssetManager::Instance().Init(cfg.AssetManagerConfig), false);
+	ReturnIf(!AssetManager::Instance().Init(), false);
 	ReturnIf(!AudioManager::Instance().Init(cfg.AudioManagerConfig), false);
 	ReturnIf(!ImGuiManager::Instance().Init(cfg.ImGuiManagerConfig), false);
 

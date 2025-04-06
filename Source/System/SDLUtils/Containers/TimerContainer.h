@@ -28,7 +28,7 @@ protected:
 	TimerContainer();
 	~TimerContainer();
 
-	bool				Init(const TimerContainerConfig& cfg);
+	bool				Init();
 	void				Deinit();
 	void				Update(int32_t dt);
 

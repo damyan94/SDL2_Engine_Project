@@ -13,9 +13,7 @@ bool ApplicationConfig::Read()
 	//TODO maybe this has to be fixed?
 	ReturnIf(!DrawManagerConfig.Read(File(ConfigFilePaths::SystemConfig).GetFileContents()), false);
 
-	ReturnIf(!AssetManagerConfig.Read(), false);
 	ReturnIf(!AudioManagerConfig.Read(), false);
-	ReturnIf(!TimerManagerConfig.Read(), false);
 	ReturnIf(!ImGuiManagerConfig.Read(), false);
 
 	ReturnIf(!AppConfig.Read(), false);

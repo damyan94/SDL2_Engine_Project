@@ -22,7 +22,7 @@ bool ConsoleMenuConfig::Read(const std::string& line, const UIComponentsConfig& 
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool MenuManagerConfig::Read(const ConfigStrings& line, const UIComponentsConfig& uiComponentsConfig)
+bool MenuManagerConfig::Read(const LinesOfText& line, const UIComponentsConfig& uiComponentsConfig)
 {
 	ReturnIf(!StartMenuConfig.Read(line[0], uiComponentsConfig), false);
 	ReturnIf(!ConsoleMenuConfig.Read(line[1], uiComponentsConfig), false);

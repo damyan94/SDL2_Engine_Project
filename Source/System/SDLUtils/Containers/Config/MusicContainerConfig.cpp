@@ -5,7 +5,7 @@
 #include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool MusicContainerConfig::Read(const ConfigStrings& readStrings)
+bool MusicContainerConfig::Parse(const LinesOfText& readStrings)
 {
 	const auto count = readStrings.size();
 	for (size_t i = 0; i < count; i++)

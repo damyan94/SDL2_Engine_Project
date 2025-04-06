@@ -23,6 +23,7 @@
 #include <memory>
 #include <utility>
 #include <functional>
+#include <typeindex>
 
 #include "System/Utils/Defines.h"
 #include "System/SDLUtils/Defines.h"
@@ -39,10 +40,13 @@
 #include "System/Utils/Others/Crypto.h"
 #include "System/Utils/Others/Hash.h"
 #include "System/Utils/Others/RandomNumberGenerator.h"
+#include "System/Utils/Others/IConfig.h"
 
 #include "System/Utils/Time/Time.h"
 
 #include "System/Utils/String/String.h"
+#include "System/Utils/Containers/Variant.h"
+#include "System/Utils/Containers/Table.h"
 
 #include "System/Utils/InputOutput/Log.h"
 #include "System/Utils/InputOutput/ReadWriteFile.h"

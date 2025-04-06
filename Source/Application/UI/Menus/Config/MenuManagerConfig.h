@@ -15,7 +15,7 @@ struct ConsoleMenuConfig
 
 struct MenuManagerConfig
 {
-	bool				Read(const ConfigStrings& line, const UIComponentsConfig& uiComponentsConfig);
+	bool				Read(const LinesOfText& line, const UIComponentsConfig& uiComponentsConfig);
 
 	ConsoleMenuConfig	ConsoleMenuConfig;
 	StartMenuConfig		StartMenuConfig;

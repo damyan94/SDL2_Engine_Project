@@ -3,7 +3,7 @@
 #include "System/Managers/Config/DrawManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool DrawManagerConfig::Read(const ConfigStrings& readStrings)
+bool DrawManagerConfig::Read(const LinesOfText& readStrings)
 {
 	ReturnIf(!WindowConfig.Read(readStrings), false);
 	ReturnIf(!RendererConfig.Read(readStrings), false);

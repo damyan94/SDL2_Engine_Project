@@ -1,10 +1,9 @@
 #include "stdafx.h"
 
 #include "System/SDLUtils/Containers/Config/TextContainerConfig.h"
-#include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool TextContainerConfig::Read(const ConfigStrings& readStrings)
+bool TextContainerConfig::Parse(const LinesOfText& readStrings)
 {
 	const auto count = readStrings.size();
 	for (size_t i = 0; i < count; i++)

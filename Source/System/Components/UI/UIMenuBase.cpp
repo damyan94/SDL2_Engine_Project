@@ -1,8 +1,8 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/BaseClasses/UIMenuBase.h"
+#include "System/Components/UI/UIMenuBase.h"
 
-#include "System/Components/UI/BaseClasses/UIComponentBase.h"
+#include "System/Components/UI/UIComponentBase.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 UIMenuBase::UIMenuBase()

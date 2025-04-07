@@ -42,6 +42,8 @@
 
 #include "System/Utils/Time/Time.h"
 
+#include "System/Utils/Containers/Variant.h"
+#include "System/Utils/Containers/Table.h"
 #include "System/Utils/String/String.h"
 
 #include "System/Utils/InputOutput/Log.h"

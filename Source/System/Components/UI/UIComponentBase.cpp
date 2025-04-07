@@ -1,6 +1,7 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/BaseClasses/UIComponentBase.h"
+#include "System/Components/UI/UIComponentBase.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 UIComponentBase::UIComponentBase()

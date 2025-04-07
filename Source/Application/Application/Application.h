@@ -1,7 +1,5 @@
 #pragma once
 
-#include "System/SDLUtils/Input/InputEvent.h"
-
 struct ApplicationConfig;
 
 //TODO make singleton?

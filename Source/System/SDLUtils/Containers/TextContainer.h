@@ -35,7 +35,7 @@ public:
 	void				ChangeLanguage(ELanguage newLanguage);
 
 protected:
-	bool				Init(const TextContainerConfig& cfg, const StringContainer& tringContainer, const FontContainer& fontContainer);
+	bool				Init(const TextContainerConfig& cfg, const StringContainer& stringContainer, const FontContainer& fontContainer);
 	void				Deinit();
 
 private:

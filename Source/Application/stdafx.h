@@ -2,11 +2,6 @@
 
 #include "System/stdafx.h"
 
-#include "Application/Defines/Defines.h"
-
-#include "System/SDLUtils/Input/InputEvent.h"
-#include "System/SDLUtils/Drawing/SDLDrawing.h"
-
 #include "System/Components/Drawing/Image.h"
 #include "System/Components/Drawing/Text.h"
 #include "System/Components/Drawing/DynamicText.h"

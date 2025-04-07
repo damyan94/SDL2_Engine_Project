@@ -51,3 +51,6 @@
 #include "System/Utils/InputOutput/File.h"
 #include "System/Utils/InputOutput/CSVParser.h"
 #include "System/Utils/InputOutput/ConfigReaderUtils.h"
+
+#include "System/SDLUtils/Input/InputEvent.h"
+#include "System/SDLUtils/Drawing/SDLDrawing.h"

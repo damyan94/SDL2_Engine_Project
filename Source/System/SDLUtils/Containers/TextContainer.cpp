@@ -79,9 +79,9 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 	TextData& textData = m_TextsContainer[id];
 	ReturnIf(textData.StringId == -1, false);
 
-	textData.FontId = fontId;
-	textData.TextColor = color;
-	textData.WrapWidth = wrapWidth;
+	textData.FontId		= fontId;
+	textData.TextColor	= color;
+	textData.WrapWidth	= wrapWidth;
 
 	textData.Texture->DestroyTexture();
 

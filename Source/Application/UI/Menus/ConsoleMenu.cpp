@@ -59,7 +59,6 @@ void ConsoleMenu::Update(int32_t dt)
 	ReturnIf(!m_IsActive);
 	ReturnIf(!m_TimerUpdate.IsTicked());
 
-	//TODO fix this - texture is distorted, as if it is not the right width or height
 	m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
 	m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });
 }

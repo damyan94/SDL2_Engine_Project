@@ -54,6 +54,16 @@ void Text::SetPlaceholders(const std::vector<std::string>& values)
 	// where {1} is the placeholder and if we have 8 of these, they would all be the same.
 	// I need to think to make these texts like the dynamic texts
 
+	//Update: Actually, I should be using different textIds and the problem is solved
+
 	const auto& data = AssetManager::Instance().m_TextContainer.GetData(m_DrawParameters.ResourceId);
 	AssetManager::Instance().m_TextContainer.UpdateText(m_DrawParameters.ResourceId, data.FontId, data.TextColor, data.WrapWidth, values);
+
+	m_DrawParameters.FrameRect		= data.FrameRect;
+	m_DrawParameters.Width			= m_DrawParameters.FrameRect.w;
+	m_DrawParameters.Height			= m_DrawParameters.FrameRect.h;
+	m_DrawParameters.StandardWidth	= m_DrawParameters.FrameRect.w;
+	m_DrawParameters.StandardHeight = m_DrawParameters.FrameRect.h;
+	m_DrawParameters.RotationCenter	= Point(m_DrawParameters.Width / 2,
+											m_DrawParameters.Height / 2);
 }

@@ -12,11 +12,11 @@ bool ConsoleMenuConfig::Read(const std::string& line, const UIComponentsConfig& 
 
 	auto type = GetUIComponentTypeFromString(Utils::ReadString(line, "ComponentType_1"));
 	auto id = Utils::ReadInt(line, "ComponentId_1");
-	m_LabelDrawCalls = uiComponentsConfig.GetUIComponentConfig(type, id);
+	m_LabelDrawCalls = uiComponentsConfig.GetUIComponentConfig<LabelConfig>(id);
 
 	type = GetUIComponentTypeFromString(Utils::ReadString(line, "ComponentType_2"));
 	id = Utils::ReadInt(line, "ComponentId_2");
-	m_LabelPosition = uiComponentsConfig.GetUIComponentConfig(type, id);
+	m_LabelPosition = uiComponentsConfig.GetUIComponentConfig<LabelConfig>(id);
 
 	return true;
 }

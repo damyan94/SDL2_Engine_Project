@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/Components/Button.h"
-#include "System/Components/UI/Components/Config/ButtonConfig.h"
+#include "System/Components/UI/Button.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 Button::Button()
@@ -15,16 +15,13 @@ Button::~Button()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool Button::Init(const IUIComponentConfig* cfg)
+bool Button::Init(const ButtonConfig& cfg)
 {
-	AssertReturnIf(!cfg, false);
-	const auto& buttonCfg = *(ButtonConfig*)(cfg);
+	UIComponentBase::Init({ cfg.m_Pos, cfg.m_ImageId });
 
-	UIComponentBase::Init({ buttonCfg.m_Pos, buttonCfg.m_ImageId });
-
-	m_Text.Init(buttonCfg.m_TextId);
-	m_Sound.Init(buttonCfg.m_SoundId);
-	SetPosition(buttonCfg.m_Pos);
+	m_Text.Init(cfg.m_TextId);
+	m_Sound.Init(cfg.m_SoundId);
+	SetPosition(cfg.m_Pos);
 
 	return true;
 }

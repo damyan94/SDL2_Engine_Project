@@ -14,8 +14,8 @@
 #include "System/Components/Audio/Music.h"
 #include "System/Components/Time/Timer.h"
 
-#include "System/Components/UI/BaseClasses/UIComponentBase.h"
-#include "System/Components/UI/Components/Button.h"
-#include "System/Components/UI/Components/Checkbox.h"
-#include "System/Components/UI/Components/RadioButton.h"
-#include "System/Components/UI/Components/TextBox.h"
+#include "System/Components/UI/UIComponentBase.h"
+#include "System/Components/UI/Button.h"
+#include "System/Components/UI/Checkbox.h"
+#include "System/Components/UI/RadioButton.h"
+#include "System/Components/UI/TextBox.h"

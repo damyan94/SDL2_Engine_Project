@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Application/UI/Menus/StartMenu/Config/StartMenuConfig.h"
-#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
+#include "Application/UI/Menus/Config/StartMenuConfig.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 struct ConsoleMenuConfig
 {
@@ -9,8 +9,8 @@ struct ConsoleMenuConfig
 
 	Rectangle			m_PosRect;
 
-	const IUIComponentConfig* m_LabelDrawCalls;
-	const IUIComponentConfig* m_LabelPosition;
+	const LabelConfig* m_LabelDrawCalls;
+	const LabelConfig* m_LabelPosition;
 };
 
 struct MenuManagerConfig

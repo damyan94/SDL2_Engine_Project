@@ -3,8 +3,8 @@
 #include "Application/UI/Menus/MenuManager.h"
 #include "Application/UI/Menus/Config/MenuManagerConfig.h"
 
-#include "Application/UI/Menus/ConsoleMenu/ConsoleMenu.h"
-#include "Application/UI/Menus/StartMenu/StartMenu.h"
+#include "Application/UI/Menus/ConsoleMenu.h"
+#include "Application/UI/Menus/StartMenu.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 MenuManager::MenuManager()

@@ -1,6 +1,6 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 #include "System/Defines/ConfigFilePaths.h"
 
 EUIComponentType GetUIComponentTypeFromString(const std::string& text)
@@ -62,6 +62,7 @@ bool CheckboxConfig::Parse(const std::string& line)
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
 	m_TextId = Utils::ReadInt(line, "TextId");
+	m_SoundId = Utils::ReadInt(line, "SoundId");
 
 	return true;
 }

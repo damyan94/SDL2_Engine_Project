@@ -2,7 +2,7 @@
 
 #include "System/SDLUtils/Input/InputEvent.h"
 
-#include "System/Components/UI/BaseClasses/UIComponentBase.h"
+#include "System/Components/UI/UIComponentBase.h"
 #include "System/Components/Drawing/Image.h"
 #include "System/Components/Drawing/Text.h"
 #include "System/Components/Drawing/DynamicText.h"

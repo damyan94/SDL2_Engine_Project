@@ -1,9 +1,6 @@
 #pragma once
 
-#include "System/Components/UI/BaseClasses/UIMenuBase.h"
-
-class InputEvent;
-class UIComponentBase;
+#include "System/Components/UI/UIMenuBase.h"
 
 class CustomUIMenuBase
 	: public UIMenuBase

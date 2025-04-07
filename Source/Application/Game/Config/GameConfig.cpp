@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
 #include "Application/Game/Config/GameConfig.h"
-#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 #include "System/Defines/ConfigFilePaths.h"
 

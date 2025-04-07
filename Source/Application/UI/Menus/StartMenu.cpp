@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "Application/UI/Menus/StartMenu/StartMenu.h"
-#include "Application/UI/Menus/StartMenu/Config/StartMenuConfig.h"
+#include "Application/UI/Menus/StartMenu.h"
+#include "Application/UI/Menus/Config/StartMenuConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 StartMenu::StartMenu()
@@ -27,7 +27,7 @@ bool StartMenu::Init(const StartMenuConfig& cfg)
 	
 #define ALLOCATE_AND_INIT(_Id, _Type)\
 m_UIComponents[(int32_t)EUIComponentId::_Id] = new _Type;\
-ReturnIf(!static_cast<_Type*>(m_UIComponents[(int32_t)EUIComponentId::_Id])->Init(cfg.m_##_Id##Config), false)
+ReturnIf(!static_cast<_Type*>(m_UIComponents[(int32_t)EUIComponentId::_Id])->Init(*cfg.m_##_Id##Config), false)
 
 	ALLOCATE_AND_INIT(ButtonNewGame, Button);
 	ALLOCATE_AND_INIT(ButtonSettings, Button);

@@ -74,6 +74,7 @@ struct CheckboxConfig
 	Point				m_Pos = Point::Undefined;
 	ImageId				m_ImageId = 0;
 	TextId				m_TextId = 0;
+	SoundId				m_SoundId = 0;
 };
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,35 +112,43 @@ struct UIComponentsConfig
 	bool Read();
 
 	template <typename T>
-	bool ReadUIComponentsConfig(const std::string& filePath)
-	{
-		const auto buttonsCfg = File(filePath).GetFileContents();
-		for (const auto& item : buttonsCfg)
-		{
-			auto newCfg = std::make_unique<T>();
-			newCfg->Parse(item);
-			m_Data[T::ComponentType].emplace_back(std::move(newCfg));
-		}
-
-		return true;
-	}
+	bool ReadUIComponentsConfig(const std::string& filePath);
 
 	template <typename T>
-	const T* GetUIComponentConfig(size_t id) const
-	{
-		const auto type = T::ComponentType;
-		AssertReturnIf(!IsEnumValueValid(type), nullptr);
-
-		auto cfgs = m_Data.find(type);
-		AssertReturnIf(cfgs == m_Data.end(), nullptr);
-
-		AssertReturnIf(id >= cfgs->second.size(), nullptr);
-
-		return dynamic_cast<const T*>(cfgs->second[id].get());
-	}
+	const T* GetUIComponentConfig(size_t id) const;
 
 	const IUIComponentConfig* GetUIComponentConfig(EUIComponentType type, size_t id) const;
 	
 private:
 	std::unordered_map<EUIComponentType, std::vector<std::unique_ptr<IUIComponentConfig>>> m_Data;
 };
+
+////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+bool UIComponentsConfig::ReadUIComponentsConfig(const std::string& filePath)
+{
+	const auto buttonsCfg = File(filePath).GetFileContents();
+	for (const auto& item : buttonsCfg)
+	{
+		auto newCfg = std::make_unique<T>();
+		newCfg->Parse(item);
+		m_Data[T::ComponentType].emplace_back(std::move(newCfg));
+	}
+
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+template <typename T>
+const T* UIComponentsConfig::GetUIComponentConfig(size_t id) const
+{
+	const auto type = T::ComponentType;
+	AssertReturnIf(!IsEnumValueValid(type), nullptr);
+
+	auto cfgs = m_Data.find(type);
+	AssertReturnIf(cfgs == m_Data.end(), nullptr);
+
+	AssertReturnIf(id >= cfgs->second.size(), nullptr);
+
+	return dynamic_cast<const T*>(cfgs->second[id].get());
+}

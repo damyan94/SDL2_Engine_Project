@@ -2,36 +2,44 @@
 
 #include "System/SDLUtils/Input/InputEvent.h"
 
-#include "System/Components/UI/BaseClasses/UIComponentBase.h"
+#include "System/Components/UI/UIComponentBase.h"
 #include "System/Components/Drawing/Image.h"
 #include "System/Components/Drawing/Text.h"
 #include "System/Components/Audio/Sound.h"
 
-struct RadioButtonConfig;
+struct ButtonConfig;
 
-enum class ERadioButtonFrames
+enum class EButtonFrame
 {
 	Normal				= 1
-	, Selected			= 2
+	, Clicked			= 2
+	, Selected			= 3
 };
 
-class RadioButton
+class Button
 	: public UIComponentBase
 {
 public:
-	RadioButton();
-	~RadioButton();
+	Button();
+	~Button();
 
-	bool				Init(const RadioButtonConfig& cfg);
+	bool				Init(const ButtonConfig& cfg);
 	void				Deinit() final;
 	void				HandleEvent(const InputEvent& e) final;
 	void				Update(int32_t dt) final;
 	void				Draw() const final;
 
+	void				OnClickHandled();
+
 	void				SetPosition(const Point& newPos) final;
 	void				Reset() final;
 
 	void				SetIsEnabled(bool enable) final;
+
+private:
+	void				HandleMouseHoverEvent(const InputEvent& e);
+	void				HandleMouseClickPressEvent(const InputEvent& e);
+	void				HandleMouseClickReleaseEvent(const InputEvent& e);
 
 private:
 	Text				m_Text;

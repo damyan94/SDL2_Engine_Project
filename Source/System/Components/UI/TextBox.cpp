@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/Components/TextBox.h"
-#include "System/Components/UI/Components/Config/TextBoxConfig.h"
+#include "System/Components/UI/TextBox.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 #include "System/SDLUtils/Drawing/SDLDrawing.h"
 

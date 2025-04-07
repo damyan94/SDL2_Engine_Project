@@ -1,6 +1,6 @@
 #pragma once
 
-#include "System/Components/UI/BaseClasses/UIMenuBase.h"
+#include "System/Components/UI/UIMenuBase.h"
 
 struct MenuManagerConfig;
 

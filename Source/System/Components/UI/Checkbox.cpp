@@ -1,7 +1,7 @@
 #include "stdafx.h"
 
-#include "System/Components/UI/Components/Checkbox.h"
-#include "System/Components/UI/Components/Config/CheckboxConfig.h"
+#include "System/Components/UI/Checkbox.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 const int32_t STANDARD_SPACING = 4;
 

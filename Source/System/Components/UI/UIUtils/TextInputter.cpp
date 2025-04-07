@@ -4,6 +4,7 @@
 #include <codecvt>
 
 #include "System/Components/UI/UIUtils/TextInputter.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 
 #include "System/SDLUtils/Input/InputEvent.h"
 

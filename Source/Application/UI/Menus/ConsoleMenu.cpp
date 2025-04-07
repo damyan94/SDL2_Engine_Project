@@ -1,12 +1,12 @@
 #include "stdafx.h"
 
-#include "Application/UI/Menus/ConsoleMenu/ConsoleMenu.h"
+#include "Application/UI/Menus/ConsoleMenu.h"
 
 #include "System/Managers/ManagersHelpers.h"
 #include "Application/AppHelpers.h"
 
 //TODO fix
-#include "System/Components/UI/Components/Config/UIComponentsConfig.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
 #include "Application/UI/Menus/Config/MenuManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -27,12 +27,12 @@ bool ConsoleMenu::Init(const ConsoleMenuConfig& cfg)
 
 	m_TimerUpdate.Start(100, ETimerType::Pulse);
 
-	auto dcCfg = (LabelConfig*)(cfg.m_LabelDrawCalls);
+	auto dcCfg = cfg.m_LabelDrawCalls;
 	m_TextDrawCalls.Init(dcCfg->m_TextId);
 	m_TextDrawCalls.SetPos(dcCfg->m_Pos);
 	m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
 
-	auto posCfg = (LabelConfig*)(cfg.m_LabelPosition);
+	auto posCfg = cfg.m_LabelPosition;
 	m_TextCameraPos.Init(posCfg->m_TextId);
 	m_TextCameraPos.SetPos(posCfg->m_Pos);
 	m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });

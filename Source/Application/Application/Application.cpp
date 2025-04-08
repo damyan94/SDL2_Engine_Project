@@ -48,7 +48,7 @@ bool Application::Init(const ApplicationConfig& cfg)
 	ReturnIf(!AudioManager::Instance().Init(cfg.AudioManagerConfig), false);
 	ReturnIf(!ImGuiManager::Instance().Init(cfg.ImGuiManagerConfig), false);
 
-	ReturnIf(!Game::Instance().Init(cfg.AppConfig), false);
+	ReturnIf(!Game::Instance().Init(cfg.GameConfig), false);
 
 	m_TargetFPS = Settings::Instance().GetTargetFPS();
 	m_TargetTimePerFrame = 1000 / m_TargetFPS;

@@ -7,7 +7,7 @@ struct StringConfig
 
 struct StringContainerConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool				Read(const LinesOfText& readStrings);
 
 	std::vector<StringConfig>	StringContainerConfig;
 };

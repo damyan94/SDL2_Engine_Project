@@ -2,7 +2,7 @@
 
 struct WindowConfig
 {
-	bool				Read(const ConfigStrings& readStrings);
+	bool				Read(const LinesOfText& readStrings);
 
 	std::string			Name;
 	int32_t				PosX;

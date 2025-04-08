@@ -8,7 +8,6 @@
 
 #include "Application/Game/Config/GameConfig.h"
 
-//TODO make singleton?
 struct ApplicationConfig
 {
 	bool						Read();
@@ -19,5 +18,5 @@ struct ApplicationConfig
 	TimerManagerConfig			TimerManagerConfig;
 	ImGuiManagerConfig			ImGuiManagerConfig;
 
-	GameConfig					AppConfig;
+	GameConfig					GameConfig;
 };

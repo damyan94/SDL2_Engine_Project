@@ -5,7 +5,7 @@
 
 struct DrawManagerConfig
 {
-	bool						Read(const ConfigStrings& readStrings);
+	bool						Read(const LinesOfText& readStrings);
 
 	WindowConfig				WindowConfig;
 	RendererConfig				RendererConfig;

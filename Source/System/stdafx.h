@@ -23,6 +23,7 @@
 #include <memory>
 #include <utility>
 #include <functional>
+#include <typeindex>
 
 #include "System/Utils/Defines.h"
 #include "System/SDLUtils/Defines.h"

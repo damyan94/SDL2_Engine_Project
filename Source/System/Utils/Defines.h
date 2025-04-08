@@ -101,8 +101,8 @@ public:\
 _Type _Name::Default = _DefaultValue;\
 _Type _Name::Invalid = _InvalidValue;
 
-typedef std::vector<std::string> ConfigStrings;
 typedef std::vector<std::string> LinesOfText;
+
 typedef uint32_t		ImageId;
 typedef uint32_t		StringId;
 typedef uint32_t		FontId;

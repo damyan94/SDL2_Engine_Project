@@ -5,7 +5,7 @@
 static const std::string c_CategoryTypeString = "Window";
 
 ////////////////////////////////////////////////////////////////////////////////
-bool WindowConfig::Read(const ConfigStrings& readStrings)
+bool WindowConfig::Read(const LinesOfText& readStrings)
 {
 	size_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
 	if (startLine >= readStrings.size())

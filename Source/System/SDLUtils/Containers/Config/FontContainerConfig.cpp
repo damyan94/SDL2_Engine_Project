@@ -17,13 +17,13 @@ bool FontContainerConfig::Read(const LinesOfText& readStrings)
 		FontConfig newCfg;
 
 		newCfg.FileName = ConfigFilePaths::ConfigFilePath(Utils::ReadString(readStrings[i], "FileName"));
-		AssertReturnIf(newCfg.FileName.empty() && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(newCfg.FileName.empty(), false);
 
 		newCfg.Size = Utils::ReadInt(readStrings[i], "Size");
-		AssertReturnIf(newCfg.Size <= 0 && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(newCfg.Size <= 0, false);
 
 		newCfg.WrapAlign = EFontWrapAlign(Utils::ReadInt(readStrings[i], "WrapAlign"));
-		AssertReturnIf(!IsEnumValueValid(newCfg.WrapAlign) && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(!IsEnumValueValid(newCfg.WrapAlign), false);
 
 		FontContainerConfig.emplace_back(std::move(newCfg));
 	}

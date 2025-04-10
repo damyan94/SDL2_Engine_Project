@@ -16,7 +16,7 @@ bool TextContainerConfig::Read(const LinesOfText& readStrings)
 		TextConfig newCfg;
 
 		auto color = Utils::ReadIntArray(readStrings[i], "Color", 4);
-		AssertReturnIf(color.size() != 4 && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(color.size() != 4, false);
 
 		newCfg.TextColor = Color(color[0], color[1], color[2], color[3]);
 
@@ -24,7 +24,7 @@ bool TextContainerConfig::Read(const LinesOfText& readStrings)
 		newCfg.FontId = FontId(Utils::ReadInt(readStrings[i], "FontId"));
 
 		newCfg.WrapWidth = Utils::ReadInt(readStrings[i], "WrapWidth");
-		AssertReturnIf(newCfg.WrapWidth < 0 && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(newCfg.WrapWidth < 0, false);
 
 		TextContainerConfig.emplace_back(std::move(newCfg));
 	}

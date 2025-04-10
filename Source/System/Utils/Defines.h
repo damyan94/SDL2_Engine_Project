@@ -1,9 +1,5 @@
 #pragma once
 
-#include <cstdint>
-#include <string>
-#include <vector>
-
 template <typename EnumType>
 bool IsEnumValueValid(EnumType value)
 {
@@ -43,33 +39,73 @@ public:
 	~INonCopyMoveable() = default;
 };
 
+class QuitApplication
+{
+public:
+	const char* Why() const
+	{
+		return "'cause I'm havin' fun";
+	}
+};
+
 ////////////////////////////////////////////////////////////////////////////////
 // ================================= DEFINES ===================================
 ////////////////////////////////////////////////////////////////////////////////
 
-#ifdef __ASSERT_INFO
-	#undef __ASSERT_INFO
-#endif
 
-#if defined _DEBUG
-	#define __ASSERT_INFO(__Condition)\
-		"Check: " #__Condition\
-		"\nFile: " __FILE__//\
-		//"\nFunction: " __func__\
-		"\nLine: " __LINE__
+#define _Stringify_(X) #X
+#define _Stringify(X) _Stringify_(X)
+
+#ifdef _MSC_VER
+#define _DebugBreak __debugbreak()
 #else
-	#define __ASSERT_INFO(__Condition, ...)\
-		"Check: " #__Condition\
-		"File: " __FILE__//\
-		//"\nFunction: " __func__\
-		"\nLine: " __LINE__
-#endif // !_DEBUG
-
-#ifdef _CONFIG_ERROR_INFO
-	#undef _CONFIG_ERROR_INFO
+#define _DebugBreak
 #endif
 
-#define _CONFIG_ERROR_INFO(__Line) ("Config file corrupted. Line: " + std::to_string(__Line + 1)).c_str()
+#define _DebugBreakInfo(_Reason)\
+"Reason: " _Stringify(_Reason) \
+", File: " __FILE__ \
+", Line: " _Stringify(__LINE__)
+
+#define _DebugBreakInfoMsgBox(_Reason)\
+"Reason: " _Stringify(_Reason) \
+"\nFile: " __FILE__ \
+"\nLine: " _Stringify(__LINE__)
+
+#define _MessageBoxError(_Text)\
+UI::ShowMessageBoxOK("Error!", _Text, UI::EMessageBoxIcon::Error)
+
+#define Assert(...)\
+Logger::LogError(_DebugBreakInfo(__VA_ARGS__));\
+_MessageBoxError(_DebugBreakInfoMsgBox(__VA_ARGS__));\
+_DebugBreak
+
+#define AssertReturnIf(_Condition, ...)		do { if (_Condition) { Assert(_Condition); return __VA_ARGS__; }} while(false)
+
+//std::string DebugBreakInfo(const std::string& text, const std::string& separator)
+//{
+//	return "Reason: " + text + separator + "File: " + __FILE__ + separator + "Line: " + _Stringify(__LINE__);
+//}
+//
+//void Assert(const std::string& text)
+//{
+//	Logger::LogError(DebugBreakInfo(text, ", "));
+//	UI::ShowMessageBoxOK("Error!", DebugBreakInfo(text, "\n"), UI::EMessageBoxIcon::Error);
+//	_DebugBreak;
+//}
+
+#define Format(_Text, ...)			std::format(_Text, __VA_ARGS__)
+
+#define ReturnIf(_Condition, ...)	if (_Condition) return __VA_ARGS__
+#define BreakIf(_Condition)			if (_Condition) break
+#define ContinueIf(_Condition)		if (_Condition) continue
+
+#define AssertReturnIf(_Condition, ...)		do { if (_Condition) { Assert(_Condition); return __VA_ARGS__; }} while(false)
+#define AssertBreakIf(_Condition)			do { if (_Condition) { Assert(_Condition); break; }} while(false)
+#define AssertContinueIf(_Condition)		do { if (_Condition) { Assert(_Condition); continue; }} while(false)
+
+#define SafeDelete(_Pointer)				do { if (_Pointer) { delete _Pointer; _Pointer = nullptr; }} while(false)
+#define SafeDeleteArray(_Pointer)			do { if (_Pointer) { delete[] _Pointer; _Pointer = nullptr; }} while(false)
 
 ////////////////////////////////////////////////////////////////////////////////
 // ================================= TYPEDEFS ==================================
@@ -124,17 +160,69 @@ typedef uint32_t		UIComponentId;
 // =============================== ENUMERATIONS ================================
 ////////////////////////////////////////////////////////////////////////////////
 
+enum class ELogLevel
+	: int8_t
+{
+	Invalid = -1
+	, LogNone		// Log nothing
+	, LogText		// Log text
+	, LogError		// Log text and errors
+	, LogWarning	// Log text, errors and warnings
+	, LogInfo		// Log everything
+	, Count
+};
+
+enum class ETextColor
+	: int8_t
+{
+	Invalid = -1
+	, Black
+	, Red
+	, Green
+	, Yellow
+	, Blue
+	, Magenta
+	, Cyan
+	, White
+	, Count
+};
+
+enum class ETextStyle
+	: int8_t
+{
+	Invalid = -1
+	, Regular
+	, Dim
+	, Italic
+	, Underlined
+	, CrossedOut
+	, DoublyUnderlined
+	, Count
+};
+
+enum class EMessageType
+	: int8_t
+{
+	Invalid = -1
+	, Text
+	, Error
+	, Count
+};
+
 enum class EUnitOfTime
 	: int8_t
 {
 	Invalid = -1
-	, Nanoseconds
-	, Microseconds
-	, Milliseconds
-	, Seconds
-	, Minutes
-	, Hours
-	, Days
+	, Nanosecond
+	, Microsecond
+	, Millisecond
+	, Second
+	, Minute
+	, Hour
+	, Day
+	, Week
+	, Month
+	, Year
 	, Count
 };
 
@@ -142,36 +230,9 @@ enum class ETimeStringFormat
 	: int8_t
 {
 	Invalid = -1
-	, yyyymmddHHmmss_ZeroPunctuation
-	, yyyymmddHHmmss_Dots
-	, ddmmyyyyHHmmss_ZeroPunctuation
-	, ddmmyyyyHHmmss_Dots
-	, Count
-};
-
-// Gotta be careful with this one in IsEnumValueValid<>()
-enum class EConsoleTextColor
-	: int16_t
-{
-	Invalid		= -1
-	, Default	= 37
-	, Black		= 90
-	, Red		= 91
-	, Green		= 92
-	, Yellow	= 93
-	, Blue		= 94
-	, Magenta	= 95
-	, Cyan		= 96
-	, White		= 97
-	, Count		= 10
-};
-
-enum class EWriteMode
-	: int8_t
-{
-	Invalid = -1
-	, Out
-	, App
+	, Default
+	, Timestamp
+	, TimePoint
 	, Count
 };
 

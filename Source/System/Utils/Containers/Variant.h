@@ -196,7 +196,7 @@ public:
 		}
 		else
 		{
-			Assert::Assert("Unsupported type");
+			Assert("Unsupported type");
 		}
 	}
 
@@ -208,7 +208,7 @@ public:
 		else if constexpr (std::is_same_v<T, uint64_t>)		{ AssertReturnIf(m_Type != EVariantType::UInt, T());	return m_Value.UInt;	}
 		else if constexpr (std::is_same_v<T, double>)		{ AssertReturnIf(m_Type != EVariantType::Double, T());	return m_Value.Double;	}
 		else if constexpr (std::is_same_v<T, std::string>)	{ AssertReturnIf(m_Type != EVariantType::String, T());	return m_Value.String;	}
-		else												{ Assert::Assert("Unsupported type"); return T(); }
+		else												{ Assert("Unsupported type"); return T(); }
 	}
 	
 	template <typename T>
@@ -219,7 +219,7 @@ public:
 		else if constexpr (std::is_same_v<T, uint64_t>)		{ return *reinterpret_cast<const T*>(&m_Value.UInt);	}
 		else if constexpr (std::is_same_v<T, double>)		{ return *reinterpret_cast<const T*>(&m_Value.Double);	}
 		else if constexpr (std::is_same_v<T, std::string>)	{ return *reinterpret_cast<const T*>(&m_Value.String);	}
-		else												{ Assert::Assert("Unsupported type"); return T(); }
+		else												{ Assert("Unsupported type"); return T(); }
 	}
 
 	bool				GetBool() const;

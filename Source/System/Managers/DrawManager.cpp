@@ -149,7 +149,7 @@ Texture* DrawManager::GetTextureInternal(const DrawParameters& p) const
 		return AssetManager::Instance().m_DynamicTextContainer.GetData(p.ResourceId).Texture;
 
 	default:
-		Assert::Assert("TODO");
+		Assert("TODO");
 		return nullptr;
 	}
 }

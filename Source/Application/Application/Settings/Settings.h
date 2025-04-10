@@ -1,5 +1,6 @@
 #pragma once
 
+//TODO move to config manager
 class Settings
 	: public INonCopyMoveable
 {

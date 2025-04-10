@@ -21,13 +21,15 @@ ConsoleMenu::~ConsoleMenu()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool ConsoleMenu::Init(const ConsoleMenuConfig& cfg)
+bool ConsoleMenu::Init(const MenuConfig& cfg)
 {
-	m_PosRect = cfg.m_PosRect;//Helpers::GetWindowRect();
+	//m_PosRect = cfg.m_PosRect;//Helpers::GetWindowRect();
+
+	CustomUIMenuBase::Init(cfg);
 
 	m_TimerUpdate.Start(100, ETimerType::Pulse);
 
-	auto dcCfg = cfg.m_LabelDrawCalls;
+	/*auto dcCfg = cfg.m_LabelDrawCalls;
 	m_TextDrawCalls.Init(dcCfg->m_TextId);
 	m_TextDrawCalls.SetPos(dcCfg->m_Pos);
 	m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
@@ -35,7 +37,7 @@ bool ConsoleMenu::Init(const ConsoleMenuConfig& cfg)
 	auto posCfg = cfg.m_LabelPosition;
 	m_TextCameraPos.Init(posCfg->m_TextId);
 	m_TextCameraPos.SetPos(posCfg->m_Pos);
-	m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });
+	m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });*/
 
 	Deactivate();
 

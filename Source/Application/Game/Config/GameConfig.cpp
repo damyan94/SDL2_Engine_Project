@@ -8,7 +8,7 @@
 bool GameConfig::Read()
 {
 	ReturnIf(!UIComponentsConfig.Read(), false);
-	ReturnIf(!MenuManagerConfig.Read(File(ConfigFilePaths::MenuConfig).GetFileContents(), UIComponentsConfig), false);
+	ReturnIf(!MenuManagerConfig.Read(File(ConfigFilePaths::MenuConfig).GetLines(), UIComponentsConfig), false);
 	ReturnIf(!GameManagerConfig.Read(), false);
 
 	return true;

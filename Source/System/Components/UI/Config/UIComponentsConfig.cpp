@@ -19,7 +19,7 @@ EUIComponentType GetUIComponentTypeFromString(const std::string& text)
 bool ImageBoxConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
@@ -31,7 +31,7 @@ bool ImageBoxConfig::Parse(const std::string& line)
 bool LabelConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_TextId = Utils::ReadInt(line, "TextId");
@@ -43,7 +43,7 @@ bool LabelConfig::Parse(const std::string& line)
 bool ButtonConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
@@ -57,7 +57,7 @@ bool ButtonConfig::Parse(const std::string& line)
 bool CheckboxConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
@@ -71,7 +71,7 @@ bool CheckboxConfig::Parse(const std::string& line)
 bool RadioButtonConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
@@ -85,18 +85,18 @@ bool RadioButtonConfig::Parse(const std::string& line)
 bool TextBoxConfig::Parse(const std::string& line)
 {
 	const auto& pos = Utils::ReadIntArray(line, "Position", 2);
-	//AssertReturnIf(pos.size() != 2 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(pos.size() != 2, false);
 	m_Pos = Point(pos[0], pos[1]);
 
 	m_ImageId = Utils::ReadInt(line, "ImageId");
 
 	m_MaxChars = Utils::ReadInt(line, "MaximumChars");
-	//AssertReturnIf(m_MaxChars <= 0 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(m_MaxChars <= 0, false);
 
 	m_FontId = FontId(Utils::ReadInt(line, "FontId"));
 
 	const auto& color = Utils::ReadIntArray(line, "TextColor", 4);
-	//AssertReturnIf(color.size() != 4 && _CONFIG_ERROR_INFO(i), false);
+	//AssertReturnIf(color.size() != 4, false);
 	m_TextColor = Color(color[0], color[1], color[2], color[3]);
 
 	return true;

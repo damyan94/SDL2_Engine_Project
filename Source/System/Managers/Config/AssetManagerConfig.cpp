@@ -6,12 +6,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 bool AssetManagerConfig::Read()
 {
-	ReturnIf(!ImageContainerConfig.Read(File(ConfigFilePaths::ImageConfig).GetFileContents()), false);
-	ReturnIf(!StringContainerConfig.Read(File(ConfigFilePaths::StringConfig).GetFileContents()), false);
-	ReturnIf(!FontContainerConfig.Read(File(ConfigFilePaths::FontConfig).GetFileContents()), false);
-	ReturnIf(!TextContainerConfig.Read(File(ConfigFilePaths::TextConfig).GetFileContents()), false);
-	ReturnIf(!SoundContainerConfig.Read(File(ConfigFilePaths::SoundConfig).GetFileContents()), false);
-	ReturnIf(!MusicContainerConfig.Read(File(ConfigFilePaths::MusicConfig).GetFileContents()), false);
+	ReturnIf(!ImageContainerConfig.Read(File(ConfigFilePaths::ImageConfig).GetLines()), false);
+	ReturnIf(!StringContainerConfig.Read(File(ConfigFilePaths::StringConfig).GetLines()), false);
+	ReturnIf(!FontContainerConfig.Read(File(ConfigFilePaths::FontConfig).GetLines()), false);
+	ReturnIf(!TextContainerConfig.Read(File(ConfigFilePaths::TextConfig).GetLines()), false);
+	ReturnIf(!SoundContainerConfig.Read(File(ConfigFilePaths::SoundConfig).GetLines()), false);
+	ReturnIf(!MusicContainerConfig.Read(File(ConfigFilePaths::MusicConfig).GetLines()), false);
 
 	return true;
 }

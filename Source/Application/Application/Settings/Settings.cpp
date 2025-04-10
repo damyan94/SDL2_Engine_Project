@@ -7,7 +7,7 @@ static const std::string c_SettingsFileName = ConfigFilePaths::ConfigFilePath("C
 
 ////////////////////////////////////////////////////////////////////////////////
 Settings::Settings()
-	: m_SettingsFile(c_SettingsFileName, EWriteMode::Out)
+	: m_SettingsFile(c_SettingsFileName, true)
 	, m_TargetFPS(0)
 	, m_Language(ELanguage::Invalid)
 {
@@ -28,9 +28,7 @@ Settings& Settings::Instance()
 ////////////////////////////////////////////////////////////////////////////////
 bool Settings::Read()
 {
-	ReturnIf(!m_SettingsFile.IsOpen(), false);
-
-	const auto& readStrings = m_SettingsFile.GetFileContents();
+	const auto& readStrings = m_SettingsFile.GetLines();
 
 	auto findString = [&](const std::string& lookup) -> const std::string&
 		{
@@ -60,11 +58,14 @@ bool Settings::Write()
 {
 	std::string writeString;
 
+	//TODO maybe instead of this, i could have a lookup and update the values?
+	m_SettingsFile.DeleteAllLines();
+
 	writeString += "# Important: do not change the order of the settings!\n\n";
 	writeString +="fps=" + std::to_string(m_TargetFPS) + ";\n";
-	writeString +="language=" + Utils::GetLanguageStringFromId(m_Language) + ";\n";
+	writeString +="language=" + Utils::GetLanguageStringFromId(m_Language) + ";";
 
-	m_SettingsFile.Write(writeString);
+	m_SettingsFile.AddLine(writeString);
 
 	return true;
 }

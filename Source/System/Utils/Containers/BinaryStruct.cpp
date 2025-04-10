@@ -2,6 +2,8 @@
 
 #include "System/Utils/Containers/BinaryStruct.h"
 
+#include <fstream>
+
 ////////////////////////////////////////////////////////////////////////////////
 BinaryStruct::BinaryStruct()
 	: m_Data(nullptr)

@@ -12,6 +12,8 @@ private:
 public:
 	bool operator==(const Time& other) const;
 	bool operator!=(const Time& other) const;
+	bool operator>(const Time& other) const;
+	bool operator<(const Time& other) const;
 
 	Time operator+(const Time& other) const;
 	Time operator-(const Time& other) const;
@@ -19,7 +21,7 @@ public:
 	void				SetToNow();
 
 	uint64_t			GetAs(EUnitOfTime unit) const;
-	uint64_t			GetElapsedTimeTillNow(EUnitOfTime unit) const;
+	uint64_t			GetElapsedTimeUntilNow(EUnitOfTime unit) const;
 	std::string			GetString(ETimeStringFormat format) const;
 
 public:

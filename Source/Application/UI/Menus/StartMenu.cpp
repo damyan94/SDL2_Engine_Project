@@ -3,6 +3,8 @@
 #include "Application/UI/Menus/StartMenu.h"
 #include "Application/UI/Menus/Config/StartMenuConfig.h"
 
+#include "Application/UI/Menus/Config/MenuManagerConfig.h"
+
 ////////////////////////////////////////////////////////////////////////////////
 StartMenu::StartMenu()
 {
@@ -15,23 +17,11 @@ StartMenu::~StartMenu()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool StartMenu::Init(const StartMenuConfig& cfg)
+bool StartMenu::Init(const MenuConfig& cfg)
 {
 	m_Id = EMenuId::StartMenu;
-	m_PosRect = cfg.m_PosRect;
-	m_UIComponents.resize((size_t)EUIComponentId::Count);
-
-	//TODO fix the UIConfig - do not do things polymorphically via IUIComponentConfig,
-	//but instead use the old explicit approach, since this could break the application
-	//by say casting a LabelConfig to a ButtonConfig. the old way atleast it would assert
 	
-#define ALLOCATE_AND_INIT(_Id, _Type)\
-m_UIComponents[(int32_t)EUIComponentId::_Id] = new _Type;\
-ReturnIf(!static_cast<_Type*>(m_UIComponents[(int32_t)EUIComponentId::_Id])->Init(*cfg.m_##_Id##Config), false)
-
-	ALLOCATE_AND_INIT(ButtonNewGame, Button);
-	ALLOCATE_AND_INIT(ButtonSettings, Button);
-	ALLOCATE_AND_INIT(ButtonQuit, Button);
+	CustomUIMenuBase::Init(cfg);
 
 	m_ImageLogo.Init(0);
 	auto pos = Position::GetPositonRelativeToParent(m_ImageLogo.GetPosRect(), &m_PosRect,
@@ -121,17 +111,20 @@ void StartMenu::UpdateLayout()
 ////////////////////////////////////////////////////////////////////////////////
 void StartMenu::OnButtonNewGameClick()
 {
-	Log::Console("New game");
+	Logger::LogInfo("New game");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void StartMenu::OnButtonSettingsClick()
 {
-	Log::Console("Settings");
+	Logger::LogInfo("Settings");
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void StartMenu::OnButtonQuitClick()
 {
-	exit(0);
+	//exit(0);
+
+	//Really having fun now
+	throw(QuitApplication());
 }

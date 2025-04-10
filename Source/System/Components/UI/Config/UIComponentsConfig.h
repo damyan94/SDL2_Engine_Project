@@ -22,6 +22,7 @@ struct IUIComponentConfig
 {
 	virtual ~IUIComponentConfig() = default;
 
+	virtual EUIComponentType GetType() const = 0;
 	virtual bool Parse(const std::string& line) = 0;
 };
 
@@ -31,6 +32,7 @@ struct ImageBoxConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::ImageBox;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -43,6 +45,7 @@ struct LabelConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::Label;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -55,6 +58,7 @@ struct ButtonConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::Button;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -69,6 +73,7 @@ struct CheckboxConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::Checkbox;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -83,6 +88,7 @@ struct RadioButtonConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::RadioButton;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -97,6 +103,7 @@ struct TextBoxConfig
 {
 	static constexpr EUIComponentType ComponentType = EUIComponentType::TextBox;
 
+	EUIComponentType GetType() const final { return ComponentType; };
 	bool Parse(const std::string& line) final;
 
 	Point				m_Pos = Point::Undefined;
@@ -127,7 +134,7 @@ private:
 template <typename T>
 bool UIComponentsConfig::ReadUIComponentsConfig(const std::string& filePath)
 {
-	const auto buttonsCfg = File(filePath).GetFileContents();
+	const auto buttonsCfg = File(filePath).GetLines();
 	for (const auto& item : buttonsCfg)
 	{
 		auto newCfg = std::make_unique<T>();

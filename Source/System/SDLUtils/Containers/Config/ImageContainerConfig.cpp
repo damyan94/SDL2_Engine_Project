@@ -17,10 +17,10 @@ bool ImageContainerConfig::Read(const LinesOfText& readStrings)
 		ImageConfig newCfg;
 
 		newCfg.FileName = ConfigFilePaths::ConfigFilePath(Utils::ReadString(readStrings[i], "FileName"));
-		AssertReturnIf(newCfg.FileName.empty() && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(newCfg.FileName.empty(), false);
 
 		newCfg.Frames = Utils::ReadInt(readStrings[i], "Frames");
-		AssertReturnIf(newCfg.Frames < 0 && _CONFIG_ERROR_INFO(i), false);
+		AssertReturnIf(newCfg.Frames < 0, false);
 	
 		ImageContainerConfig.emplace_back(std::move(newCfg));
 	}

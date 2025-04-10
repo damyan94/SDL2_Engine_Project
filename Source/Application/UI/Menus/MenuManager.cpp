@@ -27,12 +27,12 @@ bool MenuManager::Init(const MenuManagerConfig& cfg)
 {
 	m_Menus.resize((size_t)EMenuId::Count);
 
-#define ALLOCATE_AND_INIT(_Id, _Type)\
-m_Menus[(int32_t)_Id] = new _Type;\
-ReturnIf(!static_cast<_Type*>(m_Menus[(int32_t)_Id])->Init(cfg._Type##Config), false)
+#define ALLOCATE_AND_INIT(_Type)\
+m_Menus[(int32_t)EMenuId::_Type] = new _Type;\
+ReturnIf(!static_cast<_Type*>(m_Menus[(int32_t)EMenuId::_Type])->Init(cfg.MenuConfigs[(int32_t)EMenuId::_Type]), false)
 
-	ALLOCATE_AND_INIT(EMenuId::ConsoleMenu, ConsoleMenu);
-	ALLOCATE_AND_INIT(EMenuId::StartMenu, StartMenu);
+	ALLOCATE_AND_INIT(ConsoleMenu);
+	ALLOCATE_AND_INIT(StartMenu);
 
 	return true;
 }

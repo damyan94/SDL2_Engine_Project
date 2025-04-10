@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+#include <chrono>
+
 #include "System/Utils/Time/Time.h"
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -29,7 +31,19 @@ bool Time::operator==(const Time& other) const
 ////////////////////////////////////////////////////////////////////////////////
 bool Time::operator!=(const Time& other) const
 {
-	return !operator==(other);
+	return m_Microseconds != other.m_Microseconds;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+bool Time::operator>(const Time& other) const
+{
+	return m_Microseconds > other.m_Microseconds;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+bool Time::operator<(const Time& other) const
+{
+	return m_Microseconds < other.m_Microseconds;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -54,79 +68,52 @@ void Time::SetToNow()
 ////////////////////////////////////////////////////////////////////////////////
 uint64_t Time::GetAs(EUnitOfTime unit) const
 {
-	std::chrono::microseconds microSeconds(m_Microseconds);
+	using namespace std::chrono;
+
+	const microseconds tp(m_Microseconds);
 
 	switch (unit)
 	{
-	case EUnitOfTime::Nanoseconds:
-		return std::chrono::duration_cast<std::chrono::nanoseconds>(microSeconds).count();
-
-	case EUnitOfTime::Microseconds:
-		return std::chrono::duration_cast<std::chrono::microseconds>(microSeconds).count();
-
-	case EUnitOfTime::Milliseconds:
-		return std::chrono::duration_cast<std::chrono::milliseconds>(microSeconds).count();
-
-	case EUnitOfTime::Seconds:
-		return std::chrono::duration_cast<std::chrono::seconds>(microSeconds).count();
-
-	case EUnitOfTime::Minutes:
-		return std::chrono::duration_cast<std::chrono::minutes>(microSeconds).count();
-
-	case EUnitOfTime::Hours:
-		return std::chrono::duration_cast<std::chrono::hours>(microSeconds).count();
-
-	case EUnitOfTime::Days:
-		return std::chrono::duration_cast<std::chrono::days>(microSeconds).count();
+	case EUnitOfTime::Nanosecond:	return duration_cast<nanoseconds>(tp).count();
+	case EUnitOfTime::Microsecond:	return duration_cast<microseconds>(tp).count();
+	case EUnitOfTime::Millisecond:	return duration_cast<milliseconds>(tp).count();
+	case EUnitOfTime::Second:		return duration_cast<seconds>(tp).count();
+	case EUnitOfTime::Minute:		return duration_cast<minutes>(tp).count();
+	case EUnitOfTime::Hour:			return duration_cast<hours>(tp).count();
+	case EUnitOfTime::Day:			return duration_cast<days>(tp).count();
+	case EUnitOfTime::Week:			return duration_cast<weeks>(tp).count();
+	case EUnitOfTime::Month:		return duration_cast<months>(tp).count();
+	case EUnitOfTime::Year:			return duration_cast<years>(tp).count();
 
 	default:
-		return 0;
+		Assert("Invalid unit of time.");
+		return TimePoint();
 	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-uint64_t Time::GetElapsedTimeTillNow(EUnitOfTime unit) const
+uint64_t Time::GetElapsedTimeUntilNow(EUnitOfTime unit) const
 {
-	return Time::GetNow().GetAs(unit) - GetAs(unit);
+	return Time(GetNow() - m_Microseconds).GetAs(unit);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 std::string Time::GetString(ETimeStringFormat format) const
 {
-	time_t timeSeconds = m_Microseconds / 1000 / 1000;
+	using namespace std::chrono;
 
-	constexpr uint8_t resultLength = 40;
-	char result[resultLength]{'\0'};
-	tm* timeinfo = nullptr;
-#if defined WIN32 || _WIN32
-	localtime_s(timeinfo, &timeSeconds);
+	time_point tp = time_point<system_clock, microseconds>(microseconds(m_Microseconds));
 
 	switch (format)
 	{
-	case ETimeStringFormat::yyyymmddHHmmss_ZeroPunctuation:
-		strftime(result, resultLength, "%Y%m%d%H%M%S", timeinfo);
-		break;
-
-	case ETimeStringFormat::yyyymmddHHmmss_Dots:
-		strftime(result, resultLength, "%Y.%m.%d %H:%M:%S", timeinfo);
-		break;
-
-	case ETimeStringFormat::ddmmyyyyHHmmss_ZeroPunctuation:
-		strftime(result, resultLength, "%d%m%Y%H%M%S", timeinfo);
-		break;
-
-	case ETimeStringFormat::ddmmyyyyHHmmss_Dots:
-		strftime(result, resultLength, "%d.%m.%Y %H:%M:%S", timeinfo);
-		break;
+	case ETimeStringFormat::Default:	return Format("{:%d.%m.%Y %H:%M:%OS}", tp);
+	case ETimeStringFormat::Timestamp:	return Format("{:%Y%m%d%H%M%OS}", tp);
+	case ETimeStringFormat::TimePoint:	return Format("{}", m_Microseconds);
 
 	default:
-		break;
+		Assert("Invalid time string format.");
+		return std::string();
 	}
-#else //if defined OS_LINUX || LINUX || UNIX
-
-#endif // !WIN32 || _WIN32
-
-	return std::string(result);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

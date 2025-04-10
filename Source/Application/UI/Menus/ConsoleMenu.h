@@ -3,6 +3,7 @@
 #include "Application/UI/Menus/CustomUIMenuBase.h"
 
 struct ConsoleMenuConfig;
+struct MenuConfig;
 
 class ConsoleMenu
 	: public CustomUIMenuBase
@@ -11,7 +12,7 @@ public:
 	ConsoleMenu();
 	~ConsoleMenu();
 
-	bool				Init(const ConsoleMenuConfig& cfg);
+	bool				Init(const MenuConfig& cfg);
 	void				Deinit();
 	void				HandleEvent(const InputEvent& e);
 	void				Update(int32_t dt);

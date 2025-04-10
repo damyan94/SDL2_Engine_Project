@@ -14,11 +14,8 @@
 #include <map>
 #include <unordered_map>
 
-#include <iostream>
-#include <fstream>
 #include <format>
 #include <thread>
-#include <chrono>
 #include <algorithm>
 #include <memory>
 #include <utility>
@@ -29,6 +26,11 @@
 #include "System/SDLUtils/Defines.h"
 #include "System/Managers/Defines.h"
 
+#include "System/Utils/InputOutput/Logger.h"
+#include "System/Utils/InputOutput/UI.h"
+#include "System/Utils/InputOutput/File.h"
+#include "System/Utils/InputOutput/CSVParser.h"
+
 #include "System/Utils/Drawing/Color.h"
 
 #include "System/Utils/Geometry/Point.h"
@@ -36,7 +38,6 @@
 #include "System/Utils/Geometry/Circle.h"
 #include "System/Utils/Geometry/Position.h"
 
-#include "System/Utils/Others/CodeReadability.h"
 #include "System/Utils/Others/Crypto.h"
 #include "System/Utils/Others/Hash.h"
 #include "System/Utils/Others/RandomNumberGenerator.h"
@@ -46,11 +47,6 @@
 #include "System/Utils/Containers/Variant.h"
 #include "System/Utils/Containers/Table.h"
 #include "System/Utils/String/String.h"
-
-#include "System/Utils/InputOutput/Log.h"
-#include "System/Utils/InputOutput/ReadWriteFile.h"
-#include "System/Utils/InputOutput/File.h"
-#include "System/Utils/InputOutput/CSVParser.h"
 #include "System/Utils/InputOutput/ConfigReaderUtils.h"
 
 #include "System/SDLUtils/Input/InputEvent.h"

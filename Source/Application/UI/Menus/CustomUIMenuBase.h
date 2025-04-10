@@ -2,12 +2,14 @@
 
 #include "System/Components/UI/UIMenuBase.h"
 
+struct MenuConfig;
+
 enum class EMenuId
 	: int16_t
 {
 	Invalid = -1
-	, ConsoleMenu
 	, StartMenu
+	, ConsoleMenu
 	, Count
 };
 
@@ -18,6 +20,7 @@ public:
 	CustomUIMenuBase();
 	virtual ~CustomUIMenuBase();
 
+	bool				Init(const MenuConfig& cfg);
 	EMenuId				GetId() const;
 	virtual void		UpdateLayout() = 0;
 

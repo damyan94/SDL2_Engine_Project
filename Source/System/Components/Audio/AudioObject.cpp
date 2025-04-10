@@ -40,7 +40,7 @@ void AudioObject::Play()
 		return;
 
 	default:
-		Assert::Assert("TODO");
+		Assert("TODO");
 		return;
 	}
 }

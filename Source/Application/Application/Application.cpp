@@ -1,15 +1,15 @@
 #include "stdafx.h"
 
 #include "Application/Application/Application.h"
-#include "Application/Application/Config/ApplicationConfig.h"
 
 #include "System/SDLUtils/SDLLoader.h"
-
 #include "System/Managers/DrawManager.h"
 #include "System/Managers/AssetManager.h"
 #include "System/Managers/AudioManager.h"
 #include "System/Managers/TimerManager.h"
 #include "System/Managers/ImGuiManager.h"
+
+#include "Application/ConfigManager.h"
 #include "Application/Application/Settings/Settings.h"
 #include "Application/Game/Game.h"
 
@@ -33,9 +33,13 @@ Application::~Application()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-bool Application::Init(const ApplicationConfig& cfg)
+bool Application::Init()
 {
 	srand((uint32_t)time(nullptr));
+	Logger::Init();
+
+	ReturnIf(!ConfigManager::Instance().Init(), false);
+	const auto& cfg = ConfigManager::Instance().GetApplicationConfig();
 
 	ReturnIf(!Settings::Instance().Read(), false);
 
@@ -121,25 +125,29 @@ void Application::RunApplication()
 {
 	Time clock;
 
-	bool running = true;
-	while (running)
+	try
 	{
-		while (m_InputEvent.PollEvent())
+		bool running = true;
+		while (running)
 		{
-			if (m_InputEvent.m_Type == EEventType::Quit)
+			while (m_InputEvent.PollEvent())
 			{
-				running = false;
+				if (m_InputEvent.m_Type == EEventType::Quit)
+				{
+					running = false;
+				}
+				HandleEvent();
 			}
-			HandleEvent();
+
+			Update();
+			Draw();
+
+			m_ElapsedTimeMS = (int32_t)clock.GetElapsedTimeUntilNow(EUnitOfTime::Millisecond);
+			clock.SetToNow();
+			Sleep();
 		}
-
-		Update();
-		Draw();
-
-		m_ElapsedTimeMS = (int32_t)clock.GetElapsedTimeTillNow(EUnitOfTime::Milliseconds);
-		clock.SetToNow();
-		Sleep();
 	}
+	catch (QuitApplication) {}
 }
 
 ////////////////////////////////////////////////////////////////////////////////

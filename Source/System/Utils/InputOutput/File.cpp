@@ -2,140 +2,115 @@
 
 #include "System/Utils/InputOutput/File.h"
 
-////////////////////////////////////////////////////////////////////////////////
-File::File(const std::string& fileName, EWriteMode writeMode, bool readEmptyLines, char commentIndicator)
-	: m_FileName(fileName)
-	, m_WriteMode(writeMode)
-	, m_ReadEmptyLines(readEmptyLines)
-	, m_CommentIndicator(commentIndicator)
+#include <fstream>
+#include <filesystem>
+
+//////////////////////////////////////////////////////////////////////////////////
+File::File(const std::string& fileName, bool autoSave)
+    : m_FileName(fileName)
+    , m_Autosave(autoSave)
 {
-	Open();
+    if (Create())
+    {
+        Load();
+    }
 }
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 File::~File()
 {
-	Close();
+    if (m_Autosave)
+    {
+        Save();
+    }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::Open()
+//////////////////////////////////////////////////////////////////////////////////
+void File::Load()
 {
-	AssertReturnIf(IsOpen() && "The file is already open.", false);
+    m_Lines.clear();
+    std::ifstream file(m_FileName);
+    AssertReturnIf(!file.is_open());
 
-	switch (m_WriteMode)
-	{
-	case EWriteMode::Out:
-		m_FileStream.open(m_FileName, std::ios::in | std::ios::out);
-		break;
-
-	case EWriteMode::App:
-		m_FileStream.open(m_FileName, std::ios::in | std::ios::app);
-		break;
-
-	default:
-		AssertReturnIf(true && "Unsupported file open mode.", false);
-	}
-
-	ReturnIf(!ReadContents() && "Failed to read file contents.", false);
-
-	return true;
+    std::string line;
+    while (std::getline(file, line))
+    {
+        m_Lines.push_back(line);
+    }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::Close()
+//////////////////////////////////////////////////////////////////////////////////
+void File::Save() const
 {
-	ReturnIf(!IsOpen(), false);
+    std::ofstream file(m_FileName, std::ios::trunc);
+    AssertReturnIf(!file.is_open());
 
-	m_FileStream.close();
-	m_Lines.clear();
-
-	return true;
+    for (const auto& line : m_Lines)
+    {
+        file << line << '\n';
+    }
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::IsOpen() const
+//////////////////////////////////////////////////////////////////////////////////
+void File::AddLine(const std::string& line)
 {
-	return m_FileStream.is_open();
+    m_Lines.push_back(line);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::ReadContents()
+//////////////////////////////////////////////////////////////////////////////////
+void File::InsertLine(const std::string& line, std::size_t index)
 {
-	AssertReturnIf(!IsOpen() && "The file is not open.", false);
-
-	m_FileStream.clear();
-	m_FileStream.seekg(0, std::ios::beg);
-
-	m_Lines.clear();
-	m_Lines.reserve(10);
-
-	std::string readLine;
-	while (std::getline(m_FileStream, readLine))
-	{
-		//TODO make this part of the csv parser, here it should read the entire file
-		//The '#' symbol will indicate a commented line in the input file
-		ContinueIf(m_ReadEmptyLines && readLine.empty());
-		ContinueIf(m_CommentIndicator != '\0' && readLine[0] == '#');
-
-		m_Lines.emplace_back(TrimCarriageReturn(readLine));
-	}
-
-	return true;
+    AssertReturnIf(index > m_Lines.size());
+    m_Lines.insert(m_Lines.begin() + index, line);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::Write(const std::string& writeString)
+//////////////////////////////////////////////////////////////////////////////////
+void File::DeleteLine(std::size_t index)
 {
-	AssertReturnIf(!IsOpen() && "The file is not open.", false);
-
-	m_FileStream << writeString;
-	AssertReturnIf(m_FileStream.fail() && "Write to file failed.", false);
-
-	return true;
+    AssertReturnIf(!HasLine(index));
+    m_Lines.erase(m_Lines.begin() + index);
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::SetWriteMode(EWriteMode writeMode)
+//////////////////////////////////////////////////////////////////////////////////
+void File::DeleteAllLines()
 {
-	ReturnIf(!Close(), false);
-
-	m_WriteMode = writeMode;
-
-	return Open();
+    m_Lines.clear();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-bool File::ClearFileContents()
+//////////////////////////////////////////////////////////////////////////////////
+bool File::HasLine(size_t index) const
 {
-	ReturnIf(!Close(), false);
-
-	m_FileStream.open(m_FileName, std::ios::out | std::ios::trunc);
-	AssertReturnIf(!IsOpen() && "File clean failed.", false);
-
-	return SetWriteMode(m_WriteMode);
+    return index < m_Lines.size();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-const std::string& File::GetFileName() const
+//////////////////////////////////////////////////////////////////////////////////
+size_t File::GetLinesCount() const
 {
-	return m_FileName;
+    return m_Lines.size();
 }
 
-////////////////////////////////////////////////////////////////////////////////
-EWriteMode File::GetWriteMode() const
+//////////////////////////////////////////////////////////////////////////////////
+const LinesOfText& File::GetLines() const
 {
-	return m_WriteMode;
+    return m_Lines;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-const LinesOfText& File::GetFileContents() const
+//////////////////////////////////////////////////////////////////////////////////
+LinesOfText& File::GetLinesMutable()
 {
-	return m_Lines;
+    return m_Lines;
 }
 
-////////////////////////////////////////////////////////////////////////////////
-//TODO Can be exported to StringUtils.h/.cpp or something
+//////////////////////////////////////////////////////////////////////////////////
+bool File::Create()
+{
+    ReturnIf(std::filesystem::exists(m_FileName), true);
+    AssertReturnIf(!std::ofstream(m_FileName), false);
+
+    return true;
+}
+
+//////////////////////////////////////////////////////////////////////////////////
 std::string File::TrimCarriageReturn(const std::string& str)
 {
 	ReturnIf(!str.empty() && str.back() == '\r', str.substr(0, str.size() - 1));

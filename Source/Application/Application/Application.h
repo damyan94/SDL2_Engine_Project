@@ -9,7 +9,7 @@ public:
 	Application();
 	~Application();
 
-	bool				Init(const ApplicationConfig& cfg);
+	bool				Init();
 	void				Deinit();
 
 	void				RunApplication();

@@ -3,33 +3,28 @@
 class File
 {
 public:
-	File(const std::string& fileName, EWriteMode writeMode = EWriteMode::App, bool readEmptyLines = true, char commentIndicator = '\0');
+	File(const std::string& fileName, bool autoSave = false);
 	~File();
 
-	bool Open();
-	bool Close();
-	bool IsOpen() const;
+	void				Load();
+	void				Save() const;
 
-	bool ReadContents();
-	bool Write(const std::string& writeString);
+	void				AddLine(const std::string& line);
+	void				InsertLine(const std::string& line, size_t index);
+	void				DeleteLine(size_t index);
+	void				DeleteAllLines();
+	bool				HasLine(size_t index) const;
+	size_t				GetLinesCount() const;
 
-
-	bool SetWriteMode(EWriteMode writeMode);
-	bool ClearFileContents();
-
-	const std::string&	GetFileName() const;
-	EWriteMode			GetWriteMode() const;
-	const LinesOfText&	GetFileContents() const;
+	const LinesOfText&	GetLines() const;
+	LinesOfText&		GetLinesMutable();
 
 private:
+	bool				Create();
 	std::string			TrimCarriageReturn(const std::string& str);
 
 private:
 	const std::string	m_FileName;
-	EWriteMode			m_WriteMode;
-	bool				m_ReadEmptyLines;
-	char				m_CommentIndicator;
-
-	std::fstream		m_FileStream;
+	const bool			m_Autosave;
 	LinesOfText			m_Lines;
 };

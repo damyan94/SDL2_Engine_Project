@@ -20,7 +20,7 @@ bool StringContainerConfig::Read(const LinesOfText& readStrings)
 		{
 			const auto currLanguage = ELanguage(j);
 			std::string languageString = Utils::ReadString(readStrings[i], Utils::GetLanguageStringFromId(currLanguage));
-			AssertReturnIf(languageString.empty() && _CONFIG_ERROR_INFO(i), false);
+			AssertReturnIf(languageString.empty(), false);
 
 			newCfg.LanguageStrings.emplace(currLanguage, std::move(languageString));
 		}

@@ -10,6 +10,8 @@
 #include "System/Components/Time/Timer.h"
 
 #include "System/Components/UI/UIComponentBase.h"
+#include "System/Components/UI/ImageBox.h"
+#include "System/Components/UI/Label.h"
 #include "System/Components/UI/Button.h"
 #include "System/Components/UI/Checkbox.h"
 #include "System/Components/UI/RadioButton.h"

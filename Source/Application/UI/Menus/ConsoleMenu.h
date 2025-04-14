@@ -28,6 +28,6 @@ public:
 private:
 	Timer				m_TimerUpdate;
 
-	Text				m_TextDrawCalls;
-	Text				m_TextCameraPos;
+	//Text				m_TextDrawCalls;
+	//Text				m_TextCameraPos;
 };

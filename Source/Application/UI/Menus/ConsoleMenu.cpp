@@ -29,7 +29,7 @@ bool ConsoleMenu::Init(const MenuConfig& cfg)
 
 	m_TimerUpdate.Start(100, ETimerType::Pulse);
 
-	/*auto dcCfg = cfg.m_LabelDrawCalls;
+	/*auto dcCfg = cfg.ComponentsConfig[0];
 	m_TextDrawCalls.Init(dcCfg->m_TextId);
 	m_TextDrawCalls.SetPos(dcCfg->m_Pos);
 	m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
@@ -61,16 +61,19 @@ void ConsoleMenu::Update(int32_t dt)
 	ReturnIf(!m_IsActive);
 	ReturnIf(!m_TimerUpdate.IsTicked());
 
-	m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
-	m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });
+	static_cast<Label*>(m_UIComponents[0])->SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
+	static_cast<Label*>(m_UIComponents[1])->SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });
+
+	//m_TextDrawCalls.SetPlaceholders({ std::to_string(Helpers::GetDrawCalls()) });
+	//m_TextCameraPos.SetPlaceholders({ std::to_string(Helpers::GetCameraPosition().x), std::to_string(Helpers::GetCameraPosition().y) });
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void ConsoleMenu::Draw() const
 {
 	UIMenuBase::Draw();
-	m_TextDrawCalls.Draw();
-	m_TextCameraPos.Draw();
+	//m_TextDrawCalls.Draw();
+	//m_TextCameraPos.Draw();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -95,19 +98,21 @@ void ConsoleMenu::ToggleActive(bool activate)
 ////////////////////////////////////////////////////////////////////////////////
 void ConsoleMenu::Activate()
 {
-	m_IsActive = true;
+	CustomUIMenuBase::Activate();
+	//m_IsActive = true;
 	m_TimerUpdate.SetPause(false);
-	m_TextDrawCalls.SetIsVisible(true);
-	m_TextCameraPos.SetIsVisible(true);
+	//m_TextDrawCalls.SetIsVisible(true);
+	//m_TextCameraPos.SetIsVisible(true);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void ConsoleMenu::Deactivate()
 {
-	m_IsActive = false;
+	CustomUIMenuBase::Deactivate();
+	//m_IsActive = false;
 	m_TimerUpdate.SetPause(true);
-	m_TextDrawCalls.SetIsVisible(false);
-	m_TextCameraPos.SetIsVisible(false);
+	//m_TextDrawCalls.SetIsVisible(false);
+	//m_TextCameraPos.SetIsVisible(false);
 }
 
 ////////////////////////////////////////////////////////////////////////////////

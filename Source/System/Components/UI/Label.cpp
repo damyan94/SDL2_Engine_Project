@@ -1,0 +1,82 @@
+#include "stdafx.h"
+
+#include "System/Components/UI/Label.h"
+#include "System/Components/UI/Config/UIComponentsConfig.h"
+
+////////////////////////////////////////////////////////////////////////////////
+Label::Label()
+{
+}
+
+////////////////////////////////////////////////////////////////////////////////
+Label::~Label()
+{
+	Deinit();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+bool Label::Init(const LabelConfig& cfg)
+{
+	//UIComponentBase::Init({ cfg.m_Pos, cfg.m_ImageId });
+
+	m_Pos = cfg.m_Pos;
+	m_Text.Init(cfg.m_TextId);
+	SetPosition(cfg.m_Pos);
+
+	return true;
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::Deinit()
+{
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::HandleEvent(const InputEvent& e)
+{
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::Update(int32_t dt)
+{
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::Draw() const
+{
+	//UIComponentBase::Draw();
+	m_Text.Draw();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::SetPosition(const Point& newPos)
+{
+	UIComponentBase::SetPosition(newPos);
+
+	//m_Pos = newPos;
+	auto imageRect = m_Image.GetPosRect();
+	const auto& textPos = Position::GetPositonRelativeToParent(m_Text.GetFrameRect(), &imageRect,
+		Position::EHorizontalAlignment::Left, Position::EVerticalAlignment::Middle);
+	m_Text.SetPos(textPos);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::Reset()
+{
+	//UIComponentBase::Reset();
+	//m_Image.SetCurrFrame((int32_t)EButtonFrame::Normal);
+	SetPosition(m_Pos);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::SetIsEnabled(bool enable)
+{
+	//UIComponentBase::SetIsEnabled(enable);
+	m_Text.SetIsVisible(enable);
+}
+
+////////////////////////////////////////////////////////////////////////////////
+void Label::SetPlaceholders(const std::vector<std::string>& values)
+{
+	m_Text.SetPlaceholders(values);
+}

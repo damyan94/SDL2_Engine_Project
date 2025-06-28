@@ -5,7 +5,7 @@ mkdir -p ./$copyLocation
 mkdir -p ./$copyLocation/Assets/
 mkdir -p ./$copyLocation/Config/
 
-cp $(find ./Build/Linux_x86_64_Distribution -maxdepth 1 -type f -name "*") ./$copyLocation
+cp $(find ./Bin/Linux/Distribution -maxdepth 1 -type f -name "Application") ./$copyLocation
 
 cp -r ./Assets ./$copyLocation/
 

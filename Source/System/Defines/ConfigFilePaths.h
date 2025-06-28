@@ -1,15 +1,27 @@
 #pragma once
 
+//TODO rename to FilePaths
 namespace ConfigFilePaths
 {
 inline std::string ConfigFilePath(const std::string& path)
 {
 #if defined _DISTRIBUTION
 	return path;
+
 #elif defined _DEBUG || _RELEASE
+#if defined _LINUX || __linux__
 	return "../../../" + path;
+#elif defined _WINDOWS || _WIN32 || WIN32
+	// When you start the program through Visual Studio the paths are relative to the .vcxproj file, not the .exe
+	return "../../" + path;
+#endif
+
 #endif // !_DEBUG || _RELEASE
 }
+
+static const std::string AssetsDir			= ConfigFilePath("Assets/");
+static const std::string ConfigDir			= ConfigFilePath("Config/");
+static const std::string LogsDir			= ConfigFilePath("Logs/");
 
 //TODO I should have on file containing the file paths to the different configs instead of hardcoding them
 static const std::string SystemConfig		= ConfigFilePath("Config/System.cfg");

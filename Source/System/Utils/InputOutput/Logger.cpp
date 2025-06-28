@@ -1,8 +1,10 @@
 #include "stdafx.h"
 
 #include "System/Utils/InputOutput/Logger.h"
+#include "System/Defines/ConfigFilePaths.h"
 
 #include <iostream>
+#include <filesystem>
 
 ELogLevel		Logger::m_LogLevel			= ELogLevel::LogInfo;
 ETextColor		Logger::m_DefaultTextColor	= ETextColor::White;
@@ -41,6 +43,10 @@ static constexpr std::string_view GetTextStyle(ETextStyle textStyle)
 ////////////////////////////////////////////////////////////////////////////////
 void Logger::Init()
 {
+	if (!std::filesystem::exists(ConfigFilePaths::LogsDir))
+	{
+		std::filesystem::create_directories(ConfigFilePaths::LogsDir);
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -183,7 +189,7 @@ void Logger::PrintLineToConsole(const std::string& text,
 ////////////////////////////////////////////////////////////////////////////////
 void Logger::LogErrorToFile(const std::string& text)
 {
-	static File errorFile(Format("error_{0}.txt",
+	static File errorFile(ConfigFilePaths::LogsDir + Format("error_{0}.txt",
 		Time::GetNow().GetString(ETimeStringFormat::Timestamp)), true);
 
 	const auto timestamp = Time::GetNow().GetString(ETimeStringFormat::Default);

@@ -5,8 +5,8 @@ mkdir .\%copyLocation%
 mkdir .\%copyLocation%\Assets
 mkdir .\%copyLocation%\Config
 
-xcopy .\Build\Windows_x86_64_Distribution\**.exe .\%copyLocation% /s /y
-xcopy .\Build\Windows_x86_64_Distribution\**.dll .\%copyLocation% /s .y
+xcopy .\Bin\Windows\Distribution\**.exe .\%copyLocation% /s /y
+xcopy .\Bin\Windows\Distribution\**.dll .\%copyLocation% /s .y
 
 for /r .\Dependencies %%f in (*.dll) do @copy "%%f" .\%copyLocation% /y
 

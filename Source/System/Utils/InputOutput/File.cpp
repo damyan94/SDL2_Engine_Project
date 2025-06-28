@@ -105,7 +105,9 @@ LinesOfText& File::GetLinesMutable()
 bool File::Create()
 {
     ReturnIf(std::filesystem::exists(m_FileName), true);
-    AssertReturnIf(!std::ofstream(m_FileName), false);
+
+    std::ofstream file(m_FileName);
+    AssertReturnIf(!file.is_open(), false);
 
     return true;
 }

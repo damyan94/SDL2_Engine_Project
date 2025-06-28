@@ -18,24 +18,26 @@ if not targetSystem then
 end
 
 local baseDir 			= "../"
+local binDir 			= baseDir .. "Bin/"
 local buildDir 			= baseDir .. "Build/"
 local dependenciesDir 	= baseDir .. "Dependencies/"
 local projectDir 		= baseDir .. "Project/"
 local sourceDir 		= baseDir .. "Source/"
 
-local outputDir = buildDir .. targetSystem .. "_%{cfg.architecture}_%{cfg.buildcfg}/"
+local projectOutputDir = buildDir .. targetSystem .. "_Premake5/"
+local binOutputDir = binDir .. targetSystem .. "/%{cfg.buildcfg}/"
 
 function setupCommonProjectSettings(_projectName, _kind)
 
-	location (projectDir .. targetSystem .. "/" .. _projectName)
+	location (projectOutputDir)
 	kind (_kind)
 	language "C++"
 	cppdialect "C++20"
 	warnings "Default"
 	staticruntime "On"
 	
-	targetdir (outputDir)
-	objdir (outputDir .. "/Temp/" .. _projectName)
+	targetdir (binOutputDir)
+	objdir (projectOutputDir .. "/Temp/" .. _projectName .. "/")
 	
 	files
 	{
@@ -188,7 +190,7 @@ end
 --------------------------------------------------------------------------------
 
 workspace "SDL2_Engine_Project"
-	location (projectDir .. targetSystem .. "/")
+	location (projectOutputDir)
 	architecture "x64"
 	startproject "Application"
 

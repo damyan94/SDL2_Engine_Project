@@ -38,18 +38,9 @@ static constexpr std::string_view GetTextStyle(ETextStyle textStyle)
 	}
 }
 
-static File s_ErrorFile(Format("error_{0}.txt",
-	Time::GetNow().GetString(ETimeStringFormat::Timestamp)), true);
-
-static void SaveErrorFileOnExit()
-{
-	s_ErrorFile.Save();
-}
-
 ////////////////////////////////////////////////////////////////////////////////
 void Logger::Init()
 {
-	std::atexit(SaveErrorFileOnExit);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -192,6 +183,9 @@ void Logger::PrintLineToConsole(const std::string& text,
 ////////////////////////////////////////////////////////////////////////////////
 void Logger::LogErrorToFile(const std::string& text)
 {
+	static File errorFile(Format("error_{0}.txt",
+		Time::GetNow().GetString(ETimeStringFormat::Timestamp)), true);
+
 	const auto timestamp = Time::GetNow().GetString(ETimeStringFormat::Default);
-	s_ErrorFile.AddLine(Format("[{0}] ", timestamp) + text);
+	errorFile.AddLine(Format("[{0}] ", timestamp) + text);
 }

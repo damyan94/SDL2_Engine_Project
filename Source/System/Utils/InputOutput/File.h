@@ -16,8 +16,8 @@ public:
 	bool				HasLine(size_t index) const;
 	size_t				GetLinesCount() const;
 
-	const LinesOfText&	GetLines() const;
-	LinesOfText&		GetLinesMutable();
+	const StringVector&	GetLines() const;
+	StringVector&		GetLinesMutable();
 
 private:
 	bool				Create();
@@ -26,5 +26,5 @@ private:
 private:
 	const std::string	m_FileName;
 	const bool			m_Autosave;
-	LinesOfText			m_Lines;
+	StringVector			m_Lines;
 };

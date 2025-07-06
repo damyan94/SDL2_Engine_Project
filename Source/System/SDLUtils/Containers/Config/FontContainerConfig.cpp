@@ -5,7 +5,7 @@
 #include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool FontContainerConfig::Read(const LinesOfText& readStrings)
+bool FontContainerConfig::Read(const StringVector& readStrings)
 {
 	const auto count = readStrings.size();
 	for (size_t i = 0; i < count; i++)

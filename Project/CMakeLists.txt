@@ -19,24 +19,39 @@ set(SOURCE_DIR ${BASE_DIR}/Source)
 set(DEPENDENCIES_DIR ${BASE_DIR}/Dependencies)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BASE_DIR}/Bin/${SYSTEM_TARGET})
 
+file(GLOB IMGUI_SRC
+    ${DEPENDENCIES_DIR}/imgui-docking/*.cpp
+    ${DEPENDENCIES_DIR}/imgui-docking/backends/*.cpp
+)
+
+set_source_files_properties(${IMGUI_SRC} PROPERTIES SKIP_PRECOMPILE_HEADERS ON)
+
 file(GLOB_RECURSE SYSTEM_SRC CONFIGURE_DEPENDS
     ${SOURCE_DIR}/System/*.cpp
     ${SOURCE_DIR}/System/*.h
+    ${DEPENDENCIES_DIR}/imgui-docking/*.cpp
+    ${DEPENDENCIES_DIR}/imgui-docking/*.h
+    ${DEPENDENCIES_DIR}/imgui-docking/backends/*.cpp
+    ${DEPENDENCIES_DIR}/imgui-docking/backends/*.h
 )
 
 file(GLOB_RECURSE APP_SRC CONFIGURE_DEPENDS
     ${SOURCE_DIR}/Application/*.cpp
     ${SOURCE_DIR}/Application/*.h
+    ${DEPENDENCIES_DIR}/imgui-docking/*.cpp
+    ${DEPENDENCIES_DIR}/imgui-docking/*.h
+    ${DEPENDENCIES_DIR}/imgui-docking/backends/*.cpp
+    ${DEPENDENCIES_DIR}/imgui-docking/backends/*.h
 )
 
 # System (static lib)
 add_library(System STATIC ${SYSTEM_SRC})
 
 target_include_directories(System PUBLIC
-    ${DEPENDENCIES_DIR}/imgui-master
-    ${DEPENDENCIES_DIR}/imgui-master/backends
     ${SOURCE_DIR}
     ${SOURCE_DIR}/System
+    ${DEPENDENCIES_DIR}/imgui-docking
+    ${DEPENDENCIES_DIR}/imgui-docking/backends
 )
 
 target_precompile_headers(System PRIVATE ${SOURCE_DIR}/System/stdafx.h)
@@ -48,6 +63,8 @@ target_include_directories(Application PRIVATE
     ${SOURCE_DIR}
     ${SOURCE_DIR}/System
     ${SOURCE_DIR}/Application
+    ${DEPENDENCIES_DIR}/imgui-docking
+    ${DEPENDENCIES_DIR}/imgui-docking/backends
 )
 
 target_link_libraries(Application PRIVATE System)
@@ -63,47 +80,45 @@ if(SYSTEM_TARGET STREQUAL "Linux")
     pkg_check_modules(SDL2_TTF REQUIRED SDL2_ttf)
     pkg_check_modules(SDL2_MIXER REQUIRED SDL2_mixer)
 
-    target_include_directories(System PRIVATE
+    target_include_directories(System PUBLIC
         ${SDL2_INCLUDE_DIRS}
         ${SDL2_IMAGE_INCLUDE_DIRS}
         ${SDL2_TTF_INCLUDE_DIRS}
         ${SDL2_MIXER_INCLUDE_DIRS}
     )
 
-    target_link_libraries(System PRIVATE
+    target_link_libraries(System PUBLIC
         ${SDL2_LIBRARIES}
         ${SDL2_IMAGE_LIBRARIES}
         ${SDL2_TTF_LIBRARIES}
         ${SDL2_MIXER_LIBRARIES}
     )
 
-    target_compile_definitions(System PRIVATE __linux__ LINUX _LINUX)
-    target_compile_definitions(Application PRIVATE __linux__ LINUX _LINUX)
+    target_compile_definitions(System PUBLIC __linux__ LINUX _LINUX)
 
 elseif(SYSTEM_TARGET STREQUAL "Windows")
-    target_include_directories(System PRIVATE
+    target_include_directories(System PUBLIC
         ${DEPENDENCIES_DIR}/SDL2/SDL2/include
         ${DEPENDENCIES_DIR}/SDL2/SDL2_image/include
         ${DEPENDENCIES_DIR}/SDL2/SDL2_ttf/include
         ${DEPENDENCIES_DIR}/SDL2/SDL2_mixer/include
     )
 
-    target_link_directories(System PRIVATE
+    target_link_directories(System PUBLIC
         ${DEPENDENCIES_DIR}/SDL2/SDL2/lib/x64
         ${DEPENDENCIES_DIR}/SDL2/SDL2_image/lib/x64
         ${DEPENDENCIES_DIR}/SDL2/SDL2_ttf/lib/x64
         ${DEPENDENCIES_DIR}/SDL2/SDL2_mixer/lib/x64
     )
 
-    target_link_libraries(System PRIVATE
+    target_link_libraries(System PUBLIC
         ${DEPENDENCIES_DIR}/SDL2/SDL2/lib/x64/SDL2.lib
         ${DEPENDENCIES_DIR}/SDL2/SDL2_image/lib/x64/SDL2_image.lib
         ${DEPENDENCIES_DIR}/SDL2/SDL2_ttf/lib/x64/SDL2_ttf.lib
         ${DEPENDENCIES_DIR}/SDL2/SDL2_mixer/lib/x64/SDL2_mixer.lib
     )
 
-    target_compile_definitions(System PRIVATE WIN32 WIN64 _WIN32 _WIN64 _WINDOWS WINDOWS)
-    target_compile_definitions(Application PRIVATE WIN32 WIN64 _WIN32 _WIN64 _WINDOWS WINDOWS)
+    target_compile_definitions(System PUBLIC WIN32 WIN64 _WIN32 _WIN64 _WINDOWS WINDOWS)
 
     set_target_properties(Application PROPERTIES
         LINK_FLAGS_DISTRIBUTION "/ENTRY:mainCRTStartup /SUBSYSTEM:WINDOWS"
@@ -114,7 +129,7 @@ endif()
 # Configuration-specific defines
 set(CMAKE_CONFIGURATION_TYPES "Debug;Release;Distribution" CACHE STRING "" FORCE)
 
-target_compile_options(System PRIVATE
+target_compile_options(System PUBLIC
     "$<$<CONFIG:Debug>:-g>"
     "$<$<CONFIG:Debug>:-O0>"
     "$<$<CONFIG:Release>:-g>"
@@ -122,21 +137,7 @@ target_compile_options(System PRIVATE
     "$<$<CONFIG:Distribution>:-O3>"
 )
 
-target_compile_definitions(System PRIVATE
-    "$<$<CONFIG:Debug>:DEBUG;_DEBUG>"
-    "$<$<CONFIG:Release>:RELEASE;_RELEASE;_NDEBUG>"
-    "$<$<CONFIG:Distribution>:DISTRIBUTION;_DISTRIBUTION>"
-)
-
-target_compile_options(Application PRIVATE
-    "$<$<CONFIG:Debug>:-g>"
-    "$<$<CONFIG:Debug>:-O0>"
-    "$<$<CONFIG:Release>:-g>"
-    "$<$<CONFIG:Release>:-O2>"
-    "$<$<CONFIG:Distribution>:-O3>"
-)
-
-target_compile_definitions(Application PRIVATE
+target_compile_definitions(System PUBLIC
     "$<$<CONFIG:Debug>:DEBUG;_DEBUG>"
     "$<$<CONFIG:Release>:RELEASE;_RELEASE;_NDEBUG>"
     "$<$<CONFIG:Distribution>:DISTRIBUTION;_DISTRIBUTION>"

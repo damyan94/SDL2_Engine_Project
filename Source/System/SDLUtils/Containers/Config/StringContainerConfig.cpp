@@ -5,7 +5,7 @@
 #include "System/Defines/ConfigFilePaths.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool StringContainerConfig::Read(const LinesOfText& readStrings)
+bool StringContainerConfig::Read(const StringVector& readStrings)
 {
 	const auto count = readStrings.size();
 	for (size_t i = 0; i < count; i++)
@@ -14,18 +14,14 @@ bool StringContainerConfig::Read(const LinesOfText& readStrings)
 		const auto id = Utils::ReadInt(line, "Id");
 		AssertReturnIf(id != i, false);
 
-		StringConfig newCfg;
-
 		for (int32_t j = (int32_t)ELanguage::Invalid + 1; j < (int32_t)ELanguage::Count; j++)
 		{
 			const auto currLanguage = ELanguage(j);
 			std::string languageString = Utils::ReadString(readStrings[i], Utils::GetLanguageStringFromId(currLanguage));
 			AssertReturnIf(languageString.empty(), false);
 
-			newCfg.LanguageStrings.emplace(currLanguage, std::move(languageString));
+			StringContainerConfig[currLanguage].emplace_back(languageString);
 		}
-
-		StringContainerConfig.emplace_back(std::move(newCfg));
 	}
 
 	return true;

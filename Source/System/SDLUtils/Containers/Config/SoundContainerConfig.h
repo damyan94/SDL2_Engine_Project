@@ -8,7 +8,7 @@ struct SoundConfig
 
 struct SoundContainerConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
 	std::vector<SoundConfig> SoundContainerConfig;
 };

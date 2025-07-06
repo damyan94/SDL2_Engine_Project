@@ -20,6 +20,12 @@ public:
 	void				Update(int32_t dt);
 	void				Draw() const;
 
+	void				RenderMassageLoyaltyUI() const;
+	void				RenderMainMenu() const;
+	void				RenderEmployeesDB() const;
+	void				RenderClientsDB() const;
+	void				RenderMassagesDB() const;
+
 private:
 	void				DrawInternal() const;
 };

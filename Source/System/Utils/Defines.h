@@ -137,7 +137,7 @@ public:\
 _Type _Name::Default = _DefaultValue;\
 _Type _Name::Invalid = _InvalidValue;
 
-typedef std::vector<std::string> LinesOfText;
+typedef std::vector<std::string> StringVector;
 
 typedef uint32_t		ImageId;
 typedef uint32_t		StringId;

@@ -5,7 +5,7 @@
 static const std::string c_CategoryTypeString = "Renderer";
 
 ////////////////////////////////////////////////////////////////////////////////
-bool RendererConfig::Read(const LinesOfText& readStrings)
+bool RendererConfig::Read(const StringVector& readStrings)
 {
 	size_t startLine = Utils::ReadInt(readStrings[0], c_CategoryTypeString);
 	if (startLine >= readStrings.size())

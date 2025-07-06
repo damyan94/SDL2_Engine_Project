@@ -42,7 +42,9 @@ function setupCommonProjectSettings(_projectName, _kind)
 	files
 	{
 		sourceDir .. _projectName .. "/**.h",
-		sourceDir .. _projectName .. "/**.cpp"
+		sourceDir .. _projectName .. "/**.cpp",
+		dependenciesDir .. "imgui-docking" .. "/**.h",
+		dependenciesDir .. "imgui-docking" .. "/**.cpp",
 	}
 	
 	includedirs
@@ -54,8 +56,8 @@ function setupCommonProjectSettings(_projectName, _kind)
 		dependenciesDir .. "SDL2/SDL2_image/include",
 		dependenciesDir .. "SDL2/SDL2_ttf/include",
 		dependenciesDir .. "SDL2/SDL2_mixer/include",
-		dependenciesDir .. "imgui-master",
-		dependenciesDir .. "imgui-master/backends"
+		dependenciesDir .. "imgui-docking",
+		dependenciesDir .. "imgui-docking/backends"
 	}
 	
 	libdirs
@@ -81,6 +83,11 @@ function setupCommonProjectSettings(_projectName, _kind)
 	
 	pchheader "stdafx.h"
 	pchsource (sourceDir .. _projectName .. "/stdafx.cpp")
+	
+	filter { "files:" .. dependenciesDir .. "**.cpp" }
+		flags { 'NoPCH' }
+	
+	filter {}
 
 end
 

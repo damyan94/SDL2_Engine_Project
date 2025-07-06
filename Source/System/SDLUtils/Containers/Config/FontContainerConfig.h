@@ -9,7 +9,7 @@ struct FontConfig
 
 struct FontContainerConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
 	std::vector<FontConfig>	FontContainerConfig;
 };

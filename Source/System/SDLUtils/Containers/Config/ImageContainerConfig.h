@@ -8,7 +8,7 @@ struct ImageConfig
 
 struct ImageContainerConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
 	std::vector<ImageConfig> ImageContainerConfig;
 };

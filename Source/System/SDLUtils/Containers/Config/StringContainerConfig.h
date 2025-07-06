@@ -1,13 +1,8 @@
 #pragma once
 
-struct StringConfig
-{
-	LanguageStringMap	LanguageStrings;
-};
-
 struct StringContainerConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
-	std::vector<StringConfig>	StringContainerConfig;
+	std::unordered_map<ELanguage, StringVector>	StringContainerConfig;
 };

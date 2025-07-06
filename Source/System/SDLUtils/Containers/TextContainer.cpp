@@ -53,7 +53,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 	textData.Texture->DestroyTexture();
 	
 	TextTextureParameters inOutParams{
-		p_StringContainer->GetStringData(textData.StringId).GetLocalizedString(m_CurrLanguage),
+		p_StringContainer->GetLocalizedString(m_CurrLanguage, textData.StringId),
 		p_FontContainer->GetData(textData.FontId).Font,
 		textData.TextColor,
 		textData.WrapWidth,
@@ -85,7 +85,7 @@ bool TextContainer::UpdateText(TextId id, FontId fontId, const Color& color, int
 
 	textData.Texture->DestroyTexture();
 
-	auto newText = p_StringContainer->GetStringData(textData.StringId).GetLocalizedString(m_CurrLanguage);
+	auto newText = p_StringContainer->GetLocalizedString(m_CurrLanguage, textData.StringId);
 	for (size_t i = 0; i < values.size(); i++)
 	{
 		const auto placeholder = "{" + std::to_string(i + 1) + "}";
@@ -152,7 +152,7 @@ bool TextContainer::Init(const TextContainerConfig& cfg, const StringContainer& 
 		newTextData.Texture = new Texture;
 
 		TextTextureParameters inOutParams{
-			p_StringContainer->GetStringData(textCfg.StringId).GetLocalizedString(m_CurrLanguage),
+			p_StringContainer->GetLocalizedString(m_CurrLanguage, textCfg.StringId),
 			p_FontContainer->GetData(textCfg.FontId).Font,
 			textCfg.TextColor,
 			textCfg.WrapWidth,

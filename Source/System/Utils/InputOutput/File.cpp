@@ -90,13 +90,13 @@ size_t File::GetLinesCount() const
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-const LinesOfText& File::GetLines() const
+const StringVector& File::GetLines() const
 {
     return m_Lines;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-LinesOfText& File::GetLinesMutable()
+StringVector& File::GetLinesMutable()
 {
     return m_Lines;
 }

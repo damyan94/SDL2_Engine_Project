@@ -3,7 +3,7 @@
 #include "Application/UI/Menus/Config/MenuManagerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-bool MenuManagerConfig::Read(const LinesOfText& lines, const UIComponentsConfig& uiComponentsConfig)
+bool MenuManagerConfig::Read(const StringVector& lines, const UIComponentsConfig& uiComponentsConfig)
 {
 	for (const auto& line : lines)
 	{

@@ -4,15 +4,6 @@
 #include "System/SDLUtils/Containers/Config/StringContainerConfig.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-const std::string& StringData::GetLocalizedString(ELanguage language) const
-{
-	const auto it = LanguageStrings.find(language);
-	AssertReturnIf(it == LanguageStrings.end(), "");
-
-	return it->second;
-}
-
-////////////////////////////////////////////////////////////////////////////////
 StringContainer::StringContainer()
 {
 }
@@ -26,33 +17,26 @@ StringContainer::~StringContainer()
 ////////////////////////////////////////////////////////////////////////////////
 bool StringContainer::DoesAssetExist(StringId id) const
 {
-	return id >= 0 && id < m_StringsContainer.size();
+	return id >= 0 && id < m_StringsContainer.begin()->second.size();
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-const StringData& StringContainer::GetStringData(StringId id) const
+const std::string& StringContainer::GetLocalizedString(ELanguage language, StringId id) const
 {
-	AssertReturnIf(!DoesAssetExist(id), StringData());
+	AssertReturnIf(!DoesAssetExist(id), "");
 
-	return m_StringsContainer[id];
+	const auto it = m_StringsContainer.find(language);
+	AssertReturnIf(it == m_StringsContainer.end(), "");
+
+	return it->second[id];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 bool StringContainer::Init(const StringContainerConfig& cfg)
 {
-	for (int i = 0; i < cfg.StringContainerConfig.size(); i++)
+	for (const auto& [language, strings] : cfg.StringContainerConfig)
 	{
-		AssertReturnIf(DoesAssetExist(i), false);
-		const auto& stringCfg = cfg.StringContainerConfig[i];
-
-		StringData newString;
-
-		for (const auto& [language, string] : stringCfg.LanguageStrings)
-		{
-			newString.LanguageStrings[language] = string;
-		}
-
-		m_StringsContainer.emplace_back(std::move(newString));
+		m_StringsContainer[language] = strings;
 	}
 
 	return true;

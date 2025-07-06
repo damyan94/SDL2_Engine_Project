@@ -16,6 +16,8 @@
 //TODO create thread wrapper
 #include <thread>
 
+#define USE_IMGUI
+
 static constexpr int32_t c_MaxDelayBetweenFrames = 100;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -74,24 +76,24 @@ void Application::HandleEvent()
 	DrawManager::Instance().HandleEvent(m_InputEvent);
 
 #ifdef USE_IMGUI
-	g_ImGuiManager->HandleEvent(m_InputEvent);
+	ImGuiManager::Instance().HandleEvent(m_InputEvent);
 #endif
 
-	Game::Instance().HandleEvent(m_InputEvent);
+	//Game::Instance().HandleEvent(m_InputEvent);
 
-	ReturnIf(m_InputEvent.m_Type != EEventType::KeyboardPress);
+	//ReturnIf(m_InputEvent.m_Type != EEventType::KeyboardPress);
 
-	//TODO Move this to the settings menu or other appropriate place
-	if (m_InputEvent.m_Key == EKeyboardKey::E)
-	{
-		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::EN);
-		Settings::Instance().SetLanguage(ELanguage::EN);
-	}
-	else if (m_InputEvent.m_Key == EKeyboardKey::R)
-	{
-		AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::BG);
-		Settings::Instance().SetLanguage(ELanguage::BG);
-	}
+	////TODO Move this to the settings menu or other appropriate place
+	//if (m_InputEvent.m_Key == EKeyboardKey::E)
+	//{
+	//	AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::EN);
+	//	Settings::Instance().SetLanguage(ELanguage::EN);
+	//}
+	//else if (m_InputEvent.m_Key == EKeyboardKey::R)
+	//{
+	//	AssetManager::Instance().m_TextContainer.ChangeLanguage(ELanguage::BG);
+	//	Settings::Instance().SetLanguage(ELanguage::BG);
+	//}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -101,19 +103,19 @@ void Application::Update()
 	DrawManager::Instance().Update(m_ElapsedTimeMS);
 
 	// Handle delays here so that we do not compromise our timers
-	Game::Instance().Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
+	/*Game::Instance().Update(m_ElapsedTimeMS < c_MaxDelayBetweenFrames
 		? m_ElapsedTimeMS
-		: m_ElapsedTimeMS = m_TargetTimePerFrame);
+		: m_ElapsedTimeMS = m_TargetTimePerFrame);*/
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 void Application::Draw() const
 {
 	DrawManager::Instance().ClearScreen();
-	Game::Instance().Draw();
+	//Game::Instance().Draw();
 
 #ifdef USE_IMGUI
-	g_ImGuiManager->Draw();
+	ImGuiManager::Instance().Draw();
 #endif
 
 	DrawManager::Instance().FinishFrame();

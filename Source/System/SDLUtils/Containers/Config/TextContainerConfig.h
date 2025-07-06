@@ -10,7 +10,7 @@ struct TextConfig
 
 struct TextContainerConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
 	std::vector<TextConfig>		TextContainerConfig;
 };

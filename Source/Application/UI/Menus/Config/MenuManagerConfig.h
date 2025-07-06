@@ -13,7 +13,7 @@ struct MenuConfig
 
 struct MenuManagerConfig
 {
-	bool				Read(const LinesOfText& line, const UIComponentsConfig& uiComponentsConfig);
+	bool				Read(const StringVector& line, const UIComponentsConfig& uiComponentsConfig);
 
 	std::vector<MenuConfig> MenuConfigs;
 };

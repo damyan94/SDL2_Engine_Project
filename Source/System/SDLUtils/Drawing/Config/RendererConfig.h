@@ -2,7 +2,7 @@
 
 struct RendererConfig
 {
-	bool				Read(const LinesOfText& readStrings);
+	bool				Read(const StringVector& readStrings);
 
 	Color				DrawColor;
 	int32_t				Flags;

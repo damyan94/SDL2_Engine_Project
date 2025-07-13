@@ -14,6 +14,8 @@
 
 #include "System/Managers/DrawManager.h"
 
+#include "System/Defines/ConfigFilePaths.h"
+
 //// Our state
 //bool show_demo_window = true;
 //bool show_another_window = false;
@@ -55,7 +57,7 @@ bool ImGuiManager::Init(const ImGuiManagerConfig& cfg)
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
 
-	io.Fonts->AddFontFromFileTTF("../../Assets/Fonts/Arial.ttf", 20.0f, NULL, ranges);
+	io.Fonts->AddFontFromFileTTF(ConfigFilePaths::ConfigFilePath("Assets/Fonts/Arial.ttf").c_str(), 20.0f, NULL, ranges);
 	io.FontDefault = io.Fonts->Fonts[0];
 
 	// Setup Dear ImGui style
